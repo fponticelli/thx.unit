@@ -16,8 +16,31 @@ abstract Degree(Float) {
 		return toRadians().sin();
 
 	@:to inline public function toString()
-		return this + '̊';
+		return '${this}̊';
 
 	@:to inline public function toRadians() : Radian
 		return new Radian(this / TO_DEGREE);
+
+	inline public function toFloat() : Float
+		return this;
+
+	@:op(-A) inline public function negate()
+		return new Degree(-this);
+
+	@:op(A*B) inline public function multiply(v : Float)
+		return new Degree(this * v);
+
+	@:op(A/B) inline public function divide(v : Float)
+		return new Degree(this / v);
+
+	@:op(A+B) inline public function add(r : Degree)
+		return new Degree(this + r.toFloat());
+
+	@:op(A-B) inline public function subtract(r : Degree)
+		return add(-r);
+}
+
+class FloatDegree {
+	inline public static function toDegrees(v : Float)
+		return Degree.fromFloat(v);
 }
