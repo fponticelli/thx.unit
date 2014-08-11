@@ -21,7 +21,7 @@ abstract Degree(Float) {
 	@:to inline public function toRadians() : Radian
 		return new Radian(this / TO_DEGREE);
 
-	inline public function toFloat() : Float
+	@:to inline public function toFloat() : Float
 		return this;
 
 	@:op(-A) inline public function negate()
@@ -36,8 +36,14 @@ abstract Degree(Float) {
 	@:op(A+B) inline public function add(r : Degree)
 		return new Degree(this + r.toFloat());
 
+	@:op(A+B) inline public function addFloat(v : Float)
+		return new Degree(this + v);
+
 	@:op(A-B) inline public function subtract(r : Degree)
 		return add(-r);
+
+	@:op(A-B) inline public function subtractFloat(v : Float)
+		return addFloat(-v);
 }
 
 class FloatDegree {

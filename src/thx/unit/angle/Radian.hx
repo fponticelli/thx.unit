@@ -36,8 +36,14 @@ abstract Radian(Float) {
 	@:op(A+B) inline public function add(r : Radian)
 		return new Radian(this + r.toFloat());
 
+	@:op(A+B) inline public function addFloat(v : Float)
+		return new Radian(this + v);
+
 	@:op(A-B) inline public function subtract(r : Radian)
 		return add(-r);
+
+	@:op(A-B) inline public function subtractFloat(v : Float)
+		return addFloat(-v);
 }
 
 class FloatRadian {
