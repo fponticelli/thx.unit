@@ -223,7 +223,7 @@ TestAll.prototype = {
 		var by6 = function(rad) {
 			return rad * 6;
 		};
-		utest_Assert.equals(Math.PI,by6(deg / thx_unit_angle_Const.TO_DEGREE),null,{ fileName : "TestAll.hx", lineNumber : 16, className : "TestAll", methodName : "testAngle"});
+		utest_Assert.equals(Math.PI,by6(deg / thx_unit_angle_Const.TO_DEGREE),null,{ fileName : "TestAll.hx", lineNumber : 24, className : "TestAll", methodName : "testAngle"});
 	}
 	,__class__: TestAll
 };
@@ -652,8 +652,17 @@ thx_unit_angle__$Degree_Degree_$Impl_$.divide = function(this1,v) {
 thx_unit_angle__$Degree_Degree_$Impl_$.add = function(this1,r) {
 	return this1 + r;
 };
+thx_unit_angle__$Degree_Degree_$Impl_$.addFloat = function(this1,v) {
+	return this1 + v;
+};
 thx_unit_angle__$Degree_Degree_$Impl_$.subtract = function(this1,r) {
 	return this1 + -r;
+};
+thx_unit_angle__$Degree_Degree_$Impl_$.subtractFloat = function(this1,v) {
+	return this1 + -v;
+};
+thx_unit_angle__$Degree_Degree_$Impl_$.equals = function(this1,v) {
+	return this1 == v;
 };
 var thx_unit_angle_FloatDegree = function() { };
 thx_unit_angle_FloatDegree.__name__ = ["thx","unit","angle","FloatDegree"];
@@ -695,8 +704,17 @@ thx_unit_angle__$Radian_Radian_$Impl_$.divide = function(this1,v) {
 thx_unit_angle__$Radian_Radian_$Impl_$.add = function(this1,r) {
 	return this1 + r;
 };
+thx_unit_angle__$Radian_Radian_$Impl_$.addFloat = function(this1,v) {
+	return this1 + v;
+};
 thx_unit_angle__$Radian_Radian_$Impl_$.subtract = function(this1,r) {
 	return this1 + -r;
+};
+thx_unit_angle__$Radian_Radian_$Impl_$.subtractFloat = function(this1,v) {
+	return this1 + -v;
+};
+thx_unit_angle__$Radian_Radian_$Impl_$.equals = function(this1,v) {
+	return this1 == v;
 };
 var thx_unit_angle_FloatRadian = function() { };
 thx_unit_angle_FloatRadian.__name__ = ["thx","unit","angle","FloatRadian"];
@@ -724,6 +742,12 @@ thx_unit_angle_TestRadian.prototype = {
 	,testConvertToDegree: function() {
 		var angle = Math.PI;
 		utest_Assert.equals(180,angle * thx_unit_angle_Const.TO_DEGREE,null,{ fileName : "TestRadian.hx", lineNumber : 16, className : "thx.unit.angle.TestRadian", methodName : "testConvertToDegree"});
+	}
+	,testEquals: function() {
+		var rad = Math.PI;
+		var deg = 180;
+		utest_Assert.isTrue(rad == deg / thx_unit_angle_Const.TO_DEGREE,null,{ fileName : "TestRadian.hx", lineNumber : 22, className : "thx.unit.angle.TestRadian", methodName : "testEquals"});
+		utest_Assert.isTrue(deg == rad * thx_unit_angle_Const.TO_DEGREE,null,{ fileName : "TestRadian.hx", lineNumber : 23, className : "thx.unit.angle.TestRadian", methodName : "testEquals"});
 	}
 	,__class__: thx_unit_angle_TestRadian
 };

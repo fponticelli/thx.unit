@@ -5,5 +5,5 @@
 -D nodejs
 -D js-flatten
 -main TestAll
--js bin/test/main.js
--cmd node bin/test/main.js
+-js bin/test.js
+-cmd node bin/test.js

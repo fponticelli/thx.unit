@@ -44,6 +44,9 @@ abstract Radian(Float) {
 
 	@:op(A-B) inline public function subtractFloat(v : Float)
 		return addFloat(-v);
+
+	@:op(A==B) inline public function equals(v : Radian)
+		return this == v.toFloat();
 }
 
 class FloatRadian {
