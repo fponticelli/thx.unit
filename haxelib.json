@@ -1,0 +1,11 @@
+{
+  "name": "thx.unit",
+  "url": "https://github.com/fponticelli/thx.unit",
+  "license": "MIT",
+  "classPath": "src",
+  "tags": ["thx", "math", "units", "cross"],
+  "description": "Library for unit conversions",
+  "releasenote": "first release",
+  "version": "0.1.0",
+  "contributors": ["fponticelli"]
+}
