@@ -2,6 +2,8 @@ package thx.unit.angle;
 
 import thx.unit.angle.Const.*;
 
+// TODO parse string
+
 abstract Degree(Float) {
 	@:from public static inline function fromFloat(angle : Float)
 		return new Degree(angle);
@@ -16,7 +18,7 @@ abstract Degree(Float) {
 		return toRadians().sin();
 
 	@:to inline public function toString()
-		return '${this}̊';
+		return '${this}º';
 
 	@:to inline public function toRadians() : Radian
 		return new Radian(this / TO_DEGREE);

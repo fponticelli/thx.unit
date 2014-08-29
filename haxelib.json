@@ -4,8 +4,11 @@
   "license": "MIT",
   "classPath": "src",
   "tags": ["thx", "math", "units", "cross"],
-  "description": "Library for unit conversions",
+  "description": "Fixed degree symbol",
   "releasenote": "first release",
-  "version": "0.1.0",
-  "contributors": ["fponticelli"]
+  "version": "0.1.1",
+  "contributors": ["fponticelli"],
+  "dependencies": {
+    "thx.core": "0.5.2"
+  }
 }

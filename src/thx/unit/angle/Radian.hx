@@ -2,6 +2,8 @@ package thx.unit.angle;
 
 import thx.unit.angle.Const.*;
 
+// TODO parse string
+
 abstract Radian(Float) {
 	@:from public static inline function fromFloat(angle : Float)
 		return new Radian(angle);
