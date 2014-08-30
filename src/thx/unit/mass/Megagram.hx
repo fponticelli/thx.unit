@@ -37,7 +37,7 @@ abstract Megagram(Float) {
   @:op(A>=B) inline public function moreEqual(other : Megagram) : Bool
     return this >= other.toFloat();
 
-  inline public function toFloat() : Float
+  @:to inline public function toFloat() : Float
     return this;
 
   @:to inline public function toKilogram() : Kilogram

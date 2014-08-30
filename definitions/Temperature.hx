@@ -38,7 +38,7 @@ abstract ${type}(Float) {
   @:op(A>=B) inline public function moreEqual(other : $type) : Bool
     return this >= other.toFloat();
 
-  inline public function toFloat() : Float
+  @:to inline public function toFloat() : Float
     return this;
 $if(type == 'Celsius') {
   @:to inline public function toFahrenheit() : Fahrenheit

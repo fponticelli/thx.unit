@@ -37,7 +37,7 @@ abstract Fourth(Float) {
   @:op(A>=B) inline public function moreEqual(other : Fourth) : Bool
     return this >= other.toFloat();
 
-  inline public function toFloat() : Float
+  @:to inline public function toFloat() : Float
     return this;
 
   @:to inline public function toPlankTimeUnit() : PlankTimeUnit

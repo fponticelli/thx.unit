@@ -37,7 +37,7 @@ abstract Nanogram(Float) {
   @:op(A>=B) inline public function moreEqual(other : Nanogram) : Bool
     return this >= other.toFloat();
 
-  inline public function toFloat() : Float
+  @:to inline public function toFloat() : Float
     return this;
 
   @:to inline public function toMegagram() : Megagram

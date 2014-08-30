@@ -3,12 +3,12 @@
   "url": "https://github.com/fponticelli/thx.unit",
   "license": "MIT",
   "classPath": "src",
-  "tags": ["thx", "math", "units", "cross"],
-  "description": "Fixed degree symbol",
-  "releasenote": "first release",
-  "version": "0.1.1",
+  "tags": ["thx", "math", "dimension", "unit", "cross"],
+  "description": "Units library",
+  "releasenote": "Automatically generated types from definitions",
+  "version": "0.2.0",
   "contributors": ["fponticelli"],
   "dependencies": {
-    "thx.core": "0.5.2"
+    "thx.core": "0.5.3"
   }
 }

@@ -38,7 +38,7 @@ abstract Delisle(Float) {
   @:op(A>=B) inline public function moreEqual(other : Delisle) : Bool
     return this >= other.toFloat();
 
-  inline public function toFloat() : Float
+  @:to inline public function toFloat() : Float
     return this;
 
   @:to inline public function toCelsius() : Celsius
