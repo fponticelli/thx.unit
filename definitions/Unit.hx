@@ -5,13 +5,15 @@ for(value in values) {
     units.push(value);
 })package thx.unit.${unit};
 
+// TODO parse string
+
 abstract ${type}(Float) {
   @:from inline static public function floatTo${type}(value : Float) : $type
     return new ${type}(value);
 
   function new(value : Float)
     this = value;
-  @:op(  -A) inline public function negate() : $type
+  @:op( -A ) inline public function negate() : $type
     return -this;
   @:op( A+B) inline public function add(other : $type) : $type
     return this + other.toFloat();
@@ -40,7 +42,7 @@ abstract ${type}(Float) {
     return this;
 $for(value in units) {
   @:to inline public function to${value.type}() : $value.type
-    return this * ${toUnit / value.toUnit};}
+    return this * ${ofUnit / value.ofUnit};}
 
   @:to inline public function toString() : String
     return this + symbol;

@@ -6,7 +6,9 @@
     { "unit" : "length", "type" : "Centimeter", "source" : "Centimetre" },
     { "unit" : "length", "type" : "Millimeter", "source" : "Millimetre" },
     { "unit" : "length", "type" : "Micrometer", "source" : "Micrometre" },
-    { "unit" : "length", "type" : "Nanometer",  "source" : "Nanometre" }
+    { "unit" : "length", "type" : "Nanometer",  "source" : "Nanometre" },
+
+    { "unit" : "mass", "type" : "Tonne",  "source" : "Megagram" }
   ],
   "output" : "thx/unit/${unit}/${type}.hx"
 }

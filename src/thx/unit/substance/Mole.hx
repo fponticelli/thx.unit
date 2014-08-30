@@ -1,4 +1,6 @@
-package thx.unit.amount;
+package thx.unit.substance;
+
+// TODO parse string
 
 abstract Mole(Float) {
   @:from inline static public function floatToMole(value : Float) : Mole
@@ -6,7 +8,7 @@ abstract Mole(Float) {
 
   function new(value : Float)
     this = value;
-  @:op(  -A) inline public function negate() : Mole
+  @:op( -A ) inline public function negate() : Mole
     return -this;
   @:op( A+B) inline public function add(other : Mole) : Mole
     return this + other.toFloat();
