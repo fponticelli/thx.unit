@@ -1,7 +1,10 @@
 {
   "template" : "Unit.hx",
   "values" : [
-    { "unit" : "current", "type" : "Ampere",   "symbol" : "A", "ofUnit" : 1 },
+    { "unit" : "amountofsubstance", "type" : "Mole",      "symbol" : "mol",       "ofUnit" : 1 },
+    { "unit" : "amountofsubstance", "type" : "PoundMole", "symbol" : "pound-mol", "ofUnit" : 453.59237 },
+
+    { "unit" : "current", "type" : "Ampere", "symbol" : "A", "ofUnit" : 1 },
 
     { "unit" : "length", "type" : "Kilometre",  "symbol" : "km", "ofUnit" : 1000.0 },
     { "unit" : "length", "type" : "Metre",      "symbol" : "m",  "ofUnit" : 1.0 },
@@ -59,10 +62,7 @@
     { "unit" : "time", "type" : "Second",   "symbol" : "s", "ofUnit" : 1 },
 
 
-    { "unit" : "temperature", "type" : "Kelvin",   "symbol" : "K", "ofUnit" : 1 },
-
-    { "unit" : "substance", "type" : "Mole",   "symbol" : "mol", "ofUnit" : 1 }
-
+    { "unit" : "temperature", "type" : "Kelvin",   "symbol" : "K", "ofUnit" : 1 }
   ],
   "output" : "thx/unit/${unit}/${type}.hx"
 }

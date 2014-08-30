@@ -1,4 +1,4 @@
-package thx.unit.substance;
+package thx.unit.amountofsubstance;
 
 // TODO parse string
 
@@ -36,6 +36,8 @@ abstract Mole(Float) {
   inline public function toFloat() : Float
     return this;
 
+  @:to inline public function toPoundMole() : PoundMole
+    return this * 0.00220462262184878;
 
   @:to inline public function toString() : String
     return this + symbol;

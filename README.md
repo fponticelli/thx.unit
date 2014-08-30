@@ -3,7 +3,6 @@
 Library for unit conversions.
 
 ## TODO
-    * substance
     * temperature
     * time?
     * bytes
