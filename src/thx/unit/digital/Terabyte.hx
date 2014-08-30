@@ -1,5 +1,7 @@
 package thx.unit.digital;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Terabyte(Float) {
@@ -22,6 +24,8 @@ abstract Terabyte(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Terabyte) : Bool
     return this == other;
+  public function nearEqual(other : Terabyte) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Terabyte) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Terabyte) : Bool

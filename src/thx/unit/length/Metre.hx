@@ -1,5 +1,7 @@
 package thx.unit.length;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Metre(Float) {
@@ -22,6 +24,8 @@ abstract Metre(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Metre) : Bool
     return this == other;
+  public function nearEqual(other : Metre) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Metre) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Metre) : Bool

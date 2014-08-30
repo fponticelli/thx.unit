@@ -1,5 +1,7 @@
 package thx.unit.angle;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Radian(Float) {
@@ -11,10 +13,10 @@ abstract Radian(Float) {
 
 
   inline public function cos()
-    return toRadians().cos();
+    return Math.cos(this);
 
   inline public function sin()
-    return toRadians().sin();
+    return Math.sin(this);
 
 
   @:op( -A ) inline public function negate() : Radian
@@ -31,6 +33,8 @@ abstract Radian(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Radian) : Bool
     return this == other;
+  public function nearEqual(other : Radian) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Radian) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Radian) : Bool
@@ -46,27 +50,27 @@ abstract Radian(Float) {
     return this;
 
   @:to inline public function toBinaryDegree() : BinaryDegree
-    return this * 0.0245436926061703;
+    return this * 40.7436654315252;
   @:to inline public function toDegree() : Degree
-    return this * 0.0174532925199433;
+    return this * 57.2957795130823;
   @:to inline public function toGrad() : Grad
-    return this * 0.015707963267949;
+    return this * 63.6619772367581;
   @:to inline public function toHourAngle() : HourAngle
-    return this * 0.261799387799149;
+    return this * 3.81971863420549;
   @:to inline public function toMinuteOfArc() : MinuteOfArc
-    return this * 0.000290888208665722;
+    return this * 3437.74677078494;
   @:to inline public function toPoint() : Point
-    return this * 0.196349540849362;
+    return this * 5.09295817894065;
   @:to inline public function toQuadrant() : Quadrant
-    return this * 1.5707963267949;
+    return this * 0.636619772367581;
   @:to inline public function toRevolution() : Revolution
-    return this * 6.28318530717959;
+    return this * 0.159154943091895;
   @:to inline public function toSecondOfArc() : SecondOfArc
-    return this * 4.84813681109536e-06;
+    return this * 206264.806247096;
   @:to inline public function toSextant() : Sextant
-    return this * 1.0471975511966;
+    return this * 0.954929658551372;
   @:to inline public function toTurn() : Turn
-    return this * 6.28318530717959;
+    return this * 0.159154943091895;
 
   @:to inline public function toString() : String
     return this + symbol;

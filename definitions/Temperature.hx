@@ -1,5 +1,7 @@
 package thx.unit.angle;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract ${type}(Float) {
@@ -23,6 +25,8 @@ abstract ${type}(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : $type) : Bool
     return this == other;
+  public function nearEqual(other : $type) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : $type) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : $type) : Bool

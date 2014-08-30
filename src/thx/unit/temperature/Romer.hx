@@ -1,5 +1,7 @@
 package thx.unit.angle;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Romer(Float) {
@@ -23,6 +25,8 @@ abstract Romer(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Romer) : Bool
     return this == other;
+  public function nearEqual(other : Romer) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Romer) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Romer) : Bool

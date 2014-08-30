@@ -1,5 +1,7 @@
 package thx.unit.length;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract AstronomicalUnit(Float) {
@@ -22,6 +24,8 @@ abstract AstronomicalUnit(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : AstronomicalUnit) : Bool
     return this == other;
+  public function nearEqual(other : AstronomicalUnit) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : AstronomicalUnit) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : AstronomicalUnit) : Bool

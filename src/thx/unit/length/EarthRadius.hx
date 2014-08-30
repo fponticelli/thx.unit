@@ -1,5 +1,7 @@
 package thx.unit.length;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract EarthRadius(Float) {
@@ -22,6 +24,8 @@ abstract EarthRadius(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : EarthRadius) : Bool
     return this == other;
+  public function nearEqual(other : EarthRadius) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : EarthRadius) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : EarthRadius) : Bool

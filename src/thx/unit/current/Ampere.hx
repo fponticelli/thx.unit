@@ -1,5 +1,7 @@
 package thx.unit.current;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Ampere(Float) {
@@ -22,6 +24,8 @@ abstract Ampere(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Ampere) : Bool
     return this == other;
+  public function nearEqual(other : Ampere) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Ampere) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Ampere) : Bool

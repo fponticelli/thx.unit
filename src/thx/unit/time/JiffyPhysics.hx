@@ -1,5 +1,7 @@
 package thx.unit.time;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract JiffyPhysics(Float) {
@@ -22,6 +24,8 @@ abstract JiffyPhysics(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : JiffyPhysics) : Bool
     return this == other;
+  public function nearEqual(other : JiffyPhysics) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : JiffyPhysics) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : JiffyPhysics) : Bool

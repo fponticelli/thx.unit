@@ -1,5 +1,7 @@
 package thx.unit.angle;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Turn(Float) {
@@ -11,10 +13,10 @@ abstract Turn(Float) {
 
 
   inline public function cos()
-    return toRadians().cos();
+    return toRadian().cos();
 
   inline public function sin()
-    return toRadians().sin();
+    return toRadian().sin();
 
 
   @:op( -A ) inline public function negate() : Turn
@@ -31,6 +33,8 @@ abstract Turn(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Turn) : Bool
     return this == other;
+  public function nearEqual(other : Turn) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Turn) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Turn) : Bool
@@ -46,27 +50,27 @@ abstract Turn(Float) {
     return this;
 
   @:to inline public function toBinaryDegree() : BinaryDegree
-    return this * 0.00390625;
+    return this * 256;
   @:to inline public function toDegree() : Degree
-    return this * 0.00277777777777778;
+    return this * 360;
   @:to inline public function toGrad() : Grad
-    return this * 0.0025;
+    return this * 400;
   @:to inline public function toHourAngle() : HourAngle
-    return this * 0.0416666666666667;
+    return this * 24;
   @:to inline public function toMinuteOfArc() : MinuteOfArc
-    return this * 4.62962962962963e-05;
+    return this * 21600;
   @:to inline public function toPoint() : Point
-    return this * 0.03125;
+    return this * 32;
   @:to inline public function toQuadrant() : Quadrant
-    return this * 0.25;
+    return this * 4;
   @:to inline public function toRadian() : Radian
-    return this * 0.159154943091895;
+    return this * 6.28318530717959;
   @:to inline public function toRevolution() : Revolution
     return this * 1;
   @:to inline public function toSecondOfArc() : SecondOfArc
-    return this * 7.71604938271605e-07;
+    return this * 1296000;
   @:to inline public function toSextant() : Sextant
-    return this * 0.166666666666667;
+    return this * 6;
 
   @:to inline public function toString() : String
     return this + symbol;

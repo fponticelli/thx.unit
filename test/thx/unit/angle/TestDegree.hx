@@ -8,6 +8,6 @@ class TestDegree {
 
 	public function testBasic() {
 		var angle : Degree = 30;
-		Assert.equals("30º", angle.toString());
+		Assert.equals("30°", angle.toString());
 	}
 }

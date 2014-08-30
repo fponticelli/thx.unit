@@ -1,5 +1,7 @@
 package thx.unit.mass;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Megagram(Float) {
@@ -22,6 +24,8 @@ abstract Megagram(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Megagram) : Bool
     return this == other;
+  public function nearEqual(other : Megagram) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Megagram) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Megagram) : Bool

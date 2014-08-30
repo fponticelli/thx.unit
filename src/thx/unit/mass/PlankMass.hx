@@ -1,5 +1,7 @@
 package thx.unit.mass;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract PlankMass(Float) {
@@ -22,6 +24,8 @@ abstract PlankMass(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : PlankMass) : Bool
     return this == other;
+  public function nearEqual(other : PlankMass) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : PlankMass) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : PlankMass) : Bool

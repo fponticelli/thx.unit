@@ -1,5 +1,7 @@
 package thx.unit.time;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Microsecond(Float) {
@@ -22,6 +24,8 @@ abstract Microsecond(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Microsecond) : Bool
     return this == other;
+  public function nearEqual(other : Microsecond) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Microsecond) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Microsecond) : Bool

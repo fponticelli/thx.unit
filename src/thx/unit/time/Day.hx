@@ -1,5 +1,7 @@
 package thx.unit.time;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Day(Float) {
@@ -22,6 +24,8 @@ abstract Day(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Day) : Bool
     return this == other;
+  public function nearEqual(other : Day) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Day) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Day) : Bool

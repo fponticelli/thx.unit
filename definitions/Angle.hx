@@ -1,5 +1,7 @@
 package thx.unit.angle;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract ${type}(Float) {
@@ -9,7 +11,7 @@ abstract ${type}(Float) {
   function new(value : Float)
     this = value;
 
-$if(type == 'Radians') {
+$if(type == 'Radian') {
   inline public function cos()
     return Math.cos(this);
 
@@ -17,10 +19,10 @@ $if(type == 'Radians') {
     return Math.sin(this);
 } else {
   inline public function cos()
-    return toRadians().cos();
+    return toRadian().cos();
 
   inline public function sin()
-    return toRadians().sin();
+    return toRadian().sin();
 }
 
   @:op( -A ) inline public function negate() : $type
@@ -37,6 +39,8 @@ $if(type == 'Radians') {
     return this % other;
   @:op(A==B) inline public function equal(other : $type) : Bool
     return this == other;
+  public function nearEqual(other : $type) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : $type) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : $type) : Bool
@@ -52,7 +56,7 @@ $if(type == 'Radians') {
     return this;
 $for(value in values) {
   @:to inline public function to${value.type}() : $value.type
-    return this * ${ofTurn / value.ofTurn};}
+    return this * ${value.ofTurn / ofTurn};}
 
   @:to inline public function toString() : String
     return this + symbol;

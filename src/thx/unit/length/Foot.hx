@@ -1,5 +1,7 @@
 package thx.unit.length;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Foot(Float) {
@@ -22,6 +24,8 @@ abstract Foot(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Foot) : Bool
     return this == other;
+  public function nearEqual(other : Foot) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Foot) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Foot) : Bool

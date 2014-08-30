@@ -1,5 +1,7 @@
 package thx.unit.length;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Thou(Float) {
@@ -22,6 +24,8 @@ abstract Thou(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Thou) : Bool
     return this == other;
+  public function nearEqual(other : Thou) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Thou) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Thou) : Bool

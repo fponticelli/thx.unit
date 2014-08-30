@@ -1,5 +1,7 @@
 package thx.unit.time;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Shake(Float) {
@@ -22,6 +24,8 @@ abstract Shake(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Shake) : Bool
     return this == other;
+  public function nearEqual(other : Shake) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Shake) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Shake) : Bool

@@ -1,5 +1,7 @@
 package thx.unit.length;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Chain(Float) {
@@ -22,6 +24,8 @@ abstract Chain(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Chain) : Bool
     return this == other;
+  public function nearEqual(other : Chain) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Chain) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Chain) : Bool

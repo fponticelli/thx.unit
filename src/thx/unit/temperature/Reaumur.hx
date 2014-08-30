@@ -1,5 +1,7 @@
 package thx.unit.angle;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Reaumur(Float) {
@@ -23,6 +25,8 @@ abstract Reaumur(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Reaumur) : Bool
     return this == other;
+  public function nearEqual(other : Reaumur) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Reaumur) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Reaumur) : Bool

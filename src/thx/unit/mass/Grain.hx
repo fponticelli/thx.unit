@@ -1,5 +1,7 @@
 package thx.unit.mass;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Grain(Float) {
@@ -22,6 +24,8 @@ abstract Grain(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Grain) : Bool
     return this == other;
+  public function nearEqual(other : Grain) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Grain) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Grain) : Bool

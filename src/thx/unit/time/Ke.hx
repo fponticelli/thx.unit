@@ -1,5 +1,7 @@
 package thx.unit.time;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Ke(Float) {
@@ -22,6 +24,8 @@ abstract Ke(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Ke) : Bool
     return this == other;
+  public function nearEqual(other : Ke) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Ke) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Ke) : Bool

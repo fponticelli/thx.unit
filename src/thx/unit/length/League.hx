@@ -1,5 +1,7 @@
 package thx.unit.length;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract League(Float) {
@@ -22,6 +24,8 @@ abstract League(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : League) : Bool
     return this == other;
+  public function nearEqual(other : League) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : League) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : League) : Bool

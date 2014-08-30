@@ -1,5 +1,7 @@
 package thx.unit.length;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Fathom(Float) {
@@ -22,6 +24,8 @@ abstract Fathom(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Fathom) : Bool
     return this == other;
+  public function nearEqual(other : Fathom) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Fathom) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Fathom) : Bool

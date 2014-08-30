@@ -1,5 +1,7 @@
 package thx.unit.luminousintensity;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Candela(Float) {
@@ -22,6 +24,8 @@ abstract Candela(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Candela) : Bool
     return this == other;
+  public function nearEqual(other : Candela) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Candela) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Candela) : Bool

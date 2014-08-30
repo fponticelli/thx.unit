@@ -1,5 +1,7 @@
 package thx.unit.mass;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Ton(Float) {
@@ -22,6 +24,8 @@ abstract Ton(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Ton) : Bool
     return this == other;
+  public function nearEqual(other : Ton) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Ton) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Ton) : Bool

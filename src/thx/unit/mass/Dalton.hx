@@ -1,5 +1,7 @@
 package thx.unit.mass;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Dalton(Float) {
@@ -22,6 +24,8 @@ abstract Dalton(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Dalton) : Bool
     return this == other;
+  public function nearEqual(other : Dalton) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Dalton) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Dalton) : Bool

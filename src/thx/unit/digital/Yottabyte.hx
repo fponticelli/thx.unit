@@ -1,5 +1,7 @@
 package thx.unit.digital;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Yottabyte(Float) {
@@ -22,6 +24,8 @@ abstract Yottabyte(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Yottabyte) : Bool
     return this == other;
+  public function nearEqual(other : Yottabyte) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Yottabyte) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Yottabyte) : Bool

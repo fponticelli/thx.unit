@@ -23,6 +23,6 @@ class TestAll {
 		function by6(rad : Radian) : Radian {
 			return rad * 6;
 		}
-		Assert.equals(Math.PI, by6(deg));
+		Assert.floatEquals(Math.PI, by6(deg).toFloat());
 	}
 }

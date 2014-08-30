@@ -1,5 +1,7 @@
 package thx.unit.amountofsubstance;
 
+import thx.core.Floats;
+
 // TODO parse string
 
 abstract Mole(Float) {
@@ -22,6 +24,8 @@ abstract Mole(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Mole) : Bool
     return this == other;
+  public function nearEqual(other : Mole) : Bool
+    return Floats.nearEqual(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Mole) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Mole) : Bool
