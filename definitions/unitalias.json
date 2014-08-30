@@ -10,7 +10,9 @@
 
     { "unit" : "mass", "type" : "Tonne",  "source" : "Megagram" },
 
-    { "unit" : "temperature", "type" : "Centrigrade",  "source" : "Celsius" }
+    { "unit" : "temperature", "type" : "Centrigrade",  "source" : "Celsius" },
+
+    { "unit" : "time", "type" : "Centriday",  "source" : "Ke" }
   ],
   "output" : "thx/unit/${unit}/${type}.hx"
 }

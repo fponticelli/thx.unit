@@ -52,8 +52,6 @@
     { "unit" : "luminousintensity", "type" : "Candela",     "symbol" : "cd", "ofUnit" : 1 },
     { "unit" : "luminousintensity", "type" : "Candlepower", "symbol" : "cp", "ofUnit" : 0.981 },
 
-    { "unit" : "area", "type" : "SquareMetre", "symbol" : "kg", "ofUnit" : 1 },
-
     { "unit" : "mass", "type" : "Megagram",  "symbol" : "Mg", "ofUnit" : 1000.0 },
     { "unit" : "mass", "type" : "Kilogram",  "symbol" : "kg", "ofUnit" : 1.0 },
     { "unit" : "mass", "type" : "Gram",      "symbol" : "g",  "ofUnit" : 0.001 },
@@ -78,7 +76,32 @@
     { "unit" : "mass", "type" : "Slug",      "symbol" : "slug", "ofUnit" : 14.593903 },
     { "unit" : "mass", "type" : "SolarMass", "symbol" : "M☉",   "ofUnit" : 1.98855e30 },
 
-    { "unit" : "time", "type" : "Second",   "symbol" : "s", "ofUnit" : 1 }
+    { "unit" : "time", "type" : "PlankTimeUnit", "symbol" : "tP", "ofUnit" : 5.39e-44 },
+    { "unit" : "time", "type" : "JiffyPhysics", "symbol" : "jiffy", "ofUnit" : 3e-24 },
+    { "unit" : "time", "type" : "Svedberg", "symbol" : "S", "ofUnit" : 10e-13 },
+    { "unit" : "time", "type" : "Picosecond", "symbol" : "ps", "ofUnit" : 10e-12 },
+    { "unit" : "time", "type" : "Nanosecond", "symbol" : "ns", "ofUnit" : 10e-9 },
+
+    { "unit" : "time", "type" : "Shake", "symbol" : "shake", "ofUnit" : 10e-8 },
+    { "unit" : "time", "type" : "Microsecond", "symbol" : "μs", "ofUnit" : 10e-6 },
+    { "unit" : "time", "type" : "Fourth", "symbol" : "fourth", "ofUnit" : 0.00027777777778 },
+    { "unit" : "time", "type" : "Millisecond", "symbol" : "ms", "ofUnit" : 0.001 },
+    { "unit" : "time", "type" : "Third", "symbol" : "third", "ofUnit" : 0.01666666666667 },
+    { "unit" : "time", "type" : "Second",   "symbol" : "s", "ofUnit" : 1 },
+
+    { "unit" : "time", "type" : "Minute",        "symbol" : "min",            "ofUnit" : 60 },
+    { "unit" : "time", "type" : "Ke",            "symbol" : "ke",             "ofUnit" : 864 },
+    { "unit" : "time", "type" : "Kilosecond",    "symbol" : "ks",             "ofUnit" : 1000 },
+    { "unit" : "time", "type" : "Hour",          "symbol" : "h",              "ofUnit" : 3600 },
+    { "unit" : "time", "type" : "Day",           "symbol" : "day",            "ofUnit" : 86400 },
+    { "unit" : "time", "type" : "Week",          "symbol" : "week",           "ofUnit" : 604800 },
+    { "unit" : "time", "type" : "Megasecond",    "symbol" : "Ms",             "ofUnit" : 1000000 },
+    { "unit" : "time", "type" : "Fortnight",     "symbol" : "fortnight",      "ofUnit" : 1209600 },
+    { "unit" : "time", "type" : "SynodicMonth",  "symbol" : "synodic month",  "ofUnit" : 2551442.976 },
+    { "unit" : "time", "type" : "TropicalMonth", "symbol" : "tropical month", "ofUnit" : 2360584.512 },
+    { "unit" : "time", "type" : "JulianYear",    "symbol" : "julian year",    "ofUnit" : 31557600 },
+    { "unit" : "time", "type" : "Gigasecond",    "symbol" : "Gs",             "ofUnit" : 1000000000.0 },
+    { "unit" : "time", "type" : "Terasecond",    "symbol" : "Ts",             "ofUnit" : 1000000000000.0 }
   ],
   "output" : "thx/unit/${unit}/${type}.hx"
 }

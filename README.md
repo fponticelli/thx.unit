@@ -3,8 +3,7 @@
 Library for unit conversions.
 
 ## TODO
-    * derivated units
-    * time?
+    * derivative units
     * area
     * volume
     * electrical current units and operations (Volts, Ohms)

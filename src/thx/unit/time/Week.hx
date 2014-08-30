@@ -2,89 +2,89 @@ package thx.unit.time;
 
 // TODO parse string
 
-abstract Second(Float) {
-  @:from inline static public function floatToSecond(value : Float) : Second
-    return new Second(value);
+abstract Week(Float) {
+  @:from inline static public function floatToWeek(value : Float) : Week
+    return new Week(value);
 
   function new(value : Float)
     this = value;
-  @:op( -A ) inline public function negate() : Second
+  @:op( -A ) inline public function negate() : Week
     return -this;
-  @:op( A+B) inline public function add(other : Second) : Second
+  @:op( A+B) inline public function add(other : Week) : Week
     return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Second) : Second
+  @:op( A-B) inline public function subtract(other : Week) : Week
     return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Second
+  @:op( A*B) inline public function multiply(other : Float) : Week
     return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Second
+  @:op( A/B) inline public function divide(other : Float) : Week
     return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Second
+  @:op( A%B) inline public function modulo(other : Float) : Week
     return this % other;
-  @:op(A==B) inline public function equal(other : Second) : Bool
+  @:op(A==B) inline public function equal(other : Week) : Bool
     return this == other;
-  @:op(A!=B) inline public function notEqual(other : Second) : Bool
+  @:op(A!=B) inline public function notEqual(other : Week) : Bool
     return this != other;
-  @:op( A<B) inline public function less(other : Second) : Bool
+  @:op( A<B) inline public function less(other : Week) : Bool
     return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Second) : Bool
+  @:op(A<=B) inline public function lessEqual(other : Week) : Bool
     return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Second) : Bool
+  @:op( A>B) inline public function more(other : Week) : Bool
     return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Second) : Bool
+  @:op(A>=B) inline public function moreEqual(other : Week) : Bool
     return this >= other.toFloat();
 
   inline public function toFloat() : Float
     return this;
 
   @:to inline public function toPlankTimeUnit() : PlankTimeUnit
-    return this * 1.85528756957328e+43;
+    return this * 1.12207792207792e+49;
   @:to inline public function toJiffyPhysics() : JiffyPhysics
-    return this * 3.33333333333333e+23;
+    return this * 2.016e+29;
   @:to inline public function toSvedberg() : Svedberg
-    return this * 1000000000000;
+    return this * 6.048e+17;
   @:to inline public function toPicosecond() : Picosecond
-    return this * 100000000000;
+    return this * 6.048e+16;
   @:to inline public function toNanosecond() : Nanosecond
-    return this * 100000000;
+    return this * 60480000000000;
   @:to inline public function toShake() : Shake
-    return this * 10000000;
+    return this * 6048000000000;
   @:to inline public function toMicrosecond() : Microsecond
-    return this * 100000;
+    return this * 60480000000;
   @:to inline public function toFourth() : Fourth
-    return this * 3599.9999999712;
+    return this * 2177279999.98258;
   @:to inline public function toMillisecond() : Millisecond
-    return this * 1000;
+    return this * 604800000;
   @:to inline public function toThird() : Third
-    return this * 59.999999999988;
+    return this * 36287999.9999927;
+  @:to inline public function toSecond() : Second
+    return this * 604800;
   @:to inline public function toMinute() : Minute
-    return this * 0.0166666666666667;
+    return this * 10080;
   @:to inline public function toKe() : Ke
-    return this * 0.00115740740740741;
+    return this * 700;
   @:to inline public function toKilosecond() : Kilosecond
-    return this * 0.001;
+    return this * 604.8;
   @:to inline public function toHour() : Hour
-    return this * 0.000277777777777778;
+    return this * 168;
   @:to inline public function toDay() : Day
-    return this * 1.15740740740741e-05;
-  @:to inline public function toWeek() : Week
-    return this * 1.65343915343915e-06;
+    return this * 7;
   @:to inline public function toMegasecond() : Megasecond
-    return this * 1e-06;
+    return this * 0.6048;
   @:to inline public function toFortnight() : Fortnight
-    return this * 8.26719576719577e-07;
+    return this * 0.5;
   @:to inline public function toSynodicMonth() : SynodicMonth
-    return this * 3.91935077290162e-07;
+    return this * 0.23704233474509;
   @:to inline public function toTropicalMonth() : TropicalMonth
-    return this * 4.23623892691201e-07;
+    return this * 0.256207730299639;
   @:to inline public function toJulianYear() : JulianYear
-    return this * 3.16880878140289e-08;
+    return this * 0.0191649555099247;
   @:to inline public function toGigasecond() : Gigasecond
-    return this * 1e-09;
+    return this * 0.0006048;
   @:to inline public function toTerasecond() : Terasecond
-    return this * 1e-12;
+    return this * 6.048e-07;
 
   @:to inline public function toString() : String
     return this + symbol;
 
-  public static inline var symbol : String = "s";
+  public static inline var symbol : String = "week";
 }
