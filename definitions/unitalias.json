@@ -8,7 +8,9 @@
     { "unit" : "length", "type" : "Micrometer", "source" : "Micrometre" },
     { "unit" : "length", "type" : "Nanometer",  "source" : "Nanometre" },
 
-    { "unit" : "mass", "type" : "Tonne",  "source" : "Megagram" }
+    { "unit" : "mass", "type" : "Tonne",  "source" : "Megagram" },
+
+    { "unit" : "temperature", "type" : "Centrigrade",  "source" : "Celsius" }
   ],
   "output" : "thx/unit/${unit}/${type}.hx"
 }

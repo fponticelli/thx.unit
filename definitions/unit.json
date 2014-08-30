@@ -78,10 +78,7 @@
     { "unit" : "mass", "type" : "Slug",      "symbol" : "slug", "ofUnit" : 14.593903 },
     { "unit" : "mass", "type" : "SolarMass", "symbol" : "M☉",   "ofUnit" : 1.98855e30 },
 
-    { "unit" : "time", "type" : "Second",   "symbol" : "s", "ofUnit" : 1 },
-
-
-    { "unit" : "temperature", "type" : "Kelvin",   "symbol" : "K", "ofUnit" : 1 }
+    { "unit" : "time", "type" : "Second",   "symbol" : "s", "ofUnit" : 1 }
   ],
   "output" : "thx/unit/${unit}/${type}.hx"
 }

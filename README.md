@@ -3,10 +3,7 @@
 Library for unit conversions.
 
 ## TODO
-    * temperature
-
-These require more calculations to convert from linear/area/volume
-
+    * derivated units
     * time?
     * area
     * volume
