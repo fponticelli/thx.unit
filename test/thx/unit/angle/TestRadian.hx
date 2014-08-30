@@ -13,13 +13,13 @@ class TestRadian {
 
 	public function testConvertToDegree() {
 		var angle : Radian = Math.PI;
-		Assert.equals(180, angle.toDegrees().toFloat());
+		Assert.floatEquals(180, angle.toDegree().toFloat());
 	}
 
 	public function testEquals() {
 		var rad : Radian = Math.PI,
-			deg : Degree = 180;
-		Assert.isTrue(rad == deg);
-		Assert.isTrue(deg == rad);
+			  deg : Degree = 180;
+		Assert.isTrue(rad.nearEqual(deg));
+		Assert.isTrue(deg.nearEqual(rad));
 	}
 }

@@ -1,57 +1,79 @@
 package thx.unit.angle;
 
-import thx.unit.angle.Const.*;
+import thx.core.Floats;
 
 // TODO parse string
 
 abstract Degree(Float) {
-	@:from public static inline function fromFloat(angle : Float)
-		return new Degree(angle);
+  @:from inline static public function floatToDegree(value : Float) : Degree
+    return new Degree(value);
 
-	inline public function new(degrees : Float)
-		this = degrees;
+  function new(value : Float)
+    this = value;
 
-	inline public function cos()
-		return toRadians().cos();
 
-	inline public function sin()
-		return toRadians().sin();
+  inline public function cos()
+    return toRadian().cos();
 
-	@:to inline public function toString()
-		return '${this}º';
+  inline public function sin()
+    return toRadian().sin();
 
-	@:to inline public function toRadians() : Radian
-		return new Radian(this / TO_DEGREE);
 
-	@:to inline public function toFloat() : Float
-		return this;
+  @:op( -A ) inline public function negate() : Degree
+    return -this;
+  @:op( A+B) inline public function add(other : Degree) : Degree
+    return this + other.toFloat();
+  @:op( A-B) inline public function subtract(other : Degree) : Degree
+    return this - other.toFloat();
+  @:op( A*B) inline public function multiply(other : Float) : Degree
+    return this * other;
+  @:op( A/B) inline public function divide(other : Float) : Degree
+    return this / other;
+  @:op( A%B) inline public function modulo(other : Float) : Degree
+    return this % other;
+  @:op(A==B) inline public function equal(other : Degree) : Bool
+    return this == other;
+  public function nearEqual(other : Degree) : Bool
+    return Floats.nearEqual(this, other.toFloat());
+  @:op(A!=B) inline public function notEqual(other : Degree) : Bool
+    return this != other;
+  @:op( A<B) inline public function less(other : Degree) : Bool
+    return this < other.toFloat();
+  @:op(A<=B) inline public function lessEqual(other : Degree) : Bool
+    return this <= other.toFloat();
+  @:op( A>B) inline public function more(other : Degree) : Bool
+    return this > other.toFloat();
+  @:op(A>=B) inline public function moreEqual(other : Degree) : Bool
+    return this >= other.toFloat();
 
-	@:op(-A) inline public function negate()
-		return new Degree(-this);
+  inline public function toFloat() : Float
+    return this;
 
-	@:op(A*B) inline public function multiply(v : Float)
-		return new Degree(this * v);
+  @:to inline public function toBinaryDegree() : BinaryDegree
+    return this * 0.711111111111111;
+  @:to inline public function toGrad() : Grad
+    return this * 1.11111111111111;
+  @:to inline public function toHourAngle() : HourAngle
+    return this * 0.0666666666666667;
+  @:to inline public function toMinuteOfArc() : MinuteOfArc
+    return this * 60;
+  @:to inline public function toPoint() : Point
+    return this * 0.0888888888888889;
+  @:to inline public function toQuadrant() : Quadrant
+    return this * 0.0111111111111111;
+  @:to inline public function toRadian() : Radian
+    return this * 0.0174532925199433;
+  @:to inline public function toRevolution() : Revolution
+    return this * 0.00277777777777778;
+  @:to inline public function toSecondOfArc() : SecondOfArc
+    return this * 3600;
+  @:to inline public function toSextant() : Sextant
+    return this * 0.0166666666666667;
+  @:to inline public function toTurn() : Turn
+    return this * 0.00277777777777778;
 
-	@:op(A/B) inline public function divide(v : Float)
-		return new Degree(this / v);
+  @:to inline public function toString() : String
+    return this + symbol;
 
-	@:op(A+B) inline public function add(r : Degree)
-		return new Degree(this + r.toFloat());
-
-	@:op(A+B) inline public function addFloat(v : Float)
-		return new Degree(this + v);
-
-	@:op(A-B) inline public function subtract(r : Degree)
-		return add(-r);
-
-	@:op(A-B) inline public function subtractFloat(v : Float)
-		return addFloat(-v);
-
-	@:op(A==B) inline public function equals(v : Degree)
-		return this == v.toFloat();
-}
-
-class FloatDegree {
-	inline public static function toDegrees(v : Float)
-		return Degree.fromFloat(v);
+  public static inline var symbol : String = "°";
 }

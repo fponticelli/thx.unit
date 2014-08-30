@@ -1,0 +1,18 @@
+{
+  "template" : "Angle.hx",
+  "values" : [
+    { "type" : "BinaryDegree", "symbol" : "binary degree", "ofTurn" : 256.0 },
+    { "type" : "Degree",       "symbol" : "°",             "ofTurn" : 360.0 },
+    { "type" : "Grad",         "symbol" : "grad",          "ofTurn" : 400.0 },
+    { "type" : "HourAngle",    "symbol" : "hour",          "ofTurn" : 24.0 },
+    { "type" : "MinuteOfArc",  "symbol" : "′",             "ofTurn" : 21600.0 },
+    { "type" : "Point",        "symbol" : "point",         "ofTurn" : 32.0 },
+    { "type" : "Quadrant",     "symbol" : "quad.",         "ofTurn" : 4.0 },
+    { "type" : "Radian",       "symbol" : "rad",           "ofTurn" : 6.283185307179586 },
+    { "type" : "Revolution",   "symbol" : "r",             "ofTurn" : 1.0 },
+    { "type" : "SecondOfArc",  "symbol" : "″",             "ofTurn" : 1296000.0 },
+    { "type" : "Sextant",      "symbol" : "sextant",       "ofTurn" : 6.0 },
+    { "type" : "Turn",         "symbol" : "τ",             "ofTurn" : 1.0 }
+  ],
+  "output" : "thx/unit/angle/${type}.hx"
+}
