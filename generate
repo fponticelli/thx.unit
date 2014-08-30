@@ -1,3 +1,3 @@
 rm -rf src/*
-generator -t definitions -d src definitions/unit.json definitions/unitalias.json
+generator -t definitions -d src definitions/angle.json definitions/unit.json definitions/unitalias.json
 cp -R curated/* src
