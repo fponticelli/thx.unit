@@ -1,40 +1,43 @@
 package thx.unit.length;
 
 abstract ${type}(Float) {
+  @:from inline static public function floatTo${type}(value : Float) : $type
+    return new ${type}(value);
+
   function new(value : Float)
     this = value;
-  @:op(  -A) inline function negate() : $type
+  @:op(  -A) inline public function negate() : $type
     return -this;
-  @:op( A+B) inline function add(other : $type) : $type
+  @:op( A+B) inline public function add(other : $type) : $type
     return this + other.toFloat();
-  @:op( A-B) inline function subtract(other : $type) : $type
+  @:op( A-B) inline public function subtract(other : $type) : $type
     return this - other.toFloat();
-  @:op( A*B) inline function multiply(other : Float) : $type
+  @:op( A*B) inline public function multiply(other : Float) : $type
     return this * other;
-  @:op( A/B) inline function divide(other : Float) : $type
+  @:op( A/B) inline public function divide(other : Float) : $type
     return this / other;
-  @:op( A%B) inline function modulo(other : Float) : $type
+  @:op( A%B) inline public function modulo(other : Float) : $type
     return this % other;
-  @:op(A==B) inline function equal(other : $type) : Bool
+  @:op(A==B) inline public function equal(other : $type) : Bool
     return this == other;
-  @:op(A!=B) inline function notEqual(other : $type) : Bool
+  @:op(A!=B) inline public function notEqual(other : $type) : Bool
     return this != other;
-  @:op( A<B) inline function less(other : $type) : Bool
+  @:op( A<B) inline public function less(other : $type) : Bool
     return this < other.toFloat();
-  @:op(A<=B) inline function lessEqual(other : $type) : Bool
+  @:op(A<=B) inline public function lessEqual(other : $type) : Bool
     return this <= other.toFloat();
-  @:op( A>B) inline function more(other : $type) : Bool
+  @:op( A>B) inline public function more(other : $type) : Bool
     return this > other.toFloat();
-  @:op(A>=B) inline function moreEqual(other : $type) : Bool
+  @:op(A>=B) inline public function moreEqual(other : $type) : Bool
     return this >= other.toFloat();
 
-  inline function toFloat() : Float
+  inline public function toFloat() : Float
     return this;
 $for(value in values) {
-  @:to inline function to${value.type}() : $value.type
+  @:to inline public function to${value.type}() : $value.type
     return this * ${toMetre / value.toMetre};}
 
-  @:to inline function toString() : String
+  @:to inline public function toString() : String
     return this + symbol;
 
   public static inline var symbol : String = "$symbol";

@@ -10,6 +10,8 @@ class TestAll {
 		runner.addCase(new TestAll());
 		runner.addCase(new thx.unit.angle.TestDegree());
 		runner.addCase(new thx.unit.angle.TestRadian());
+
+		runner.addCase(new thx.unit.length.TestLength());
 		Report.create(runner);
 		runner.run();
 	}

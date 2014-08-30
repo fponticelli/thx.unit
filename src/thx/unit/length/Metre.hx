@@ -1,64 +1,67 @@
 package thx.unit.length;
 
 abstract Metre(Float) {
+  @:from inline static public function floatToMetre(value : Float) : Metre
+    return new Metre(value);
+
   function new(value : Float)
     this = value;
-  @:op(  -A) inline function negate() : Metre
+  @:op(  -A) inline public function negate() : Metre
     return -this;
-  @:op( A+B) inline function add(other : Metre) : Metre
+  @:op( A+B) inline public function add(other : Metre) : Metre
     return this + other.toFloat();
-  @:op( A-B) inline function subtract(other : Metre) : Metre
+  @:op( A-B) inline public function subtract(other : Metre) : Metre
     return this - other.toFloat();
-  @:op( A*B) inline function multiply(other : Float) : Metre
+  @:op( A*B) inline public function multiply(other : Float) : Metre
     return this * other;
-  @:op( A/B) inline function divide(other : Float) : Metre
+  @:op( A/B) inline public function divide(other : Float) : Metre
     return this / other;
-  @:op( A%B) inline function modulo(other : Float) : Metre
+  @:op( A%B) inline public function modulo(other : Float) : Metre
     return this % other;
-  @:op(A==B) inline function equal(other : Metre) : Bool
+  @:op(A==B) inline public function equal(other : Metre) : Bool
     return this == other;
-  @:op(A!=B) inline function notEqual(other : Metre) : Bool
+  @:op(A!=B) inline public function notEqual(other : Metre) : Bool
     return this != other;
-  @:op( A<B) inline function less(other : Metre) : Bool
+  @:op( A<B) inline public function less(other : Metre) : Bool
     return this < other.toFloat();
-  @:op(A<=B) inline function lessEqual(other : Metre) : Bool
+  @:op(A<=B) inline public function lessEqual(other : Metre) : Bool
     return this <= other.toFloat();
-  @:op( A>B) inline function more(other : Metre) : Bool
+  @:op( A>B) inline public function more(other : Metre) : Bool
     return this > other.toFloat();
-  @:op(A>=B) inline function moreEqual(other : Metre) : Bool
+  @:op(A>=B) inline public function moreEqual(other : Metre) : Bool
     return this >= other.toFloat();
 
-  inline function toFloat() : Float
+  inline public function toFloat() : Float
     return this;
 
-  @:to inline function toKilometre() : Kilometre
+  @:to inline public function toKilometre() : Kilometre
     return this * 0.001;
-  @:to inline function toCentimetre() : Centimetre
+  @:to inline public function toCentimetre() : Centimetre
     return this * 100;
-  @:to inline function toMillimetre() : Millimetre
+  @:to inline public function toMillimetre() : Millimetre
     return this * 1000;
-  @:to inline function toMicrometre() : Micrometre
+  @:to inline public function toMicrometre() : Micrometre
     return this * 1000000;
-  @:to inline function toNanometre() : Nanometre
+  @:to inline public function toNanometre() : Nanometre
     return this * 1000000000;
-  @:to inline function toThou() : Thou
+  @:to inline public function toThou() : Thou
     return this * 39370.0787401575;
-  @:to inline function toInch() : Inch
+  @:to inline public function toInch() : Inch
     return this * 39.3700787401575;
-  @:to inline function toFoot() : Foot
+  @:to inline public function toFoot() : Foot
     return this * 3.28083989501312;
-  @:to inline function toYard() : Yard
+  @:to inline public function toYard() : Yard
     return this * 1.09361329833771;
-  @:to inline function toChain() : Chain
+  @:to inline public function toChain() : Chain
     return this * 0.0497096953789867;
-  @:to inline function toFurlong() : Furlong
+  @:to inline public function toFurlong() : Furlong
     return this * 0.00497096953789867;
-  @:to inline function toMile() : Mile
+  @:to inline public function toMile() : Mile
     return this * 0.000621371192237334;
-  @:to inline function toLeague() : League
+  @:to inline public function toLeague() : League
     return this * 0.000207123730745778;
 
-  @:to inline function toString() : String
+  @:to inline public function toString() : String
     return this + symbol;
 
   public static inline var symbol : String = "m";
