@@ -1,12 +1,14 @@
 package thx.unit.length;
 
+// TODO parse string
+
 abstract Foot(Float) {
   @:from inline static public function floatToFoot(value : Float) : Foot
     return new Foot(value);
 
   function new(value : Float)
     this = value;
-  @:op(  -A) inline public function negate() : Foot
+  @:op( -A ) inline public function negate() : Foot
     return -this;
   @:op( A+B) inline public function add(other : Foot) : Foot
     return this + other.toFloat();
@@ -58,8 +60,20 @@ abstract Foot(Float) {
     return this * 0.333333333333333;
   @:to inline public function toInch() : Inch
     return this * 12;
+  @:to inline public function toLine() : Line
+    return this * 143.999999999773;
   @:to inline public function toThou() : Thou
     return this * 12000;
+  @:to inline public function toFathom() : Fathom
+    return this * 0.166666666666667;
+  @:to inline public function toNauticalMile() : NauticalMile
+    return this * 0.000164578833693305;
+  @:to inline public function toEarthRadius() : EarthRadius
+    return this * 4.78417154959285e-08;
+  @:to inline public function toAstronomicalUnit() : AstronomicalUnit
+    return this * 2.03746215486742e-12;
+  @:to inline public function toLightYear() : LightYear
+    return this * 3.22173854210703e-17;
 
   @:to inline public function toString() : String
     return this + symbol;

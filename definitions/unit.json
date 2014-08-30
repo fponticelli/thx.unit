@@ -8,14 +8,22 @@
     { "unit" : "length", "type" : "Micrometre", "symbol" : "µm", "ofUnit" : 0.000001 },
     { "unit" : "length", "type" : "Nanometre",  "symbol" : "nm", "ofUnit" : 0.000000001 },
 
-    { "unit" : "length", "type" : "League",   "symbol" : "lea", "ofUnit" : 4828.032 },
-    { "unit" : "length", "type" : "Mile",     "symbol" : "mi",  "ofUnit" : 1609.344 },
-    { "unit" : "length", "type" : "Furlong",  "symbol" : "fur", "ofUnit" : 201.168 },
-    { "unit" : "length", "type" : "Chain",    "symbol" : "ch",  "ofUnit" : 20.1168 },
-    { "unit" : "length", "type" : "Yard",     "symbol" : "yd",  "ofUnit" : 0.9144 },
-    { "unit" : "length", "type" : "Foot",     "symbol" : "ft",  "ofUnit" : 0.3048 },
-    { "unit" : "length", "type" : "Inch",     "symbol" : "in",  "ofUnit" : 0.0254 },
-    { "unit" : "length", "type" : "Thou",     "symbol" : "th",  "ofUnit" : 0.0000254 },
+    { "unit" : "length", "type" : "League",   "symbol" : "lea",   "ofUnit" : 4828.032 },
+    { "unit" : "length", "type" : "Mile",     "symbol" : "mi",    "ofUnit" : 1609.344 },
+    { "unit" : "length", "type" : "Furlong",  "symbol" : "fur",   "ofUnit" : 201.168 },
+    { "unit" : "length", "type" : "Chain",    "symbol" : "ch",    "ofUnit" : 20.1168 },
+    { "unit" : "length", "type" : "Yard",     "symbol" : "yd",    "ofUnit" : 0.9144 },
+    { "unit" : "length", "type" : "Foot",     "symbol" : "ft",    "ofUnit" : 0.3048 },
+    { "unit" : "length", "type" : "Inch",     "symbol" : "in",    "ofUnit" : 0.0254 },
+    { "unit" : "length", "type" : "Line",     "symbol" : "line",  "ofUnit" : 0.00211666666667 },
+    { "unit" : "length", "type" : "Thou",     "symbol" : "th",    "ofUnit" : 0.0000254 },
+
+    { "unit" : "length", "type" : "Fathom",       "symbol" : "ftm", "ofUnit" : 1.82880 },
+    { "unit" : "length", "type" : "NauticalMile", "symbol" : "M",   "ofUnit" : 1852 },
+
+    { "unit" : "length", "type" : "EarthRadius",      "symbol" : "earth radius", "ofUnit" : 6371009 },
+    { "unit" : "length", "type" : "AstronomicalUnit", "symbol" : "au",    "ofUnit" : 149597870700.0 },
+    { "unit" : "length", "type" : "LightYear",        "symbol" : "ly",    "ofUnit" : 9460730472580800.0 },
 
     { "unit" : "area", "type" : "SquareMetre", "symbol" : "kg", "ofUnit" : 1 },
 

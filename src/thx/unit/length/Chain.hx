@@ -1,12 +1,14 @@
 package thx.unit.length;
 
+// TODO parse string
+
 abstract Chain(Float) {
   @:from inline static public function floatToChain(value : Float) : Chain
     return new Chain(value);
 
   function new(value : Float)
     this = value;
-  @:op(  -A) inline public function negate() : Chain
+  @:op( -A ) inline public function negate() : Chain
     return -this;
   @:op( A+B) inline public function add(other : Chain) : Chain
     return this + other.toFloat();
@@ -58,8 +60,20 @@ abstract Chain(Float) {
     return this * 66;
   @:to inline public function toInch() : Inch
     return this * 792;
+  @:to inline public function toLine() : Line
+    return this * 9503.99999998503;
   @:to inline public function toThou() : Thou
     return this * 792000;
+  @:to inline public function toFathom() : Fathom
+    return this * 11;
+  @:to inline public function toNauticalMile() : NauticalMile
+    return this * 0.0108622030237581;
+  @:to inline public function toEarthRadius() : EarthRadius
+    return this * 3.15755322273128e-06;
+  @:to inline public function toAstronomicalUnit() : AstronomicalUnit
+    return this * 1.3447250222125e-10;
+  @:to inline public function toLightYear() : LightYear
+    return this * 2.12634743779064e-15;
 
   @:to inline public function toString() : String
     return this + symbol;

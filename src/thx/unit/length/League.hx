@@ -1,12 +1,14 @@
 package thx.unit.length;
 
+// TODO parse string
+
 abstract League(Float) {
   @:from inline static public function floatToLeague(value : Float) : League
     return new League(value);
 
   function new(value : Float)
     this = value;
-  @:op(  -A) inline public function negate() : League
+  @:op( -A ) inline public function negate() : League
     return -this;
   @:op( A+B) inline public function add(other : League) : League
     return this + other.toFloat();
@@ -58,8 +60,20 @@ abstract League(Float) {
     return this * 15840;
   @:to inline public function toInch() : Inch
     return this * 190080;
+  @:to inline public function toLine() : Line
+    return this * 2280959.99999641;
   @:to inline public function toThou() : Thou
     return this * 190080000;
+  @:to inline public function toFathom() : Fathom
+    return this * 2640;
+  @:to inline public function toNauticalMile() : NauticalMile
+    return this * 2.60692872570194;
+  @:to inline public function toEarthRadius() : EarthRadius
+    return this * 0.000757812773455508;
+  @:to inline public function toAstronomicalUnit() : AstronomicalUnit
+    return this * 3.22734005331e-08;
+  @:to inline public function toLightYear() : LightYear
+    return this * 5.10323385069753e-13;
 
   @:to inline public function toString() : String
     return this + symbol;

@@ -1,12 +1,14 @@
 package thx.unit.length;
 
+// TODO parse string
+
 abstract Nanometre(Float) {
   @:from inline static public function floatToNanometre(value : Float) : Nanometre
     return new Nanometre(value);
 
   function new(value : Float)
     this = value;
-  @:op(  -A) inline public function negate() : Nanometre
+  @:op( -A ) inline public function negate() : Nanometre
     return -this;
   @:op( A+B) inline public function add(other : Nanometre) : Nanometre
     return this + other.toFloat();
@@ -58,8 +60,20 @@ abstract Nanometre(Float) {
     return this * 3.28083989501312e-09;
   @:to inline public function toInch() : Inch
     return this * 3.93700787401575e-08;
+  @:to inline public function toLine() : Line
+    return this * 4.72440944881146e-07;
   @:to inline public function toThou() : Thou
     return this * 3.93700787401575e-05;
+  @:to inline public function toFathom() : Fathom
+    return this * 5.46806649168854e-10;
+  @:to inline public function toNauticalMile() : NauticalMile
+    return this * 5.39956803455724e-13;
+  @:to inline public function toEarthRadius() : EarthRadius
+    return this * 1.5696100884491e-16;
+  @:to inline public function toAstronomicalUnit() : AstronomicalUnit
+    return this * 6.68458712226845e-21;
+  @:to inline public function toLightYear() : LightYear
+    return this * 1.05700083402462e-25;
 
   @:to inline public function toString() : String
     return this + symbol;

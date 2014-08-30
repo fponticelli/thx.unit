@@ -1,12 +1,14 @@
 package thx.unit.length;
 
+// TODO parse string
+
 abstract Thou(Float) {
   @:from inline static public function floatToThou(value : Float) : Thou
     return new Thou(value);
 
   function new(value : Float)
     this = value;
-  @:op(  -A) inline public function negate() : Thou
+  @:op( -A ) inline public function negate() : Thou
     return -this;
   @:op( A+B) inline public function add(other : Thou) : Thou
     return this + other.toFloat();
@@ -60,6 +62,18 @@ abstract Thou(Float) {
     return this * 8.33333333333333e-05;
   @:to inline public function toInch() : Inch
     return this * 0.001;
+  @:to inline public function toLine() : Line
+    return this * 0.0119999999999811;
+  @:to inline public function toFathom() : Fathom
+    return this * 1.38888888888889e-05;
+  @:to inline public function toNauticalMile() : NauticalMile
+    return this * 1.37149028077754e-08;
+  @:to inline public function toEarthRadius() : EarthRadius
+    return this * 3.98680962466071e-12;
+  @:to inline public function toAstronomicalUnit() : AstronomicalUnit
+    return this * 1.69788512905619e-16;
+  @:to inline public function toLightYear() : LightYear
+    return this * 2.68478211842252e-21;
 
   @:to inline public function toString() : String
     return this + symbol;

@@ -1,12 +1,14 @@
 package thx.unit.length;
 
+// TODO parse string
+
 abstract Yard(Float) {
   @:from inline static public function floatToYard(value : Float) : Yard
     return new Yard(value);
 
   function new(value : Float)
     this = value;
-  @:op(  -A) inline public function negate() : Yard
+  @:op( -A ) inline public function negate() : Yard
     return -this;
   @:op( A+B) inline public function add(other : Yard) : Yard
     return this + other.toFloat();
@@ -58,8 +60,20 @@ abstract Yard(Float) {
     return this * 3;
   @:to inline public function toInch() : Inch
     return this * 36;
+  @:to inline public function toLine() : Line
+    return this * 431.99999999932;
   @:to inline public function toThou() : Thou
     return this * 36000;
+  @:to inline public function toFathom() : Fathom
+    return this * 0.5;
+  @:to inline public function toNauticalMile() : NauticalMile
+    return this * 0.000493736501079914;
+  @:to inline public function toEarthRadius() : EarthRadius
+    return this * 1.43525146487786e-07;
+  @:to inline public function toAstronomicalUnit() : AstronomicalUnit
+    return this * 6.11238646460227e-12;
+  @:to inline public function toLightYear() : LightYear
+    return this * 9.66521562632108e-17;
 
   @:to inline public function toString() : String
     return this + symbol;

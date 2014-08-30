@@ -1,12 +1,14 @@
 package thx.unit.length;
 
+// TODO parse string
+
 abstract Millimetre(Float) {
   @:from inline static public function floatToMillimetre(value : Float) : Millimetre
     return new Millimetre(value);
 
   function new(value : Float)
     this = value;
-  @:op(  -A) inline public function negate() : Millimetre
+  @:op( -A ) inline public function negate() : Millimetre
     return -this;
   @:op( A+B) inline public function add(other : Millimetre) : Millimetre
     return this + other.toFloat();
@@ -58,8 +60,20 @@ abstract Millimetre(Float) {
     return this * 0.00328083989501312;
   @:to inline public function toInch() : Inch
     return this * 0.0393700787401575;
+  @:to inline public function toLine() : Line
+    return this * 0.472440944881146;
   @:to inline public function toThou() : Thou
     return this * 39.3700787401575;
+  @:to inline public function toFathom() : Fathom
+    return this * 0.000546806649168854;
+  @:to inline public function toNauticalMile() : NauticalMile
+    return this * 5.39956803455724e-07;
+  @:to inline public function toEarthRadius() : EarthRadius
+    return this * 1.5696100884491e-10;
+  @:to inline public function toAstronomicalUnit() : AstronomicalUnit
+    return this * 6.68458712226845e-15;
+  @:to inline public function toLightYear() : LightYear
+    return this * 1.05700083402462e-19;
 
   @:to inline public function toString() : String
     return this + symbol;

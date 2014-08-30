@@ -1,12 +1,14 @@
 package thx.unit.length;
 
+// TODO parse string
+
 abstract Furlong(Float) {
   @:from inline static public function floatToFurlong(value : Float) : Furlong
     return new Furlong(value);
 
   function new(value : Float)
     this = value;
-  @:op(  -A) inline public function negate() : Furlong
+  @:op( -A ) inline public function negate() : Furlong
     return -this;
   @:op( A+B) inline public function add(other : Furlong) : Furlong
     return this + other.toFloat();
@@ -58,8 +60,20 @@ abstract Furlong(Float) {
     return this * 660;
   @:to inline public function toInch() : Inch
     return this * 7920;
+  @:to inline public function toLine() : Line
+    return this * 95039.9999998503;
   @:to inline public function toThou() : Thou
     return this * 7920000;
+  @:to inline public function toFathom() : Fathom
+    return this * 110;
+  @:to inline public function toNauticalMile() : NauticalMile
+    return this * 0.108622030237581;
+  @:to inline public function toEarthRadius() : EarthRadius
+    return this * 3.15755322273128e-05;
+  @:to inline public function toAstronomicalUnit() : AstronomicalUnit
+    return this * 1.3447250222125e-09;
+  @:to inline public function toLightYear() : LightYear
+    return this * 2.12634743779064e-14;
 
   @:to inline public function toString() : String
     return this + symbol;
