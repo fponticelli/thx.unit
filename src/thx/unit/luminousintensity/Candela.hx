@@ -1,4 +1,6 @@
-package thx.unit.luminosity;
+package thx.unit.luminousintensity;
+
+// TODO parse string
 
 abstract Candela(Float) {
   @:from inline static public function floatToCandela(value : Float) : Candela
@@ -6,7 +8,7 @@ abstract Candela(Float) {
 
   function new(value : Float)
     this = value;
-  @:op(  -A) inline public function negate() : Candela
+  @:op( -A ) inline public function negate() : Candela
     return -this;
   @:op( A+B) inline public function add(other : Candela) : Candela
     return this + other.toFloat();
@@ -34,6 +36,8 @@ abstract Candela(Float) {
   inline public function toFloat() : Float
     return this;
 
+  @:to inline public function toCandlepower() : Candlepower
+    return this * 1.01936799184506;
 
   @:to inline public function toString() : String
     return this + symbol;

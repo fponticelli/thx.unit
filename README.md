@@ -3,7 +3,6 @@
 Library for unit conversions.
 
 ## TODO
-    * luminosity
     * mass
     * substance
     * temperature

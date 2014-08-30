@@ -53,7 +53,8 @@
 
     { "unit" : "substance", "type" : "Mole",   "symbol" : "mol", "ofUnit" : 1 },
 
-    { "unit" : "luminosity", "type" : "Candela",   "symbol" : "cd", "ofUnit" : 1 }
+    { "unit" : "luminousintensity", "type" : "Candela",     "symbol" : "cd", "ofUnit" : 1 },
+    { "unit" : "luminousintensity", "type" : "Candlepower", "symbol" : "cp", "ofUnit" : 0.981 }
   ],
   "output" : "thx/unit/${unit}/${type}.hx"
 }

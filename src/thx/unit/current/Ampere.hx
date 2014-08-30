@@ -1,12 +1,14 @@
 package thx.unit.current;
 
+// TODO parse string
+
 abstract Ampere(Float) {
   @:from inline static public function floatToAmpere(value : Float) : Ampere
     return new Ampere(value);
 
   function new(value : Float)
     this = value;
-  @:op(  -A) inline public function negate() : Ampere
+  @:op( -A ) inline public function negate() : Ampere
     return -this;
   @:op( A+B) inline public function add(other : Ampere) : Ampere
     return this + other.toFloat();
