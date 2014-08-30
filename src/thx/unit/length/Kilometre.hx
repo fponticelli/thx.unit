@@ -44,22 +44,22 @@ abstract Kilometre(Float) {
     return this * 1000000000;
   @:to inline public function toNanometre() : Nanometre
     return this * 1000000000000;
-  @:to inline public function toThou() : Thou
-    return this * 39370078.7401575;
-  @:to inline public function toInch() : Inch
-    return this * 39370.0787401575;
-  @:to inline public function toFoot() : Foot
-    return this * 3280.83989501312;
-  @:to inline public function toYard() : Yard
-    return this * 1093.61329833771;
-  @:to inline public function toChain() : Chain
-    return this * 49.7096953789867;
-  @:to inline public function toFurlong() : Furlong
-    return this * 4.97096953789867;
-  @:to inline public function toMile() : Mile
-    return this * 0.621371192237334;
   @:to inline public function toLeague() : League
     return this * 0.207123730745778;
+  @:to inline public function toMile() : Mile
+    return this * 0.621371192237334;
+  @:to inline public function toFurlong() : Furlong
+    return this * 4.97096953789867;
+  @:to inline public function toChain() : Chain
+    return this * 49.7096953789867;
+  @:to inline public function toYard() : Yard
+    return this * 1093.61329833771;
+  @:to inline public function toFoot() : Foot
+    return this * 3280.83989501312;
+  @:to inline public function toInch() : Inch
+    return this * 39370.0787401575;
+  @:to inline public function toThou() : Thou
+    return this * 39370078.7401575;
 
   @:to inline public function toString() : String
     return this + symbol;

@@ -46,20 +46,20 @@ abstract Mile(Float) {
     return this * 1609344000;
   @:to inline public function toNanometre() : Nanometre
     return this * 1609344000000;
-  @:to inline public function toThou() : Thou
-    return this * 63360000;
-  @:to inline public function toInch() : Inch
-    return this * 63360;
-  @:to inline public function toFoot() : Foot
-    return this * 5280;
-  @:to inline public function toYard() : Yard
-    return this * 1760;
-  @:to inline public function toChain() : Chain
-    return this * 80;
-  @:to inline public function toFurlong() : Furlong
-    return this * 8;
   @:to inline public function toLeague() : League
     return this * 0.333333333333333;
+  @:to inline public function toFurlong() : Furlong
+    return this * 8;
+  @:to inline public function toChain() : Chain
+    return this * 80;
+  @:to inline public function toYard() : Yard
+    return this * 1760;
+  @:to inline public function toFoot() : Foot
+    return this * 5280;
+  @:to inline public function toInch() : Inch
+    return this * 63360;
+  @:to inline public function toThou() : Thou
+    return this * 63360000;
 
   @:to inline public function toString() : String
     return this + symbol;

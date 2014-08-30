@@ -46,20 +46,20 @@ abstract League(Float) {
     return this * 4828032000;
   @:to inline public function toNanometre() : Nanometre
     return this * 4828032000000;
-  @:to inline public function toThou() : Thou
-    return this * 190080000;
-  @:to inline public function toInch() : Inch
-    return this * 190080;
-  @:to inline public function toFoot() : Foot
-    return this * 15840;
-  @:to inline public function toYard() : Yard
-    return this * 5280;
-  @:to inline public function toChain() : Chain
-    return this * 240;
-  @:to inline public function toFurlong() : Furlong
-    return this * 24;
   @:to inline public function toMile() : Mile
     return this * 3;
+  @:to inline public function toFurlong() : Furlong
+    return this * 24;
+  @:to inline public function toChain() : Chain
+    return this * 240;
+  @:to inline public function toYard() : Yard
+    return this * 5280;
+  @:to inline public function toFoot() : Foot
+    return this * 15840;
+  @:to inline public function toInch() : Inch
+    return this * 190080;
+  @:to inline public function toThou() : Thou
+    return this * 190080000;
 
   @:to inline public function toString() : String
     return this + symbol;

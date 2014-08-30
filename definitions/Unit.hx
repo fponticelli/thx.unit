@@ -1,4 +1,9 @@
-package thx.unit.length;
+$(
+var units = [];
+for(value in values) {
+  if(value.unit == unit)
+    units.push(value);
+})package thx.unit.${unit};
 
 abstract ${type}(Float) {
   @:from inline static public function floatTo${type}(value : Float) : $type
@@ -33,9 +38,9 @@ abstract ${type}(Float) {
 
   inline public function toFloat() : Float
     return this;
-$for(value in values) {
+$for(value in units) {
   @:to inline public function to${value.type}() : $value.type
-    return this * ${toMetre / value.toMetre};}
+    return this * ${toUnit / value.toUnit};}
 
   @:to inline public function toString() : String
     return this + symbol;

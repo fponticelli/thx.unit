@@ -1,0 +1,12 @@
+{
+  "template" : "UnitAlias.hx",
+  "values" : [
+    { "unit" : "length", "type" : "Kilometer",  "source" : "Kilometre" },
+    { "unit" : "length", "type" : "Meter",      "source" : "Metre" },
+    { "unit" : "length", "type" : "Centimeter", "source" : "Centimetre" },
+    { "unit" : "length", "type" : "Millimeter", "source" : "Millimetre" },
+    { "unit" : "length", "type" : "Micrometer", "source" : "Micrometre" },
+    { "unit" : "length", "type" : "Nanometer",  "source" : "Nanometre" }
+  ],
+  "output" : "thx/unit/${unit}/${type}.hx"
+}

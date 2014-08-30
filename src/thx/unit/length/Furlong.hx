@@ -46,20 +46,20 @@ abstract Furlong(Float) {
     return this * 201168000;
   @:to inline public function toNanometre() : Nanometre
     return this * 201168000000;
-  @:to inline public function toThou() : Thou
-    return this * 7920000;
-  @:to inline public function toInch() : Inch
-    return this * 7920;
-  @:to inline public function toFoot() : Foot
-    return this * 660;
-  @:to inline public function toYard() : Yard
-    return this * 220;
-  @:to inline public function toChain() : Chain
-    return this * 10;
-  @:to inline public function toMile() : Mile
-    return this * 0.125;
   @:to inline public function toLeague() : League
     return this * 0.0416666666666667;
+  @:to inline public function toMile() : Mile
+    return this * 0.125;
+  @:to inline public function toChain() : Chain
+    return this * 10;
+  @:to inline public function toYard() : Yard
+    return this * 220;
+  @:to inline public function toFoot() : Foot
+    return this * 660;
+  @:to inline public function toInch() : Inch
+    return this * 7920;
+  @:to inline public function toThou() : Thou
+    return this * 7920000;
 
   @:to inline public function toString() : String
     return this + symbol;

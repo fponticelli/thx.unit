@@ -44,22 +44,22 @@ abstract Nanometre(Float) {
     return this * 1e-06;
   @:to inline public function toMicrometre() : Micrometre
     return this * 0.001;
-  @:to inline public function toThou() : Thou
-    return this * 3.93700787401575e-05;
-  @:to inline public function toInch() : Inch
-    return this * 3.93700787401575e-08;
-  @:to inline public function toFoot() : Foot
-    return this * 3.28083989501312e-09;
-  @:to inline public function toYard() : Yard
-    return this * 1.09361329833771e-09;
-  @:to inline public function toChain() : Chain
-    return this * 4.97096953789867e-11;
-  @:to inline public function toFurlong() : Furlong
-    return this * 4.97096953789867e-12;
-  @:to inline public function toMile() : Mile
-    return this * 6.21371192237334e-13;
   @:to inline public function toLeague() : League
     return this * 2.07123730745778e-13;
+  @:to inline public function toMile() : Mile
+    return this * 6.21371192237334e-13;
+  @:to inline public function toFurlong() : Furlong
+    return this * 4.97096953789867e-12;
+  @:to inline public function toChain() : Chain
+    return this * 4.97096953789867e-11;
+  @:to inline public function toYard() : Yard
+    return this * 1.09361329833771e-09;
+  @:to inline public function toFoot() : Foot
+    return this * 3.28083989501312e-09;
+  @:to inline public function toInch() : Inch
+    return this * 3.93700787401575e-08;
+  @:to inline public function toThou() : Thou
+    return this * 3.93700787401575e-05;
 
   @:to inline public function toString() : String
     return this + symbol;

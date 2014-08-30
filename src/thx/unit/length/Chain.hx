@@ -46,20 +46,20 @@ abstract Chain(Float) {
     return this * 20116800;
   @:to inline public function toNanometre() : Nanometre
     return this * 20116800000;
-  @:to inline public function toThou() : Thou
-    return this * 792000;
-  @:to inline public function toInch() : Inch
-    return this * 792;
-  @:to inline public function toFoot() : Foot
-    return this * 66;
-  @:to inline public function toYard() : Yard
-    return this * 22;
-  @:to inline public function toFurlong() : Furlong
-    return this * 0.1;
-  @:to inline public function toMile() : Mile
-    return this * 0.0125;
   @:to inline public function toLeague() : League
     return this * 0.00416666666666667;
+  @:to inline public function toMile() : Mile
+    return this * 0.0125;
+  @:to inline public function toFurlong() : Furlong
+    return this * 0.1;
+  @:to inline public function toYard() : Yard
+    return this * 22;
+  @:to inline public function toFoot() : Foot
+    return this * 66;
+  @:to inline public function toInch() : Inch
+    return this * 792;
+  @:to inline public function toThou() : Thou
+    return this * 792000;
 
   @:to inline public function toString() : String
     return this + symbol;

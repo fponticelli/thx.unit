@@ -46,20 +46,20 @@ abstract Thou(Float) {
     return this * 25.4;
   @:to inline public function toNanometre() : Nanometre
     return this * 25400;
-  @:to inline public function toInch() : Inch
-    return this * 0.001;
-  @:to inline public function toFoot() : Foot
-    return this * 8.33333333333333e-05;
-  @:to inline public function toYard() : Yard
-    return this * 2.77777777777778e-05;
-  @:to inline public function toChain() : Chain
-    return this * 1.26262626262626e-06;
-  @:to inline public function toFurlong() : Furlong
-    return this * 1.26262626262626e-07;
-  @:to inline public function toMile() : Mile
-    return this * 1.57828282828283e-08;
   @:to inline public function toLeague() : League
     return this * 5.26094276094276e-09;
+  @:to inline public function toMile() : Mile
+    return this * 1.57828282828283e-08;
+  @:to inline public function toFurlong() : Furlong
+    return this * 1.26262626262626e-07;
+  @:to inline public function toChain() : Chain
+    return this * 1.26262626262626e-06;
+  @:to inline public function toYard() : Yard
+    return this * 2.77777777777778e-05;
+  @:to inline public function toFoot() : Foot
+    return this * 8.33333333333333e-05;
+  @:to inline public function toInch() : Inch
+    return this * 0.001;
 
   @:to inline public function toString() : String
     return this + symbol;

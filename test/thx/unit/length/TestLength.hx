@@ -1,7 +1,6 @@
 package thx.unit.length;
 
 import utest.Assert;
-//import thx.unit.length.*;
 
 class TestLength {
   public function new() {}

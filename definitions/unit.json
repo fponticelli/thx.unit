@@ -1,0 +1,46 @@
+{
+  "template" : "Unit.hx",
+  "values" : [
+    { "unit" : "length", "type" : "Kilometre",  "symbol" : "km", "toUnit" : 1000.0 },
+    { "unit" : "length", "type" : "Metre",      "symbol" : "m",  "toUnit" : 1.0 },
+    { "unit" : "length", "type" : "Centimetre", "symbol" : "cm", "toUnit" : 0.01 },
+    { "unit" : "length", "type" : "Millimetre", "symbol" : "mm", "toUnit" : 0.001 },
+    { "unit" : "length", "type" : "Micrometre", "symbol" : "µm", "toUnit" : 0.000001 },
+    { "unit" : "length", "type" : "Nanometre",  "symbol" : "nm", "toUnit" : 0.000000001 },
+
+    { "unit" : "length", "type" : "League",   "symbol" : "lea", "toUnit" : 4828.032 },
+    { "unit" : "length", "type" : "Mile",     "symbol" : "mi",  "toUnit" : 1609.344 },
+    { "unit" : "length", "type" : "Furlong",  "symbol" : "fur", "toUnit" : 201.168 },
+    { "unit" : "length", "type" : "Chain",    "symbol" : "ch",  "toUnit" : 20.1168 },
+    { "unit" : "length", "type" : "Yard",     "symbol" : "yd",  "toUnit" : 0.9144 },
+    { "unit" : "length", "type" : "Foot",     "symbol" : "ft",  "toUnit" : 0.3048 },
+    { "unit" : "length", "type" : "Inch",     "symbol" : "in",  "toUnit" : 0.0254 },
+    { "unit" : "length", "type" : "Thou",     "symbol" : "th",  "toUnit" : 0.0000254 },
+
+    { "unit" : "area", "type" : "SquareMetre",   "symbol" : "kg", "toUnit" : 1 },
+
+    { "unit" : "mass", "type" : "Kilogram",  "symbol" : "kg", "toUnit" : 1.0 },
+    { "unit" : "mass", "type" : "Gram",      "symbol" : "g",  "toUnit" : 0.001 },
+    { "unit" : "mass", "type" : "Milligram", "symbol" : "mg", "toUnit" : 0.000001 },
+
+    { "unit" : "mass", "type" : "Ton",           "symbol" : "t",   "toUnit" : 1016.0469088 },
+    { "unit" : "mass", "type" : "Hundredweight", "symbol" : "cwt", "toUnit" : 50.80234544 },
+    { "unit" : "mass", "type" : "Quarter",       "symbol" : "qr",  "toUnit" : 12.70058636 },
+    { "unit" : "mass", "type" : "Stone",         "symbol" : "st",  "toUnit" : 6.35029318 },
+    { "unit" : "mass", "type" : "Pound",         "symbol" : "lb",  "toUnit" : 0.45359237 },
+    { "unit" : "mass", "type" : "Ounce",         "symbol" : "oz",  "toUnit" : 0 },
+    { "unit" : "mass", "type" : "Drachm",        "symbol" : "dr",  "toUnit" : 1.7718451953125 },
+    { "unit" : "mass", "type" : "Grain",         "symbol" : "gr",  "toUnit" : 0.00006479891 },
+
+    { "unit" : "time", "type" : "Second",   "symbol" : "s", "toUnit" : 1 },
+
+    { "unit" : "current", "type" : "Ampere",   "symbol" : "A", "toUnit" : 1 },
+
+    { "unit" : "temperature", "type" : "Kelvin",   "symbol" : "K", "toUnit" : 1 },
+
+    { "unit" : "amount", "type" : "Mole",   "symbol" : "mol", "toUnit" : 1 },
+
+    { "unit" : "luminosity", "type" : "Candela",   "symbol" : "cd", "toUnit" : 1 }
+  ],
+  "output" : "thx/unit/${unit}/${type}.hx"
+}

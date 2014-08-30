@@ -46,20 +46,20 @@ abstract Yard(Float) {
     return this * 914400;
   @:to inline public function toNanometre() : Nanometre
     return this * 914400000;
-  @:to inline public function toThou() : Thou
-    return this * 36000;
-  @:to inline public function toInch() : Inch
-    return this * 36;
-  @:to inline public function toFoot() : Foot
-    return this * 3;
-  @:to inline public function toChain() : Chain
-    return this * 0.0454545454545454;
-  @:to inline public function toFurlong() : Furlong
-    return this * 0.00454545454545455;
-  @:to inline public function toMile() : Mile
-    return this * 0.000568181818181818;
   @:to inline public function toLeague() : League
     return this * 0.000189393939393939;
+  @:to inline public function toMile() : Mile
+    return this * 0.000568181818181818;
+  @:to inline public function toFurlong() : Furlong
+    return this * 0.00454545454545455;
+  @:to inline public function toChain() : Chain
+    return this * 0.0454545454545454;
+  @:to inline public function toFoot() : Foot
+    return this * 3;
+  @:to inline public function toInch() : Inch
+    return this * 36;
+  @:to inline public function toThou() : Thou
+    return this * 36000;
 
   @:to inline public function toString() : String
     return this + symbol;
