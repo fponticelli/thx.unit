@@ -1,0 +1,8 @@
+{
+  "template" : "LinearAlias.hx",
+  "values" : [
+    { "type" : "Meter", "source" : "Metre" },
+    { "type" : "Kilometer", "source" : "Kilometre" }
+  ],
+  "output" : "thx/unit/linear/${type}.hx"
+}
