@@ -3,7 +3,6 @@
 Library for unit conversions.
 
 ## TODO
-    * mass
     * substance
     * temperature
     * time?

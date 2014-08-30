@@ -1,12 +1,14 @@
 package thx.unit.mass;
 
+// TODO parse string
+
 abstract Drachm(Float) {
   @:from inline static public function floatToDrachm(value : Float) : Drachm
     return new Drachm(value);
 
   function new(value : Float)
     this = value;
-  @:op(  -A) inline public function negate() : Drachm
+  @:op( -A ) inline public function negate() : Drachm
     return -this;
   @:op( A+B) inline public function add(other : Drachm) : Drachm
     return this + other.toFloat();
@@ -34,26 +36,46 @@ abstract Drachm(Float) {
   inline public function toFloat() : Float
     return this;
 
+  @:to inline public function toMegagram() : Megagram
+    return this * 1.7718451953125e-06;
   @:to inline public function toKilogram() : Kilogram
-    return this * 1.7718451953125;
+    return this * 0.0017718451953125;
   @:to inline public function toGram() : Gram
-    return this * 1771.8451953125;
+    return this * 1.7718451953125;
+  @:to inline public function toCentigram() : Centigram
+    return this * 177.18451953125;
   @:to inline public function toMilligram() : Milligram
+    return this * 1771.8451953125;
+  @:to inline public function toMicrogram() : Microgram
     return this * 1771845.1953125;
+  @:to inline public function toNanogram() : Nanogram
+    return this * 1771845195.3125;
+  @:to inline public function toPicogram() : Picogram
+    return this * 1771845195312.5;
   @:to inline public function toTon() : Ton
-    return this * 0.00174386160714286;
+    return this * 1.74386160714286e-06;
   @:to inline public function toHundredweight() : Hundredweight
-    return this * 0.0348772321428571;
+    return this * 3.48772321428571e-05;
   @:to inline public function toQuarter() : Quarter
-    return this * 0.139508928571429;
+    return this * 0.000139508928571429;
   @:to inline public function toStone() : Stone
-    return this * 0.279017857142857;
+    return this * 0.000279017857142857;
   @:to inline public function toPound() : Pound
-    return this * 3.90625;
+    return this * 0.00390625;
   @:to inline public function toOunce() : Ounce
-    return this * inf;
+    return this * 0.0625;
   @:to inline public function toGrain() : Grain
-    return this * 27343.75;
+    return this * 27.34375;
+  @:to inline public function toUnifiedAtomicMassUnit() : UnifiedAtomicMassUnit
+    return this * 1.06703021103864e+24;
+  @:to inline public function toDalton() : Dalton
+    return this * 1.06703021103864e+24;
+  @:to inline public function toPlankMass() : PlankMass
+    return this * 81407.6294302576;
+  @:to inline public function toSlug() : Slug
+    return this * 0.00012140996108529;
+  @:to inline public function toSolarMass() : SolarMass
+    return this * 8.91023708386764e-34;
 
   @:to inline public function toString() : String
     return this + symbol;

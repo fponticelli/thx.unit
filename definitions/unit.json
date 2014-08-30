@@ -1,6 +1,8 @@
 {
   "template" : "Unit.hx",
   "values" : [
+    { "unit" : "current", "type" : "Ampere",   "symbol" : "A", "ofUnit" : 1 },
+
     { "unit" : "length", "type" : "Kilometre",  "symbol" : "km", "ofUnit" : 1000.0 },
     { "unit" : "length", "type" : "Metre",      "symbol" : "m",  "ofUnit" : 1.0 },
     { "unit" : "length", "type" : "Centimetre", "symbol" : "cm", "ofUnit" : 0.01 },
@@ -25,6 +27,9 @@
     { "unit" : "length", "type" : "AstronomicalUnit", "symbol" : "au",    "ofUnit" : 149597870700.0 },
     { "unit" : "length", "type" : "LightYear",        "symbol" : "ly",    "ofUnit" : 9460730472580800.0 },
 
+    { "unit" : "luminousintensity", "type" : "Candela",     "symbol" : "cd", "ofUnit" : 1 },
+    { "unit" : "luminousintensity", "type" : "Candlepower", "symbol" : "cp", "ofUnit" : 0.981 },
+
     { "unit" : "area", "type" : "SquareMetre", "symbol" : "kg", "ofUnit" : 1 },
 
     { "unit" : "mass", "type" : "Megagram",  "symbol" : "Mg", "ofUnit" : 1000.0 },
@@ -45,16 +50,19 @@
     { "unit" : "mass", "type" : "Drachm",        "symbol" : "dr",  "ofUnit" : 0.0017718451953125 },
     { "unit" : "mass", "type" : "Grain",         "symbol" : "gr",  "ofUnit" : 0.00006479891 },
 
+    { "unit" : "mass", "type" : "UnifiedAtomicMassUnit", "symbol" : "u",  "ofUnit" : 1.660538921e-27 },
+    { "unit" : "mass", "type" : "Dalton",    "symbol" : "Da",   "ofUnit" : 1.660538921e-27 },
+    { "unit" : "mass", "type" : "PlankMass", "symbol" : "mP",   "ofUnit" : 2.17651e-8 },
+    { "unit" : "mass", "type" : "Slug",      "symbol" : "slug", "ofUnit" : 14.593903 },
+    { "unit" : "mass", "type" : "SolarMass", "symbol" : "M☉",   "ofUnit" : 1.98855e30 },
+
     { "unit" : "time", "type" : "Second",   "symbol" : "s", "ofUnit" : 1 },
 
-    { "unit" : "current", "type" : "Ampere",   "symbol" : "A", "ofUnit" : 1 },
 
     { "unit" : "temperature", "type" : "Kelvin",   "symbol" : "K", "ofUnit" : 1 },
 
-    { "unit" : "substance", "type" : "Mole",   "symbol" : "mol", "ofUnit" : 1 },
+    { "unit" : "substance", "type" : "Mole",   "symbol" : "mol", "ofUnit" : 1 }
 
-    { "unit" : "luminousintensity", "type" : "Candela",     "symbol" : "cd", "ofUnit" : 1 },
-    { "unit" : "luminousintensity", "type" : "Candlepower", "symbol" : "cp", "ofUnit" : 0.981 }
   ],
   "output" : "thx/unit/${unit}/${type}.hx"
 }
