@@ -1,4 +1,4 @@
-package thx.unit.angle;
+package thx.unit.temperature;
 
 import thx.core.Floats;
 
@@ -42,7 +42,7 @@ abstract Delisle(Float) {
     return this;
 
   @:to inline public function toCelsius() : Celsius
-    return 100 − this * 2⁄3;
+    return 100 - this * 2/3;
 
   @:to inline public function toFahrenheit() : Fahrenheit
     return toCelsius().toFahrenheit();

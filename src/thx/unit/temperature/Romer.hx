@@ -1,4 +1,4 @@
-package thx.unit.angle;
+package thx.unit.temperature;
 
 import thx.core.Floats;
 
@@ -42,7 +42,7 @@ abstract Romer(Float) {
     return this;
 
   @:to inline public function toCelsius() : Celsius
-    return (this − 7.5) * 40⁄21;
+    return (this - 7.5) * 40/21;
 
   @:to inline public function toFahrenheit() : Fahrenheit
     return toCelsius().toFahrenheit();

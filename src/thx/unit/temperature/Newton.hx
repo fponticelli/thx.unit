@@ -1,4 +1,4 @@
-package thx.unit.angle;
+package thx.unit.temperature;
 
 import thx.core.Floats;
 
@@ -42,7 +42,7 @@ abstract Newton(Float) {
     return this;
 
   @:to inline public function toCelsius() : Celsius
-    return this * 100⁄33;
+    return this * 100/33;
 
   @:to inline public function toFahrenheit() : Fahrenheit
     return toCelsius().toFahrenheit();

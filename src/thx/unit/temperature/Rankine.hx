@@ -1,4 +1,4 @@
-package thx.unit.angle;
+package thx.unit.temperature;
 
 import thx.core.Floats;
 
@@ -42,7 +42,7 @@ abstract Rankine(Float) {
     return this;
 
   @:to inline public function toCelsius() : Celsius
-    return (this − 491.67) * 5⁄9;
+    return (this - 491.67) * 5/9;
 
   @:to inline public function toFahrenheit() : Fahrenheit
     return toCelsius().toFahrenheit();

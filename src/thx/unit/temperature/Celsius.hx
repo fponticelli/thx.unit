@@ -1,4 +1,4 @@
-package thx.unit.angle;
+package thx.unit.temperature;
 
 import thx.core.Floats;
 
@@ -42,19 +42,19 @@ abstract Celsius(Float) {
     return this;
 
   @:to inline public function toFahrenheit() : Fahrenheit
-    return this * 9⁄5 + 32;
+    return this * 9/5 + 32;
   @:to inline public function toKelvin() : Kelvin
     return this + 273.15;
   @:to inline public function toRankine() : Rankine
-    return (this + 273.15) * 9⁄5;
+    return (this + 273.15) * 9/5;
   @:to inline public function toDelisle() : Delisle
-    return (100 − this) * 3⁄2;
+    return (100 - this) * 3/2;
   @:to inline public function toNewton() : Newton
-    return this * 33⁄100;
-  @:to inline public function toReamur() : Reamur
-    return this * 4⁄5;
+    return this * 33/100;
+  @:to inline public function toReaumur() : Reaumur
+    return this * 4/5;
   @:to inline public function toRomer() : Romer
-    return this * 21⁄40 + 7.5;
+    return this * 21/40 + 7.5;
 
 
   @:to inline public function toString() : String

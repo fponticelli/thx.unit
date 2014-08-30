@@ -4,11 +4,11 @@
     { "type" : "Celsius",    "symbol" : "°C", "toCelsius" : "this" },
     { "type" : "Fahrenheit", "symbol" : "°F", "toCelsius" : "(this - 32) * 5/9" },
     { "type" : "Kelvin",     "symbol" : "K",  "toCelsius" : "this - 273.15" },
-    { "type" : "Rankine",    "symbol" : "°R",  "toCelsius" : "(this − 491.67) * 5⁄9" },
-    { "type" : "Delisle",    "symbol" : "°De", "toCelsius" : "100 − this * 2⁄3" },
-    { "type" : "Newton",     "symbol" : "°N",  "toCelsius" : "this * 100⁄33" },
-    { "type" : "Reaumur",    "symbol" : "°Ré", "toCelsius" : "this * 5⁄4" },
-    { "type" : "Romer",      "symbol" : "°Rø", "toCelsius" : "(this − 7.5) * 40⁄21" }
+    { "type" : "Rankine",    "symbol" : "°R",  "toCelsius" : "(this - 491.67) * 5/9" },
+    { "type" : "Delisle",    "symbol" : "°De", "toCelsius" : "100 - this * 2/3" },
+    { "type" : "Newton",     "symbol" : "°N",  "toCelsius" : "this * 100/33" },
+    { "type" : "Reaumur",    "symbol" : "°Ré", "toCelsius" : "this * 5/4" },
+    { "type" : "Romer",      "symbol" : "°Rø", "toCelsius" : "(this - 7.5) * 40/21" }
   ],
   "output" : "thx/unit/temperature/${type}.hx"
 }
