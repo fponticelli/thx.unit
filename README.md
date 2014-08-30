@@ -4,11 +4,10 @@ Library for unit conversions.
 
 ## TODO
     * temperature
-    * time?
-    * bytes
 
 These require more calculations to convert from linear/area/volume
 
+    * time?
     * area
     * volume
     * electrical current units and operations (Volts, Ohms)
