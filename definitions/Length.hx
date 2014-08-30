@@ -1,4 +1,4 @@
-package thx.unit.linear;
+package thx.unit.length;
 
 abstract ${type}(Float) {
   function new(value : Float)

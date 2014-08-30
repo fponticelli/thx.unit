@@ -1,3 +1,3 @@
-package thx.unit.linear;
+package thx.unit.length;
 
 typedef $type = $source;
