@@ -1,5 +1,7 @@
 # thx.unit
 
+[![Build Status](https://travis-ci.org/fponticelli/thx.unit.svg)](https://travis-ci.org/fponticelli/thx.unit)
+
 The library contains type definitions for several kind of units. They are defined as asbtract types to siplify their usage as much as possible.
 
 ```haxe
