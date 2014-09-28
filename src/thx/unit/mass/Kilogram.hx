@@ -24,8 +24,8 @@ abstract Kilogram(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Kilogram) : Bool
     return this == other;
-  public function nearEqual(other : Kilogram) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Kilogram) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Kilogram) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Kilogram) : Bool

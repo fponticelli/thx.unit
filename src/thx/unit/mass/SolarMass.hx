@@ -24,8 +24,8 @@ abstract SolarMass(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : SolarMass) : Bool
     return this == other;
-  public function nearEqual(other : SolarMass) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : SolarMass) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : SolarMass) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : SolarMass) : Bool

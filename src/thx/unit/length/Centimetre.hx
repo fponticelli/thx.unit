@@ -24,8 +24,8 @@ abstract Centimetre(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Centimetre) : Bool
     return this == other;
-  public function nearEqual(other : Centimetre) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Centimetre) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Centimetre) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Centimetre) : Bool

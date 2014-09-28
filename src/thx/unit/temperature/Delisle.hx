@@ -25,8 +25,8 @@ abstract Delisle(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Delisle) : Bool
     return this == other;
-  public function nearEqual(other : Delisle) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Delisle) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Delisle) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Delisle) : Bool

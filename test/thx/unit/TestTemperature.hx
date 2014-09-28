@@ -9,6 +9,6 @@ class TestTemperature {
   public function testBasic() {
     var c : Celsius = 27,
         f : Fahrenheit = 80.6;
-    Assert.isTrue(c.toFahrenheit().nearEqual(f));
+    Assert.isTrue(c.toFahrenheit().nearEquals(f));
   }
 }

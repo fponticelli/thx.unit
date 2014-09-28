@@ -24,8 +24,8 @@ abstract Mile(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Mile) : Bool
     return this == other;
-  public function nearEqual(other : Mile) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Mile) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Mile) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Mile) : Bool

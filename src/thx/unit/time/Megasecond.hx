@@ -24,8 +24,8 @@ abstract Megasecond(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Megasecond) : Bool
     return this == other;
-  public function nearEqual(other : Megasecond) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Megasecond) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Megasecond) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Megasecond) : Bool

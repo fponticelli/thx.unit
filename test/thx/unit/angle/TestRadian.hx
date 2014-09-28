@@ -19,7 +19,7 @@ class TestRadian {
 	public function testEquals() {
 		var rad : Radian = Math.PI,
 			  deg : Degree = 180;
-		Assert.isTrue(rad.nearEqual(deg));
-		Assert.isTrue(deg.nearEqual(rad));
+		Assert.isTrue(rad.nearEquals(deg));
+		Assert.isTrue(deg.nearEquals(rad));
 	}
 }

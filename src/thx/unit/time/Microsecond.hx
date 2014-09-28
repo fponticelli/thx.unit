@@ -24,8 +24,8 @@ abstract Microsecond(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Microsecond) : Bool
     return this == other;
-  public function nearEqual(other : Microsecond) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Microsecond) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Microsecond) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Microsecond) : Bool

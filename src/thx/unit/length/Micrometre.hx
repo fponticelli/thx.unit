@@ -24,8 +24,8 @@ abstract Micrometre(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Micrometre) : Bool
     return this == other;
-  public function nearEqual(other : Micrometre) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Micrometre) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Micrometre) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Micrometre) : Bool

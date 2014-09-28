@@ -25,8 +25,8 @@ abstract Celsius(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Celsius) : Bool
     return this == other;
-  public function nearEqual(other : Celsius) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Celsius) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Celsius) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Celsius) : Bool

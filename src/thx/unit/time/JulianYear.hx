@@ -24,8 +24,8 @@ abstract JulianYear(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : JulianYear) : Bool
     return this == other;
-  public function nearEqual(other : JulianYear) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : JulianYear) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : JulianYear) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : JulianYear) : Bool

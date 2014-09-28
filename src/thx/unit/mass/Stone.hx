@@ -24,8 +24,8 @@ abstract Stone(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Stone) : Bool
     return this == other;
-  public function nearEqual(other : Stone) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Stone) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Stone) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Stone) : Bool

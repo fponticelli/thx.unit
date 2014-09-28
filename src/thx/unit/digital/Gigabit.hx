@@ -24,8 +24,8 @@ abstract Gigabit(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Gigabit) : Bool
     return this == other;
-  public function nearEqual(other : Gigabit) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Gigabit) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Gigabit) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Gigabit) : Bool

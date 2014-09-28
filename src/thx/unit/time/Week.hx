@@ -24,8 +24,8 @@ abstract Week(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Week) : Bool
     return this == other;
-  public function nearEqual(other : Week) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Week) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Week) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Week) : Bool

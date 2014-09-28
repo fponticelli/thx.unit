@@ -24,8 +24,8 @@ abstract Picogram(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Picogram) : Bool
     return this == other;
-  public function nearEqual(other : Picogram) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Picogram) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Picogram) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Picogram) : Bool

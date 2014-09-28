@@ -24,8 +24,8 @@ abstract Petabyte(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Petabyte) : Bool
     return this == other;
-  public function nearEqual(other : Petabyte) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Petabyte) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Petabyte) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Petabyte) : Bool

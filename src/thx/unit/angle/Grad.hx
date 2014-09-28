@@ -33,8 +33,8 @@ abstract Grad(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Grad) : Bool
     return this == other;
-  public function nearEqual(other : Grad) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Grad) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Grad) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Grad) : Bool

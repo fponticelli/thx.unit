@@ -33,8 +33,8 @@ abstract MinuteOfArc(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : MinuteOfArc) : Bool
     return this == other;
-  public function nearEqual(other : MinuteOfArc) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : MinuteOfArc) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : MinuteOfArc) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : MinuteOfArc) : Bool

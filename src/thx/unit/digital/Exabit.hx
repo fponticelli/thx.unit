@@ -24,8 +24,8 @@ abstract Exabit(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Exabit) : Bool
     return this == other;
-  public function nearEqual(other : Exabit) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Exabit) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Exabit) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Exabit) : Bool

@@ -24,8 +24,8 @@ abstract Foot(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Foot) : Bool
     return this == other;
-  public function nearEqual(other : Foot) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Foot) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Foot) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Foot) : Bool

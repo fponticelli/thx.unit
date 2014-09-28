@@ -24,8 +24,8 @@ abstract Byte(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Byte) : Bool
     return this == other;
-  public function nearEqual(other : Byte) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Byte) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Byte) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Byte) : Bool

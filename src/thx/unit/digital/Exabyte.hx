@@ -24,8 +24,8 @@ abstract Exabyte(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Exabyte) : Bool
     return this == other;
-  public function nearEqual(other : Exabyte) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Exabyte) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Exabyte) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Exabyte) : Bool

@@ -24,8 +24,8 @@ abstract Ounce(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Ounce) : Bool
     return this == other;
-  public function nearEqual(other : Ounce) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Ounce) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Ounce) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Ounce) : Bool

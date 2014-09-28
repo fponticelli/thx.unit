@@ -24,8 +24,8 @@ abstract Milligram(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Milligram) : Bool
     return this == other;
-  public function nearEqual(other : Milligram) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Milligram) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Milligram) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Milligram) : Bool

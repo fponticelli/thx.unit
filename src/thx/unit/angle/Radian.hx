@@ -33,8 +33,8 @@ abstract Radian(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Radian) : Bool
     return this == other;
-  public function nearEqual(other : Radian) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Radian) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Radian) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Radian) : Bool

@@ -24,8 +24,8 @@ abstract UnifiedAtomicMassUnit(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : UnifiedAtomicMassUnit) : Bool
     return this == other;
-  public function nearEqual(other : UnifiedAtomicMassUnit) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : UnifiedAtomicMassUnit) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : UnifiedAtomicMassUnit) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : UnifiedAtomicMassUnit) : Bool

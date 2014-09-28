@@ -24,8 +24,8 @@ abstract Furlong(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Furlong) : Bool
     return this == other;
-  public function nearEqual(other : Furlong) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Furlong) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Furlong) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Furlong) : Bool

@@ -24,8 +24,8 @@ abstract Day(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Day) : Bool
     return this == other;
-  public function nearEqual(other : Day) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Day) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Day) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Day) : Bool

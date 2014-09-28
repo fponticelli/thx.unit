@@ -25,8 +25,8 @@ abstract Romer(Float) {
     return this % other;
   @:op(A==B) inline public function equal(other : Romer) : Bool
     return this == other;
-  public function nearEqual(other : Romer) : Bool
-    return Floats.nearEqual(this, other.toFloat());
+  public function nearEquals(other : Romer) : Bool
+    return Floats.nearEquals(this, other.toFloat());
   @:op(A!=B) inline public function notEqual(other : Romer) : Bool
     return this != other;
   @:op( A<B) inline public function less(other : Romer) : Bool
