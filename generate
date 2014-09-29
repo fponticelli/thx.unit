@@ -1,3 +1,2 @@
 rm -rf src/*
 generator -t definitions -d src definitions/angle.json definitions/temperature.json definitions/unit.json definitions/unitalias.json
-cp -R curated/* src
