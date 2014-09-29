@@ -5,8 +5,8 @@
   "classPath": "src",
   "tags": ["thx", "math", "dimension", "unit", "cross"],
   "description": "Units library",
-  "releasenote": "updated thx.core API",
-  "version": "0.3.0",
+  "releasenote": "fixes to alias package",
+  "version": "0.3.1",
   "contributors": ["fponticelli"],
   "dependencies": {
     "thx.core": ""
