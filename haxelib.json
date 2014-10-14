@@ -6,7 +6,7 @@
   "tags": ["thx", "math", "dimension", "unit", "cross"],
   "description": "Units library",
   "releasenote": "Better documentation",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "contributors": ["fponticelli"],
   "dependencies": {
     "thx.core": ""
