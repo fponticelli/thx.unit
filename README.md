@@ -29,3 +29,18 @@ Also notice that the types are automatically generated. If you want to contribut
 The library has not been exhaustively tested, please pay attention to the correctness of the results you get.
 
 *Important*. This library should be used with the consciousness that converting values and perform some operations on the values might result in loss of precision. The limitation come from the fact that the underlying type is a `Float`. Converting `LightYear`s to `Millimitre`s might not work as well as you expect!
+
+## install
+
+From the command line just type:
+
+```bash
+haxelib install thx.unit
+```
+
+To use the `dev` version do:
+
+```bash
+haxelib git thx.core https://github.com/fponticelli/thx.unit.git
+```
+
