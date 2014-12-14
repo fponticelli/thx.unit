@@ -10,6 +10,16 @@ abstract Thou(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Thou
+    return Math.abs(this);
+
+  inline public function min(other : Thou) : Thou
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Thou) : Thou
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Thou
     return -this;
   @:op( A+B) inline public function add(other : Thou) : Thou

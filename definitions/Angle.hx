@@ -5,6 +5,11 @@ import thx.core.Floats;
 // TODO parse string
 
 abstract ${type}(Float) {
+  public static var turn(default, null) : $type = $ofTurn;
+
+  inline static public function pointTo${type}(x : Float, y : Float) : $type
+    return (Math.atan2(y, x) : Radian);
+
   @:from inline static public function floatTo${type}(value : Float) : $type
     return new ${type}(value);
 
@@ -24,6 +29,25 @@ $if(type == 'Radian') {
   inline public function sin()
     return toRadian().sin();
 }
+
+  inline public function abs() : $type
+    return Math.abs(this);
+
+  inline public function min(other : $type) : $type
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : $type) : $type
+    return Math.max(this, other.toFloat());
+
+  public function normalize() : $type {
+    var a = this % turn.toFloat();
+    return a < 0 ? turn + a : a;
+  }
+
+  public function normalizeDirection() : $type {
+    var a = normalize();
+    return a > 180 ? a - turn : a;
+  }
 
   @:op( -A ) inline public function negate() : $type
     return -this;

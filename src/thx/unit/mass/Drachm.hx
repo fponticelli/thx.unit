@@ -10,6 +10,16 @@ abstract Drachm(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Drachm
+    return Math.abs(this);
+
+  inline public function min(other : Drachm) : Drachm
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Drachm) : Drachm
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Drachm
     return -this;
   @:op( A+B) inline public function add(other : Drachm) : Drachm

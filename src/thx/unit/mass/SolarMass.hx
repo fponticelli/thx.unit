@@ -10,6 +10,16 @@ abstract SolarMass(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : SolarMass
+    return Math.abs(this);
+
+  inline public function min(other : SolarMass) : SolarMass
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : SolarMass) : SolarMass
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : SolarMass
     return -this;
   @:op( A+B) inline public function add(other : SolarMass) : SolarMass

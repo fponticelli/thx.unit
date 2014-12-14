@@ -10,6 +10,16 @@ abstract Yottabit(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Yottabit
+    return Math.abs(this);
+
+  inline public function min(other : Yottabit) : Yottabit
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Yottabit) : Yottabit
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Yottabit
     return -this;
   @:op( A+B) inline public function add(other : Yottabit) : Yottabit

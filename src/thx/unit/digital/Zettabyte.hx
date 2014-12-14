@@ -10,6 +10,16 @@ abstract Zettabyte(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Zettabyte
+    return Math.abs(this);
+
+  inline public function min(other : Zettabyte) : Zettabyte
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Zettabyte) : Zettabyte
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Zettabyte
     return -this;
   @:op( A+B) inline public function add(other : Zettabyte) : Zettabyte

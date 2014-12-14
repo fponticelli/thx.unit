@@ -10,6 +10,16 @@ abstract Hundredweight(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Hundredweight
+    return Math.abs(this);
+
+  inline public function min(other : Hundredweight) : Hundredweight
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Hundredweight) : Hundredweight
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Hundredweight
     return -this;
   @:op( A+B) inline public function add(other : Hundredweight) : Hundredweight

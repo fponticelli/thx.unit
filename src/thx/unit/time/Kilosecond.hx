@@ -10,6 +10,16 @@ abstract Kilosecond(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Kilosecond
+    return Math.abs(this);
+
+  inline public function min(other : Kilosecond) : Kilosecond
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Kilosecond) : Kilosecond
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Kilosecond
     return -this;
   @:op( A+B) inline public function add(other : Kilosecond) : Kilosecond

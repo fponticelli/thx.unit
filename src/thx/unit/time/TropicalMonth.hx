@@ -10,6 +10,16 @@ abstract TropicalMonth(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : TropicalMonth
+    return Math.abs(this);
+
+  inline public function min(other : TropicalMonth) : TropicalMonth
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : TropicalMonth) : TropicalMonth
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : TropicalMonth
     return -this;
   @:op( A+B) inline public function add(other : TropicalMonth) : TropicalMonth

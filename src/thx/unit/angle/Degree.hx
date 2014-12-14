@@ -5,6 +5,11 @@ import thx.core.Floats;
 // TODO parse string
 
 abstract Degree(Float) {
+  public static var turn(default, null) : Degree = 360;
+
+  inline static public function pointToDegree(x : Float, y : Float) : Degree
+    return (Math.atan2(y, x) : Radian);
+
   @:from inline static public function floatToDegree(value : Float) : Degree
     return new Degree(value);
 
@@ -18,6 +23,25 @@ abstract Degree(Float) {
   inline public function sin()
     return toRadian().sin();
 
+
+  inline public function abs() : Degree
+    return Math.abs(this);
+
+  inline public function min(other : Degree) : Degree
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Degree) : Degree
+    return Math.max(this, other.toFloat());
+
+  public function normalize() : Degree {
+    var a = this % turn.toFloat();
+    return a < 0 ? turn + a : a;
+  }
+
+  public function normalizeDirection() : Degree {
+    var a = normalize();
+    return a > 180 ? a - turn : a;
+  }
 
   @:op( -A ) inline public function negate() : Degree
     return -this;

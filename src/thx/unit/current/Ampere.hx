@@ -10,6 +10,16 @@ abstract Ampere(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Ampere
+    return Math.abs(this);
+
+  inline public function min(other : Ampere) : Ampere
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Ampere) : Ampere
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Ampere
     return -this;
   @:op( A+B) inline public function add(other : Ampere) : Ampere

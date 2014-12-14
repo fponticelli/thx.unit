@@ -11,6 +11,15 @@ abstract Rankine(Float) {
   function new(value : Float)
     this = value;
 
+  inline public function abs() : Rankine
+    return Math.abs(this);
+
+  inline public function min(other : Rankine) : Rankine
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Rankine) : Rankine
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Rankine
     return -this;
   @:op( A+B) inline public function add(other : Rankine) : Rankine

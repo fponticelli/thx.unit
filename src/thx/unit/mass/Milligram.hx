@@ -10,6 +10,16 @@ abstract Milligram(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Milligram
+    return Math.abs(this);
+
+  inline public function min(other : Milligram) : Milligram
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Milligram) : Milligram
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Milligram
     return -this;
   @:op( A+B) inline public function add(other : Milligram) : Milligram

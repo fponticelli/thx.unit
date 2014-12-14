@@ -10,6 +10,16 @@ abstract Second(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Second
+    return Math.abs(this);
+
+  inline public function min(other : Second) : Second
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Second) : Second
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Second
     return -this;
   @:op( A+B) inline public function add(other : Second) : Second

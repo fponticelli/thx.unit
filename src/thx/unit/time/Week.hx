@@ -10,6 +10,16 @@ abstract Week(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Week
+    return Math.abs(this);
+
+  inline public function min(other : Week) : Week
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Week) : Week
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Week
     return -this;
   @:op( A+B) inline public function add(other : Week) : Week

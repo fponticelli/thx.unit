@@ -10,6 +10,16 @@ abstract Byte(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Byte
+    return Math.abs(this);
+
+  inline public function min(other : Byte) : Byte
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Byte) : Byte
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Byte
     return -this;
   @:op( A+B) inline public function add(other : Byte) : Byte

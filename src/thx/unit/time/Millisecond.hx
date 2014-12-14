@@ -10,6 +10,16 @@ abstract Millisecond(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Millisecond
+    return Math.abs(this);
+
+  inline public function min(other : Millisecond) : Millisecond
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Millisecond) : Millisecond
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Millisecond
     return -this;
   @:op( A+B) inline public function add(other : Millisecond) : Millisecond

@@ -5,6 +5,11 @@ import thx.core.Floats;
 // TODO parse string
 
 abstract MinuteOfArc(Float) {
+  public static var turn(default, null) : MinuteOfArc = 21600;
+
+  inline static public function pointToMinuteOfArc(x : Float, y : Float) : MinuteOfArc
+    return (Math.atan2(y, x) : Radian);
+
   @:from inline static public function floatToMinuteOfArc(value : Float) : MinuteOfArc
     return new MinuteOfArc(value);
 
@@ -18,6 +23,25 @@ abstract MinuteOfArc(Float) {
   inline public function sin()
     return toRadian().sin();
 
+
+  inline public function abs() : MinuteOfArc
+    return Math.abs(this);
+
+  inline public function min(other : MinuteOfArc) : MinuteOfArc
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : MinuteOfArc) : MinuteOfArc
+    return Math.max(this, other.toFloat());
+
+  public function normalize() : MinuteOfArc {
+    var a = this % turn.toFloat();
+    return a < 0 ? turn + a : a;
+  }
+
+  public function normalizeDirection() : MinuteOfArc {
+    var a = normalize();
+    return a > 180 ? a - turn : a;
+  }
 
   @:op( -A ) inline public function negate() : MinuteOfArc
     return -this;

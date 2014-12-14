@@ -10,6 +10,16 @@ abstract Nanosecond(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Nanosecond
+    return Math.abs(this);
+
+  inline public function min(other : Nanosecond) : Nanosecond
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Nanosecond) : Nanosecond
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Nanosecond
     return -this;
   @:op( A+B) inline public function add(other : Nanosecond) : Nanosecond

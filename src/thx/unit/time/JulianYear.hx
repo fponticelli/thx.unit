@@ -10,6 +10,16 @@ abstract JulianYear(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : JulianYear
+    return Math.abs(this);
+
+  inline public function min(other : JulianYear) : JulianYear
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : JulianYear) : JulianYear
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : JulianYear
     return -this;
   @:op( A+B) inline public function add(other : JulianYear) : JulianYear

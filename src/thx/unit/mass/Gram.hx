@@ -10,6 +10,16 @@ abstract Gram(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Gram
+    return Math.abs(this);
+
+  inline public function min(other : Gram) : Gram
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Gram) : Gram
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Gram
     return -this;
   @:op( A+B) inline public function add(other : Gram) : Gram

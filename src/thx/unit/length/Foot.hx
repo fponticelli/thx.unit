@@ -10,6 +10,16 @@ abstract Foot(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Foot
+    return Math.abs(this);
+
+  inline public function min(other : Foot) : Foot
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Foot) : Foot
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Foot
     return -this;
   @:op( A+B) inline public function add(other : Foot) : Foot

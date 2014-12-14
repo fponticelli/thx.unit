@@ -10,6 +10,16 @@ abstract Stone(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Stone
+    return Math.abs(this);
+
+  inline public function min(other : Stone) : Stone
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Stone) : Stone
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Stone
     return -this;
   @:op( A+B) inline public function add(other : Stone) : Stone

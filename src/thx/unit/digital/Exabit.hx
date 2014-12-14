@@ -10,6 +10,16 @@ abstract Exabit(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Exabit
+    return Math.abs(this);
+
+  inline public function min(other : Exabit) : Exabit
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Exabit) : Exabit
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Exabit
     return -this;
   @:op( A+B) inline public function add(other : Exabit) : Exabit

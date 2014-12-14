@@ -10,6 +10,16 @@ abstract Mile(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Mile
+    return Math.abs(this);
+
+  inline public function min(other : Mile) : Mile
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Mile) : Mile
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Mile
     return -this;
   @:op( A+B) inline public function add(other : Mile) : Mile

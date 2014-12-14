@@ -10,6 +10,16 @@ abstract Fathom(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Fathom
+    return Math.abs(this);
+
+  inline public function min(other : Fathom) : Fathom
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Fathom) : Fathom
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Fathom
     return -this;
   @:op( A+B) inline public function add(other : Fathom) : Fathom

@@ -5,6 +5,11 @@ import thx.core.Floats;
 // TODO parse string
 
 abstract Point(Float) {
+  public static var turn(default, null) : Point = 32;
+
+  inline static public function pointToPoint(x : Float, y : Float) : Point
+    return (Math.atan2(y, x) : Radian);
+
   @:from inline static public function floatToPoint(value : Float) : Point
     return new Point(value);
 
@@ -18,6 +23,25 @@ abstract Point(Float) {
   inline public function sin()
     return toRadian().sin();
 
+
+  inline public function abs() : Point
+    return Math.abs(this);
+
+  inline public function min(other : Point) : Point
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Point) : Point
+    return Math.max(this, other.toFloat());
+
+  public function normalize() : Point {
+    var a = this % turn.toFloat();
+    return a < 0 ? turn + a : a;
+  }
+
+  public function normalizeDirection() : Point {
+    var a = normalize();
+    return a > 180 ? a - turn : a;
+  }
 
   @:op( -A ) inline public function negate() : Point
     return -this;

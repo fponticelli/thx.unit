@@ -11,6 +11,15 @@ abstract Fahrenheit(Float) {
   function new(value : Float)
     this = value;
 
+  inline public function abs() : Fahrenheit
+    return Math.abs(this);
+
+  inline public function min(other : Fahrenheit) : Fahrenheit
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Fahrenheit) : Fahrenheit
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Fahrenheit
     return -this;
   @:op( A+B) inline public function add(other : Fahrenheit) : Fahrenheit

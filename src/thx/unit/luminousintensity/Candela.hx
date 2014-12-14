@@ -10,6 +10,16 @@ abstract Candela(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Candela
+    return Math.abs(this);
+
+  inline public function min(other : Candela) : Candela
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Candela) : Candela
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Candela
     return -this;
   @:op( A+B) inline public function add(other : Candela) : Candela

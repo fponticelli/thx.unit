@@ -10,6 +10,16 @@ abstract Gigasecond(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Gigasecond
+    return Math.abs(this);
+
+  inline public function min(other : Gigasecond) : Gigasecond
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Gigasecond) : Gigasecond
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Gigasecond
     return -this;
   @:op( A+B) inline public function add(other : Gigasecond) : Gigasecond

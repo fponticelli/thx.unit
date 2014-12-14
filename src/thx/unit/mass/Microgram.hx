@@ -10,6 +10,16 @@ abstract Microgram(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Microgram
+    return Math.abs(this);
+
+  inline public function min(other : Microgram) : Microgram
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Microgram) : Microgram
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Microgram
     return -this;
   @:op( A+B) inline public function add(other : Microgram) : Microgram

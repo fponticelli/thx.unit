@@ -10,6 +10,16 @@ abstract Micrometre(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Micrometre
+    return Math.abs(this);
+
+  inline public function min(other : Micrometre) : Micrometre
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Micrometre) : Micrometre
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Micrometre
     return -this;
   @:op( A+B) inline public function add(other : Micrometre) : Micrometre

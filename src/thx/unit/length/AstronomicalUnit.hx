@@ -10,6 +10,16 @@ abstract AstronomicalUnit(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : AstronomicalUnit
+    return Math.abs(this);
+
+  inline public function min(other : AstronomicalUnit) : AstronomicalUnit
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : AstronomicalUnit) : AstronomicalUnit
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : AstronomicalUnit
     return -this;
   @:op( A+B) inline public function add(other : AstronomicalUnit) : AstronomicalUnit

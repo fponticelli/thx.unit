@@ -10,6 +10,16 @@ abstract Kilogram(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Kilogram
+    return Math.abs(this);
+
+  inline public function min(other : Kilogram) : Kilogram
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Kilogram) : Kilogram
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Kilogram
     return -this;
   @:op( A+B) inline public function add(other : Kilogram) : Kilogram

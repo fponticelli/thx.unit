@@ -11,6 +11,15 @@ abstract Delisle(Float) {
   function new(value : Float)
     this = value;
 
+  inline public function abs() : Delisle
+    return Math.abs(this);
+
+  inline public function min(other : Delisle) : Delisle
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Delisle) : Delisle
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Delisle
     return -this;
   @:op( A+B) inline public function add(other : Delisle) : Delisle

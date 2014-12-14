@@ -10,6 +10,16 @@ abstract Centimetre(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Centimetre
+    return Math.abs(this);
+
+  inline public function min(other : Centimetre) : Centimetre
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Centimetre) : Centimetre
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Centimetre
     return -this;
   @:op( A+B) inline public function add(other : Centimetre) : Centimetre

@@ -10,6 +10,16 @@ abstract Gigabit(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Gigabit
+    return Math.abs(this);
+
+  inline public function min(other : Gigabit) : Gigabit
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Gigabit) : Gigabit
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Gigabit
     return -this;
   @:op( A+B) inline public function add(other : Gigabit) : Gigabit

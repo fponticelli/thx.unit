@@ -10,6 +10,16 @@ abstract Picosecond(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Picosecond
+    return Math.abs(this);
+
+  inline public function min(other : Picosecond) : Picosecond
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Picosecond) : Picosecond
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Picosecond
     return -this;
   @:op( A+B) inline public function add(other : Picosecond) : Picosecond

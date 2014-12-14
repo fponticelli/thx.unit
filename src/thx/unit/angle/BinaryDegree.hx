@@ -5,6 +5,11 @@ import thx.core.Floats;
 // TODO parse string
 
 abstract BinaryDegree(Float) {
+  public static var turn(default, null) : BinaryDegree = 256;
+
+  inline static public function pointToBinaryDegree(x : Float, y : Float) : BinaryDegree
+    return (Math.atan2(y, x) : Radian);
+
   @:from inline static public function floatToBinaryDegree(value : Float) : BinaryDegree
     return new BinaryDegree(value);
 
@@ -18,6 +23,25 @@ abstract BinaryDegree(Float) {
   inline public function sin()
     return toRadian().sin();
 
+
+  inline public function abs() : BinaryDegree
+    return Math.abs(this);
+
+  inline public function min(other : BinaryDegree) : BinaryDegree
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : BinaryDegree) : BinaryDegree
+    return Math.max(this, other.toFloat());
+
+  public function normalize() : BinaryDegree {
+    var a = this % turn.toFloat();
+    return a < 0 ? turn + a : a;
+  }
+
+  public function normalizeDirection() : BinaryDegree {
+    var a = normalize();
+    return a > 180 ? a - turn : a;
+  }
 
   @:op( -A ) inline public function negate() : BinaryDegree
     return -this;

@@ -10,6 +10,16 @@ abstract PoundMole(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : PoundMole
+    return Math.abs(this);
+
+  inline public function min(other : PoundMole) : PoundMole
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : PoundMole) : PoundMole
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : PoundMole
     return -this;
   @:op( A+B) inline public function add(other : PoundMole) : PoundMole

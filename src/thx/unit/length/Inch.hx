@@ -10,6 +10,16 @@ abstract Inch(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Inch
+    return Math.abs(this);
+
+  inline public function min(other : Inch) : Inch
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Inch) : Inch
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Inch
     return -this;
   @:op( A+B) inline public function add(other : Inch) : Inch

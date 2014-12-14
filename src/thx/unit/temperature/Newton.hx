@@ -11,6 +11,15 @@ abstract Newton(Float) {
   function new(value : Float)
     this = value;
 
+  inline public function abs() : Newton
+    return Math.abs(this);
+
+  inline public function min(other : Newton) : Newton
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Newton) : Newton
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Newton
     return -this;
   @:op( A+B) inline public function add(other : Newton) : Newton

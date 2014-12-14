@@ -5,6 +5,11 @@ import thx.core.Floats;
 // TODO parse string
 
 abstract Revolution(Float) {
+  public static var turn(default, null) : Revolution = 1;
+
+  inline static public function pointToRevolution(x : Float, y : Float) : Revolution
+    return (Math.atan2(y, x) : Radian);
+
   @:from inline static public function floatToRevolution(value : Float) : Revolution
     return new Revolution(value);
 
@@ -18,6 +23,25 @@ abstract Revolution(Float) {
   inline public function sin()
     return toRadian().sin();
 
+
+  inline public function abs() : Revolution
+    return Math.abs(this);
+
+  inline public function min(other : Revolution) : Revolution
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Revolution) : Revolution
+    return Math.max(this, other.toFloat());
+
+  public function normalize() : Revolution {
+    var a = this % turn.toFloat();
+    return a < 0 ? turn + a : a;
+  }
+
+  public function normalizeDirection() : Revolution {
+    var a = normalize();
+    return a > 180 ? a - turn : a;
+  }
 
   @:op( -A ) inline public function negate() : Revolution
     return -this;

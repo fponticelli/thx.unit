@@ -10,6 +10,16 @@ abstract Hour(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Hour
+    return Math.abs(this);
+
+  inline public function min(other : Hour) : Hour
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Hour) : Hour
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Hour
     return -this;
   @:op( A+B) inline public function add(other : Hour) : Hour

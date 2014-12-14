@@ -10,6 +10,16 @@ abstract Slug(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Slug
+    return Math.abs(this);
+
+  inline public function min(other : Slug) : Slug
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Slug) : Slug
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Slug
     return -this;
   @:op( A+B) inline public function add(other : Slug) : Slug

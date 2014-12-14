@@ -10,6 +10,16 @@ abstract Nanogram(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Nanogram
+    return Math.abs(this);
+
+  inline public function min(other : Nanogram) : Nanogram
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Nanogram) : Nanogram
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Nanogram
     return -this;
   @:op( A+B) inline public function add(other : Nanogram) : Nanogram

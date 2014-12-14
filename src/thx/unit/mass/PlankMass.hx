@@ -10,6 +10,16 @@ abstract PlankMass(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : PlankMass
+    return Math.abs(this);
+
+  inline public function min(other : PlankMass) : PlankMass
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : PlankMass) : PlankMass
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : PlankMass
     return -this;
   @:op( A+B) inline public function add(other : PlankMass) : PlankMass

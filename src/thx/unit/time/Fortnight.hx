@@ -10,6 +10,16 @@ abstract Fortnight(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Fortnight
+    return Math.abs(this);
+
+  inline public function min(other : Fortnight) : Fortnight
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Fortnight) : Fortnight
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Fortnight
     return -this;
   @:op( A+B) inline public function add(other : Fortnight) : Fortnight

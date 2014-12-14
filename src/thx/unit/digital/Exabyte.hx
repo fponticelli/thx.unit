@@ -10,6 +10,16 @@ abstract Exabyte(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Exabyte
+    return Math.abs(this);
+
+  inline public function min(other : Exabyte) : Exabyte
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Exabyte) : Exabyte
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Exabyte
     return -this;
   @:op( A+B) inline public function add(other : Exabyte) : Exabyte

@@ -5,6 +5,11 @@ import thx.core.Floats;
 // TODO parse string
 
 abstract Sextant(Float) {
+  public static var turn(default, null) : Sextant = 6;
+
+  inline static public function pointToSextant(x : Float, y : Float) : Sextant
+    return (Math.atan2(y, x) : Radian);
+
   @:from inline static public function floatToSextant(value : Float) : Sextant
     return new Sextant(value);
 
@@ -18,6 +23,25 @@ abstract Sextant(Float) {
   inline public function sin()
     return toRadian().sin();
 
+
+  inline public function abs() : Sextant
+    return Math.abs(this);
+
+  inline public function min(other : Sextant) : Sextant
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Sextant) : Sextant
+    return Math.max(this, other.toFloat());
+
+  public function normalize() : Sextant {
+    var a = this % turn.toFloat();
+    return a < 0 ? turn + a : a;
+  }
+
+  public function normalizeDirection() : Sextant {
+    var a = normalize();
+    return a > 180 ? a - turn : a;
+  }
 
   @:op( -A ) inline public function negate() : Sextant
     return -this;

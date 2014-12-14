@@ -10,6 +10,16 @@ abstract Ke(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Ke
+    return Math.abs(this);
+
+  inline public function min(other : Ke) : Ke
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Ke) : Ke
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Ke
     return -this;
   @:op( A+B) inline public function add(other : Ke) : Ke

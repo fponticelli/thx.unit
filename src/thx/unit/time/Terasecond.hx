@@ -10,6 +10,16 @@ abstract Terasecond(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Terasecond
+    return Math.abs(this);
+
+  inline public function min(other : Terasecond) : Terasecond
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Terasecond) : Terasecond
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Terasecond
     return -this;
   @:op( A+B) inline public function add(other : Terasecond) : Terasecond

@@ -10,6 +10,16 @@ abstract Day(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Day
+    return Math.abs(this);
+
+  inline public function min(other : Day) : Day
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Day) : Day
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Day
     return -this;
   @:op( A+B) inline public function add(other : Day) : Day

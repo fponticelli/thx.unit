@@ -10,6 +10,16 @@ abstract Megagram(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Megagram
+    return Math.abs(this);
+
+  inline public function min(other : Megagram) : Megagram
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Megagram) : Megagram
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Megagram
     return -this;
   @:op( A+B) inline public function add(other : Megagram) : Megagram

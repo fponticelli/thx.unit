@@ -10,6 +10,16 @@ abstract Grain(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Grain
+    return Math.abs(this);
+
+  inline public function min(other : Grain) : Grain
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Grain) : Grain
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Grain
     return -this;
   @:op( A+B) inline public function add(other : Grain) : Grain

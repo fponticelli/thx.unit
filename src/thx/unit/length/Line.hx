@@ -10,6 +10,16 @@ abstract Line(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Line
+    return Math.abs(this);
+
+  inline public function min(other : Line) : Line
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Line) : Line
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Line
     return -this;
   @:op( A+B) inline public function add(other : Line) : Line

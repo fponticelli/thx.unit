@@ -10,6 +10,16 @@ abstract Centigram(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Centigram
+    return Math.abs(this);
+
+  inline public function min(other : Centigram) : Centigram
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Centigram) : Centigram
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Centigram
     return -this;
   @:op( A+B) inline public function add(other : Centigram) : Centigram

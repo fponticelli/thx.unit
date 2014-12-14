@@ -10,6 +10,16 @@ abstract Petabyte(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Petabyte
+    return Math.abs(this);
+
+  inline public function min(other : Petabyte) : Petabyte
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Petabyte) : Petabyte
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Petabyte
     return -this;
   @:op( A+B) inline public function add(other : Petabyte) : Petabyte

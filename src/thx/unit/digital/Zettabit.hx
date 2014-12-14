@@ -10,6 +10,16 @@ abstract Zettabit(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Zettabit
+    return Math.abs(this);
+
+  inline public function min(other : Zettabit) : Zettabit
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Zettabit) : Zettabit
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Zettabit
     return -this;
   @:op( A+B) inline public function add(other : Zettabit) : Zettabit

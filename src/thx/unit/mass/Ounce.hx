@@ -10,6 +10,16 @@ abstract Ounce(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Ounce
+    return Math.abs(this);
+
+  inline public function min(other : Ounce) : Ounce
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Ounce) : Ounce
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Ounce
     return -this;
   @:op( A+B) inline public function add(other : Ounce) : Ounce

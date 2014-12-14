@@ -10,6 +10,16 @@ abstract Megabit(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Megabit
+    return Math.abs(this);
+
+  inline public function min(other : Megabit) : Megabit
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Megabit) : Megabit
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Megabit
     return -this;
   @:op( A+B) inline public function add(other : Megabit) : Megabit

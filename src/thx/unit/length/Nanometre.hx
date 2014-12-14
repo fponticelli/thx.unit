@@ -10,6 +10,16 @@ abstract Nanometre(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Nanometre
+    return Math.abs(this);
+
+  inline public function min(other : Nanometre) : Nanometre
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Nanometre) : Nanometre
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Nanometre
     return -this;
   @:op( A+B) inline public function add(other : Nanometre) : Nanometre

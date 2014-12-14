@@ -10,6 +10,16 @@ abstract EarthRadius(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : EarthRadius
+    return Math.abs(this);
+
+  inline public function min(other : EarthRadius) : EarthRadius
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : EarthRadius) : EarthRadius
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : EarthRadius
     return -this;
   @:op( A+B) inline public function add(other : EarthRadius) : EarthRadius

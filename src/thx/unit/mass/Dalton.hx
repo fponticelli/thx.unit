@@ -10,6 +10,16 @@ abstract Dalton(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Dalton
+    return Math.abs(this);
+
+  inline public function min(other : Dalton) : Dalton
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Dalton) : Dalton
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Dalton
     return -this;
   @:op( A+B) inline public function add(other : Dalton) : Dalton

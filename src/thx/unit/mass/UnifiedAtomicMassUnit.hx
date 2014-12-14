@@ -10,6 +10,16 @@ abstract UnifiedAtomicMassUnit(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : UnifiedAtomicMassUnit
+    return Math.abs(this);
+
+  inline public function min(other : UnifiedAtomicMassUnit) : UnifiedAtomicMassUnit
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : UnifiedAtomicMassUnit) : UnifiedAtomicMassUnit
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : UnifiedAtomicMassUnit
     return -this;
   @:op( A+B) inline public function add(other : UnifiedAtomicMassUnit) : UnifiedAtomicMassUnit

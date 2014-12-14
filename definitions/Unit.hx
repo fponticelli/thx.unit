@@ -15,6 +15,16 @@ abstract ${type}(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : $type
+    return Math.abs(this);
+
+  inline public function min(other : $type) : $type
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : $type) : $type
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : $type
     return -this;
   @:op( A+B) inline public function add(other : $type) : $type

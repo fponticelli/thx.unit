@@ -10,6 +10,16 @@ abstract Chain(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Chain
+    return Math.abs(this);
+
+  inline public function min(other : Chain) : Chain
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Chain) : Chain
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Chain
     return -this;
   @:op( A+B) inline public function add(other : Chain) : Chain

@@ -10,6 +10,16 @@ abstract Kilobit(Float) {
 
   function new(value : Float)
     this = value;
+
+  inline public function abs() : Kilobit
+    return Math.abs(this);
+
+  inline public function min(other : Kilobit) : Kilobit
+    return Math.min(this, other.toFloat());
+
+  inline public function max(other : Kilobit) : Kilobit
+    return Math.max(this, other.toFloat());
+
   @:op( -A ) inline public function negate() : Kilobit
     return -this;
   @:op( A+B) inline public function add(other : Kilobit) : Kilobit
