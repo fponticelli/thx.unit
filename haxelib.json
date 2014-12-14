@@ -5,8 +5,8 @@
   "classPath": "src",
   "tags": ["thx", "math", "dimension", "unit", "cross"],
   "description": "Library for unit of measurements. So far are included linear measurement, amount of substance, angle, current, digital, luminous intensity, mass, and time.",
-  "releasenote": "Better documentation",
-  "version": "0.3.5",
+  "releasenote": "added abs/min/max/normalize/normalizeDirection/turn/pointToX to Angle and abs/min/max to others",
+  "version": "0.4.0",
   "contributors": ["fponticelli"],
   "dependencies": {
     "thx.core": ""
