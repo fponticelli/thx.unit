@@ -1,6 +1,6 @@
 package thx.unit.angle;
 
-import thx.core.Floats;
+import thx.Floats;
 
 // TODO parse string
 

@@ -5,7 +5,7 @@ for(value in values) {
     units.push(value);
 })package thx.unit.${unit};
 
-import thx.core.Floats;
+import thx.Floats;
 
 // TODO parse string
 

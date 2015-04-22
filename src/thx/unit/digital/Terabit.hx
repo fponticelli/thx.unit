@@ -1,6 +1,6 @@
 package thx.unit.digital;
 
-import thx.core.Floats;
+import thx.Floats;
 
 // TODO parse string
 

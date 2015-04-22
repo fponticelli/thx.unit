@@ -1,6 +1,6 @@
 package thx.unit.time;
 
-import thx.core.Floats;
+import thx.Floats;
 
 // TODO parse string
 

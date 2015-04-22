@@ -1,6 +1,6 @@
 package thx.unit.temperature;
 
-import thx.core.Floats;
+import thx.Floats;
 
 // TODO parse string
 
