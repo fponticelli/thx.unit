@@ -1,8 +1,8 @@
 -cp src
 -cp test
 -lib utest
--lib thx.core
 -lib hxjava
+-lib thx.core
 -java bin/java
 -main TestAll
 -D thx-unit
