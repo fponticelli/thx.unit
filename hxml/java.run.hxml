@@ -1,0 +1,11 @@
+-cp src
+-cp test
+-lib utest
+-lib thx.core
+-lib hxjava
+-java bin/java
+-main TestAll
+-D thx-unit
+-debug
+
+-cmd java -jar bin/java/TestAll.jar
