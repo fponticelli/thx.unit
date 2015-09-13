@@ -1,54 +1,69 @@
 package thx.unit.mass;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Dalton(Float) {
-  @:from inline static public function floatToDalton(value : Float) : Dalton
+abstract Dalton(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Dalton
     return new Dalton(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Dalton
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Dalton
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Dalton
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Dalton) : Dalton
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Dalton) : Dalton
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Dalton) : Dalton
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Dalton) : Dalton
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Dalton
     return -this;
-  @:op( A+B) inline public function add(other : Dalton) : Dalton
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Dalton) : Dalton
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Dalton
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Dalton
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Dalton
-    return this % other;
-  @:op(A==B) inline public function equal(other : Dalton) : Bool
-    return this == other;
-  public function nearEquals(other : Dalton) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Dalton) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Dalton) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Dalton) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Dalton) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Dalton) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Dalton) : Dalton
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Dalton) : Dalton
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Dalton
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Dalton
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Dalton
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Dalton) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Dalton) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Dalton) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Dalton) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Dalton) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Dalton) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Dalton) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Dalton) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Dalton) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toMegagram() : Megagram
     return this * 1.660538921e-30;
@@ -92,7 +107,7 @@ abstract Dalton(Float) {
     return this * 8.35050122451032e-58;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "Da";
 }

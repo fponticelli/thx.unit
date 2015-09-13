@@ -1,54 +1,69 @@
 package thx.unit.digital;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Byte(Float) {
-  @:from inline static public function floatToByte(value : Float) : Byte
+abstract Byte(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Byte
     return new Byte(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Byte
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Byte
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Byte
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Byte) : Byte
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Byte) : Byte
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Byte) : Byte
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Byte) : Byte
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Byte
     return -this;
-  @:op( A+B) inline public function add(other : Byte) : Byte
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Byte) : Byte
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Byte
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Byte
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Byte
-    return this % other;
-  @:op(A==B) inline public function equal(other : Byte) : Bool
-    return this == other;
-  public function nearEquals(other : Byte) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Byte) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Byte) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Byte) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Byte) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Byte) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Byte) : Byte
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Byte) : Byte
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Byte
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Byte
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Byte
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Byte) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Byte) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Byte) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Byte) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Byte) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Byte) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Byte) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Byte) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Byte) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toKilobyte() : Kilobyte
     return this * 0.0009765625;
@@ -84,7 +99,7 @@ abstract Byte(Float) {
     return this * 1e-24;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "B";
 }

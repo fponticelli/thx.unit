@@ -1,54 +1,69 @@
 package thx.unit.length;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract EarthRadius(Float) {
-  @:from inline static public function floatToEarthRadius(value : Float) : EarthRadius
+abstract EarthRadius(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : EarthRadius
     return new EarthRadius(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : EarthRadius
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : EarthRadius
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : EarthRadius
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : EarthRadius) : EarthRadius
-    return Math.min(this, other.toFloat());
+  inline public function min(that : EarthRadius) : EarthRadius
+    return this.min(that.toDecimal());
 
-  inline public function max(other : EarthRadius) : EarthRadius
-    return Math.max(this, other.toFloat());
+  inline public function max(that : EarthRadius) : EarthRadius
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : EarthRadius
     return -this;
-  @:op( A+B) inline public function add(other : EarthRadius) : EarthRadius
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : EarthRadius) : EarthRadius
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : EarthRadius
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : EarthRadius
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : EarthRadius
-    return this % other;
-  @:op(A==B) inline public function equal(other : EarthRadius) : Bool
-    return this == other;
-  public function nearEquals(other : EarthRadius) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : EarthRadius) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : EarthRadius) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : EarthRadius) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : EarthRadius) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : EarthRadius) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : EarthRadius) : EarthRadius
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : EarthRadius) : EarthRadius
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : EarthRadius
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : EarthRadius
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : EarthRadius
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : EarthRadius) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : EarthRadius) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : EarthRadius) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : EarthRadius) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : EarthRadius) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : EarthRadius) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : EarthRadius) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : EarthRadius) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : EarthRadius) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toKilometre() : Kilometre
     return this * 6371.009;
@@ -90,7 +105,7 @@ abstract EarthRadius(Float) {
     return this * 6.73416182657833e-10;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "earth radius";
 }

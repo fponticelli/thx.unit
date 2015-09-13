@@ -1,54 +1,69 @@
 package thx.unit.time;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Megasecond(Float) {
-  @:from inline static public function floatToMegasecond(value : Float) : Megasecond
+abstract Megasecond(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Megasecond
     return new Megasecond(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Megasecond
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Megasecond
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Megasecond
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Megasecond) : Megasecond
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Megasecond) : Megasecond
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Megasecond) : Megasecond
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Megasecond) : Megasecond
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Megasecond
     return -this;
-  @:op( A+B) inline public function add(other : Megasecond) : Megasecond
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Megasecond) : Megasecond
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Megasecond
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Megasecond
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Megasecond
-    return this % other;
-  @:op(A==B) inline public function equal(other : Megasecond) : Bool
-    return this == other;
-  public function nearEquals(other : Megasecond) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Megasecond) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Megasecond) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Megasecond) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Megasecond) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Megasecond) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Megasecond) : Megasecond
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Megasecond) : Megasecond
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Megasecond
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Megasecond
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Megasecond
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Megasecond) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Megasecond) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Megasecond) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Megasecond) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Megasecond) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Megasecond) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Megasecond) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Megasecond) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Megasecond) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toPlankTimeUnit() : PlankTimeUnit
     return this * 1.85528756957328e+49;
@@ -98,7 +113,7 @@ abstract Megasecond(Float) {
     return this * 1e-06;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "Ms";
 }

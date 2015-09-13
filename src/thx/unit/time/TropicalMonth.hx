@@ -1,54 +1,69 @@
 package thx.unit.time;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract TropicalMonth(Float) {
-  @:from inline static public function floatToTropicalMonth(value : Float) : TropicalMonth
+abstract TropicalMonth(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : TropicalMonth
     return new TropicalMonth(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : TropicalMonth
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : TropicalMonth
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : TropicalMonth
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : TropicalMonth) : TropicalMonth
-    return Math.min(this, other.toFloat());
+  inline public function min(that : TropicalMonth) : TropicalMonth
+    return this.min(that.toDecimal());
 
-  inline public function max(other : TropicalMonth) : TropicalMonth
-    return Math.max(this, other.toFloat());
+  inline public function max(that : TropicalMonth) : TropicalMonth
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : TropicalMonth
     return -this;
-  @:op( A+B) inline public function add(other : TropicalMonth) : TropicalMonth
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : TropicalMonth) : TropicalMonth
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : TropicalMonth
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : TropicalMonth
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : TropicalMonth
-    return this % other;
-  @:op(A==B) inline public function equal(other : TropicalMonth) : Bool
-    return this == other;
-  public function nearEquals(other : TropicalMonth) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : TropicalMonth) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : TropicalMonth) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : TropicalMonth) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : TropicalMonth) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : TropicalMonth) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : TropicalMonth) : TropicalMonth
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : TropicalMonth) : TropicalMonth
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : TropicalMonth
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : TropicalMonth
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : TropicalMonth
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : TropicalMonth) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : TropicalMonth) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : TropicalMonth) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : TropicalMonth) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : TropicalMonth) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : TropicalMonth) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : TropicalMonth) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : TropicalMonth) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : TropicalMonth) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toPlankTimeUnit() : PlankTimeUnit
     return this * 4.37956310204082e+49;
@@ -98,7 +113,7 @@ abstract TropicalMonth(Float) {
     return this * 2.360584512e-06;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "tropical month";
 }

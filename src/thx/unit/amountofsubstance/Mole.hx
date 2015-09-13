@@ -1,60 +1,75 @@
 package thx.unit.amountofsubstance;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Mole(Float) {
-  @:from inline static public function floatToMole(value : Float) : Mole
+abstract Mole(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Mole
     return new Mole(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Mole
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Mole
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Mole
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Mole) : Mole
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Mole) : Mole
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Mole) : Mole
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Mole) : Mole
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Mole
     return -this;
-  @:op( A+B) inline public function add(other : Mole) : Mole
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Mole) : Mole
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Mole
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Mole
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Mole
-    return this % other;
-  @:op(A==B) inline public function equal(other : Mole) : Bool
-    return this == other;
-  public function nearEquals(other : Mole) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Mole) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Mole) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Mole) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Mole) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Mole) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Mole) : Mole
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Mole) : Mole
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Mole
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Mole
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Mole
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Mole) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Mole) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Mole) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Mole) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Mole) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Mole) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Mole) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Mole) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Mole) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toPoundMole() : PoundMole
     return this * 0.00220462262184878;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "mol";
 }

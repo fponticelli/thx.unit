@@ -1,54 +1,69 @@
 package thx.unit.length;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract NauticalMile(Float) {
-  @:from inline static public function floatToNauticalMile(value : Float) : NauticalMile
+abstract NauticalMile(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : NauticalMile
     return new NauticalMile(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : NauticalMile
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : NauticalMile
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : NauticalMile
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : NauticalMile) : NauticalMile
-    return Math.min(this, other.toFloat());
+  inline public function min(that : NauticalMile) : NauticalMile
+    return this.min(that.toDecimal());
 
-  inline public function max(other : NauticalMile) : NauticalMile
-    return Math.max(this, other.toFloat());
+  inline public function max(that : NauticalMile) : NauticalMile
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : NauticalMile
     return -this;
-  @:op( A+B) inline public function add(other : NauticalMile) : NauticalMile
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : NauticalMile) : NauticalMile
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : NauticalMile
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : NauticalMile
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : NauticalMile
-    return this % other;
-  @:op(A==B) inline public function equal(other : NauticalMile) : Bool
-    return this == other;
-  public function nearEquals(other : NauticalMile) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : NauticalMile) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : NauticalMile) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : NauticalMile) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : NauticalMile) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : NauticalMile) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : NauticalMile) : NauticalMile
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : NauticalMile) : NauticalMile
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : NauticalMile
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : NauticalMile
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : NauticalMile
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : NauticalMile) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : NauticalMile) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : NauticalMile) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : NauticalMile) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : NauticalMile) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : NauticalMile) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : NauticalMile) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : NauticalMile) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : NauticalMile) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toKilometre() : Kilometre
     return this * 1.852;
@@ -90,7 +105,7 @@ abstract NauticalMile(Float) {
     return this * 1.95756554461359e-13;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "M";
 }

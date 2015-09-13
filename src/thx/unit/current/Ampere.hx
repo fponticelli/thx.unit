@@ -1,58 +1,73 @@
 package thx.unit.current;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Ampere(Float) {
-  @:from inline static public function floatToAmpere(value : Float) : Ampere
+abstract Ampere(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Ampere
     return new Ampere(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Ampere
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Ampere
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Ampere
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Ampere) : Ampere
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Ampere) : Ampere
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Ampere) : Ampere
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Ampere) : Ampere
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Ampere
     return -this;
-  @:op( A+B) inline public function add(other : Ampere) : Ampere
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Ampere) : Ampere
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Ampere
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Ampere
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Ampere
-    return this % other;
-  @:op(A==B) inline public function equal(other : Ampere) : Bool
-    return this == other;
-  public function nearEquals(other : Ampere) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Ampere) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Ampere) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Ampere) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Ampere) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Ampere) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Ampere) : Ampere
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Ampere) : Ampere
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Ampere
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Ampere
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Ampere
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Ampere) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Ampere) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Ampere) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Ampere) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Ampere) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Ampere) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Ampere) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Ampere) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Ampere) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "A";
 }

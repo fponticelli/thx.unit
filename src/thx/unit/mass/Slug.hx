@@ -1,54 +1,69 @@
 package thx.unit.mass;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Slug(Float) {
-  @:from inline static public function floatToSlug(value : Float) : Slug
+abstract Slug(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Slug
     return new Slug(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Slug
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Slug
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Slug
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Slug) : Slug
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Slug) : Slug
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Slug) : Slug
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Slug) : Slug
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Slug
     return -this;
-  @:op( A+B) inline public function add(other : Slug) : Slug
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Slug) : Slug
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Slug
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Slug
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Slug
-    return this % other;
-  @:op(A==B) inline public function equal(other : Slug) : Bool
-    return this == other;
-  public function nearEquals(other : Slug) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Slug) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Slug) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Slug) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Slug) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Slug) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Slug) : Slug
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Slug) : Slug
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Slug
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Slug
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Slug
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Slug) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Slug) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Slug) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Slug) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Slug) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Slug) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Slug) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Slug) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Slug) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toMegagram() : Megagram
     return this * 0.014593903;
@@ -92,7 +107,7 @@ abstract Slug(Float) {
     return this * 7.33896708657062e-30;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "slug";
 }

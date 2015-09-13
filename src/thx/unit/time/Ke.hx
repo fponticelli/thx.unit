@@ -1,54 +1,69 @@
 package thx.unit.time;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Ke(Float) {
-  @:from inline static public function floatToKe(value : Float) : Ke
+abstract Ke(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Ke
     return new Ke(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Ke
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Ke
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Ke
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Ke) : Ke
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Ke) : Ke
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Ke) : Ke
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Ke) : Ke
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Ke
     return -this;
-  @:op( A+B) inline public function add(other : Ke) : Ke
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Ke) : Ke
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Ke
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Ke
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Ke
-    return this % other;
-  @:op(A==B) inline public function equal(other : Ke) : Bool
-    return this == other;
-  public function nearEquals(other : Ke) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Ke) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Ke) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Ke) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Ke) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Ke) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Ke) : Ke
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Ke) : Ke
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Ke
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Ke
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Ke
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Ke) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Ke) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Ke) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Ke) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Ke) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Ke) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Ke) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Ke) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Ke) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toPlankTimeUnit() : PlankTimeUnit
     return this * 1.60296846011132e+46;
@@ -98,7 +113,7 @@ abstract Ke(Float) {
     return this * 8.64e-10;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "ke";
 }

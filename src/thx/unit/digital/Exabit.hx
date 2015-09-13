@@ -1,54 +1,69 @@
 package thx.unit.digital;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Exabit(Float) {
-  @:from inline static public function floatToExabit(value : Float) : Exabit
+abstract Exabit(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Exabit
     return new Exabit(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Exabit
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Exabit
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Exabit
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Exabit) : Exabit
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Exabit) : Exabit
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Exabit) : Exabit
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Exabit) : Exabit
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Exabit
     return -this;
-  @:op( A+B) inline public function add(other : Exabit) : Exabit
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Exabit) : Exabit
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Exabit
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Exabit
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Exabit
-    return this % other;
-  @:op(A==B) inline public function equal(other : Exabit) : Bool
-    return this == other;
-  public function nearEquals(other : Exabit) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Exabit) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Exabit) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Exabit) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Exabit) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Exabit) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Exabit) : Exabit
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Exabit) : Exabit
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Exabit
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Exabit
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Exabit
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Exabit) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Exabit) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Exabit) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Exabit) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Exabit) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Exabit) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Exabit) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Exabit) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Exabit) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toByte() : Byte
     return this * 1e+18;
@@ -84,7 +99,7 @@ abstract Exabit(Float) {
     return this * 1e-06;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "E";
 }

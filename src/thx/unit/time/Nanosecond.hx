@@ -1,54 +1,69 @@
 package thx.unit.time;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Nanosecond(Float) {
-  @:from inline static public function floatToNanosecond(value : Float) : Nanosecond
+abstract Nanosecond(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Nanosecond
     return new Nanosecond(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Nanosecond
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Nanosecond
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Nanosecond
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Nanosecond) : Nanosecond
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Nanosecond) : Nanosecond
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Nanosecond) : Nanosecond
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Nanosecond) : Nanosecond
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Nanosecond
     return -this;
-  @:op( A+B) inline public function add(other : Nanosecond) : Nanosecond
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Nanosecond) : Nanosecond
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Nanosecond
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Nanosecond
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Nanosecond
-    return this % other;
-  @:op(A==B) inline public function equal(other : Nanosecond) : Bool
-    return this == other;
-  public function nearEquals(other : Nanosecond) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Nanosecond) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Nanosecond) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Nanosecond) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Nanosecond) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Nanosecond) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Nanosecond) : Nanosecond
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Nanosecond) : Nanosecond
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Nanosecond
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Nanosecond
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Nanosecond
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Nanosecond) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Nanosecond) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Nanosecond) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Nanosecond) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Nanosecond) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Nanosecond) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Nanosecond) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Nanosecond) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Nanosecond) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toPlankTimeUnit() : PlankTimeUnit
     return this * 1.85528756957328e+35;
@@ -98,7 +113,7 @@ abstract Nanosecond(Float) {
     return this * 1e-20;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "ns";
 }

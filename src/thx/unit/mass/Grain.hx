@@ -1,54 +1,69 @@
 package thx.unit.mass;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Grain(Float) {
-  @:from inline static public function floatToGrain(value : Float) : Grain
+abstract Grain(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Grain
     return new Grain(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Grain
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Grain
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Grain
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Grain) : Grain
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Grain) : Grain
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Grain) : Grain
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Grain) : Grain
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Grain
     return -this;
-  @:op( A+B) inline public function add(other : Grain) : Grain
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Grain) : Grain
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Grain
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Grain
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Grain
-    return this % other;
-  @:op(A==B) inline public function equal(other : Grain) : Bool
-    return this == other;
-  public function nearEquals(other : Grain) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Grain) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Grain) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Grain) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Grain) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Grain) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Grain) : Grain
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Grain) : Grain
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Grain
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Grain
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Grain
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Grain) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Grain) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Grain) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Grain) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Grain) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Grain) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Grain) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Grain) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Grain) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toMegagram() : Megagram
     return this * 6.479891e-08;
@@ -92,7 +107,7 @@ abstract Grain(Float) {
     return this * 3.25860099067159e-35;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "gr";
 }

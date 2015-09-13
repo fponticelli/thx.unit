@@ -1,54 +1,69 @@
 package thx.unit.length;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract LightYear(Float) {
-  @:from inline static public function floatToLightYear(value : Float) : LightYear
+abstract LightYear(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : LightYear
     return new LightYear(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : LightYear
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : LightYear
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : LightYear
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : LightYear) : LightYear
-    return Math.min(this, other.toFloat());
+  inline public function min(that : LightYear) : LightYear
+    return this.min(that.toDecimal());
 
-  inline public function max(other : LightYear) : LightYear
-    return Math.max(this, other.toFloat());
+  inline public function max(that : LightYear) : LightYear
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : LightYear
     return -this;
-  @:op( A+B) inline public function add(other : LightYear) : LightYear
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : LightYear) : LightYear
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : LightYear
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : LightYear
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : LightYear
-    return this % other;
-  @:op(A==B) inline public function equal(other : LightYear) : Bool
-    return this == other;
-  public function nearEquals(other : LightYear) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : LightYear) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : LightYear) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : LightYear) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : LightYear) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : LightYear) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : LightYear) : LightYear
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : LightYear) : LightYear
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : LightYear
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : LightYear
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : LightYear
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : LightYear) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : LightYear) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : LightYear) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : LightYear) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : LightYear) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : LightYear) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : LightYear) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : LightYear) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : LightYear) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toKilometre() : Kilometre
     return this * 9460730472580.8;
@@ -90,7 +105,7 @@ abstract LightYear(Float) {
     return this * 63241.0770842663;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "ly";
 }

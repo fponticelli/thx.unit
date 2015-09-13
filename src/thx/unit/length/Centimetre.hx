@@ -1,54 +1,69 @@
 package thx.unit.length;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Centimetre(Float) {
-  @:from inline static public function floatToCentimetre(value : Float) : Centimetre
+abstract Centimetre(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Centimetre
     return new Centimetre(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Centimetre
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Centimetre
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Centimetre
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Centimetre) : Centimetre
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Centimetre) : Centimetre
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Centimetre) : Centimetre
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Centimetre) : Centimetre
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Centimetre
     return -this;
-  @:op( A+B) inline public function add(other : Centimetre) : Centimetre
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Centimetre) : Centimetre
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Centimetre
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Centimetre
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Centimetre
-    return this % other;
-  @:op(A==B) inline public function equal(other : Centimetre) : Bool
-    return this == other;
-  public function nearEquals(other : Centimetre) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Centimetre) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Centimetre) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Centimetre) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Centimetre) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Centimetre) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Centimetre) : Centimetre
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Centimetre) : Centimetre
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Centimetre
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Centimetre
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Centimetre
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Centimetre) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Centimetre) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Centimetre) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Centimetre) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Centimetre) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Centimetre) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Centimetre) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Centimetre) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Centimetre) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toKilometre() : Kilometre
     return this * 1e-05;
@@ -90,7 +105,7 @@ abstract Centimetre(Float) {
     return this * 1.05700083402462e-18;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "cm";
 }

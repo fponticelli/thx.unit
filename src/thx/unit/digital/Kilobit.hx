@@ -1,54 +1,69 @@
 package thx.unit.digital;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Kilobit(Float) {
-  @:from inline static public function floatToKilobit(value : Float) : Kilobit
+abstract Kilobit(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Kilobit
     return new Kilobit(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Kilobit
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Kilobit
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Kilobit
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Kilobit) : Kilobit
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Kilobit) : Kilobit
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Kilobit) : Kilobit
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Kilobit) : Kilobit
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Kilobit
     return -this;
-  @:op( A+B) inline public function add(other : Kilobit) : Kilobit
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Kilobit) : Kilobit
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Kilobit
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Kilobit
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Kilobit
-    return this % other;
-  @:op(A==B) inline public function equal(other : Kilobit) : Bool
-    return this == other;
-  public function nearEquals(other : Kilobit) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Kilobit) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Kilobit) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Kilobit) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Kilobit) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Kilobit) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Kilobit) : Kilobit
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Kilobit) : Kilobit
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Kilobit
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Kilobit
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Kilobit
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Kilobit) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Kilobit) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Kilobit) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Kilobit) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Kilobit) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Kilobit) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Kilobit) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Kilobit) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Kilobit) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toByte() : Byte
     return this * 1000;
@@ -84,7 +99,7 @@ abstract Kilobit(Float) {
     return this * 1e-21;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "k";
 }

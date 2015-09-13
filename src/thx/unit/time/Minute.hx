@@ -1,54 +1,69 @@
 package thx.unit.time;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Minute(Float) {
-  @:from inline static public function floatToMinute(value : Float) : Minute
+abstract Minute(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Minute
     return new Minute(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Minute
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Minute
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Minute
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Minute) : Minute
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Minute) : Minute
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Minute) : Minute
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Minute) : Minute
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Minute
     return -this;
-  @:op( A+B) inline public function add(other : Minute) : Minute
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Minute) : Minute
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Minute
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Minute
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Minute
-    return this % other;
-  @:op(A==B) inline public function equal(other : Minute) : Bool
-    return this == other;
-  public function nearEquals(other : Minute) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Minute) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Minute) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Minute) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Minute) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Minute) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Minute) : Minute
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Minute) : Minute
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Minute
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Minute
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Minute
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Minute) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Minute) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Minute) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Minute) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Minute) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Minute) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Minute) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Minute) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Minute) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toPlankTimeUnit() : PlankTimeUnit
     return this * 1.11317254174397e+45;
@@ -98,7 +113,7 @@ abstract Minute(Float) {
     return this * 6e-11;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "min";
 }

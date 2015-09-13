@@ -1,54 +1,69 @@
 package thx.unit.length;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Metre(Float) {
-  @:from inline static public function floatToMetre(value : Float) : Metre
+abstract Metre(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Metre
     return new Metre(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Metre
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Metre
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Metre
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Metre) : Metre
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Metre) : Metre
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Metre) : Metre
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Metre) : Metre
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Metre
     return -this;
-  @:op( A+B) inline public function add(other : Metre) : Metre
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Metre) : Metre
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Metre
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Metre
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Metre
-    return this % other;
-  @:op(A==B) inline public function equal(other : Metre) : Bool
-    return this == other;
-  public function nearEquals(other : Metre) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Metre) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Metre) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Metre) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Metre) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Metre) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Metre) : Metre
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Metre) : Metre
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Metre
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Metre
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Metre
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Metre) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Metre) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Metre) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Metre) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Metre) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Metre) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Metre) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Metre) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Metre) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toKilometre() : Kilometre
     return this * 0.001;
@@ -90,7 +105,7 @@ abstract Metre(Float) {
     return this * 1.05700083402462e-16;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "m";
 }

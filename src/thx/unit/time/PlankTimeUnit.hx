@@ -1,54 +1,69 @@
 package thx.unit.time;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract PlankTimeUnit(Float) {
-  @:from inline static public function floatToPlankTimeUnit(value : Float) : PlankTimeUnit
+abstract PlankTimeUnit(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : PlankTimeUnit
     return new PlankTimeUnit(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : PlankTimeUnit
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : PlankTimeUnit
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : PlankTimeUnit
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : PlankTimeUnit) : PlankTimeUnit
-    return Math.min(this, other.toFloat());
+  inline public function min(that : PlankTimeUnit) : PlankTimeUnit
+    return this.min(that.toDecimal());
 
-  inline public function max(other : PlankTimeUnit) : PlankTimeUnit
-    return Math.max(this, other.toFloat());
+  inline public function max(that : PlankTimeUnit) : PlankTimeUnit
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : PlankTimeUnit
     return -this;
-  @:op( A+B) inline public function add(other : PlankTimeUnit) : PlankTimeUnit
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : PlankTimeUnit) : PlankTimeUnit
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : PlankTimeUnit
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : PlankTimeUnit
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : PlankTimeUnit
-    return this % other;
-  @:op(A==B) inline public function equal(other : PlankTimeUnit) : Bool
-    return this == other;
-  public function nearEquals(other : PlankTimeUnit) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : PlankTimeUnit) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : PlankTimeUnit) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : PlankTimeUnit) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : PlankTimeUnit) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : PlankTimeUnit) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : PlankTimeUnit) : PlankTimeUnit
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : PlankTimeUnit) : PlankTimeUnit
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : PlankTimeUnit
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : PlankTimeUnit
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : PlankTimeUnit
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : PlankTimeUnit) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : PlankTimeUnit) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : PlankTimeUnit) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : PlankTimeUnit) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : PlankTimeUnit) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : PlankTimeUnit) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : PlankTimeUnit) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : PlankTimeUnit) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : PlankTimeUnit) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toJiffyPhysics() : JiffyPhysics
     return this * 1.79666666666667e-20;
@@ -98,7 +113,7 @@ abstract PlankTimeUnit(Float) {
     return this * 5.39e-56;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "tP";
 }

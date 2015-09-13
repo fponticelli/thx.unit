@@ -1,54 +1,69 @@
 package thx.unit.mass;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Gram(Float) {
-  @:from inline static public function floatToGram(value : Float) : Gram
+abstract Gram(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Gram
     return new Gram(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Gram
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Gram
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Gram
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Gram) : Gram
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Gram) : Gram
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Gram) : Gram
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Gram) : Gram
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Gram
     return -this;
-  @:op( A+B) inline public function add(other : Gram) : Gram
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Gram) : Gram
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Gram
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Gram
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Gram
-    return this % other;
-  @:op(A==B) inline public function equal(other : Gram) : Bool
-    return this == other;
-  public function nearEquals(other : Gram) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Gram) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Gram) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Gram) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Gram) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Gram) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Gram) : Gram
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Gram) : Gram
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Gram
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Gram
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Gram
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Gram) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Gram) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Gram) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Gram) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Gram) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Gram) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Gram) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Gram) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Gram) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toMegagram() : Megagram
     return this * 1e-06;
@@ -92,7 +107,7 @@ abstract Gram(Float) {
     return this * 5.0287898217294e-34;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "g";
 }

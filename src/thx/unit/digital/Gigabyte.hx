@@ -1,54 +1,69 @@
 package thx.unit.digital;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Gigabyte(Float) {
-  @:from inline static public function floatToGigabyte(value : Float) : Gigabyte
+abstract Gigabyte(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Gigabyte
     return new Gigabyte(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Gigabyte
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Gigabyte
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Gigabyte
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Gigabyte) : Gigabyte
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Gigabyte) : Gigabyte
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Gigabyte) : Gigabyte
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Gigabyte) : Gigabyte
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Gigabyte
     return -this;
-  @:op( A+B) inline public function add(other : Gigabyte) : Gigabyte
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Gigabyte) : Gigabyte
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Gigabyte
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Gigabyte
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Gigabyte
-    return this % other;
-  @:op(A==B) inline public function equal(other : Gigabyte) : Bool
-    return this == other;
-  public function nearEquals(other : Gigabyte) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Gigabyte) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Gigabyte) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Gigabyte) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Gigabyte) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Gigabyte) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Gigabyte) : Gigabyte
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Gigabyte) : Gigabyte
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Gigabyte
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Gigabyte
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Gigabyte
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Gigabyte) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Gigabyte) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Gigabyte) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Gigabyte) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Gigabyte) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Gigabyte) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Gigabyte) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Gigabyte) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Gigabyte) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toByte() : Byte
     return this * 1073741824;
@@ -84,7 +99,7 @@ abstract Gigabyte(Float) {
     return this * 1.073741824e-15;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "Gi";
 }

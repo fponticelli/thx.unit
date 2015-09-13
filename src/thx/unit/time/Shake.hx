@@ -1,54 +1,69 @@
 package thx.unit.time;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Shake(Float) {
-  @:from inline static public function floatToShake(value : Float) : Shake
+abstract Shake(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Shake
     return new Shake(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Shake
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Shake
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Shake
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Shake) : Shake
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Shake) : Shake
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Shake) : Shake
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Shake) : Shake
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Shake
     return -this;
-  @:op( A+B) inline public function add(other : Shake) : Shake
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Shake) : Shake
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Shake
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Shake
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Shake
-    return this % other;
-  @:op(A==B) inline public function equal(other : Shake) : Bool
-    return this == other;
-  public function nearEquals(other : Shake) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Shake) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Shake) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Shake) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Shake) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Shake) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Shake) : Shake
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Shake) : Shake
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Shake
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Shake
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Shake
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Shake) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Shake) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Shake) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Shake) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Shake) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Shake) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Shake) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Shake) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Shake) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toPlankTimeUnit() : PlankTimeUnit
     return this * 1.85528756957328e+36;
@@ -98,7 +113,7 @@ abstract Shake(Float) {
     return this * 1e-19;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "shake";
 }

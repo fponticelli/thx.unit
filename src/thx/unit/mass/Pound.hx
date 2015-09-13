@@ -1,54 +1,69 @@
 package thx.unit.mass;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Pound(Float) {
-  @:from inline static public function floatToPound(value : Float) : Pound
+abstract Pound(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Pound
     return new Pound(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Pound
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Pound
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Pound
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Pound) : Pound
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Pound) : Pound
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Pound) : Pound
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Pound) : Pound
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Pound
     return -this;
-  @:op( A+B) inline public function add(other : Pound) : Pound
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Pound) : Pound
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Pound
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Pound
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Pound
-    return this % other;
-  @:op(A==B) inline public function equal(other : Pound) : Bool
-    return this == other;
-  public function nearEquals(other : Pound) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Pound) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Pound) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Pound) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Pound) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Pound) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Pound) : Pound
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Pound) : Pound
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Pound
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Pound
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Pound
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Pound) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Pound) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Pound) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Pound) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Pound) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Pound) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Pound) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Pound) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Pound) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toMegagram() : Megagram
     return this * 0.00045359237;
@@ -92,7 +107,7 @@ abstract Pound(Float) {
     return this * 2.28102069347012e-31;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "lb";
 }

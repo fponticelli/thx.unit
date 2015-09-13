@@ -1,54 +1,69 @@
 package thx.unit.digital;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Petabyte(Float) {
-  @:from inline static public function floatToPetabyte(value : Float) : Petabyte
+abstract Petabyte(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Petabyte
     return new Petabyte(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Petabyte
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Petabyte
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Petabyte
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Petabyte) : Petabyte
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Petabyte) : Petabyte
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Petabyte) : Petabyte
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Petabyte) : Petabyte
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Petabyte
     return -this;
-  @:op( A+B) inline public function add(other : Petabyte) : Petabyte
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Petabyte) : Petabyte
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Petabyte
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Petabyte
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Petabyte
-    return this % other;
-  @:op(A==B) inline public function equal(other : Petabyte) : Bool
-    return this == other;
-  public function nearEquals(other : Petabyte) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Petabyte) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Petabyte) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Petabyte) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Petabyte) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Petabyte) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Petabyte) : Petabyte
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Petabyte) : Petabyte
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Petabyte
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Petabyte
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Petabyte
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Petabyte) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Petabyte) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Petabyte) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Petabyte) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Petabyte) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Petabyte) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Petabyte) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Petabyte) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Petabyte) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toByte() : Byte
     return this * 1.12589990684262e+15;
@@ -84,7 +99,7 @@ abstract Petabyte(Float) {
     return this * 1.12589990684262e-09;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "Pi";
 }

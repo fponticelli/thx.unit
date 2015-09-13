@@ -1,60 +1,75 @@
 package thx.unit.luminousintensity;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Candela(Float) {
-  @:from inline static public function floatToCandela(value : Float) : Candela
+abstract Candela(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Candela
     return new Candela(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Candela
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Candela
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Candela
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Candela) : Candela
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Candela) : Candela
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Candela) : Candela
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Candela) : Candela
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Candela
     return -this;
-  @:op( A+B) inline public function add(other : Candela) : Candela
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Candela) : Candela
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Candela
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Candela
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Candela
-    return this % other;
-  @:op(A==B) inline public function equal(other : Candela) : Bool
-    return this == other;
-  public function nearEquals(other : Candela) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Candela) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Candela) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Candela) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Candela) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Candela) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Candela) : Candela
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Candela) : Candela
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Candela
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Candela
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Candela
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Candela) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Candela) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Candela) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Candela) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Candela) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Candela) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Candela) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Candela) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Candela) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toCandlepower() : Candlepower
     return this * 1.01936799184506;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "cd";
 }

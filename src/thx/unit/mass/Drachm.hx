@@ -1,54 +1,69 @@
 package thx.unit.mass;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Drachm(Float) {
-  @:from inline static public function floatToDrachm(value : Float) : Drachm
+abstract Drachm(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Drachm
     return new Drachm(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Drachm
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Drachm
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Drachm
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Drachm) : Drachm
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Drachm) : Drachm
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Drachm) : Drachm
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Drachm) : Drachm
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Drachm
     return -this;
-  @:op( A+B) inline public function add(other : Drachm) : Drachm
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Drachm) : Drachm
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Drachm
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Drachm
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Drachm
-    return this % other;
-  @:op(A==B) inline public function equal(other : Drachm) : Bool
-    return this == other;
-  public function nearEquals(other : Drachm) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Drachm) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Drachm) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Drachm) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Drachm) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Drachm) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Drachm) : Drachm
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Drachm) : Drachm
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Drachm
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Drachm
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Drachm
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Drachm) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Drachm) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Drachm) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Drachm) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Drachm) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Drachm) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Drachm) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Drachm) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Drachm) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toMegagram() : Megagram
     return this * 1.7718451953125e-06;
@@ -92,7 +107,7 @@ abstract Drachm(Float) {
     return this * 8.91023708386764e-34;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "dr";
 }

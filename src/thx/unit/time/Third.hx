@@ -1,54 +1,69 @@
 package thx.unit.time;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Third(Float) {
-  @:from inline static public function floatToThird(value : Float) : Third
+abstract Third(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Third
     return new Third(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Third
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Third
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Third
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Third) : Third
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Third) : Third
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Third) : Third
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Third) : Third
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Third
     return -this;
-  @:op( A+B) inline public function add(other : Third) : Third
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Third) : Third
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Third
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Third
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Third
-    return this % other;
-  @:op(A==B) inline public function equal(other : Third) : Bool
-    return this == other;
-  public function nearEquals(other : Third) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Third) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Third) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Third) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Third) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Third) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Third) : Third
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Third) : Third
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Third
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Third
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Third
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Third) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Third) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Third) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Third) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Third) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Third) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Third) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Third) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Third) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toPlankTimeUnit() : PlankTimeUnit
     return this * 3.09214594928943e+41;
@@ -98,7 +113,7 @@ abstract Third(Float) {
     return this * 1.666666666667e-14;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "third";
 }

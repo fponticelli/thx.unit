@@ -1,54 +1,69 @@
 package thx.unit.length;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Chain(Float) {
-  @:from inline static public function floatToChain(value : Float) : Chain
+abstract Chain(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Chain
     return new Chain(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Chain
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Chain
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Chain
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Chain) : Chain
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Chain) : Chain
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Chain) : Chain
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Chain) : Chain
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Chain
     return -this;
-  @:op( A+B) inline public function add(other : Chain) : Chain
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Chain) : Chain
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Chain
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Chain
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Chain
-    return this % other;
-  @:op(A==B) inline public function equal(other : Chain) : Bool
-    return this == other;
-  public function nearEquals(other : Chain) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Chain) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Chain) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Chain) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Chain) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Chain) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Chain) : Chain
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Chain) : Chain
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Chain
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Chain
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Chain
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Chain) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Chain) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Chain) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Chain) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Chain) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Chain) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Chain) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Chain) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Chain) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toKilometre() : Kilometre
     return this * 0.0201168;
@@ -90,7 +105,7 @@ abstract Chain(Float) {
     return this * 2.12634743779064e-15;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "ch";
 }

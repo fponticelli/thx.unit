@@ -1,54 +1,69 @@
 package thx.unit.mass;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Kilogram(Float) {
-  @:from inline static public function floatToKilogram(value : Float) : Kilogram
+abstract Kilogram(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Kilogram
     return new Kilogram(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Kilogram
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Kilogram
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Kilogram
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Kilogram) : Kilogram
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Kilogram) : Kilogram
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Kilogram) : Kilogram
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Kilogram) : Kilogram
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Kilogram
     return -this;
-  @:op( A+B) inline public function add(other : Kilogram) : Kilogram
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Kilogram) : Kilogram
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Kilogram
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Kilogram
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Kilogram
-    return this % other;
-  @:op(A==B) inline public function equal(other : Kilogram) : Bool
-    return this == other;
-  public function nearEquals(other : Kilogram) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Kilogram) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Kilogram) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Kilogram) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Kilogram) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Kilogram) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Kilogram) : Kilogram
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Kilogram) : Kilogram
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Kilogram
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Kilogram
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Kilogram
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Kilogram) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Kilogram) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Kilogram) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Kilogram) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Kilogram) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Kilogram) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Kilogram) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Kilogram) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Kilogram) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toMegagram() : Megagram
     return this * 0.001;
@@ -92,7 +107,7 @@ abstract Kilogram(Float) {
     return this * 5.0287898217294e-31;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "kg";
 }

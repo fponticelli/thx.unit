@@ -1,54 +1,69 @@
 package thx.unit.length;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract League(Float) {
-  @:from inline static public function floatToLeague(value : Float) : League
+abstract League(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : League
     return new League(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : League
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : League
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : League
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : League) : League
-    return Math.min(this, other.toFloat());
+  inline public function min(that : League) : League
+    return this.min(that.toDecimal());
 
-  inline public function max(other : League) : League
-    return Math.max(this, other.toFloat());
+  inline public function max(that : League) : League
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : League
     return -this;
-  @:op( A+B) inline public function add(other : League) : League
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : League) : League
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : League
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : League
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : League
-    return this % other;
-  @:op(A==B) inline public function equal(other : League) : Bool
-    return this == other;
-  public function nearEquals(other : League) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : League) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : League) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : League) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : League) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : League) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : League) : League
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : League) : League
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : League
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : League
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : League
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : League) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : League) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : League) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : League) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : League) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : League) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : League) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : League) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : League) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toKilometre() : Kilometre
     return this * 4.828032;
@@ -90,7 +105,7 @@ abstract League(Float) {
     return this * 5.10323385069753e-13;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "lea";
 }

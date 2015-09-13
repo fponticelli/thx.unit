@@ -1,54 +1,69 @@
 package thx.unit.digital;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Terabyte(Float) {
-  @:from inline static public function floatToTerabyte(value : Float) : Terabyte
+abstract Terabyte(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Terabyte
     return new Terabyte(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Terabyte
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Terabyte
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Terabyte
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Terabyte) : Terabyte
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Terabyte) : Terabyte
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Terabyte) : Terabyte
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Terabyte) : Terabyte
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Terabyte
     return -this;
-  @:op( A+B) inline public function add(other : Terabyte) : Terabyte
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Terabyte) : Terabyte
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Terabyte
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Terabyte
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Terabyte
-    return this % other;
-  @:op(A==B) inline public function equal(other : Terabyte) : Bool
-    return this == other;
-  public function nearEquals(other : Terabyte) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Terabyte) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Terabyte) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Terabyte) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Terabyte) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Terabyte) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Terabyte) : Terabyte
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Terabyte) : Terabyte
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Terabyte
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Terabyte
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Terabyte
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Terabyte) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Terabyte) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Terabyte) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Terabyte) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Terabyte) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Terabyte) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Terabyte) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Terabyte) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Terabyte) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toByte() : Byte
     return this * 1099511627776;
@@ -84,7 +99,7 @@ abstract Terabyte(Float) {
     return this * 1.099511627776e-12;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "Ti";
 }

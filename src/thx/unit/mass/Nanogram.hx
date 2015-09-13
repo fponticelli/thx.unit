@@ -1,54 +1,69 @@
 package thx.unit.mass;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Nanogram(Float) {
-  @:from inline static public function floatToNanogram(value : Float) : Nanogram
+abstract Nanogram(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Nanogram
     return new Nanogram(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Nanogram
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Nanogram
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Nanogram
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : Nanogram) : Nanogram
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Nanogram) : Nanogram
+    return this.min(that.toDecimal());
 
-  inline public function max(other : Nanogram) : Nanogram
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Nanogram) : Nanogram
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Nanogram
     return -this;
-  @:op( A+B) inline public function add(other : Nanogram) : Nanogram
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Nanogram) : Nanogram
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Nanogram
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Nanogram
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Nanogram
-    return this % other;
-  @:op(A==B) inline public function equal(other : Nanogram) : Bool
-    return this == other;
-  public function nearEquals(other : Nanogram) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Nanogram) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Nanogram) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Nanogram) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Nanogram) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Nanogram) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Nanogram) : Nanogram
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : Nanogram) : Nanogram
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Nanogram
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Nanogram
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Nanogram
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : Nanogram) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : Nanogram) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Nanogram) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : Nanogram) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : Nanogram) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : Nanogram) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : Nanogram) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : Nanogram) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : Nanogram) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toMegagram() : Megagram
     return this * 1e-15;
@@ -92,7 +107,7 @@ abstract Nanogram(Float) {
     return this * 5.0287898217294e-43;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "ng";
 }

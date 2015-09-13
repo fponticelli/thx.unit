@@ -1,54 +1,69 @@
 package thx.unit.time;
 
-import thx.Floats;
+using thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract JiffyPhysics(Float) {
-  @:from inline static public function floatToJiffyPhysics(value : Float) : JiffyPhysics
+abstract JiffyPhysics(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : JiffyPhysics
     return new JiffyPhysics(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : JiffyPhysics
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : JiffyPhysics
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : JiffyPhysics
-    return Math.abs(this);
+    return this.abs();
 
-  inline public function min(other : JiffyPhysics) : JiffyPhysics
-    return Math.min(this, other.toFloat());
+  inline public function min(that : JiffyPhysics) : JiffyPhysics
+    return this.min(that.toDecimal());
 
-  inline public function max(other : JiffyPhysics) : JiffyPhysics
-    return Math.max(this, other.toFloat());
+  inline public function max(that : JiffyPhysics) : JiffyPhysics
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : JiffyPhysics
     return -this;
-  @:op( A+B) inline public function add(other : JiffyPhysics) : JiffyPhysics
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : JiffyPhysics) : JiffyPhysics
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : JiffyPhysics
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : JiffyPhysics
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : JiffyPhysics
-    return this % other;
-  @:op(A==B) inline public function equal(other : JiffyPhysics) : Bool
-    return this == other;
-  public function nearEquals(other : JiffyPhysics) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : JiffyPhysics) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : JiffyPhysics) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : JiffyPhysics) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : JiffyPhysics) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : JiffyPhysics) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : JiffyPhysics) : JiffyPhysics
+    return this.add(that.toDecimal());
+  @:op( A-B) inline public function subtract(that : JiffyPhysics) : JiffyPhysics
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : JiffyPhysics
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : JiffyPhysics
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : JiffyPhysics
+    return this.modulo(that);
+  @:op(A==B) inline public function equal(that : JiffyPhysics) : Bool
+    return this.equals(that.toDecimal());
+  public function nearEquals(that : JiffyPhysics) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : JiffyPhysics) : Bool
+    return !this.equals(that.toDecimal());
+  @:op( A<B) inline public function less(that : JiffyPhysics) : Bool
+    return this.less(that.toDecimal());
+  @:op(A<=B) inline public function lessEqual(that : JiffyPhysics) : Bool
+    return this.lessEqual(that.toDecimal());
+  @:deprecated("use greater instead or simply >")
+  inline public function more(that : JiffyPhysics) : Bool
+    return greater(that);
+  @:op( A>B) inline public function greater(that : JiffyPhysics) : Bool
+    return this.greater(that.toDecimal());
+  @:deprecated("use greaterEqual instead or simply >=")
+  inline public function moreEqual(that : JiffyPhysics) : Bool
+    return greaterEqual(that);
+  @:op(A>=B) inline public function greaterEqual(that : JiffyPhysics) : Bool
+    return this.greaterEqual(that.toDecimal());
 
-  @:to inline public function toFloat() : Float
+  inline public function toDecimal() : Decimal
     return this;
+
+  inline public function toFloat() : Float
+    return this.toFloat();
+
 
   @:to inline public function toPlankTimeUnit() : PlankTimeUnit
     return this * 5.56586270871985e+19;
@@ -98,7 +113,7 @@ abstract JiffyPhysics(Float) {
     return this * 3e-36;
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return this.toString() + symbol;
 
   public static inline var symbol : String = "jiffy";
 }
