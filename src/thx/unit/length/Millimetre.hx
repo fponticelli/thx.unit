@@ -4,7 +4,7 @@ using thx.Floats;
 import thx.Decimal;
 
 abstract Millimetre(Decimal) {
-  static var ofUnit : Decimal = 0.001;
+  static var ofUnit : Decimal = "0.001";
 
   @:from inline static public function fromDecimal(value : Decimal) : Millimetre
     return new Millimetre(value);
@@ -67,79 +67,79 @@ abstract Millimetre(Decimal) {
     return this.toFloat();
 
 
-  static var dividerKilometre : Decimal = 1000;
+  static var dividerKilometre : Decimal = "1000";
   @:to inline public function toKilometre() : Kilometre
     return (this * ofUnit) / dividerKilometre;
 
-  static var dividerMetre : Decimal = 1;
+  static var dividerMetre : Decimal = "1";
   @:to inline public function toMetre() : Metre
     return (this * ofUnit) / dividerMetre;
 
-  static var dividerCentimetre : Decimal = 0.01;
+  static var dividerCentimetre : Decimal = "0.01";
   @:to inline public function toCentimetre() : Centimetre
     return (this * ofUnit) / dividerCentimetre;
 
-  static var dividerMicrometre : Decimal = 1e-06;
+  static var dividerMicrometre : Decimal = "0.000001";
   @:to inline public function toMicrometre() : Micrometre
     return (this * ofUnit) / dividerMicrometre;
 
-  static var dividerNanometre : Decimal = 1e-09;
+  static var dividerNanometre : Decimal = "0.000000001";
   @:to inline public function toNanometre() : Nanometre
     return (this * ofUnit) / dividerNanometre;
 
-  static var dividerLeague : Decimal = 4828.032;
+  static var dividerLeague : Decimal = "4828.032";
   @:to inline public function toLeague() : League
     return (this * ofUnit) / dividerLeague;
 
-  static var dividerMile : Decimal = 1609.344;
+  static var dividerMile : Decimal = "1609.344";
   @:to inline public function toMile() : Mile
     return (this * ofUnit) / dividerMile;
 
-  static var dividerFurlong : Decimal = 201.168;
+  static var dividerFurlong : Decimal = "201.168";
   @:to inline public function toFurlong() : Furlong
     return (this * ofUnit) / dividerFurlong;
 
-  static var dividerChain : Decimal = 20.1168;
+  static var dividerChain : Decimal = "20.1168";
   @:to inline public function toChain() : Chain
     return (this * ofUnit) / dividerChain;
 
-  static var dividerYard : Decimal = 0.9144;
+  static var dividerYard : Decimal = "0.9144";
   @:to inline public function toYard() : Yard
     return (this * ofUnit) / dividerYard;
 
-  static var dividerFoot : Decimal = 0.3048;
+  static var dividerFoot : Decimal = "0.3048";
   @:to inline public function toFoot() : Foot
     return (this * ofUnit) / dividerFoot;
 
-  static var dividerInch : Decimal = 0.0254;
+  static var dividerInch : Decimal = "0.0254";
   @:to inline public function toInch() : Inch
     return (this * ofUnit) / dividerInch;
 
-  static var dividerLine : Decimal = 0.00211666666667;
+  static var dividerLine : Decimal = "0.00211666666667";
   @:to inline public function toLine() : Line
     return (this * ofUnit) / dividerLine;
 
-  static var dividerThou : Decimal = 2.54e-05;
+  static var dividerThou : Decimal = "0.0000254";
   @:to inline public function toThou() : Thou
     return (this * ofUnit) / dividerThou;
 
-  static var dividerFathom : Decimal = 1.8288;
+  static var dividerFathom : Decimal = "1.82880";
   @:to inline public function toFathom() : Fathom
     return (this * ofUnit) / dividerFathom;
 
-  static var dividerNauticalMile : Decimal = 1852;
+  static var dividerNauticalMile : Decimal = "1852";
   @:to inline public function toNauticalMile() : NauticalMile
     return (this * ofUnit) / dividerNauticalMile;
 
-  static var dividerEarthRadius : Decimal = 6371009;
+  static var dividerEarthRadius : Decimal = "6371009";
   @:to inline public function toEarthRadius() : EarthRadius
     return (this * ofUnit) / dividerEarthRadius;
 
-  static var dividerAstronomicalUnit : Decimal = 149597870700;
+  static var dividerAstronomicalUnit : Decimal = "149597870700";
   @:to inline public function toAstronomicalUnit() : AstronomicalUnit
     return (this * ofUnit) / dividerAstronomicalUnit;
 
-  static var dividerLightYear : Decimal = 9.4607304725808e+15;
+  static var dividerLightYear : Decimal = "9460730472580800";
   @:to inline public function toLightYear() : LightYear
     return (this * ofUnit) / dividerLightYear;
 

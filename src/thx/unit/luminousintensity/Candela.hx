@@ -4,7 +4,7 @@ using thx.Floats;
 import thx.Decimal;
 
 abstract Candela(Decimal) {
-  static var ofUnit : Decimal = 1;
+  static var ofUnit : Decimal = "1";
 
   @:from inline static public function fromDecimal(value : Decimal) : Candela
     return new Candela(value);
@@ -67,7 +67,7 @@ abstract Candela(Decimal) {
     return this.toFloat();
 
 
-  static var dividerCandlepower : Decimal = 0.981;
+  static var dividerCandlepower : Decimal = "0.981";
   @:to inline public function toCandlepower() : Candlepower
     return (this * ofUnit) / dividerCandlepower;
 
