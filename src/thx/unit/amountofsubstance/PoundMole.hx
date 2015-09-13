@@ -4,6 +4,8 @@ using thx.Floats;
 import thx.Decimal;
 
 abstract PoundMole(Decimal) {
+  static var ofUnit : Decimal = 453.59237;
+
   @:from inline static public function fromDecimal(value : Decimal) : PoundMole
     return new PoundMole(value);
 
@@ -65,8 +67,10 @@ abstract PoundMole(Decimal) {
     return this.toFloat();
 
 
+  static var dividerMole : Decimal = 1;
   @:to inline public function toMole() : Mole
-    return this * 453.59237;
+    return (this * ofUnit) / dividerMole;
+
 
   @:to inline public function toString() : String
     return this.toString() + symbol;

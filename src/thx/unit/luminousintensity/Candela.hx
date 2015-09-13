@@ -4,6 +4,8 @@ using thx.Floats;
 import thx.Decimal;
 
 abstract Candela(Decimal) {
+  static var ofUnit : Decimal = 1;
+
   @:from inline static public function fromDecimal(value : Decimal) : Candela
     return new Candela(value);
 
@@ -65,8 +67,10 @@ abstract Candela(Decimal) {
     return this.toFloat();
 
 
+  static var dividerCandlepower : Decimal = 0.981;
   @:to inline public function toCandlepower() : Candlepower
-    return this * 1.01936799184506;
+    return (this * ofUnit) / dividerCandlepower;
+
 
   @:to inline public function toString() : String
     return this.toString() + symbol;

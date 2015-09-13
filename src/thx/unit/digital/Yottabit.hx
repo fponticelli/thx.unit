@@ -4,6 +4,8 @@ using thx.Floats;
 import thx.Decimal;
 
 abstract Yottabit(Decimal) {
+  static var ofUnit : Decimal = 1e+24;
+
   @:from inline static public function fromDecimal(value : Decimal) : Yottabit
     return new Yottabit(value);
 
@@ -65,38 +67,70 @@ abstract Yottabit(Decimal) {
     return this.toFloat();
 
 
+  static var dividerByte : Decimal = 1;
   @:to inline public function toByte() : Byte
-    return this * 1e+24;
+    return (this * ofUnit) / dividerByte;
+
+  static var dividerKilobyte : Decimal = 1024;
   @:to inline public function toKilobyte() : Kilobyte
-    return this * 9.765625e+20;
+    return (this * ofUnit) / dividerKilobyte;
+
+  static var dividerMegabyte : Decimal = 1048576;
   @:to inline public function toMegabyte() : Megabyte
-    return this * 9.5367431640625e+17;
+    return (this * ofUnit) / dividerMegabyte;
+
+  static var dividerGigabyte : Decimal = 1073741824;
   @:to inline public function toGigabyte() : Gigabyte
-    return this * 931322574615478;
+    return (this * ofUnit) / dividerGigabyte;
+
+  static var dividerTerabyte : Decimal = 1099511627776;
   @:to inline public function toTerabyte() : Terabyte
-    return this * 909494701772.928;
+    return (this * ofUnit) / dividerTerabyte;
+
+  static var dividerPetabyte : Decimal = 1.12589990684262e+15;
   @:to inline public function toPetabyte() : Petabyte
-    return this * 888178419.700125;
+    return (this * ofUnit) / dividerPetabyte;
+
+  static var dividerExabyte : Decimal = 1.15292150460685e+18;
   @:to inline public function toExabyte() : Exabyte
-    return this * 867361.737988401;
+    return (this * ofUnit) / dividerExabyte;
+
+  static var dividerZettabyte : Decimal = 1.18059162071741e+21;
   @:to inline public function toZettabyte() : Zettabyte
-    return this * 847.032947254301;
+    return (this * ofUnit) / dividerZettabyte;
+
+  static var dividerYottabyte : Decimal = 1.20892581961463e+24;
   @:to inline public function toYottabyte() : Yottabyte
-    return this * 0.827180612553027;
+    return (this * ofUnit) / dividerYottabyte;
+
+  static var dividerKilobit : Decimal = 1000;
   @:to inline public function toKilobit() : Kilobit
-    return this * 1e+21;
+    return (this * ofUnit) / dividerKilobit;
+
+  static var dividerMegabit : Decimal = 1000000;
   @:to inline public function toMegabit() : Megabit
-    return this * 1e+18;
+    return (this * ofUnit) / dividerMegabit;
+
+  static var dividerGigabit : Decimal = 1000000000;
   @:to inline public function toGigabit() : Gigabit
-    return this * 1e+15;
+    return (this * ofUnit) / dividerGigabit;
+
+  static var dividerTerabit : Decimal = 1000000000000;
   @:to inline public function toTerabit() : Terabit
-    return this * 1000000000000;
+    return (this * ofUnit) / dividerTerabit;
+
+  static var dividerPetabit : Decimal = 1e+15;
   @:to inline public function toPetabit() : Petabit
-    return this * 1000000000;
+    return (this * ofUnit) / dividerPetabit;
+
+  static var dividerExabit : Decimal = 1e+18;
   @:to inline public function toExabit() : Exabit
-    return this * 1000000;
+    return (this * ofUnit) / dividerExabit;
+
+  static var dividerZettabit : Decimal = 1e+21;
   @:to inline public function toZettabit() : Zettabit
-    return this * 1000;
+    return (this * ofUnit) / dividerZettabit;
+
 
   @:to inline public function toString() : String
     return this.toString() + symbol;

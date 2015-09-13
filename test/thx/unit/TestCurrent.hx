@@ -7,8 +7,8 @@ class TestCurrent {
   public function new() {}
 
   public function testBasic() {
-    Assert.equals(
-      ((100 : Ampere) / 2).toFloat(), 50
+    Assert.isTrue(
+      ((100 : Ampere) / 2) == (50 : Ampere)
     );
   }
 }

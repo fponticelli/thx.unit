@@ -4,6 +4,8 @@ using thx.Floats;
 import thx.Decimal;
 
 abstract Quarter(Decimal) {
+  static var ofUnit : Decimal = 12.70058636;
+
   @:from inline static public function fromDecimal(value : Decimal) : Quarter
     return new Quarter(value);
 
@@ -65,46 +67,86 @@ abstract Quarter(Decimal) {
     return this.toFloat();
 
 
+  static var dividerMegagram : Decimal = 1000;
   @:to inline public function toMegagram() : Megagram
-    return this * 0.01270058636;
+    return (this * ofUnit) / dividerMegagram;
+
+  static var dividerKilogram : Decimal = 1;
   @:to inline public function toKilogram() : Kilogram
-    return this * 12.70058636;
+    return (this * ofUnit) / dividerKilogram;
+
+  static var dividerGram : Decimal = 0.001;
   @:to inline public function toGram() : Gram
-    return this * 12700.58636;
+    return (this * ofUnit) / dividerGram;
+
+  static var dividerCentigram : Decimal = 1e-05;
   @:to inline public function toCentigram() : Centigram
-    return this * 1270058.636;
+    return (this * ofUnit) / dividerCentigram;
+
+  static var dividerMilligram : Decimal = 1e-06;
   @:to inline public function toMilligram() : Milligram
-    return this * 12700586.36;
+    return (this * ofUnit) / dividerMilligram;
+
+  static var dividerMicrogram : Decimal = 1e-09;
   @:to inline public function toMicrogram() : Microgram
-    return this * 12700586360;
+    return (this * ofUnit) / dividerMicrogram;
+
+  static var dividerNanogram : Decimal = 1e-12;
   @:to inline public function toNanogram() : Nanogram
-    return this * 12700586360000;
+    return (this * ofUnit) / dividerNanogram;
+
+  static var dividerPicogram : Decimal = 1e-15;
   @:to inline public function toPicogram() : Picogram
-    return this * 1.270058636e+16;
+    return (this * ofUnit) / dividerPicogram;
+
+  static var dividerTon : Decimal = 1016.0469088;
   @:to inline public function toTon() : Ton
-    return this * 0.0125;
+    return (this * ofUnit) / dividerTon;
+
+  static var dividerHundredweight : Decimal = 50.80234544;
   @:to inline public function toHundredweight() : Hundredweight
-    return this * 0.25;
+    return (this * ofUnit) / dividerHundredweight;
+
+  static var dividerStone : Decimal = 6.35029318;
   @:to inline public function toStone() : Stone
-    return this * 2;
+    return (this * ofUnit) / dividerStone;
+
+  static var dividerPound : Decimal = 0.45359237;
   @:to inline public function toPound() : Pound
-    return this * 28;
+    return (this * ofUnit) / dividerPound;
+
+  static var dividerOunce : Decimal = 0.028349523125;
   @:to inline public function toOunce() : Ounce
-    return this * 448;
+    return (this * ofUnit) / dividerOunce;
+
+  static var dividerDrachm : Decimal = 0.0017718451953125;
   @:to inline public function toDrachm() : Drachm
-    return this * 7168;
+    return (this * ofUnit) / dividerDrachm;
+
+  static var dividerGrain : Decimal = 6.479891e-05;
   @:to inline public function toGrain() : Grain
-    return this * 196000;
+    return (this * ofUnit) / dividerGrain;
+
+  static var dividerUnifiedAtomicMassUnit : Decimal = 1.660538921e-27;
   @:to inline public function toUnifiedAtomicMassUnit() : UnifiedAtomicMassUnit
-    return this * 7.64847255272495e+27;
+    return (this * ofUnit) / dividerUnifiedAtomicMassUnit;
+
+  static var dividerDalton : Decimal = 1.660538921e-27;
   @:to inline public function toDalton() : Dalton
-    return this * 7.64847255272495e+27;
+    return (this * ofUnit) / dividerDalton;
+
+  static var dividerPlankMass : Decimal = 2.17651e-08;
   @:to inline public function toPlankMass() : PlankMass
-    return this * 583529887.756087;
+    return (this * ofUnit) / dividerPlankMass;
+
+  static var dividerSlug : Decimal = 14.593903;
   @:to inline public function toSlug() : Slug
-    return this * 0.87026660105936;
+    return (this * ofUnit) / dividerSlug;
+
+  static var dividerSolarMass : Decimal = 1.98855e+30;
   @:to inline public function toSolarMass() : SolarMass
-    return this * 6.38685794171633e-30;
+    return (this * ofUnit) / dividerSolarMass;
+
 
   @:to inline public function toString() : String
     return this.toString() + symbol;

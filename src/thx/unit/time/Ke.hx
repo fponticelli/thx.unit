@@ -4,6 +4,8 @@ using thx.Floats;
 import thx.Decimal;
 
 abstract Ke(Decimal) {
+  static var ofUnit : Decimal = 864;
+
   @:from inline static public function fromDecimal(value : Decimal) : Ke
     return new Ke(value);
 
@@ -65,52 +67,98 @@ abstract Ke(Decimal) {
     return this.toFloat();
 
 
+  static var dividerPlankTimeUnit : Decimal = 5.39e-44;
   @:to inline public function toPlankTimeUnit() : PlankTimeUnit
-    return this * 1.60296846011132e+46;
+    return (this * ofUnit) / dividerPlankTimeUnit;
+
+  static var dividerJiffyPhysics : Decimal = 3e-24;
   @:to inline public function toJiffyPhysics() : JiffyPhysics
-    return this * 2.88e+26;
+    return (this * ofUnit) / dividerJiffyPhysics;
+
+  static var dividerSvedberg : Decimal = 1e-12;
   @:to inline public function toSvedberg() : Svedberg
-    return this * 864000000000000;
+    return (this * ofUnit) / dividerSvedberg;
+
+  static var dividerPicosecond : Decimal = 1e-11;
   @:to inline public function toPicosecond() : Picosecond
-    return this * 86400000000000;
+    return (this * ofUnit) / dividerPicosecond;
+
+  static var dividerNanosecond : Decimal = 1e-08;
   @:to inline public function toNanosecond() : Nanosecond
-    return this * 86400000000;
+    return (this * ofUnit) / dividerNanosecond;
+
+  static var dividerShake : Decimal = 1e-07;
   @:to inline public function toShake() : Shake
-    return this * 8640000000;
+    return (this * ofUnit) / dividerShake;
+
+  static var dividerMicrosecond : Decimal = 1e-05;
   @:to inline public function toMicrosecond() : Microsecond
-    return this * 86400000;
+    return (this * ofUnit) / dividerMicrosecond;
+
+  static var dividerFourth : Decimal = 0.00027777777778;
   @:to inline public function toFourth() : Fourth
-    return this * 3110399.99997512;
+    return (this * ofUnit) / dividerFourth;
+
+  static var dividerMillisecond : Decimal = 0.001;
   @:to inline public function toMillisecond() : Millisecond
-    return this * 864000;
+    return (this * ofUnit) / dividerMillisecond;
+
+  static var dividerThird : Decimal = 0.01666666666667;
   @:to inline public function toThird() : Third
-    return this * 51839.9999999896;
+    return (this * ofUnit) / dividerThird;
+
+  static var dividerSecond : Decimal = 1;
   @:to inline public function toSecond() : Second
-    return this * 864;
+    return (this * ofUnit) / dividerSecond;
+
+  static var dividerMinute : Decimal = 60;
   @:to inline public function toMinute() : Minute
-    return this * 14.4;
+    return (this * ofUnit) / dividerMinute;
+
+  static var dividerKilosecond : Decimal = 1000;
   @:to inline public function toKilosecond() : Kilosecond
-    return this * 0.864;
+    return (this * ofUnit) / dividerKilosecond;
+
+  static var dividerHour : Decimal = 3600;
   @:to inline public function toHour() : Hour
-    return this * 0.24;
+    return (this * ofUnit) / dividerHour;
+
+  static var dividerDay : Decimal = 86400;
   @:to inline public function toDay() : Day
-    return this * 0.01;
+    return (this * ofUnit) / dividerDay;
+
+  static var dividerWeek : Decimal = 604800;
   @:to inline public function toWeek() : Week
-    return this * 0.00142857142857143;
+    return (this * ofUnit) / dividerWeek;
+
+  static var dividerMegasecond : Decimal = 1000000;
   @:to inline public function toMegasecond() : Megasecond
-    return this * 0.000864;
+    return (this * ofUnit) / dividerMegasecond;
+
+  static var dividerFortnight : Decimal = 1209600;
   @:to inline public function toFortnight() : Fortnight
-    return this * 0.000714285714285714;
+    return (this * ofUnit) / dividerFortnight;
+
+  static var dividerSynodicMonth : Decimal = 2551442.976;
   @:to inline public function toSynodicMonth() : SynodicMonth
-    return this * 0.0003386319067787;
+    return (this * ofUnit) / dividerSynodicMonth;
+
+  static var dividerTropicalMonth : Decimal = 2360584.512;
   @:to inline public function toTropicalMonth() : TropicalMonth
-    return this * 0.000366011043285198;
+    return (this * ofUnit) / dividerTropicalMonth;
+
+  static var dividerJulianYear : Decimal = 31557600;
   @:to inline public function toJulianYear() : JulianYear
-    return this * 2.7378507871321e-05;
+    return (this * ofUnit) / dividerJulianYear;
+
+  static var dividerGigasecond : Decimal = 1000000000;
   @:to inline public function toGigasecond() : Gigasecond
-    return this * 8.64e-07;
+    return (this * ofUnit) / dividerGigasecond;
+
+  static var dividerTerasecond : Decimal = 1000000000000;
   @:to inline public function toTerasecond() : Terasecond
-    return this * 8.64e-10;
+    return (this * ofUnit) / dividerTerasecond;
+
 
   @:to inline public function toString() : String
     return this.toString() + symbol;

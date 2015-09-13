@@ -4,6 +4,8 @@ using thx.Floats;
 import thx.Decimal;
 
 abstract Inch(Decimal) {
+  static var ofUnit : Decimal = 0.0254;
+
   @:from inline static public function fromDecimal(value : Decimal) : Inch
     return new Inch(value);
 
@@ -65,44 +67,82 @@ abstract Inch(Decimal) {
     return this.toFloat();
 
 
+  static var dividerKilometre : Decimal = 1000;
   @:to inline public function toKilometre() : Kilometre
-    return this * 2.54e-05;
+    return (this * ofUnit) / dividerKilometre;
+
+  static var dividerMetre : Decimal = 1;
   @:to inline public function toMetre() : Metre
-    return this * 0.0254;
+    return (this * ofUnit) / dividerMetre;
+
+  static var dividerCentimetre : Decimal = 0.01;
   @:to inline public function toCentimetre() : Centimetre
-    return this * 2.54;
+    return (this * ofUnit) / dividerCentimetre;
+
+  static var dividerMillimetre : Decimal = 0.001;
   @:to inline public function toMillimetre() : Millimetre
-    return this * 25.4;
+    return (this * ofUnit) / dividerMillimetre;
+
+  static var dividerMicrometre : Decimal = 1e-06;
   @:to inline public function toMicrometre() : Micrometre
-    return this * 25400;
+    return (this * ofUnit) / dividerMicrometre;
+
+  static var dividerNanometre : Decimal = 1e-09;
   @:to inline public function toNanometre() : Nanometre
-    return this * 25400000;
+    return (this * ofUnit) / dividerNanometre;
+
+  static var dividerLeague : Decimal = 4828.032;
   @:to inline public function toLeague() : League
-    return this * 5.26094276094276e-06;
+    return (this * ofUnit) / dividerLeague;
+
+  static var dividerMile : Decimal = 1609.344;
   @:to inline public function toMile() : Mile
-    return this * 1.57828282828283e-05;
+    return (this * ofUnit) / dividerMile;
+
+  static var dividerFurlong : Decimal = 201.168;
   @:to inline public function toFurlong() : Furlong
-    return this * 0.000126262626262626;
+    return (this * ofUnit) / dividerFurlong;
+
+  static var dividerChain : Decimal = 20.1168;
   @:to inline public function toChain() : Chain
-    return this * 0.00126262626262626;
+    return (this * ofUnit) / dividerChain;
+
+  static var dividerYard : Decimal = 0.9144;
   @:to inline public function toYard() : Yard
-    return this * 0.0277777777777778;
+    return (this * ofUnit) / dividerYard;
+
+  static var dividerFoot : Decimal = 0.3048;
   @:to inline public function toFoot() : Foot
-    return this * 0.0833333333333333;
+    return (this * ofUnit) / dividerFoot;
+
+  static var dividerLine : Decimal = 0.00211666666667;
   @:to inline public function toLine() : Line
-    return this * 11.9999999999811;
+    return (this * ofUnit) / dividerLine;
+
+  static var dividerThou : Decimal = 2.54e-05;
   @:to inline public function toThou() : Thou
-    return this * 1000;
+    return (this * ofUnit) / dividerThou;
+
+  static var dividerFathom : Decimal = 1.8288;
   @:to inline public function toFathom() : Fathom
-    return this * 0.0138888888888889;
+    return (this * ofUnit) / dividerFathom;
+
+  static var dividerNauticalMile : Decimal = 1852;
   @:to inline public function toNauticalMile() : NauticalMile
-    return this * 1.37149028077754e-05;
+    return (this * ofUnit) / dividerNauticalMile;
+
+  static var dividerEarthRadius : Decimal = 6371009;
   @:to inline public function toEarthRadius() : EarthRadius
-    return this * 3.98680962466071e-09;
+    return (this * ofUnit) / dividerEarthRadius;
+
+  static var dividerAstronomicalUnit : Decimal = 149597870700;
   @:to inline public function toAstronomicalUnit() : AstronomicalUnit
-    return this * 1.69788512905619e-13;
+    return (this * ofUnit) / dividerAstronomicalUnit;
+
+  static var dividerLightYear : Decimal = 9.4607304725808e+15;
   @:to inline public function toLightYear() : LightYear
-    return this * 2.68478211842252e-18;
+    return (this * ofUnit) / dividerLightYear;
+
 
   @:to inline public function toString() : String
     return this.toString() + symbol;

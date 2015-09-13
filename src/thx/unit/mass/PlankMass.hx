@@ -4,6 +4,8 @@ using thx.Floats;
 import thx.Decimal;
 
 abstract PlankMass(Decimal) {
+  static var ofUnit : Decimal = 2.17651e-08;
+
   @:from inline static public function fromDecimal(value : Decimal) : PlankMass
     return new PlankMass(value);
 
@@ -65,46 +67,86 @@ abstract PlankMass(Decimal) {
     return this.toFloat();
 
 
+  static var dividerMegagram : Decimal = 1000;
   @:to inline public function toMegagram() : Megagram
-    return this * 2.17651e-11;
+    return (this * ofUnit) / dividerMegagram;
+
+  static var dividerKilogram : Decimal = 1;
   @:to inline public function toKilogram() : Kilogram
-    return this * 2.17651e-08;
+    return (this * ofUnit) / dividerKilogram;
+
+  static var dividerGram : Decimal = 0.001;
   @:to inline public function toGram() : Gram
-    return this * 2.17651e-05;
+    return (this * ofUnit) / dividerGram;
+
+  static var dividerCentigram : Decimal = 1e-05;
   @:to inline public function toCentigram() : Centigram
-    return this * 0.00217651;
+    return (this * ofUnit) / dividerCentigram;
+
+  static var dividerMilligram : Decimal = 1e-06;
   @:to inline public function toMilligram() : Milligram
-    return this * 0.0217651;
+    return (this * ofUnit) / dividerMilligram;
+
+  static var dividerMicrogram : Decimal = 1e-09;
   @:to inline public function toMicrogram() : Microgram
-    return this * 21.7651;
+    return (this * ofUnit) / dividerMicrogram;
+
+  static var dividerNanogram : Decimal = 1e-12;
   @:to inline public function toNanogram() : Nanogram
-    return this * 21765.1;
+    return (this * ofUnit) / dividerNanogram;
+
+  static var dividerPicogram : Decimal = 1e-15;
   @:to inline public function toPicogram() : Picogram
-    return this * 21765100;
+    return (this * ofUnit) / dividerPicogram;
+
+  static var dividerTon : Decimal = 1016.0469088;
   @:to inline public function toTon() : Ton
-    return this * 2.14213534941075e-11;
+    return (this * ofUnit) / dividerTon;
+
+  static var dividerHundredweight : Decimal = 50.80234544;
   @:to inline public function toHundredweight() : Hundredweight
-    return this * 4.2842706988215e-10;
+    return (this * ofUnit) / dividerHundredweight;
+
+  static var dividerQuarter : Decimal = 12.70058636;
   @:to inline public function toQuarter() : Quarter
-    return this * 1.7137082795286e-09;
+    return (this * ofUnit) / dividerQuarter;
+
+  static var dividerStone : Decimal = 6.35029318;
   @:to inline public function toStone() : Stone
-    return this * 3.4274165590572e-09;
+    return (this * ofUnit) / dividerStone;
+
+  static var dividerPound : Decimal = 0.45359237;
   @:to inline public function toPound() : Pound
-    return this * 4.79838318268008e-08;
+    return (this * ofUnit) / dividerPound;
+
+  static var dividerOunce : Decimal = 0.028349523125;
   @:to inline public function toOunce() : Ounce
-    return this * 7.67741309228813e-07;
+    return (this * ofUnit) / dividerOunce;
+
+  static var dividerDrachm : Decimal = 0.0017718451953125;
   @:to inline public function toDrachm() : Drachm
-    return this * 1.2283860947661e-05;
+    return (this * ofUnit) / dividerDrachm;
+
+  static var dividerGrain : Decimal = 6.479891e-05;
   @:to inline public function toGrain() : Grain
-    return this * 0.000335886822787606;
+    return (this * ofUnit) / dividerGrain;
+
+  static var dividerUnifiedAtomicMassUnit : Decimal = 1.660538921e-27;
   @:to inline public function toUnifiedAtomicMassUnit() : UnifiedAtomicMassUnit
-    return this * 1.3107250739352e+19;
+    return (this * ofUnit) / dividerUnifiedAtomicMassUnit;
+
+  static var dividerDalton : Decimal = 1.660538921e-27;
   @:to inline public function toDalton() : Dalton
-    return this * 1.3107250739352e+19;
+    return (this * ofUnit) / dividerDalton;
+
+  static var dividerSlug : Decimal = 14.593903;
   @:to inline public function toSlug() : Slug
-    return this * 1.49138307963264e-09;
+    return (this * ofUnit) / dividerSlug;
+
+  static var dividerSolarMass : Decimal = 1.98855e+30;
   @:to inline public function toSolarMass() : SolarMass
-    return this * 1.09452113348923e-38;
+    return (this * ofUnit) / dividerSolarMass;
+
 
   @:to inline public function toString() : String
     return this.toString() + symbol;

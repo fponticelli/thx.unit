@@ -9,7 +9,7 @@ class TestDigital {
   public function testBasic() {
     var mg : Megabyte = 1,
         mb : Megabit = 1;
-    Assert.floatEquals(1000000, mb.toByte().toFloat());
+    Assert.isTrue((1000000 : Byte) == mb.toByte());
     Assert.isTrue(mg.toByte() > mb.toByte());
   }
 }

@@ -4,6 +4,8 @@ using thx.Floats;
 import thx.Decimal;
 
 abstract Ampere(Decimal) {
+  static var ofUnit : Decimal = 1;
+
   @:from inline static public function fromDecimal(value : Decimal) : Ampere
     return new Ampere(value);
 

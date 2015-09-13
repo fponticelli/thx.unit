@@ -7,9 +7,11 @@ class TestTime {
   public function new() {}
 
   public function testBasic() {
-    Assert.floatEquals(
-      ((120 : Second) * 60).toHour().toFloat(),
-      (2 : Hour).toFloat()
+    trace((120 : Second) * 60);
+    trace(((120 : Second) * 60).toHour());
+    trace((2 : Hour));
+    Assert.isTrue(
+      ((120 : Second) * 60).toHour() == (2 : Hour)
     );
   }
 }
