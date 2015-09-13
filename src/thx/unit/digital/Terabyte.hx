@@ -1,133 +1,133 @@
 package thx.unit.digital;
 
 using thx.Floats;
-import thx.Decimal;
+import thx.BigInt;
 
-abstract Terabyte(Decimal) {
-  static var ofUnit : Decimal = "1099511627776";
+abstract Terabyte(BigInt) {
+  static var ofUnit : BigInt = "1099511627776";
 
-  @:from inline static public function fromDecimal(value : Decimal) : Terabyte
+  @:from inline static public function fromBigInt(value : BigInt) : Terabyte
     return new Terabyte(value);
 
   @:from inline static public function fromInt(value : Int) : Terabyte
-    return fromDecimal(Decimal.fromInt(value));
+    return fromBigInt(BigInt.fromInt(value));
 
   @:from inline static public function fromFloat(value : Float) : Terabyte
-    return fromDecimal(Decimal.fromFloat(value));
+    return fromBigInt(BigInt.fromFloat(value));
 
-  inline function new(value : Decimal)
+  inline function new(value : BigInt)
     this = value;
 
   inline public function abs() : Terabyte
     return this.abs();
 
   inline public function min(that : Terabyte) : Terabyte
-    return this.min(that.toDecimal());
+    return this.min(that.toBigInt());
 
   inline public function max(that : Terabyte) : Terabyte
-    return this.max(that.toDecimal());
+    return this.max(that.toBigInt());
 
   @:op( -A ) inline public function negate() : Terabyte
     return -this;
   @:op( A+B) inline public function add(that : Terabyte) : Terabyte
-    return this.add(that.toDecimal());
+    return this.add(that.toBigInt());
   @:op( A-B) inline public function subtract(that : Terabyte) : Terabyte
-    return this.subtract(that.toDecimal());
-  @:op( A*B) inline public function multiply(that : Decimal) : Terabyte
+    return this.subtract(that.toBigInt());
+  @:op( A*B) inline public function multiply(that : BigInt) : Terabyte
     return this.multiply(that);
-  @:op( A/B) inline public function divide(that : Decimal) : Terabyte
+  @:op( A/B) inline public function divide(that : BigInt) : Terabyte
     return this.divide(that);
-  @:op( A%B) inline public function modulo(that : Decimal) : Terabyte
+  @:op( A%B) inline public function modulo(that : BigInt) : Terabyte
     return this.modulo(that);
   @:op(A==B) inline public function equal(that : Terabyte) : Bool
-    return this.equals(that.toDecimal());
+    return this.equals(that.toBigInt());
   public function nearEquals(that : Terabyte) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
   @:op(A!=B) inline public function notEqual(that : Terabyte) : Bool
-    return !this.equals(that.toDecimal());
+    return !this.equals(that.toBigInt());
   @:op( A<B) inline public function less(that : Terabyte) : Bool
-    return this.less(that.toDecimal());
+    return this.less(that.toBigInt());
   @:op(A<=B) inline public function lessEqual(that : Terabyte) : Bool
-    return this.lessEqual(that.toDecimal());
+    return this.lessEqual(that.toBigInt());
   @:deprecated("use greater instead or simply >")
   inline public function more(that : Terabyte) : Bool
     return greater(that);
   @:op( A>B) inline public function greater(that : Terabyte) : Bool
-    return this.greater(that.toDecimal());
+    return this.greater(that.toBigInt());
   @:deprecated("use greaterEqual instead or simply >=")
   inline public function moreEqual(that : Terabyte) : Bool
     return greaterEqual(that);
   @:op(A>=B) inline public function greaterEqual(that : Terabyte) : Bool
-    return this.greaterEqual(that.toDecimal());
+    return this.greaterEqual(that.toBigInt());
 
-  inline public function toDecimal() : Decimal
+  inline public function toBigInt() : BigInt
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
 
 
-  static var dividerByte : Decimal = "1";
+  static var dividerByte : BigInt = "1";
   @:to inline public function toByte() : Byte
     return (this * ofUnit) / dividerByte;
 
-  static var dividerKilobyte : Decimal = "1024";
+  static var dividerKilobyte : BigInt = "1024";
   @:to inline public function toKilobyte() : Kilobyte
     return (this * ofUnit) / dividerKilobyte;
 
-  static var dividerMegabyte : Decimal = "1048576";
+  static var dividerMegabyte : BigInt = "1048576";
   @:to inline public function toMegabyte() : Megabyte
     return (this * ofUnit) / dividerMegabyte;
 
-  static var dividerGigabyte : Decimal = "1073741824";
+  static var dividerGigabyte : BigInt = "1073741824";
   @:to inline public function toGigabyte() : Gigabyte
     return (this * ofUnit) / dividerGigabyte;
 
-  static var dividerPetabyte : Decimal = "1125899906842624";
+  static var dividerPetabyte : BigInt = "1125899906842624";
   @:to inline public function toPetabyte() : Petabyte
     return (this * ofUnit) / dividerPetabyte;
 
-  static var dividerExabyte : Decimal = "1152921504606846976";
+  static var dividerExabyte : BigInt = "1152921504606846976";
   @:to inline public function toExabyte() : Exabyte
     return (this * ofUnit) / dividerExabyte;
 
-  static var dividerZettabyte : Decimal = "1180591620717411303424";
+  static var dividerZettabyte : BigInt = "1180591620717411303424";
   @:to inline public function toZettabyte() : Zettabyte
     return (this * ofUnit) / dividerZettabyte;
 
-  static var dividerYottabyte : Decimal = "1208925819614629174706176";
+  static var dividerYottabyte : BigInt = "1208925819614629174706176";
   @:to inline public function toYottabyte() : Yottabyte
     return (this * ofUnit) / dividerYottabyte;
 
-  static var dividerKilobit : Decimal = "1000";
+  static var dividerKilobit : BigInt = "1000";
   @:to inline public function toKilobit() : Kilobit
     return (this * ofUnit) / dividerKilobit;
 
-  static var dividerMegabit : Decimal = "1000000";
+  static var dividerMegabit : BigInt = "1000000";
   @:to inline public function toMegabit() : Megabit
     return (this * ofUnit) / dividerMegabit;
 
-  static var dividerGigabit : Decimal = "1000000000";
+  static var dividerGigabit : BigInt = "1000000000";
   @:to inline public function toGigabit() : Gigabit
     return (this * ofUnit) / dividerGigabit;
 
-  static var dividerTerabit : Decimal = "1000000000000";
+  static var dividerTerabit : BigInt = "1000000000000";
   @:to inline public function toTerabit() : Terabit
     return (this * ofUnit) / dividerTerabit;
 
-  static var dividerPetabit : Decimal = "1000000000000000";
+  static var dividerPetabit : BigInt = "1000000000000000";
   @:to inline public function toPetabit() : Petabit
     return (this * ofUnit) / dividerPetabit;
 
-  static var dividerExabit : Decimal = "1E18";
+  static var dividerExabit : BigInt = "1E18";
   @:to inline public function toExabit() : Exabit
     return (this * ofUnit) / dividerExabit;
 
-  static var dividerZettabit : Decimal = "1E21";
+  static var dividerZettabit : BigInt = "1E21";
   @:to inline public function toZettabit() : Zettabit
     return (this * ofUnit) / dividerZettabit;
 
-  static var dividerYottabit : Decimal = "1E24";
+  static var dividerYottabit : BigInt = "1E24";
   @:to inline public function toYottabit() : Yottabit
     return (this * ofUnit) / dividerYottabit;
 
