@@ -9,6 +9,8 @@ using thx.Floats;
 import $importBaseType;
 
 abstract ${type}($baseType) {
+  static var ofUnit : ${baseType} = ${ofUnit};
+
   @:from inline static public function from${baseType}(value : $baseType) : $type
     return new ${type}(value);
 
@@ -70,8 +72,10 @@ abstract ${type}($baseType) {
     return this.toFloat();
 
 $for(value in units) {
+  static var divider${value.type} : $baseType = $value.ofUnit;
   @:to inline public function to${value.type}() : $value.type
-    return this * ${ofUnit / value.ofUnit};}
+    return (this * ofUnit) / divider${value.type};
+}
 
   @:to inline public function toString() : String
     return this.toString() + symbol;
