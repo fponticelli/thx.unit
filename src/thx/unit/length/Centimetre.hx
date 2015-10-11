@@ -39,19 +39,46 @@ abstract Centimetre(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Centimetre
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : Centimetre) : Bool
+
+  inline public function equalsTo(that : Centimetre) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : Centimetre) : Bool
+  @:op(A==B)
+  inline public function equals(that : Centimetre) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : Centimetre) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Centimetre) : Bool
+  public static function nearEquals(self : Centimetre, that : Centimetre) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : Centimetre) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : Centimetre) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : Centimetre, that : Centimetre) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : Centimetre) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : Centimetre) : Bool
+  @:op( A<B)
+  inline static public function less(self : Centimetre, that : Centimetre) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : Centimetre) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : Centimetre) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : Centimetre, that : Centimetre) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : Centimetre) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : Centimetre) : Bool
+  @:op( A>B)
+  inline static public function greater(self : Centimetre, that : Centimetre) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : Centimetre) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : Centimetre) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

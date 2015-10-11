@@ -39,19 +39,46 @@ abstract Hundredweight(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Hundredweight
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : Hundredweight) : Bool
+
+  inline public function equalsTo(that : Hundredweight) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : Hundredweight) : Bool
+  @:op(A==B)
+  inline public function equals(that : Hundredweight) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : Hundredweight) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Hundredweight) : Bool
+  public static function nearEquals(self : Hundredweight, that : Hundredweight) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : Hundredweight) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : Hundredweight) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : Hundredweight, that : Hundredweight) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : Hundredweight) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : Hundredweight) : Bool
+  @:op( A<B)
+  inline static public function less(self : Hundredweight, that : Hundredweight) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : Hundredweight) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : Hundredweight) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : Hundredweight, that : Hundredweight) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : Hundredweight) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : Hundredweight) : Bool
+  @:op( A>B)
+  inline static public function greater(self : Hundredweight, that : Hundredweight) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : Hundredweight) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : Hundredweight) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

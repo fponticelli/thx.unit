@@ -39,19 +39,46 @@ abstract Microgram(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Microgram
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : Microgram) : Bool
+
+  inline public function equalsTo(that : Microgram) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : Microgram) : Bool
+  @:op(A==B)
+  inline public function equals(that : Microgram) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : Microgram) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Microgram) : Bool
+  public static function nearEquals(self : Microgram, that : Microgram) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : Microgram) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : Microgram) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : Microgram, that : Microgram) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : Microgram) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : Microgram) : Bool
+  @:op( A<B)
+  inline static public function less(self : Microgram, that : Microgram) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : Microgram) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : Microgram) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : Microgram, that : Microgram) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : Microgram) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : Microgram) : Bool
+  @:op( A>B)
+  inline static public function greater(self : Microgram, that : Microgram) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : Microgram) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : Microgram) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

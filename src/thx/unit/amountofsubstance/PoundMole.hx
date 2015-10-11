@@ -39,19 +39,46 @@ abstract PoundMole(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : PoundMole
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : PoundMole) : Bool
+
+  inline public function equalsTo(that : PoundMole) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : PoundMole) : Bool
+  @:op(A==B)
+  inline public function equals(that : PoundMole) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : PoundMole) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : PoundMole) : Bool
+  public static function nearEquals(self : PoundMole, that : PoundMole) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : PoundMole) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : PoundMole) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : PoundMole, that : PoundMole) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : PoundMole) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : PoundMole) : Bool
+  @:op( A<B)
+  inline static public function less(self : PoundMole, that : PoundMole) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : PoundMole) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : PoundMole) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : PoundMole, that : PoundMole) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : PoundMole) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : PoundMole) : Bool
+  @:op( A>B)
+  inline static public function greater(self : PoundMole, that : PoundMole) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : PoundMole) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : PoundMole) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

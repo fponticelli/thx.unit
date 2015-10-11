@@ -39,19 +39,46 @@ abstract Candlepower(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Candlepower
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : Candlepower) : Bool
+
+  inline public function equalsTo(that : Candlepower) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : Candlepower) : Bool
+  @:op(A==B)
+  inline public function equals(that : Candlepower) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : Candlepower) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Candlepower) : Bool
+  public static function nearEquals(self : Candlepower, that : Candlepower) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : Candlepower) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : Candlepower) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : Candlepower, that : Candlepower) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : Candlepower) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : Candlepower) : Bool
+  @:op( A<B)
+  inline static public function less(self : Candlepower, that : Candlepower) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : Candlepower) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : Candlepower) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : Candlepower, that : Candlepower) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : Candlepower) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : Candlepower) : Bool
+  @:op( A>B)
+  inline static public function greater(self : Candlepower, that : Candlepower) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : Candlepower) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : Candlepower) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

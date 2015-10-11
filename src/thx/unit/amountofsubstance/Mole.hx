@@ -39,19 +39,46 @@ abstract Mole(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Mole
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : Mole) : Bool
+
+  inline public function equalsTo(that : Mole) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : Mole) : Bool
+  @:op(A==B)
+  inline public function equals(that : Mole) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : Mole) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Mole) : Bool
+  public static function nearEquals(self : Mole, that : Mole) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : Mole) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : Mole) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : Mole, that : Mole) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : Mole) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : Mole) : Bool
+  @:op( A<B)
+  inline static public function less(self : Mole, that : Mole) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : Mole) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : Mole) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : Mole, that : Mole) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : Mole) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : Mole) : Bool
+  @:op( A>B)
+  inline static public function greater(self : Mole, that : Mole) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : Mole) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : Mole) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

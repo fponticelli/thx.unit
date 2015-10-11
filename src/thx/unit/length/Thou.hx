@@ -39,19 +39,46 @@ abstract Thou(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Thou
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : Thou) : Bool
+
+  inline public function equalsTo(that : Thou) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : Thou) : Bool
+  @:op(A==B)
+  inline public function equals(that : Thou) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : Thou) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Thou) : Bool
+  public static function nearEquals(self : Thou, that : Thou) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : Thou) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : Thou) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : Thou, that : Thou) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : Thou) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : Thou) : Bool
+  @:op( A<B)
+  inline static public function less(self : Thou, that : Thou) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : Thou) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : Thou) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : Thou, that : Thou) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : Thou) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : Thou) : Bool
+  @:op( A>B)
+  inline static public function greater(self : Thou, that : Thou) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : Thou) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : Thou) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

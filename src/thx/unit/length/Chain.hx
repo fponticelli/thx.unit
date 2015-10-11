@@ -39,19 +39,46 @@ abstract Chain(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Chain
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : Chain) : Bool
+
+  inline public function equalsTo(that : Chain) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : Chain) : Bool
+  @:op(A==B)
+  inline public function equals(that : Chain) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : Chain) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Chain) : Bool
+  public static function nearEquals(self : Chain, that : Chain) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : Chain) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : Chain) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : Chain, that : Chain) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : Chain) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : Chain) : Bool
+  @:op( A<B)
+  inline static public function less(self : Chain, that : Chain) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : Chain) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : Chain) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : Chain, that : Chain) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : Chain) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : Chain) : Bool
+  @:op( A>B)
+  inline static public function greater(self : Chain, that : Chain) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : Chain) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : Chain) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

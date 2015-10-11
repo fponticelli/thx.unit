@@ -39,19 +39,46 @@ abstract Grain(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Grain
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : Grain) : Bool
+
+  inline public function equalsTo(that : Grain) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : Grain) : Bool
+  @:op(A==B)
+  inline public function equals(that : Grain) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : Grain) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Grain) : Bool
+  public static function nearEquals(self : Grain, that : Grain) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : Grain) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : Grain) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : Grain, that : Grain) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : Grain) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : Grain) : Bool
+  @:op( A<B)
+  inline static public function less(self : Grain, that : Grain) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : Grain) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : Grain) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : Grain, that : Grain) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : Grain) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : Grain) : Bool
+  @:op( A>B)
+  inline static public function greater(self : Grain, that : Grain) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : Grain) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : Grain) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

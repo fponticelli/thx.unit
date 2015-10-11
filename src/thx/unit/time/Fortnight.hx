@@ -39,19 +39,46 @@ abstract Fortnight(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Fortnight
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : Fortnight) : Bool
+
+  inline public function equalsTo(that : Fortnight) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : Fortnight) : Bool
+  @:op(A==B)
+  inline public function equals(that : Fortnight) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : Fortnight) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Fortnight) : Bool
+  public static function nearEquals(self : Fortnight, that : Fortnight) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : Fortnight) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : Fortnight) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : Fortnight, that : Fortnight) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : Fortnight) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : Fortnight) : Bool
+  @:op( A<B)
+  inline static public function less(self : Fortnight, that : Fortnight) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : Fortnight) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : Fortnight) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : Fortnight, that : Fortnight) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : Fortnight) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : Fortnight) : Bool
+  @:op( A>B)
+  inline static public function greater(self : Fortnight, that : Fortnight) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : Fortnight) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : Fortnight) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

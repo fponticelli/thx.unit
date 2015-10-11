@@ -1,0 +1,30 @@
+{
+  "unit" : "mass",
+  "baseType" : "Decimal",
+  "importBaseType" : "thx.Decimal",
+  "values" : [
+    { "unit" : "mass", "type" : "Megagram",  "symbol" : "Mg", "ofUnit" : "1000" },
+    { "unit" : "mass", "type" : "Kilogram",  "symbol" : "kg", "ofUnit" : "1" },
+    { "unit" : "mass", "type" : "Gram",      "symbol" : "g",  "ofUnit" : "0.001" },
+    { "unit" : "mass", "type" : "Centigram", "symbol" : "cg", "ofUnit" : "0.00001" },
+    { "unit" : "mass", "type" : "Milligram", "symbol" : "mg", "ofUnit" : "0.000001" },
+    { "unit" : "mass", "type" : "Microgram", "symbol" : "µg", "ofUnit" : "0.000000001" },
+    { "unit" : "mass", "type" : "Nanogram",  "symbol" : "ng", "ofUnit" : "0.000000000001" },
+    { "unit" : "mass", "type" : "Picogram",  "symbol" : "pg", "ofUnit" : "0.000000000000001" },
+
+    { "unit" : "mass", "type" : "Ton",           "symbol" : "t",   "ofUnit" : "1016.0469088" },
+    { "unit" : "mass", "type" : "Hundredweight", "symbol" : "cwt", "ofUnit" : "50.80234544" },
+    { "unit" : "mass", "type" : "Quarter",       "symbol" : "qr",  "ofUnit" : "12.70058636" },
+    { "unit" : "mass", "type" : "Stone",         "symbol" : "st",  "ofUnit" : "6.35029318" },
+    { "unit" : "mass", "type" : "Pound",         "symbol" : "lb",  "ofUnit" : "0.45359237" },
+    { "unit" : "mass", "type" : "Ounce",         "symbol" : "oz",  "ofUnit" : "0.028349523125" },
+    { "unit" : "mass", "type" : "Drachm",        "symbol" : "dr",  "ofUnit" : "0.0017718451953125" },
+    { "unit" : "mass", "type" : "Grain",         "symbol" : "gr",  "ofUnit" : "0.00006479891" },
+
+    { "unit" : "mass", "type" : "UnifiedAtomicMassUnit", "symbol" : "u",    "ofUnit" : "1.660538921e-27" },
+    { "unit" : "mass", "type" : "Dalton",                "symbol" : "Da",   "ofUnit" : "1.660538921e-27" },
+    { "unit" : "mass", "type" : "PlankMass",             "symbol" : "mP",   "ofUnit" : "2.17651e-8" },
+    { "unit" : "mass", "type" : "Slug",                  "symbol" : "slug", "ofUnit" : "14.593903" },
+    { "unit" : "mass", "type" : "SolarMass",             "symbol" : "M☉",   "ofUnit" : "1.98855e30" }
+  ]
+}

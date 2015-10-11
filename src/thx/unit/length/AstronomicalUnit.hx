@@ -39,19 +39,46 @@ abstract AstronomicalUnit(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : AstronomicalUnit
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : AstronomicalUnit) : Bool
+
+  inline public function equalsTo(that : AstronomicalUnit) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : AstronomicalUnit) : Bool
+  @:op(A==B)
+  inline public function equals(that : AstronomicalUnit) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : AstronomicalUnit) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : AstronomicalUnit) : Bool
+  public static function nearEquals(self : AstronomicalUnit, that : AstronomicalUnit) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : AstronomicalUnit) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : AstronomicalUnit) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : AstronomicalUnit, that : AstronomicalUnit) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : AstronomicalUnit) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : AstronomicalUnit) : Bool
+  @:op( A<B)
+  inline static public function less(self : AstronomicalUnit, that : AstronomicalUnit) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : AstronomicalUnit) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : AstronomicalUnit) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : AstronomicalUnit, that : AstronomicalUnit) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : AstronomicalUnit) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : AstronomicalUnit) : Bool
+  @:op( A>B)
+  inline static public function greater(self : AstronomicalUnit, that : AstronomicalUnit) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : AstronomicalUnit) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : AstronomicalUnit) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

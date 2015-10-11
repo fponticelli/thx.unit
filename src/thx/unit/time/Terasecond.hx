@@ -39,19 +39,46 @@ abstract Terasecond(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Terasecond
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : Terasecond) : Bool
+
+  inline public function equalsTo(that : Terasecond) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : Terasecond) : Bool
+  @:op(A==B)
+  inline public function equals(that : Terasecond) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : Terasecond) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Terasecond) : Bool
+  public static function nearEquals(self : Terasecond, that : Terasecond) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : Terasecond) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : Terasecond) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : Terasecond, that : Terasecond) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : Terasecond) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : Terasecond) : Bool
+  @:op( A<B)
+  inline static public function less(self : Terasecond, that : Terasecond) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : Terasecond) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : Terasecond) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : Terasecond, that : Terasecond) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : Terasecond) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : Terasecond) : Bool
+  @:op( A>B)
+  inline static public function greater(self : Terasecond, that : Terasecond) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : Terasecond) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : Terasecond) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

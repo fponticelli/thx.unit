@@ -1,0 +1,9 @@
+{
+  "unit" : "luminousintensity",
+  "baseType" : "Decimal",
+  "importBaseType" : "thx.Decimal",
+  "values" : [
+    { "unit" : "luminousintensity", "type" : "Candela",     "symbol" : "cd", "ofUnit" : "1" },
+    { "unit" : "luminousintensity", "type" : "Candlepower", "symbol" : "cp", "ofUnit" : "0.981" }
+  ]
+}

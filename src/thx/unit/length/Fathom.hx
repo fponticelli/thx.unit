@@ -39,19 +39,46 @@ abstract Fathom(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Fathom
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : Fathom) : Bool
+
+  inline public function equalsTo(that : Fathom) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : Fathom) : Bool
+  @:op(A==B)
+  inline public function equals(that : Fathom) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : Fathom) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Fathom) : Bool
+  public static function nearEquals(self : Fathom, that : Fathom) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : Fathom) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : Fathom) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : Fathom, that : Fathom) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : Fathom) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : Fathom) : Bool
+  @:op( A<B)
+  inline static public function less(self : Fathom, that : Fathom) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : Fathom) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : Fathom) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : Fathom, that : Fathom) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : Fathom) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : Fathom) : Bool
+  @:op( A>B)
+  inline static public function greater(self : Fathom, that : Fathom) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : Fathom) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : Fathom) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

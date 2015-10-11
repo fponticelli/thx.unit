@@ -39,19 +39,46 @@ abstract EarthRadius(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : EarthRadius
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : EarthRadius) : Bool
+
+  inline public function equalsTo(that : EarthRadius) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : EarthRadius) : Bool
+  @:op(A==B)
+  inline public function equals(that : EarthRadius) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : EarthRadius) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : EarthRadius) : Bool
+  public static function nearEquals(self : EarthRadius, that : EarthRadius) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : EarthRadius) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : EarthRadius) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : EarthRadius, that : EarthRadius) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : EarthRadius) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : EarthRadius) : Bool
+  @:op( A<B)
+  inline static public function less(self : EarthRadius, that : EarthRadius) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : EarthRadius) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : EarthRadius) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : EarthRadius, that : EarthRadius) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : EarthRadius) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : EarthRadius) : Bool
+  @:op( A>B)
+  inline static public function greater(self : EarthRadius, that : EarthRadius) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : EarthRadius) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : EarthRadius) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

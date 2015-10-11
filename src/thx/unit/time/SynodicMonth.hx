@@ -39,19 +39,46 @@ abstract SynodicMonth(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : SynodicMonth
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : SynodicMonth) : Bool
+
+  inline public function equalsTo(that : SynodicMonth) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : SynodicMonth) : Bool
+  @:op(A==B)
+  inline public function equals(that : SynodicMonth) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : SynodicMonth) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : SynodicMonth) : Bool
+  public static function nearEquals(self : SynodicMonth, that : SynodicMonth) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : SynodicMonth) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : SynodicMonth) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : SynodicMonth, that : SynodicMonth) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : SynodicMonth) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : SynodicMonth) : Bool
+  @:op( A<B)
+  inline static public function less(self : SynodicMonth, that : SynodicMonth) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : SynodicMonth) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : SynodicMonth) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : SynodicMonth, that : SynodicMonth) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : SynodicMonth) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : SynodicMonth) : Bool
+  @:op( A>B)
+  inline static public function greater(self : SynodicMonth, that : SynodicMonth) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : SynodicMonth) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : SynodicMonth) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal

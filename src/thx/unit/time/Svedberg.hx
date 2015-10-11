@@ -39,19 +39,46 @@ abstract Svedberg(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Svedberg
     return this.modulo(that);
-  @:op(A==B) inline public function equals(that : Svedberg) : Bool
+
+  inline public function equalsTo(that : Svedberg) : Bool
     return this.equalsTo(that.toDecimal());
-  public function nearEquals(that : Svedberg) : Bool
+  @:op(A==B)
+  inline public function equals(that : Svedberg) : Bool
+    return this.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : Svedberg) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Svedberg) : Bool
+  public static function nearEquals(self : Svedberg, that : Svedberg) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : Svedberg) : Bool
     return !this.equalsTo(that.toDecimal());
-  @:op( A<B) inline public function less(that : Svedberg) : Bool
+  @:op(A!=B)
+  inline static public function notEquals(self : Svedberg, that : Svedberg) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : Svedberg) : Bool
     return this.lessThan(that.toDecimal());
-  @:op(A<=B) inline public function lessEquals(that : Svedberg) : Bool
+  @:op( A<B)
+  inline static public function less(self : Svedberg, that : Svedberg) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : Svedberg) : Bool
     return this.lessEqualsTo(that.toDecimal());
-  @:op( A>B) inline public function greater(that : Svedberg) : Bool
+  @:op(A<=B)
+  inline static public function lessEquals(self : Svedberg, that : Svedberg) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : Svedberg) : Bool
     return this.greaterThan(that.toDecimal());
-  @:op(A>=B) inline public function greaterEquals(that : Svedberg) : Bool
+  @:op( A>B)
+  inline static public function greater(self : Svedberg, that : Svedberg) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : Svedberg) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : Svedberg) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal
