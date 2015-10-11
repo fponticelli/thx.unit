@@ -2,29 +2,29 @@
   "unit" : "length",
   "baseType" : "Decimal",
   "importBaseType" : "thx.Decimal",
-  "values" : [
-    { "unit" : "length", "type" : "Kilometre",  "symbol" : "km", "ofUnit" : "1000" },
-    { "unit" : "length", "type" : "Metre",      "symbol" : "m",  "ofUnit" : "1" },
-    { "unit" : "length", "type" : "Centimetre", "symbol" : "cm", "ofUnit" : "0.01" },
-    { "unit" : "length", "type" : "Millimetre", "symbol" : "mm", "ofUnit" : "0.001" },
-    { "unit" : "length", "type" : "Micrometre", "symbol" : "µm", "ofUnit" : "0.000001" },
-    { "unit" : "length", "type" : "Nanometre",  "symbol" : "nm", "ofUnit" : "0.000000001" },
+  "units" : [
+    { "type" : "Kilometre",  "symbol" : "km", "ofUnit" : "1000" },
+    { "type" : "Metre",      "symbol" : "m",  "ofUnit" : "1" },
+    { "type" : "Centimetre", "symbol" : "cm", "ofUnit" : "0.01" },
+    { "type" : "Millimetre", "symbol" : "mm", "ofUnit" : "0.001" },
+    { "type" : "Micrometre", "symbol" : "µm", "ofUnit" : "0.000001" },
+    { "type" : "Nanometre",  "symbol" : "nm", "ofUnit" : "0.000000001" },
 
-    { "unit" : "length", "type" : "League",  "symbol" : "lea",   "ofUnit" : "4828.032" },
-    { "unit" : "length", "type" : "Mile",    "symbol" : "mi",    "ofUnit" : "1609.344" },
-    { "unit" : "length", "type" : "Furlong", "symbol" : "fur",   "ofUnit" : "201.168" },
-    { "unit" : "length", "type" : "Chain",   "symbol" : "ch",    "ofUnit" : "20.1168" },
-    { "unit" : "length", "type" : "Yard",    "symbol" : "yd",    "ofUnit" : "0.9144" },
-    { "unit" : "length", "type" : "Foot",    "symbol" : "ft",    "ofUnit" : "0.3048" },
-    { "unit" : "length", "type" : "Inch",    "symbol" : "in",    "ofUnit" : "0.0254" },
-    { "unit" : "length", "type" : "Line",    "symbol" : "line",  "ofUnit" : "0.00211666666667" },
-    { "unit" : "length", "type" : "Thou",    "symbol" : "th",    "ofUnit" : "0.0000254" },
+    { "type" : "League",  "symbol" : "lea",   "ofUnit" : "4828.032" },
+    { "type" : "Mile",    "symbol" : "mi",    "ofUnit" : "1609.344" },
+    { "type" : "Furlong", "symbol" : "fur",   "ofUnit" : "201.168" },
+    { "type" : "Chain",   "symbol" : "ch",    "ofUnit" : "20.1168" },
+    { "type" : "Yard",    "symbol" : "yd",    "ofUnit" : "0.9144" },
+    { "type" : "Foot",    "symbol" : "ft",    "ofUnit" : "0.3048" },
+    { "type" : "Inch",    "symbol" : "in",    "ofUnit" : "0.0254" },
+    { "type" : "Line",    "symbol" : "line",  "ofUnit" : "0.00211666666667" },
+    { "type" : "Thou",    "symbol" : "th",    "ofUnit" : "0.0000254" },
 
-    { "unit" : "length", "type" : "Fathom",       "symbol" : "ftm", "ofUnit" : "1.82880" },
-    { "unit" : "length", "type" : "NauticalMile", "symbol" : "M",   "ofUnit" : "1852" },
+    { "type" : "Fathom",       "symbol" : "ftm", "ofUnit" : "1.82880" },
+    { "type" : "NauticalMile", "symbol" : "M",   "ofUnit" : "1852" },
 
-    { "unit" : "length", "type" : "EarthRadius",      "symbol" : "earth radius", "ofUnit" : "6371009" },
-    { "unit" : "length", "type" : "AstronomicalUnit", "symbol" : "au",           "ofUnit" : "149597870700" },
-    { "unit" : "length", "type" : "LightYear",        "symbol" : "ly",           "ofUnit" : "9460730472580800" }
+    { "type" : "EarthRadius",      "symbol" : "earth radius", "ofUnit" : "6371009" },
+    { "type" : "AstronomicalUnit", "symbol" : "au",           "ofUnit" : "149597870700" },
+    { "type" : "LightYear",        "symbol" : "ly",           "ofUnit" : "9460730472580800" }
   ]
 }

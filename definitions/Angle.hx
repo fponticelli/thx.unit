@@ -78,7 +78,7 @@ $if(type == 'Radian') {
 
   @:to inline public function toFloat() : Float
     return this;
-$for(value in values) {
+$for(value in units) {
   @:to inline public function to${value.type}() : $value.type
     return this * ${value.ofTurn / ofTurn};}
 

@@ -1,5 +1,5 @@
 {
-  "values" : [
+  "units" : [
     { "type" : "Celsius",    "symbol" : "°C", "toCelsius" : "this" },
     { "type" : "Fahrenheit", "symbol" : "°F", "toCelsius" : "(this - 32) * 5/9" },
     { "type" : "Kelvin",     "symbol" : "K",  "toCelsius" : "this - 273.15" },

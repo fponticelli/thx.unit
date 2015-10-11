@@ -2,7 +2,7 @@
   "unit" : "amountofsubstance",
   "baseType" : "Decimal",
   "importBaseType" : "thx.Decimal",
-  "values" : [
+  "units" : [
     { "type" : "Mole",      "symbol" : "mol",       "ofUnit" : "1" },
     { "type" : "PoundMole", "symbol" : "pound-mol", "ofUnit" : "453.59237" }
   ]

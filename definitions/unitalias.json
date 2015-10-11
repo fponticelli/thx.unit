@@ -1,5 +1,5 @@
 {
-  "values" : [
+  "units" : [
     { "unit" : "length", "type" : "Kilometer",  "source" : "Kilometre" },
     { "unit" : "length", "type" : "Meter",      "source" : "Metre" },
     { "unit" : "length", "type" : "Centimeter", "source" : "Centimetre" },

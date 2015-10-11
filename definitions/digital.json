@@ -2,24 +2,24 @@
   "unit" : "digital",
   "baseType" : "Decimal",
   "importBaseType" : "thx.Decimal",
-  "values" : [
-    { "unit" : "digital", "type" : "Byte",      "symbol" : "B",  "ofUnit" : "1" },
-    { "unit" : "digital", "type" : "Kilobyte",  "symbol" : "Ki", "ofUnit" : "1024" },
-    { "unit" : "digital", "type" : "Megabyte",  "symbol" : "Mi", "ofUnit" : "1048576" },
-    { "unit" : "digital", "type" : "Gigabyte",  "symbol" : "Gi", "ofUnit" : "1073741824" },
-    { "unit" : "digital", "type" : "Terabyte",  "symbol" : "Ti", "ofUnit" : "1099511627776" },
-    { "unit" : "digital", "type" : "Petabyte",  "symbol" : "Pi", "ofUnit" : "1125899906842624" },
-    { "unit" : "digital", "type" : "Exabyte",   "symbol" : "Ei", "ofUnit" : "1152921504606846976" },
-    { "unit" : "digital", "type" : "Zettabyte", "symbol" : "Zi", "ofUnit" : "1180591620717411303424" },
-    { "unit" : "digital", "type" : "Yottabyte", "symbol" : "Yi", "ofUnit" : "1208925819614629174706176" },
+  "units" : [
+    { "type" : "Byte",      "symbol" : "B",  "ofUnit" : "1" },
+    { "type" : "Kilobyte",  "symbol" : "Ki", "ofUnit" : "1024" },
+    { "type" : "Megabyte",  "symbol" : "Mi", "ofUnit" : "1048576" },
+    { "type" : "Gigabyte",  "symbol" : "Gi", "ofUnit" : "1073741824" },
+    { "type" : "Terabyte",  "symbol" : "Ti", "ofUnit" : "1099511627776" },
+    { "type" : "Petabyte",  "symbol" : "Pi", "ofUnit" : "1125899906842624" },
+    { "type" : "Exabyte",   "symbol" : "Ei", "ofUnit" : "1152921504606846976" },
+    { "type" : "Zettabyte", "symbol" : "Zi", "ofUnit" : "1180591620717411303424" },
+    { "type" : "Yottabyte", "symbol" : "Yi", "ofUnit" : "1208925819614629174706176" },
 
-    { "unit" : "digital", "type" : "Kilobit",  "symbol" : "k", "ofUnit" : "1000" },
-    { "unit" : "digital", "type" : "Megabit",  "symbol" : "M", "ofUnit" : "1000000" },
-    { "unit" : "digital", "type" : "Gigabit",  "symbol" : "G", "ofUnit" : "1000000000" },
-    { "unit" : "digital", "type" : "Terabit",  "symbol" : "T", "ofUnit" : "1000000000000" },
-    { "unit" : "digital", "type" : "Petabit",  "symbol" : "P", "ofUnit" : "1000000000000000" },
-    { "unit" : "digital", "type" : "Exabit",   "symbol" : "E", "ofUnit" : "1E18" },
-    { "unit" : "digital", "type" : "Zettabit", "symbol" : "Z", "ofUnit" : "1E21" },
-    { "unit" : "digital", "type" : "Yottabit", "symbol" : "Y", "ofUnit" : "1E24" }
+    { "type" : "Kilobit",  "symbol" : "k", "ofUnit" : "1000" },
+    { "type" : "Megabit",  "symbol" : "M", "ofUnit" : "1000000" },
+    { "type" : "Gigabit",  "symbol" : "G", "ofUnit" : "1000000000" },
+    { "type" : "Terabit",  "symbol" : "T", "ofUnit" : "1000000000000" },
+    { "type" : "Petabit",  "symbol" : "P", "ofUnit" : "1000000000000000" },
+    { "type" : "Exabit",   "symbol" : "E", "ofUnit" : "1E18" },
+    { "type" : "Zettabit", "symbol" : "Z", "ofUnit" : "1E21" },
+    { "type" : "Yottabit", "symbol" : "Y", "ofUnit" : "1E24" }
   ]
 }

@@ -1,16 +1,16 @@
 #!/bin/sh
 rm -rf src/*
-#generator -i definitions/UnitRuntime.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/unit.json -p values
+#generator -i definitions/UnitRuntime.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/unit.json -p units
 
-generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/amountofsubstance.json -p values
-generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/current.json -p values
-generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/digital.json -p values
-generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/length.json -p values
-generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/luminousintensity.json -p values
-generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/mass.json -p values
-generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/time.json -p values
+generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/amountofsubstance.json -p units
+generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/current.json -p units
+generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/digital.json -p units
+generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/length.json -p units
+generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/luminousintensity.json -p units
+generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/mass.json -p units
+generator -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/time.json -p units
 
-generator -i definitions/Angle.hx -o "src/thx/unit/angle/\${type}.hx" -d definitions/angle.json -p values
-generator -i definitions/Temperature.hx -o "src/thx/unit/temperature/\${type}.hx" -d definitions/temperature.json -p values
-generator -i definitions/UnitAlias.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/unitalias.json -p values
+generator -i definitions/Angle.hx -o "src/thx/unit/angle/\${type}.hx" -d definitions/angle.json -p units
+generator -i definitions/Temperature.hx -o "src/thx/unit/temperature/\${type}.hx" -d definitions/temperature.json -p units
+generator -i definitions/UnitAlias.hx -o "src/thx/unit/\${unit}/\${type}.hx" -d definitions/unitalias.json -p units
 haxe build.hxml

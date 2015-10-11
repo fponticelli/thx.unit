@@ -1,9 +1,4 @@
-$(
-var units = [];
-for(value in values) {
-  if(value.unit == unit)
-    units.push(value);
-})package thx.unit.${unit};
+package thx.unit.${unit};
 
 using thx.Floats;
 import $importBaseType;

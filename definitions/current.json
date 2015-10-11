@@ -2,7 +2,7 @@
   "unit" : "current",
   "baseType" : "Decimal",
   "importBaseType" : "thx.Decimal",
-  "values" : [
+  "units" : [
     { "type" : "Ampere", "symbol" : "A", "ofUnit" : "1" }
   ]
 }

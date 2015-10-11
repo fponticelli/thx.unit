@@ -1,6 +1,4 @@
-$(
-var units = values;
-)package thx.unit.${unit};
+package thx.unit.${unit};
 
 using thx.Floats;
 import $importBaseType;

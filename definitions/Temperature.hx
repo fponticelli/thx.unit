@@ -67,7 +67,7 @@ $if(type == 'Celsius') {
 } else {
   @:to inline public function toCelsius() : Celsius
     return ${toCelsius};
-$for(value in values) {$if(value.type != 'Celsius'){
+$for(value in units) {$if(value.type != 'Celsius'){
   @:to inline public function to${value.type}() : $value.type
     return toCelsius().to${value.type}();}}}
 
