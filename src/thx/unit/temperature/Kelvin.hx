@@ -55,6 +55,8 @@ abstract Kelvin(Float) {
 
   @:to inline public function toFahrenheit() : Fahrenheit
     return toCelsius().toFahrenheit();
+  @:to inline public function toKelvin() : Kelvin
+    return toCelsius().toKelvin();
   @:to inline public function toRankine() : Rankine
     return toCelsius().toRankine();
   @:to inline public function toDelisle() : Delisle

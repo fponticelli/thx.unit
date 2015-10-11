@@ -75,6 +75,10 @@ abstract Gram(Decimal) {
   @:to inline public function toKilogram() : Kilogram
     return (this * ofUnit) / dividerKilogram;
 
+  static var dividerGram : Decimal = "0.001";
+  @:to inline public function toGram() : Gram
+    return (this * ofUnit) / dividerGram;
+
   static var dividerCentigram : Decimal = "0.00001";
   @:to inline public function toCentigram() : Centigram
     return (this * ofUnit) / dividerCentigram;

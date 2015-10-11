@@ -147,6 +147,10 @@ abstract TropicalMonth(Decimal) {
   @:to inline public function toSynodicMonth() : SynodicMonth
     return (this * ofUnit) / dividerSynodicMonth;
 
+  static var dividerTropicalMonth : Decimal = "2360584.512";
+  @:to inline public function toTropicalMonth() : TropicalMonth
+    return (this * ofUnit) / dividerTropicalMonth;
+
   static var dividerJulianYear : Decimal = "31557600";
   @:to inline public function toJulianYear() : JulianYear
     return (this * ofUnit) / dividerJulianYear;

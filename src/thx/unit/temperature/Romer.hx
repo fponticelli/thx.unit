@@ -65,6 +65,8 @@ abstract Romer(Float) {
     return toCelsius().toNewton();
   @:to inline public function toReaumur() : Reaumur
     return toCelsius().toReaumur();
+  @:to inline public function toRomer() : Romer
+    return toCelsius().toRomer();
 
   @:to inline public function toString() : String
     return this + symbol;

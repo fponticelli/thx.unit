@@ -123,6 +123,10 @@ abstract Exabit(BigInt) {
   @:to inline public function toPetabit() : Petabit
     return (this * ofUnit) / dividerPetabit;
 
+  static var dividerExabit : BigInt = "1E18";
+  @:to inline public function toExabit() : Exabit
+    return (this * ofUnit) / dividerExabit;
+
   static var dividerZettabit : BigInt = "1E21";
   @:to inline public function toZettabit() : Zettabit
     return (this * ofUnit) / dividerZettabit;

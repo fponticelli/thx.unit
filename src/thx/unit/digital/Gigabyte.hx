@@ -79,6 +79,10 @@ abstract Gigabyte(BigInt) {
   @:to inline public function toMegabyte() : Megabyte
     return (this * ofUnit) / dividerMegabyte;
 
+  static var dividerGigabyte : BigInt = "1073741824";
+  @:to inline public function toGigabyte() : Gigabyte
+    return (this * ofUnit) / dividerGigabyte;
+
   static var dividerTerabyte : BigInt = "1099511627776";
   @:to inline public function toTerabyte() : Terabyte
     return (this * ofUnit) / dividerTerabyte;

@@ -75,6 +75,10 @@ abstract Centimetre(Decimal) {
   @:to inline public function toMetre() : Metre
     return (this * ofUnit) / dividerMetre;
 
+  static var dividerCentimetre : Decimal = "0.01";
+  @:to inline public function toCentimetre() : Centimetre
+    return (this * ofUnit) / dividerCentimetre;
+
   static var dividerMillimetre : Decimal = "0.001";
   @:to inline public function toMillimetre() : Millimetre
     return (this * ofUnit) / dividerMillimetre;

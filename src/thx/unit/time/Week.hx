@@ -131,6 +131,10 @@ abstract Week(Decimal) {
   @:to inline public function toDay() : Day
     return (this * ofUnit) / dividerDay;
 
+  static var dividerWeek : Decimal = "604800";
+  @:to inline public function toWeek() : Week
+    return (this * ofUnit) / dividerWeek;
+
   static var dividerMegasecond : Decimal = "1000000";
   @:to inline public function toMegasecond() : Megasecond
     return (this * ofUnit) / dividerMegasecond;

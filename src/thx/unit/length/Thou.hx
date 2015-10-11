@@ -123,6 +123,10 @@ abstract Thou(Decimal) {
   @:to inline public function toLine() : Line
     return (this * ofUnit) / dividerLine;
 
+  static var dividerThou : Decimal = "0.0000254";
+  @:to inline public function toThou() : Thou
+    return (this * ofUnit) / dividerThou;
+
   static var dividerFathom : Decimal = "1.82880";
   @:to inline public function toFathom() : Fathom
     return (this * ofUnit) / dividerFathom;

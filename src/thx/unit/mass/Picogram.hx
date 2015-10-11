@@ -95,6 +95,10 @@ abstract Picogram(Decimal) {
   @:to inline public function toNanogram() : Nanogram
     return (this * ofUnit) / dividerNanogram;
 
+  static var dividerPicogram : Decimal = "0.000000000000001";
+  @:to inline public function toPicogram() : Picogram
+    return (this * ofUnit) / dividerPicogram;
+
   static var dividerTon : Decimal = "1016.0469088";
   @:to inline public function toTon() : Ton
     return (this * ofUnit) / dividerTon;

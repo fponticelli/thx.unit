@@ -53,6 +53,8 @@ abstract Fahrenheit(Float) {
   @:to inline public function toCelsius() : Celsius
     return (this - 32) * 5/9;
 
+  @:to inline public function toFahrenheit() : Fahrenheit
+    return toCelsius().toFahrenheit();
   @:to inline public function toKelvin() : Kelvin
     return toCelsius().toKelvin();
   @:to inline public function toRankine() : Rankine

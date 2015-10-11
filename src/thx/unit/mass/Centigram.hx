@@ -79,6 +79,10 @@ abstract Centigram(Decimal) {
   @:to inline public function toGram() : Gram
     return (this * ofUnit) / dividerGram;
 
+  static var dividerCentigram : Decimal = "0.00001";
+  @:to inline public function toCentigram() : Centigram
+    return (this * ofUnit) / dividerCentigram;
+
   static var dividerMilligram : Decimal = "0.000001";
   @:to inline public function toMilligram() : Milligram
     return (this * ofUnit) / dividerMilligram;

@@ -111,6 +111,10 @@ abstract Gigabit(BigInt) {
   @:to inline public function toMegabit() : Megabit
     return (this * ofUnit) / dividerMegabit;
 
+  static var dividerGigabit : BigInt = "1000000000";
+  @:to inline public function toGigabit() : Gigabit
+    return (this * ofUnit) / dividerGigabit;
+
   static var dividerTerabit : BigInt = "1000000000000";
   @:to inline public function toTerabit() : Terabit
     return (this * ofUnit) / dividerTerabit;

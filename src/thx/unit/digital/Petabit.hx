@@ -119,6 +119,10 @@ abstract Petabit(BigInt) {
   @:to inline public function toTerabit() : Terabit
     return (this * ofUnit) / dividerTerabit;
 
+  static var dividerPetabit : BigInt = "1000000000000000";
+  @:to inline public function toPetabit() : Petabit
+    return (this * ofUnit) / dividerPetabit;
+
   static var dividerExabit : BigInt = "1E18";
   @:to inline public function toExabit() : Exabit
     return (this * ofUnit) / dividerExabit;

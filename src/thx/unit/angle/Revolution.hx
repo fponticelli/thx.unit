@@ -89,6 +89,8 @@ abstract Revolution(Float) {
     return this * 4;
   @:to inline public function toRadian() : Radian
     return this * 6.28318530717959;
+  @:to inline public function toRevolution() : Revolution
+    return this * 1;
   @:to inline public function toSecondOfArc() : SecondOfArc
     return this * 1296000;
   @:to inline public function toSextant() : Sextant

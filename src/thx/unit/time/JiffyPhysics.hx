@@ -71,6 +71,10 @@ abstract JiffyPhysics(Decimal) {
   @:to inline public function toPlankTimeUnit() : PlankTimeUnit
     return (this * ofUnit) / dividerPlankTimeUnit;
 
+  static var dividerJiffyPhysics : Decimal = "3e-24";
+  @:to inline public function toJiffyPhysics() : JiffyPhysics
+    return (this * ofUnit) / dividerJiffyPhysics;
+
   static var dividerSvedberg : Decimal = "10e-13";
   @:to inline public function toSvedberg() : Svedberg
     return (this * ofUnit) / dividerSvedberg;

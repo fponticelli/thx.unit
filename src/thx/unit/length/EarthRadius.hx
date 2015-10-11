@@ -135,6 +135,10 @@ abstract EarthRadius(Decimal) {
   @:to inline public function toNauticalMile() : NauticalMile
     return (this * ofUnit) / dividerNauticalMile;
 
+  static var dividerEarthRadius : Decimal = "6371009";
+  @:to inline public function toEarthRadius() : EarthRadius
+    return (this * ofUnit) / dividerEarthRadius;
+
   static var dividerAstronomicalUnit : Decimal = "149597870700";
   @:to inline public function toAstronomicalUnit() : AstronomicalUnit
     return (this * ofUnit) / dividerAstronomicalUnit;

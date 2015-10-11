@@ -131,6 +131,10 @@ abstract UnifiedAtomicMassUnit(Decimal) {
   @:to inline public function toGrain() : Grain
     return (this * ofUnit) / dividerGrain;
 
+  static var dividerUnifiedAtomicMassUnit : Decimal = "1.660538921e-27";
+  @:to inline public function toUnifiedAtomicMassUnit() : UnifiedAtomicMassUnit
+    return (this * ofUnit) / dividerUnifiedAtomicMassUnit;
+
   static var dividerDalton : Decimal = "1.660538921e-27";
   @:to inline public function toDalton() : Dalton
     return (this * ofUnit) / dividerDalton;

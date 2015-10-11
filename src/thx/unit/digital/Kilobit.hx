@@ -103,6 +103,10 @@ abstract Kilobit(BigInt) {
   @:to inline public function toYottabyte() : Yottabyte
     return (this * ofUnit) / dividerYottabyte;
 
+  static var dividerKilobit : BigInt = "1000";
+  @:to inline public function toKilobit() : Kilobit
+    return (this * ofUnit) / dividerKilobit;
+
   static var dividerMegabit : BigInt = "1000000";
   @:to inline public function toMegabit() : Megabit
     return (this * ofUnit) / dividerMegabit;

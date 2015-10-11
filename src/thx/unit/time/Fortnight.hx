@@ -139,6 +139,10 @@ abstract Fortnight(Decimal) {
   @:to inline public function toMegasecond() : Megasecond
     return (this * ofUnit) / dividerMegasecond;
 
+  static var dividerFortnight : Decimal = "1209600";
+  @:to inline public function toFortnight() : Fortnight
+    return (this * ofUnit) / dividerFortnight;
+
   static var dividerSynodicMonth : Decimal = "2551442.976";
   @:to inline public function toSynodicMonth() : SynodicMonth
     return (this * ofUnit) / dividerSynodicMonth;

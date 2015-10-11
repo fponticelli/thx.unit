@@ -81,6 +81,8 @@ abstract MinuteOfArc(Float) {
     return this * 0.0185185185185185;
   @:to inline public function toHourAngle() : HourAngle
     return this * 0.00111111111111111;
+  @:to inline public function toMinuteOfArc() : MinuteOfArc
+    return this * 1;
   @:to inline public function toPoint() : Point
     return this * 0.00148148148148148;
   @:to inline public function toQuadrant() : Quadrant

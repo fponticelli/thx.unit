@@ -57,6 +57,8 @@ abstract Rankine(Float) {
     return toCelsius().toFahrenheit();
   @:to inline public function toKelvin() : Kelvin
     return toCelsius().toKelvin();
+  @:to inline public function toRankine() : Rankine
+    return toCelsius().toRankine();
   @:to inline public function toDelisle() : Delisle
     return toCelsius().toDelisle();
   @:to inline public function toNewton() : Newton

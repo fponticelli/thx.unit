@@ -123,6 +123,10 @@ abstract Hour(Decimal) {
   @:to inline public function toKilosecond() : Kilosecond
     return (this * ofUnit) / dividerKilosecond;
 
+  static var dividerHour : Decimal = "3600";
+  @:to inline public function toHour() : Hour
+    return (this * ofUnit) / dividerHour;
+
   static var dividerDay : Decimal = "86400";
   @:to inline public function toDay() : Day
     return (this * ofUnit) / dividerDay;

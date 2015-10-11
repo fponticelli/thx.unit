@@ -119,6 +119,10 @@ abstract Line(Decimal) {
   @:to inline public function toInch() : Inch
     return (this * ofUnit) / dividerInch;
 
+  static var dividerLine : Decimal = "0.00211666666667";
+  @:to inline public function toLine() : Line
+    return (this * ofUnit) / dividerLine;
+
   static var dividerThou : Decimal = "0.0000254";
   @:to inline public function toThou() : Thou
     return (this * ofUnit) / dividerThou;

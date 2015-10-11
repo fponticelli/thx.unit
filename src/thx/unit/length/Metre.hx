@@ -71,6 +71,10 @@ abstract Metre(Decimal) {
   @:to inline public function toKilometre() : Kilometre
     return (this * ofUnit) / dividerKilometre;
 
+  static var dividerMetre : Decimal = "1";
+  @:to inline public function toMetre() : Metre
+    return (this * ofUnit) / dividerMetre;
+
   static var dividerCentimetre : Decimal = "0.01";
   @:to inline public function toCentimetre() : Centimetre
     return (this * ofUnit) / dividerCentimetre;

@@ -71,6 +71,10 @@ abstract Kilogram(Decimal) {
   @:to inline public function toMegagram() : Megagram
     return (this * ofUnit) / dividerMegagram;
 
+  static var dividerKilogram : Decimal = "1";
+  @:to inline public function toKilogram() : Kilogram
+    return (this * ofUnit) / dividerKilogram;
+
   static var dividerGram : Decimal = "0.001";
   @:to inline public function toGram() : Gram
     return (this * ofUnit) / dividerGram;

@@ -75,6 +75,10 @@ abstract Svedberg(Decimal) {
   @:to inline public function toJiffyPhysics() : JiffyPhysics
     return (this * ofUnit) / dividerJiffyPhysics;
 
+  static var dividerSvedberg : Decimal = "10e-13";
+  @:to inline public function toSvedberg() : Svedberg
+    return (this * ofUnit) / dividerSvedberg;
+
   static var dividerPicosecond : Decimal = "10e-12";
   @:to inline public function toPicosecond() : Picosecond
     return (this * ofUnit) / dividerPicosecond;

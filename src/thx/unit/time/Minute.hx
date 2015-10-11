@@ -111,6 +111,10 @@ abstract Minute(Decimal) {
   @:to inline public function toSecond() : Second
     return (this * ofUnit) / dividerSecond;
 
+  static var dividerMinute : Decimal = "60";
+  @:to inline public function toMinute() : Minute
+    return (this * ofUnit) / dividerMinute;
+
   static var dividerKe : Decimal = "864";
   @:to inline public function toKe() : Ke
     return (this * ofUnit) / dividerKe;

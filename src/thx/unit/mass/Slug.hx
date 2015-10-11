@@ -143,6 +143,10 @@ abstract Slug(Decimal) {
   @:to inline public function toPlankMass() : PlankMass
     return (this * ofUnit) / dividerPlankMass;
 
+  static var dividerSlug : Decimal = "14.593903";
+  @:to inline public function toSlug() : Slug
+    return (this * ofUnit) / dividerSlug;
+
   static var dividerSolarMass : Decimal = "1.98855e30";
   @:to inline public function toSolarMass() : SolarMass
     return (this * ofUnit) / dividerSolarMass;

@@ -115,6 +115,10 @@ abstract Pound(Decimal) {
   @:to inline public function toStone() : Stone
     return (this * ofUnit) / dividerStone;
 
+  static var dividerPound : Decimal = "0.45359237";
+  @:to inline public function toPound() : Pound
+    return (this * ofUnit) / dividerPound;
+
   static var dividerOunce : Decimal = "0.028349523125";
   @:to inline public function toOunce() : Ounce
     return (this * ofUnit) / dividerOunce;

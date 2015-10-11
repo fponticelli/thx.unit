@@ -71,6 +71,10 @@ abstract Kilobyte(BigInt) {
   @:to inline public function toByte() : Byte
     return (this * ofUnit) / dividerByte;
 
+  static var dividerKilobyte : BigInt = "1024";
+  @:to inline public function toKilobyte() : Kilobyte
+    return (this * ofUnit) / dividerKilobyte;
+
   static var dividerMegabyte : BigInt = "1048576";
   @:to inline public function toMegabyte() : Megabyte
     return (this * ofUnit) / dividerMegabyte;

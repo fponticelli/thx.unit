@@ -95,6 +95,10 @@ abstract Fourth(Decimal) {
   @:to inline public function toMicrosecond() : Microsecond
     return (this * ofUnit) / dividerMicrosecond;
 
+  static var dividerFourth : Decimal = "0.00027777777778";
+  @:to inline public function toFourth() : Fourth
+    return (this * ofUnit) / dividerFourth;
+
   static var dividerMillisecond : Decimal = "0.001";
   @:to inline public function toMillisecond() : Millisecond
     return (this * ofUnit) / dividerMillisecond;

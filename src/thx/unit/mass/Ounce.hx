@@ -119,6 +119,10 @@ abstract Ounce(Decimal) {
   @:to inline public function toPound() : Pound
     return (this * ofUnit) / dividerPound;
 
+  static var dividerOunce : Decimal = "0.028349523125";
+  @:to inline public function toOunce() : Ounce
+    return (this * ofUnit) / dividerOunce;
+
   static var dividerDrachm : Decimal = "0.0017718451953125";
   @:to inline public function toDrachm() : Drachm
     return (this * ofUnit) / dividerDrachm;

@@ -83,6 +83,10 @@ abstract Micrometre(Decimal) {
   @:to inline public function toMillimetre() : Millimetre
     return (this * ofUnit) / dividerMillimetre;
 
+  static var dividerMicrometre : Decimal = "0.000001";
+  @:to inline public function toMicrometre() : Micrometre
+    return (this * ofUnit) / dividerMicrometre;
+
   static var dividerNanometre : Decimal = "0.000000001";
   @:to inline public function toNanometre() : Nanometre
     return (this * ofUnit) / dividerNanometre;

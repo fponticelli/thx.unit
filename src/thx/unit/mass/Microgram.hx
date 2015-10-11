@@ -87,6 +87,10 @@ abstract Microgram(Decimal) {
   @:to inline public function toMilligram() : Milligram
     return (this * ofUnit) / dividerMilligram;
 
+  static var dividerMicrogram : Decimal = "0.000000001";
+  @:to inline public function toMicrogram() : Microgram
+    return (this * ofUnit) / dividerMicrogram;
+
   static var dividerNanogram : Decimal = "0.000000000001";
   @:to inline public function toNanogram() : Nanogram
     return (this * ofUnit) / dividerNanogram;

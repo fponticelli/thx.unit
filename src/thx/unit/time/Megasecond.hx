@@ -135,6 +135,10 @@ abstract Megasecond(Decimal) {
   @:to inline public function toWeek() : Week
     return (this * ofUnit) / dividerWeek;
 
+  static var dividerMegasecond : Decimal = "1000000";
+  @:to inline public function toMegasecond() : Megasecond
+    return (this * ofUnit) / dividerMegasecond;
+
   static var dividerFortnight : Decimal = "1209600";
   @:to inline public function toFortnight() : Fortnight
     return (this * ofUnit) / dividerFortnight;

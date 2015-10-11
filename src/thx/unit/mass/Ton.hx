@@ -99,6 +99,10 @@ abstract Ton(Decimal) {
   @:to inline public function toPicogram() : Picogram
     return (this * ofUnit) / dividerPicogram;
 
+  static var dividerTon : Decimal = "1016.0469088";
+  @:to inline public function toTon() : Ton
+    return (this * ofUnit) / dividerTon;
+
   static var dividerHundredweight : Decimal = "50.80234544";
   @:to inline public function toHundredweight() : Hundredweight
     return (this * ofUnit) / dividerHundredweight;

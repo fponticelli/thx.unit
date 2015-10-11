@@ -91,6 +91,10 @@ abstract League(Decimal) {
   @:to inline public function toNanometre() : Nanometre
     return (this * ofUnit) / dividerNanometre;
 
+  static var dividerLeague : Decimal = "4828.032";
+  @:to inline public function toLeague() : League
+    return (this * ofUnit) / dividerLeague;
+
   static var dividerMile : Decimal = "1609.344";
   @:to inline public function toMile() : Mile
     return (this * ofUnit) / dividerMile;

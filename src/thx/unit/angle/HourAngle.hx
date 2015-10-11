@@ -79,6 +79,8 @@ abstract HourAngle(Float) {
     return this * 15;
   @:to inline public function toGrad() : Grad
     return this * 16.6666666666667;
+  @:to inline public function toHourAngle() : HourAngle
+    return this * 1;
   @:to inline public function toMinuteOfArc() : MinuteOfArc
     return this * 900;
   @:to inline public function toPoint() : Point

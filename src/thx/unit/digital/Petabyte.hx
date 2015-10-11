@@ -87,6 +87,10 @@ abstract Petabyte(BigInt) {
   @:to inline public function toTerabyte() : Terabyte
     return (this * ofUnit) / dividerTerabyte;
 
+  static var dividerPetabyte : BigInt = "1125899906842624";
+  @:to inline public function toPetabyte() : Petabyte
+    return (this * ofUnit) / dividerPetabyte;
+
   static var dividerExabyte : BigInt = "1152921504606846976";
   @:to inline public function toExabyte() : Exabyte
     return (this * ofUnit) / dividerExabyte;

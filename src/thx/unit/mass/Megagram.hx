@@ -67,6 +67,10 @@ abstract Megagram(Decimal) {
     return this.toFloat();
 
 
+  static var dividerMegagram : Decimal = "1000";
+  @:to inline public function toMegagram() : Megagram
+    return (this * ofUnit) / dividerMegagram;
+
   static var dividerKilogram : Decimal = "1";
   @:to inline public function toKilogram() : Kilogram
     return (this * ofUnit) / dividerKilogram;

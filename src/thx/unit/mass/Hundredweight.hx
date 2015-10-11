@@ -103,6 +103,10 @@ abstract Hundredweight(Decimal) {
   @:to inline public function toTon() : Ton
     return (this * ofUnit) / dividerTon;
 
+  static var dividerHundredweight : Decimal = "50.80234544";
+  @:to inline public function toHundredweight() : Hundredweight
+    return (this * ofUnit) / dividerHundredweight;
+
   static var dividerQuarter : Decimal = "12.70058636";
   @:to inline public function toQuarter() : Quarter
     return (this * ofUnit) / dividerQuarter;

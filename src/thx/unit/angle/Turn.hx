@@ -95,6 +95,8 @@ abstract Turn(Float) {
     return this * 1296000;
   @:to inline public function toSextant() : Sextant
     return this * 6;
+  @:to inline public function toTurn() : Turn
+    return this * 1;
 
   @:to inline public function toString() : String
     return this + symbol;

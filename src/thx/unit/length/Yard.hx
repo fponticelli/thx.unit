@@ -107,6 +107,10 @@ abstract Yard(Decimal) {
   @:to inline public function toChain() : Chain
     return (this * ofUnit) / dividerChain;
 
+  static var dividerYard : Decimal = "0.9144";
+  @:to inline public function toYard() : Yard
+    return (this * ofUnit) / dividerYard;
+
   static var dividerFoot : Decimal = "0.3048";
   @:to inline public function toFoot() : Foot
     return (this * ofUnit) / dividerFoot;

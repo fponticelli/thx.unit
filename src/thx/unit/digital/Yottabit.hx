@@ -131,6 +131,10 @@ abstract Yottabit(BigInt) {
   @:to inline public function toZettabit() : Zettabit
     return (this * ofUnit) / dividerZettabit;
 
+  static var dividerYottabit : BigInt = "1E24";
+  @:to inline public function toYottabit() : Yottabit
+    return (this * ofUnit) / dividerYottabit;
+
 
   @:to inline public function toString() : String
     return this.toString() + symbol;

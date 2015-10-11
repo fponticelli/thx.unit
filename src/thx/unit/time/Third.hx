@@ -103,6 +103,10 @@ abstract Third(Decimal) {
   @:to inline public function toMillisecond() : Millisecond
     return (this * ofUnit) / dividerMillisecond;
 
+  static var dividerThird : Decimal = "0.01666666666667";
+  @:to inline public function toThird() : Third
+    return (this * ofUnit) / dividerThird;
+
   static var dividerSecond : Decimal = "1";
   @:to inline public function toSecond() : Second
     return (this * ofUnit) / dividerSecond;

@@ -75,6 +75,8 @@ abstract Degree(Float) {
 
   @:to inline public function toBinaryDegree() : BinaryDegree
     return this * 0.711111111111111;
+  @:to inline public function toDegree() : Degree
+    return this * 1;
   @:to inline public function toGrad() : Grad
     return this * 1.11111111111111;
   @:to inline public function toHourAngle() : HourAngle

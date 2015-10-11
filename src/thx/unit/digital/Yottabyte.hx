@@ -99,6 +99,10 @@ abstract Yottabyte(BigInt) {
   @:to inline public function toZettabyte() : Zettabyte
     return (this * ofUnit) / dividerZettabyte;
 
+  static var dividerYottabyte : BigInt = "1208925819614629174706176";
+  @:to inline public function toYottabyte() : Yottabyte
+    return (this * ofUnit) / dividerYottabyte;
+
   static var dividerKilobit : BigInt = "1000";
   @:to inline public function toKilobit() : Kilobit
     return (this * ofUnit) / dividerKilobit;

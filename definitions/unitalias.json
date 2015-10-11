@@ -1,5 +1,4 @@
 {
-  "template" : "UnitAlias.hx",
   "values" : [
     { "unit" : "length", "type" : "Kilometer",  "source" : "Kilometre" },
     { "unit" : "length", "type" : "Meter",      "source" : "Metre" },
@@ -13,6 +12,5 @@
     { "unit" : "temperature", "type" : "Centrigrade",  "source" : "Celsius" },
 
     { "unit" : "time", "type" : "Centriday",  "source" : "Ke" }
-  ],
-  "output" : "thx/unit/${unit}/${type}.hx"
+  ]
 }

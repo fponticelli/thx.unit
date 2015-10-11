@@ -87,6 +87,8 @@ abstract Radian(Float) {
     return this * 5.09295817894065;
   @:to inline public function toQuadrant() : Quadrant
     return this * 0.636619772367581;
+  @:to inline public function toRadian() : Radian
+    return this * 1;
   @:to inline public function toRevolution() : Revolution
     return this * 0.159154943091895;
   @:to inline public function toSecondOfArc() : SecondOfArc

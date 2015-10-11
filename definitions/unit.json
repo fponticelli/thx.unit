@@ -1,5 +1,4 @@
 {
-  "template" : "Unit.hx",
   "values" : [
     { "unit" : "amountofsubstance", "type" : "Mole",      "symbol" : "mol",       "ofUnit" : "1", "baseType" : "Decimal", "importBaseType" : "thx.Decimal" },
     { "unit" : "amountofsubstance", "type" : "PoundMole", "symbol" : "pound-mol", "ofUnit" : "453.59237", "baseType" : "Decimal", "importBaseType" : "thx.Decimal" },
@@ -102,6 +101,5 @@
     { "unit" : "time", "type" : "JulianYear",    "symbol" : "julian year",    "ofUnit" : "31557600", "baseType" : "Decimal", "importBaseType" : "thx.Decimal" },
     { "unit" : "time", "type" : "Gigasecond",    "symbol" : "Gs",             "ofUnit" : "1000000000", "baseType" : "Decimal", "importBaseType" : "thx.Decimal" },
     { "unit" : "time", "type" : "Terasecond",    "symbol" : "Ts",             "ofUnit" : "1000000000000", "baseType" : "Decimal", "importBaseType" : "thx.Decimal" }
-  ],
-  "output" : "thx/unit/${unit}/${type}.hx"
+  ]
 }

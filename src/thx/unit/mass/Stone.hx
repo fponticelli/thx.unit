@@ -111,6 +111,10 @@ abstract Stone(Decimal) {
   @:to inline public function toQuarter() : Quarter
     return (this * ofUnit) / dividerQuarter;
 
+  static var dividerStone : Decimal = "6.35029318";
+  @:to inline public function toStone() : Stone
+    return (this * ofUnit) / dividerStone;
+
   static var dividerPound : Decimal = "0.45359237";
   @:to inline public function toPound() : Pound
     return (this * ofUnit) / dividerPound;

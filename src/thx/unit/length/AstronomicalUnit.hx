@@ -139,6 +139,10 @@ abstract AstronomicalUnit(Decimal) {
   @:to inline public function toEarthRadius() : EarthRadius
     return (this * ofUnit) / dividerEarthRadius;
 
+  static var dividerAstronomicalUnit : Decimal = "149597870700";
+  @:to inline public function toAstronomicalUnit() : AstronomicalUnit
+    return (this * ofUnit) / dividerAstronomicalUnit;
+
   static var dividerLightYear : Decimal = "9460730472580800";
   @:to inline public function toLightYear() : LightYear
     return (this * ofUnit) / dividerLightYear;

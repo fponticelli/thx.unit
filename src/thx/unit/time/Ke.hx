@@ -115,6 +115,10 @@ abstract Ke(Decimal) {
   @:to inline public function toMinute() : Minute
     return (this * ofUnit) / dividerMinute;
 
+  static var dividerKe : Decimal = "864";
+  @:to inline public function toKe() : Ke
+    return (this * ofUnit) / dividerKe;
+
   static var dividerKilosecond : Decimal = "1000";
   @:to inline public function toKilosecond() : Kilosecond
     return (this * ofUnit) / dividerKilosecond;

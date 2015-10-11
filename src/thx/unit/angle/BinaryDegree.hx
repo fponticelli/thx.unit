@@ -73,6 +73,8 @@ abstract BinaryDegree(Float) {
   @:to inline public function toFloat() : Float
     return this;
 
+  @:to inline public function toBinaryDegree() : BinaryDegree
+    return this * 1;
   @:to inline public function toDegree() : Degree
     return this * 1.40625;
   @:to inline public function toGrad() : Grad

@@ -91,6 +91,8 @@ abstract SecondOfArc(Float) {
     return this * 4.84813681109536e-06;
   @:to inline public function toRevolution() : Revolution
     return this * 7.71604938271605e-07;
+  @:to inline public function toSecondOfArc() : SecondOfArc
+    return this * 1;
   @:to inline public function toSextant() : Sextant
     return this * 4.62962962962963e-06;
   @:to inline public function toTurn() : Turn

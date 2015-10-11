@@ -107,6 +107,10 @@ abstract Second(Decimal) {
   @:to inline public function toThird() : Third
     return (this * ofUnit) / dividerThird;
 
+  static var dividerSecond : Decimal = "1";
+  @:to inline public function toSecond() : Second
+    return (this * ofUnit) / dividerSecond;
+
   static var dividerMinute : Decimal = "60";
   @:to inline public function toMinute() : Minute
     return (this * ofUnit) / dividerMinute;

@@ -127,6 +127,10 @@ abstract Zettabit(BigInt) {
   @:to inline public function toExabit() : Exabit
     return (this * ofUnit) / dividerExabit;
 
+  static var dividerZettabit : BigInt = "1E21";
+  @:to inline public function toZettabit() : Zettabit
+    return (this * ofUnit) / dividerZettabit;
+
   static var dividerYottabit : BigInt = "1E24";
   @:to inline public function toYottabit() : Yottabit
     return (this * ofUnit) / dividerYottabit;

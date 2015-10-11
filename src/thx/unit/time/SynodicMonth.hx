@@ -143,6 +143,10 @@ abstract SynodicMonth(Decimal) {
   @:to inline public function toFortnight() : Fortnight
     return (this * ofUnit) / dividerFortnight;
 
+  static var dividerSynodicMonth : Decimal = "2551442.976";
+  @:to inline public function toSynodicMonth() : SynodicMonth
+    return (this * ofUnit) / dividerSynodicMonth;
+
   static var dividerTropicalMonth : Decimal = "2360584.512";
   @:to inline public function toTropicalMonth() : TropicalMonth
     return (this * ofUnit) / dividerTropicalMonth;

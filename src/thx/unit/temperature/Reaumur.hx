@@ -63,6 +63,8 @@ abstract Reaumur(Float) {
     return toCelsius().toDelisle();
   @:to inline public function toNewton() : Newton
     return toCelsius().toNewton();
+  @:to inline public function toReaumur() : Reaumur
+    return toCelsius().toReaumur();
   @:to inline public function toRomer() : Romer
     return toCelsius().toRomer();
 

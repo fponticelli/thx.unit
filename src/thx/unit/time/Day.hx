@@ -127,6 +127,10 @@ abstract Day(Decimal) {
   @:to inline public function toHour() : Hour
     return (this * ofUnit) / dividerHour;
 
+  static var dividerDay : Decimal = "86400";
+  @:to inline public function toDay() : Day
+    return (this * ofUnit) / dividerDay;
+
   static var dividerWeek : Decimal = "604800";
   @:to inline public function toWeek() : Week
     return (this * ofUnit) / dividerWeek;

@@ -159,6 +159,10 @@ abstract Terasecond(Decimal) {
   @:to inline public function toGigasecond() : Gigasecond
     return (this * ofUnit) / dividerGigasecond;
 
+  static var dividerTerasecond : Decimal = "1000000000000";
+  @:to inline public function toTerasecond() : Terasecond
+    return (this * ofUnit) / dividerTerasecond;
+
 
   @:to inline public function toString() : String
     return this.toString() + symbol;

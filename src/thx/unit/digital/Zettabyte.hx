@@ -95,6 +95,10 @@ abstract Zettabyte(BigInt) {
   @:to inline public function toExabyte() : Exabyte
     return (this * ofUnit) / dividerExabyte;
 
+  static var dividerZettabyte : BigInt = "1180591620717411303424";
+  @:to inline public function toZettabyte() : Zettabyte
+    return (this * ofUnit) / dividerZettabyte;
+
   static var dividerYottabyte : BigInt = "1208925819614629174706176";
   @:to inline public function toYottabyte() : Yottabyte
     return (this * ofUnit) / dividerYottabyte;

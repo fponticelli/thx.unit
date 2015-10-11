@@ -71,6 +71,10 @@ abstract Candlepower(Decimal) {
   @:to inline public function toCandela() : Candela
     return (this * ofUnit) / dividerCandela;
 
+  static var dividerCandlepower : Decimal = "0.981";
+  @:to inline public function toCandlepower() : Candlepower
+    return (this * ofUnit) / dividerCandlepower;
+
 
   @:to inline public function toString() : String
     return this.toString() + symbol;

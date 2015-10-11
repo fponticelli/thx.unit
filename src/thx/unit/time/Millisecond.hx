@@ -99,6 +99,10 @@ abstract Millisecond(Decimal) {
   @:to inline public function toFourth() : Fourth
     return (this * ofUnit) / dividerFourth;
 
+  static var dividerMillisecond : Decimal = "0.001";
+  @:to inline public function toMillisecond() : Millisecond
+    return (this * ofUnit) / dividerMillisecond;
+
   static var dividerThird : Decimal = "0.01666666666667";
   @:to inline public function toThird() : Third
     return (this * ofUnit) / dividerThird;

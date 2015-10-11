@@ -107,6 +107,10 @@ abstract Quarter(Decimal) {
   @:to inline public function toHundredweight() : Hundredweight
     return (this * ofUnit) / dividerHundredweight;
 
+  static var dividerQuarter : Decimal = "12.70058636";
+  @:to inline public function toQuarter() : Quarter
+    return (this * ofUnit) / dividerQuarter;
+
   static var dividerStone : Decimal = "6.35029318";
   @:to inline public function toStone() : Stone
     return (this * ofUnit) / dividerStone;

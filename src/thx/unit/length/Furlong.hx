@@ -99,6 +99,10 @@ abstract Furlong(Decimal) {
   @:to inline public function toMile() : Mile
     return (this * ofUnit) / dividerMile;
 
+  static var dividerFurlong : Decimal = "201.168";
+  @:to inline public function toFurlong() : Furlong
+    return (this * ofUnit) / dividerFurlong;
+
   static var dividerChain : Decimal = "20.1168";
   @:to inline public function toChain() : Chain
     return (this * ofUnit) / dividerChain;

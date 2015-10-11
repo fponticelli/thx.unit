@@ -67,6 +67,10 @@ abstract Kilometre(Decimal) {
     return this.toFloat();
 
 
+  static var dividerKilometre : Decimal = "1000";
+  @:to inline public function toKilometre() : Kilometre
+    return (this * ofUnit) / dividerKilometre;
+
   static var dividerMetre : Decimal = "1";
   @:to inline public function toMetre() : Metre
     return (this * ofUnit) / dividerMetre;

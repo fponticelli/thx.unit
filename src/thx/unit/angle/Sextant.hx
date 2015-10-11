@@ -93,6 +93,8 @@ abstract Sextant(Float) {
     return this * 0.166666666666667;
   @:to inline public function toSecondOfArc() : SecondOfArc
     return this * 216000;
+  @:to inline public function toSextant() : Sextant
+    return this * 1;
   @:to inline public function toTurn() : Turn
     return this * 0.166666666666667;
 

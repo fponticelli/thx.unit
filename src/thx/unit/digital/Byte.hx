@@ -67,6 +67,10 @@ abstract Byte(BigInt) {
     return this.toFloat();
 
 
+  static var dividerByte : BigInt = "1";
+  @:to inline public function toByte() : Byte
+    return (this * ofUnit) / dividerByte;
+
   static var dividerKilobyte : BigInt = "1024";
   @:to inline public function toKilobyte() : Kilobyte
     return (this * ofUnit) / dividerKilobyte;

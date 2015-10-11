@@ -111,6 +111,10 @@ abstract Foot(Decimal) {
   @:to inline public function toYard() : Yard
     return (this * ofUnit) / dividerYard;
 
+  static var dividerFoot : Decimal = "0.3048";
+  @:to inline public function toFoot() : Foot
+    return (this * ofUnit) / dividerFoot;
+
   static var dividerInch : Decimal = "0.0254";
   @:to inline public function toInch() : Inch
     return (this * ofUnit) / dividerInch;

@@ -79,6 +79,10 @@ abstract Picosecond(Decimal) {
   @:to inline public function toSvedberg() : Svedberg
     return (this * ofUnit) / dividerSvedberg;
 
+  static var dividerPicosecond : Decimal = "10e-12";
+  @:to inline public function toPicosecond() : Picosecond
+    return (this * ofUnit) / dividerPicosecond;
+
   static var dividerNanosecond : Decimal = "10e-9";
   @:to inline public function toNanosecond() : Nanosecond
     return (this * ofUnit) / dividerNanosecond;

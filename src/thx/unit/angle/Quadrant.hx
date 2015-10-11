@@ -85,6 +85,8 @@ abstract Quadrant(Float) {
     return this * 5400;
   @:to inline public function toPoint() : Point
     return this * 8;
+  @:to inline public function toQuadrant() : Quadrant
+    return this * 1;
   @:to inline public function toRadian() : Radian
     return this * 1.5707963267949;
   @:to inline public function toRevolution() : Revolution

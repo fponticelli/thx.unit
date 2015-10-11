@@ -67,6 +67,10 @@ abstract Ampere(Decimal) {
     return this.toFloat();
 
 
+  static var dividerAmpere : Decimal = "1";
+  @:to inline public function toAmpere() : Ampere
+    return (this * ofUnit) / dividerAmpere;
+
 
   @:to inline public function toString() : String
     return this.toString() + symbol;

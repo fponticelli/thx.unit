@@ -123,6 +123,10 @@ abstract Drachm(Decimal) {
   @:to inline public function toOunce() : Ounce
     return (this * ofUnit) / dividerOunce;
 
+  static var dividerDrachm : Decimal = "0.0017718451953125";
+  @:to inline public function toDrachm() : Drachm
+    return (this * ofUnit) / dividerDrachm;
+
   static var dividerGrain : Decimal = "0.00006479891";
   @:to inline public function toGrain() : Grain
     return (this * ofUnit) / dividerGrain;

@@ -131,6 +131,10 @@ abstract NauticalMile(Decimal) {
   @:to inline public function toFathom() : Fathom
     return (this * ofUnit) / dividerFathom;
 
+  static var dividerNauticalMile : Decimal = "1852";
+  @:to inline public function toNauticalMile() : NauticalMile
+    return (this * ofUnit) / dividerNauticalMile;
+
   static var dividerEarthRadius : Decimal = "6371009";
   @:to inline public function toEarthRadius() : EarthRadius
     return (this * ofUnit) / dividerEarthRadius;

@@ -59,6 +59,8 @@ abstract Delisle(Float) {
     return toCelsius().toKelvin();
   @:to inline public function toRankine() : Rankine
     return toCelsius().toRankine();
+  @:to inline public function toDelisle() : Delisle
+    return toCelsius().toDelisle();
   @:to inline public function toNewton() : Newton
     return toCelsius().toNewton();
   @:to inline public function toReaumur() : Reaumur

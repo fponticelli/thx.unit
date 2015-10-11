@@ -95,6 +95,10 @@ abstract Mile(Decimal) {
   @:to inline public function toLeague() : League
     return (this * ofUnit) / dividerLeague;
 
+  static var dividerMile : Decimal = "1609.344";
+  @:to inline public function toMile() : Mile
+    return (this * ofUnit) / dividerMile;
+
   static var dividerFurlong : Decimal = "201.168";
   @:to inline public function toFurlong() : Furlong
     return (this * ofUnit) / dividerFurlong;

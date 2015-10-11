@@ -151,6 +151,10 @@ abstract JulianYear(Decimal) {
   @:to inline public function toTropicalMonth() : TropicalMonth
     return (this * ofUnit) / dividerTropicalMonth;
 
+  static var dividerJulianYear : Decimal = "31557600";
+  @:to inline public function toJulianYear() : JulianYear
+    return (this * ofUnit) / dividerJulianYear;
+
   static var dividerGigasecond : Decimal = "1000000000";
   @:to inline public function toGigasecond() : Gigasecond
     return (this * ofUnit) / dividerGigasecond;

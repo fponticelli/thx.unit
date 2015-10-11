@@ -155,6 +155,10 @@ abstract Gigasecond(Decimal) {
   @:to inline public function toJulianYear() : JulianYear
     return (this * ofUnit) / dividerJulianYear;
 
+  static var dividerGigasecond : Decimal = "1000000000";
+  @:to inline public function toGigasecond() : Gigasecond
+    return (this * ofUnit) / dividerGigasecond;
+
   static var dividerTerasecond : Decimal = "1000000000000";
   @:to inline public function toTerasecond() : Terasecond
     return (this * ofUnit) / dividerTerasecond;

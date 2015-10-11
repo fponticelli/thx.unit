@@ -67,6 +67,10 @@ abstract Mole(Decimal) {
     return this.toFloat();
 
 
+  static var dividerMole : Decimal = "1";
+  @:to inline public function toMole() : Mole
+    return (this * ofUnit) / dividerMole;
+
   static var dividerPoundMole : Decimal = "453.59237";
   @:to inline public function toPoundMole() : PoundMole
     return (this * ofUnit) / dividerPoundMole;

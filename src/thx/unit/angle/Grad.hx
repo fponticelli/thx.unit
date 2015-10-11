@@ -77,6 +77,8 @@ abstract Grad(Float) {
     return this * 0.64;
   @:to inline public function toDegree() : Degree
     return this * 0.9;
+  @:to inline public function toGrad() : Grad
+    return this * 1;
   @:to inline public function toHourAngle() : HourAngle
     return this * 0.06;
   @:to inline public function toMinuteOfArc() : MinuteOfArc

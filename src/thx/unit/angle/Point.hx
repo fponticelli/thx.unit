@@ -83,6 +83,8 @@ abstract Point(Float) {
     return this * 0.75;
   @:to inline public function toMinuteOfArc() : MinuteOfArc
     return this * 675;
+  @:to inline public function toPoint() : Point
+    return this * 1;
   @:to inline public function toQuadrant() : Quadrant
     return this * 0.125;
   @:to inline public function toRadian() : Radian

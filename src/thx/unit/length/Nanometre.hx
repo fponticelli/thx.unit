@@ -87,6 +87,10 @@ abstract Nanometre(Decimal) {
   @:to inline public function toMicrometre() : Micrometre
     return (this * ofUnit) / dividerMicrometre;
 
+  static var dividerNanometre : Decimal = "0.000000001";
+  @:to inline public function toNanometre() : Nanometre
+    return (this * ofUnit) / dividerNanometre;
+
   static var dividerLeague : Decimal = "4828.032";
   @:to inline public function toLeague() : League
     return (this * ofUnit) / dividerLeague;

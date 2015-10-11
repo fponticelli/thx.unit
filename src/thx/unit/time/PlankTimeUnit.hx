@@ -67,6 +67,10 @@ abstract PlankTimeUnit(Decimal) {
     return this.toFloat();
 
 
+  static var dividerPlankTimeUnit : Decimal = "5.39e-44";
+  @:to inline public function toPlankTimeUnit() : PlankTimeUnit
+    return (this * ofUnit) / dividerPlankTimeUnit;
+
   static var dividerJiffyPhysics : Decimal = "3e-24";
   @:to inline public function toJiffyPhysics() : JiffyPhysics
     return (this * ofUnit) / dividerJiffyPhysics;

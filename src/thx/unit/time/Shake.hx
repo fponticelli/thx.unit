@@ -87,6 +87,10 @@ abstract Shake(Decimal) {
   @:to inline public function toNanosecond() : Nanosecond
     return (this * ofUnit) / dividerNanosecond;
 
+  static var dividerShake : Decimal = "10e-8";
+  @:to inline public function toShake() : Shake
+    return (this * ofUnit) / dividerShake;
+
   static var dividerMicrosecond : Decimal = "10e-6";
   @:to inline public function toMicrosecond() : Microsecond
     return (this * ofUnit) / dividerMicrosecond;

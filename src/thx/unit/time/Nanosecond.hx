@@ -83,6 +83,10 @@ abstract Nanosecond(Decimal) {
   @:to inline public function toPicosecond() : Picosecond
     return (this * ofUnit) / dividerPicosecond;
 
+  static var dividerNanosecond : Decimal = "10e-9";
+  @:to inline public function toNanosecond() : Nanosecond
+    return (this * ofUnit) / dividerNanosecond;
+
   static var dividerShake : Decimal = "10e-8";
   @:to inline public function toShake() : Shake
     return (this * ofUnit) / dividerShake;
