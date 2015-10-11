@@ -27,11 +27,11 @@ abstract Radian(Float) {
   inline public function abs() : Radian
     return Math.abs(this);
 
-  inline public function min(other : Radian) : Radian
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Radian) : Radian
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : Radian) : Radian
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Radian) : Radian
+    return Math.max(this, that.toFloat());
 
   public function normalize() : Radian {
     var a = this % turn.toFloat();
@@ -45,30 +45,30 @@ abstract Radian(Float) {
 
   @:op( -A ) inline public function negate() : Radian
     return -this;
-  @:op( A+B) inline public function add(other : Radian) : Radian
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Radian) : Radian
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Radian
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Radian
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Radian
-    return this % other;
-  @:op(A==B) inline public function equal(other : Radian) : Bool
-    return this == other;
-  public function nearEquals(other : Radian) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Radian) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Radian) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Radian) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Radian) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Radian) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Radian) : Radian
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : Radian) : Radian
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : Radian
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : Radian
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : Radian
+    return this % that;
+  @:op(A==B) inline public function equal(that : Radian) : Bool
+    return this == that;
+  public function nearEquals(that : Radian) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Radian) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : Radian) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : Radian) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : Radian) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : Radian) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

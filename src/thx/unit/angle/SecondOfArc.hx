@@ -27,11 +27,11 @@ abstract SecondOfArc(Float) {
   inline public function abs() : SecondOfArc
     return Math.abs(this);
 
-  inline public function min(other : SecondOfArc) : SecondOfArc
-    return Math.min(this, other.toFloat());
+  inline public function min(that : SecondOfArc) : SecondOfArc
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : SecondOfArc) : SecondOfArc
-    return Math.max(this, other.toFloat());
+  inline public function max(that : SecondOfArc) : SecondOfArc
+    return Math.max(this, that.toFloat());
 
   public function normalize() : SecondOfArc {
     var a = this % turn.toFloat();
@@ -45,30 +45,30 @@ abstract SecondOfArc(Float) {
 
   @:op( -A ) inline public function negate() : SecondOfArc
     return -this;
-  @:op( A+B) inline public function add(other : SecondOfArc) : SecondOfArc
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : SecondOfArc) : SecondOfArc
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : SecondOfArc
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : SecondOfArc
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : SecondOfArc
-    return this % other;
-  @:op(A==B) inline public function equal(other : SecondOfArc) : Bool
-    return this == other;
-  public function nearEquals(other : SecondOfArc) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : SecondOfArc) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : SecondOfArc) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : SecondOfArc) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : SecondOfArc) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : SecondOfArc) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : SecondOfArc) : SecondOfArc
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : SecondOfArc) : SecondOfArc
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : SecondOfArc
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : SecondOfArc
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : SecondOfArc
+    return this % that;
+  @:op(A==B) inline public function equal(that : SecondOfArc) : Bool
+    return this == that;
+  public function nearEquals(that : SecondOfArc) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : SecondOfArc) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : SecondOfArc) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : SecondOfArc) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : SecondOfArc) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : SecondOfArc) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

@@ -14,38 +14,38 @@ abstract Newton(Float) {
   inline public function abs() : Newton
     return Math.abs(this);
 
-  inline public function min(other : Newton) : Newton
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Newton) : Newton
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : Newton) : Newton
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Newton) : Newton
+    return Math.max(this, that.toFloat());
 
   @:op( -A ) inline public function negate() : Newton
     return -this;
-  @:op( A+B) inline public function add(other : Newton) : Newton
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Newton) : Newton
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Newton
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Newton
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Newton
-    return this % other;
-  @:op(A==B) inline public function equal(other : Newton) : Bool
-    return this == other;
-  public function nearEquals(other : Newton) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Newton) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Newton) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Newton) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Newton) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Newton) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Newton) : Newton
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : Newton) : Newton
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : Newton
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : Newton
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : Newton
+    return this % that;
+  @:op(A==B) inline public function equal(that : Newton) : Bool
+    return this == that;
+  public function nearEquals(that : Newton) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Newton) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : Newton) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : Newton) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : Newton) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : Newton) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

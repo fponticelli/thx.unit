@@ -14,38 +14,38 @@ abstract Delisle(Float) {
   inline public function abs() : Delisle
     return Math.abs(this);
 
-  inline public function min(other : Delisle) : Delisle
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Delisle) : Delisle
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : Delisle) : Delisle
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Delisle) : Delisle
+    return Math.max(this, that.toFloat());
 
   @:op( -A ) inline public function negate() : Delisle
     return -this;
-  @:op( A+B) inline public function add(other : Delisle) : Delisle
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Delisle) : Delisle
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Delisle
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Delisle
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Delisle
-    return this % other;
-  @:op(A==B) inline public function equal(other : Delisle) : Bool
-    return this == other;
-  public function nearEquals(other : Delisle) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Delisle) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Delisle) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Delisle) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Delisle) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Delisle) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Delisle) : Delisle
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : Delisle) : Delisle
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : Delisle
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : Delisle
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : Delisle
+    return this % that;
+  @:op(A==B) inline public function equal(that : Delisle) : Bool
+    return this == that;
+  public function nearEquals(that : Delisle) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Delisle) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : Delisle) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : Delisle) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : Delisle) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : Delisle) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

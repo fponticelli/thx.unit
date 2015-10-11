@@ -14,38 +14,38 @@ abstract Reaumur(Float) {
   inline public function abs() : Reaumur
     return Math.abs(this);
 
-  inline public function min(other : Reaumur) : Reaumur
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Reaumur) : Reaumur
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : Reaumur) : Reaumur
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Reaumur) : Reaumur
+    return Math.max(this, that.toFloat());
 
   @:op( -A ) inline public function negate() : Reaumur
     return -this;
-  @:op( A+B) inline public function add(other : Reaumur) : Reaumur
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Reaumur) : Reaumur
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Reaumur
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Reaumur
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Reaumur
-    return this % other;
-  @:op(A==B) inline public function equal(other : Reaumur) : Bool
-    return this == other;
-  public function nearEquals(other : Reaumur) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Reaumur) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Reaumur) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Reaumur) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Reaumur) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Reaumur) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Reaumur) : Reaumur
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : Reaumur) : Reaumur
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : Reaumur
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : Reaumur
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : Reaumur
+    return this % that;
+  @:op(A==B) inline public function equal(that : Reaumur) : Bool
+    return this == that;
+  public function nearEquals(that : Reaumur) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Reaumur) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : Reaumur) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : Reaumur) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : Reaumur) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : Reaumur) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

@@ -27,11 +27,11 @@ abstract Sextant(Float) {
   inline public function abs() : Sextant
     return Math.abs(this);
 
-  inline public function min(other : Sextant) : Sextant
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Sextant) : Sextant
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : Sextant) : Sextant
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Sextant) : Sextant
+    return Math.max(this, that.toFloat());
 
   public function normalize() : Sextant {
     var a = this % turn.toFloat();
@@ -45,30 +45,30 @@ abstract Sextant(Float) {
 
   @:op( -A ) inline public function negate() : Sextant
     return -this;
-  @:op( A+B) inline public function add(other : Sextant) : Sextant
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Sextant) : Sextant
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Sextant
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Sextant
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Sextant
-    return this % other;
-  @:op(A==B) inline public function equal(other : Sextant) : Bool
-    return this == other;
-  public function nearEquals(other : Sextant) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Sextant) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Sextant) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Sextant) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Sextant) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Sextant) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Sextant) : Sextant
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : Sextant) : Sextant
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : Sextant
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : Sextant
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : Sextant
+    return this % that;
+  @:op(A==B) inline public function equal(that : Sextant) : Bool
+    return this == that;
+  public function nearEquals(that : Sextant) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Sextant) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : Sextant) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : Sextant) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : Sextant) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : Sextant) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

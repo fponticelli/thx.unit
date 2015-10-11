@@ -27,11 +27,11 @@ abstract Turn(Float) {
   inline public function abs() : Turn
     return Math.abs(this);
 
-  inline public function min(other : Turn) : Turn
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Turn) : Turn
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : Turn) : Turn
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Turn) : Turn
+    return Math.max(this, that.toFloat());
 
   public function normalize() : Turn {
     var a = this % turn.toFloat();
@@ -45,30 +45,30 @@ abstract Turn(Float) {
 
   @:op( -A ) inline public function negate() : Turn
     return -this;
-  @:op( A+B) inline public function add(other : Turn) : Turn
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Turn) : Turn
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Turn
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Turn
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Turn
-    return this % other;
-  @:op(A==B) inline public function equal(other : Turn) : Bool
-    return this == other;
-  public function nearEquals(other : Turn) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Turn) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Turn) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Turn) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Turn) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Turn) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Turn) : Turn
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : Turn) : Turn
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : Turn
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : Turn
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : Turn
+    return this % that;
+  @:op(A==B) inline public function equal(that : Turn) : Bool
+    return this == that;
+  public function nearEquals(that : Turn) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Turn) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : Turn) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : Turn) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : Turn) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : Turn) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

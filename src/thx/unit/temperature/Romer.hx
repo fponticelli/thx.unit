@@ -14,38 +14,38 @@ abstract Romer(Float) {
   inline public function abs() : Romer
     return Math.abs(this);
 
-  inline public function min(other : Romer) : Romer
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Romer) : Romer
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : Romer) : Romer
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Romer) : Romer
+    return Math.max(this, that.toFloat());
 
   @:op( -A ) inline public function negate() : Romer
     return -this;
-  @:op( A+B) inline public function add(other : Romer) : Romer
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Romer) : Romer
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Romer
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Romer
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Romer
-    return this % other;
-  @:op(A==B) inline public function equal(other : Romer) : Bool
-    return this == other;
-  public function nearEquals(other : Romer) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Romer) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Romer) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Romer) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Romer) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Romer) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Romer) : Romer
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : Romer) : Romer
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : Romer
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : Romer
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : Romer
+    return this % that;
+  @:op(A==B) inline public function equal(that : Romer) : Bool
+    return this == that;
+  public function nearEquals(that : Romer) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Romer) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : Romer) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : Romer) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : Romer) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : Romer) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

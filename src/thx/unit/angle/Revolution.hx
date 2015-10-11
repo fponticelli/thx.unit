@@ -27,11 +27,11 @@ abstract Revolution(Float) {
   inline public function abs() : Revolution
     return Math.abs(this);
 
-  inline public function min(other : Revolution) : Revolution
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Revolution) : Revolution
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : Revolution) : Revolution
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Revolution) : Revolution
+    return Math.max(this, that.toFloat());
 
   public function normalize() : Revolution {
     var a = this % turn.toFloat();
@@ -45,30 +45,30 @@ abstract Revolution(Float) {
 
   @:op( -A ) inline public function negate() : Revolution
     return -this;
-  @:op( A+B) inline public function add(other : Revolution) : Revolution
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Revolution) : Revolution
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Revolution
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Revolution
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Revolution
-    return this % other;
-  @:op(A==B) inline public function equal(other : Revolution) : Bool
-    return this == other;
-  public function nearEquals(other : Revolution) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Revolution) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Revolution) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Revolution) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Revolution) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Revolution) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Revolution) : Revolution
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : Revolution) : Revolution
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : Revolution
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : Revolution
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : Revolution
+    return this % that;
+  @:op(A==B) inline public function equal(that : Revolution) : Bool
+    return this == that;
+  public function nearEquals(that : Revolution) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Revolution) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : Revolution) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : Revolution) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : Revolution) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : Revolution) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

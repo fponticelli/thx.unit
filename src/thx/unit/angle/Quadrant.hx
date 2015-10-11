@@ -27,11 +27,11 @@ abstract Quadrant(Float) {
   inline public function abs() : Quadrant
     return Math.abs(this);
 
-  inline public function min(other : Quadrant) : Quadrant
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Quadrant) : Quadrant
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : Quadrant) : Quadrant
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Quadrant) : Quadrant
+    return Math.max(this, that.toFloat());
 
   public function normalize() : Quadrant {
     var a = this % turn.toFloat();
@@ -45,30 +45,30 @@ abstract Quadrant(Float) {
 
   @:op( -A ) inline public function negate() : Quadrant
     return -this;
-  @:op( A+B) inline public function add(other : Quadrant) : Quadrant
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Quadrant) : Quadrant
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Quadrant
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Quadrant
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Quadrant
-    return this % other;
-  @:op(A==B) inline public function equal(other : Quadrant) : Bool
-    return this == other;
-  public function nearEquals(other : Quadrant) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Quadrant) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Quadrant) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Quadrant) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Quadrant) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Quadrant) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Quadrant) : Quadrant
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : Quadrant) : Quadrant
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : Quadrant
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : Quadrant
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : Quadrant
+    return this % that;
+  @:op(A==B) inline public function equal(that : Quadrant) : Bool
+    return this == that;
+  public function nearEquals(that : Quadrant) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Quadrant) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : Quadrant) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : Quadrant) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : Quadrant) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : Quadrant) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

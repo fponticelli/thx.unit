@@ -33,11 +33,11 @@ $if(type == 'Radian') {
   inline public function abs() : $type
     return Math.abs(this);
 
-  inline public function min(other : $type) : $type
-    return Math.min(this, other.toFloat());
+  inline public function min(that : $type) : $type
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : $type) : $type
-    return Math.max(this, other.toFloat());
+  inline public function max(that : $type) : $type
+    return Math.max(this, that.toFloat());
 
   public function normalize() : $type {
     var a = this % turn.toFloat();
@@ -51,30 +51,30 @@ $if(type == 'Radian') {
 
   @:op( -A ) inline public function negate() : $type
     return -this;
-  @:op( A+B) inline public function add(other : $type) : $type
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : $type) : $type
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : $type
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : $type
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : $type
-    return this % other;
-  @:op(A==B) inline public function equal(other : $type) : Bool
-    return this == other;
-  public function nearEquals(other : $type) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : $type) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : $type) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : $type) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : $type) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : $type) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : $type) : $type
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : $type) : $type
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : $type
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : $type
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : $type
+    return this % that;
+  @:op(A==B) inline public function equal(that : $type) : Bool
+    return this == that;
+  public function nearEquals(that : $type) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : $type) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : $type) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : $type) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : $type) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : $type) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

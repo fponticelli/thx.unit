@@ -14,38 +14,38 @@ abstract Fahrenheit(Float) {
   inline public function abs() : Fahrenheit
     return Math.abs(this);
 
-  inline public function min(other : Fahrenheit) : Fahrenheit
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Fahrenheit) : Fahrenheit
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : Fahrenheit) : Fahrenheit
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Fahrenheit) : Fahrenheit
+    return Math.max(this, that.toFloat());
 
   @:op( -A ) inline public function negate() : Fahrenheit
     return -this;
-  @:op( A+B) inline public function add(other : Fahrenheit) : Fahrenheit
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Fahrenheit) : Fahrenheit
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Fahrenheit
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Fahrenheit
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Fahrenheit
-    return this % other;
-  @:op(A==B) inline public function equal(other : Fahrenheit) : Bool
-    return this == other;
-  public function nearEquals(other : Fahrenheit) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Fahrenheit) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Fahrenheit) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Fahrenheit) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Fahrenheit) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Fahrenheit) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Fahrenheit) : Fahrenheit
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : Fahrenheit) : Fahrenheit
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : Fahrenheit
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : Fahrenheit
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : Fahrenheit
+    return this % that;
+  @:op(A==B) inline public function equal(that : Fahrenheit) : Bool
+    return this == that;
+  public function nearEquals(that : Fahrenheit) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Fahrenheit) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : Fahrenheit) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : Fahrenheit) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : Fahrenheit) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : Fahrenheit) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

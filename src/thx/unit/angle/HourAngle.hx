@@ -27,11 +27,11 @@ abstract HourAngle(Float) {
   inline public function abs() : HourAngle
     return Math.abs(this);
 
-  inline public function min(other : HourAngle) : HourAngle
-    return Math.min(this, other.toFloat());
+  inline public function min(that : HourAngle) : HourAngle
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : HourAngle) : HourAngle
-    return Math.max(this, other.toFloat());
+  inline public function max(that : HourAngle) : HourAngle
+    return Math.max(this, that.toFloat());
 
   public function normalize() : HourAngle {
     var a = this % turn.toFloat();
@@ -45,30 +45,30 @@ abstract HourAngle(Float) {
 
   @:op( -A ) inline public function negate() : HourAngle
     return -this;
-  @:op( A+B) inline public function add(other : HourAngle) : HourAngle
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : HourAngle) : HourAngle
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : HourAngle
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : HourAngle
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : HourAngle
-    return this % other;
-  @:op(A==B) inline public function equal(other : HourAngle) : Bool
-    return this == other;
-  public function nearEquals(other : HourAngle) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : HourAngle) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : HourAngle) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : HourAngle) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : HourAngle) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : HourAngle) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : HourAngle) : HourAngle
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : HourAngle) : HourAngle
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : HourAngle
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : HourAngle
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : HourAngle
+    return this % that;
+  @:op(A==B) inline public function equal(that : HourAngle) : Bool
+    return this == that;
+  public function nearEquals(that : HourAngle) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : HourAngle) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : HourAngle) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : HourAngle) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : HourAngle) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : HourAngle) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

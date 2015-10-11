@@ -27,11 +27,11 @@ abstract Degree(Float) {
   inline public function abs() : Degree
     return Math.abs(this);
 
-  inline public function min(other : Degree) : Degree
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Degree) : Degree
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : Degree) : Degree
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Degree) : Degree
+    return Math.max(this, that.toFloat());
 
   public function normalize() : Degree {
     var a = this % turn.toFloat();
@@ -45,30 +45,30 @@ abstract Degree(Float) {
 
   @:op( -A ) inline public function negate() : Degree
     return -this;
-  @:op( A+B) inline public function add(other : Degree) : Degree
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Degree) : Degree
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Degree
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Degree
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Degree
-    return this % other;
-  @:op(A==B) inline public function equal(other : Degree) : Bool
-    return this == other;
-  public function nearEquals(other : Degree) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Degree) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Degree) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Degree) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Degree) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Degree) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Degree) : Degree
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : Degree) : Degree
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : Degree
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : Degree
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : Degree
+    return this % that;
+  @:op(A==B) inline public function equal(that : Degree) : Bool
+    return this == that;
+  public function nearEquals(that : Degree) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Degree) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : Degree) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : Degree) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : Degree) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : Degree) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

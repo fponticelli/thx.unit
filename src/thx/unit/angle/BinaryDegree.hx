@@ -27,11 +27,11 @@ abstract BinaryDegree(Float) {
   inline public function abs() : BinaryDegree
     return Math.abs(this);
 
-  inline public function min(other : BinaryDegree) : BinaryDegree
-    return Math.min(this, other.toFloat());
+  inline public function min(that : BinaryDegree) : BinaryDegree
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : BinaryDegree) : BinaryDegree
-    return Math.max(this, other.toFloat());
+  inline public function max(that : BinaryDegree) : BinaryDegree
+    return Math.max(this, that.toFloat());
 
   public function normalize() : BinaryDegree {
     var a = this % turn.toFloat();
@@ -45,30 +45,30 @@ abstract BinaryDegree(Float) {
 
   @:op( -A ) inline public function negate() : BinaryDegree
     return -this;
-  @:op( A+B) inline public function add(other : BinaryDegree) : BinaryDegree
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : BinaryDegree) : BinaryDegree
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : BinaryDegree
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : BinaryDegree
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : BinaryDegree
-    return this % other;
-  @:op(A==B) inline public function equal(other : BinaryDegree) : Bool
-    return this == other;
-  public function nearEquals(other : BinaryDegree) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : BinaryDegree) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : BinaryDegree) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : BinaryDegree) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : BinaryDegree) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : BinaryDegree) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : BinaryDegree) : BinaryDegree
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : BinaryDegree) : BinaryDegree
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : BinaryDegree
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : BinaryDegree
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : BinaryDegree
+    return this % that;
+  @:op(A==B) inline public function equal(that : BinaryDegree) : Bool
+    return this == that;
+  public function nearEquals(that : BinaryDegree) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : BinaryDegree) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : BinaryDegree) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : BinaryDegree) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : BinaryDegree) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : BinaryDegree) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

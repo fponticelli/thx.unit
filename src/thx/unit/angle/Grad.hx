@@ -27,11 +27,11 @@ abstract Grad(Float) {
   inline public function abs() : Grad
     return Math.abs(this);
 
-  inline public function min(other : Grad) : Grad
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Grad) : Grad
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : Grad) : Grad
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Grad) : Grad
+    return Math.max(this, that.toFloat());
 
   public function normalize() : Grad {
     var a = this % turn.toFloat();
@@ -45,30 +45,30 @@ abstract Grad(Float) {
 
   @:op( -A ) inline public function negate() : Grad
     return -this;
-  @:op( A+B) inline public function add(other : Grad) : Grad
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Grad) : Grad
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Grad
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Grad
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Grad
-    return this % other;
-  @:op(A==B) inline public function equal(other : Grad) : Bool
-    return this == other;
-  public function nearEquals(other : Grad) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Grad) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Grad) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Grad) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Grad) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Grad) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Grad) : Grad
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : Grad) : Grad
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : Grad
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : Grad
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : Grad
+    return this % that;
+  @:op(A==B) inline public function equal(that : Grad) : Bool
+    return this == that;
+  public function nearEquals(that : Grad) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Grad) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : Grad) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : Grad) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : Grad) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : Grad) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;

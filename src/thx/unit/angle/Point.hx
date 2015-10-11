@@ -27,11 +27,11 @@ abstract Point(Float) {
   inline public function abs() : Point
     return Math.abs(this);
 
-  inline public function min(other : Point) : Point
-    return Math.min(this, other.toFloat());
+  inline public function min(that : Point) : Point
+    return Math.min(this, that.toFloat());
 
-  inline public function max(other : Point) : Point
-    return Math.max(this, other.toFloat());
+  inline public function max(that : Point) : Point
+    return Math.max(this, that.toFloat());
 
   public function normalize() : Point {
     var a = this % turn.toFloat();
@@ -45,30 +45,30 @@ abstract Point(Float) {
 
   @:op( -A ) inline public function negate() : Point
     return -this;
-  @:op( A+B) inline public function add(other : Point) : Point
-    return this + other.toFloat();
-  @:op( A-B) inline public function subtract(other : Point) : Point
-    return this - other.toFloat();
-  @:op( A*B) inline public function multiply(other : Float) : Point
-    return this * other;
-  @:op( A/B) inline public function divide(other : Float) : Point
-    return this / other;
-  @:op( A%B) inline public function modulo(other : Float) : Point
-    return this % other;
-  @:op(A==B) inline public function equal(other : Point) : Bool
-    return this == other;
-  public function nearEquals(other : Point) : Bool
-    return Floats.nearEquals(this, other.toFloat());
-  @:op(A!=B) inline public function notEqual(other : Point) : Bool
-    return this != other;
-  @:op( A<B) inline public function less(other : Point) : Bool
-    return this < other.toFloat();
-  @:op(A<=B) inline public function lessEqual(other : Point) : Bool
-    return this <= other.toFloat();
-  @:op( A>B) inline public function more(other : Point) : Bool
-    return this > other.toFloat();
-  @:op(A>=B) inline public function moreEqual(other : Point) : Bool
-    return this >= other.toFloat();
+  @:op( A+B) inline public function add(that : Point) : Point
+    return this + that.toFloat();
+  @:op( A-B) inline public function subtract(that : Point) : Point
+    return this - that.toFloat();
+  @:op( A*B) inline public function multiply(that : Float) : Point
+    return this * that;
+  @:op( A/B) inline public function divide(that : Float) : Point
+    return this / that;
+  @:op( A%B) inline public function modulo(that : Float) : Point
+    return this % that;
+  @:op(A==B) inline public function equal(that : Point) : Bool
+    return this == that;
+  public function nearEquals(that : Point) : Bool
+    return Floats.nearEquals(this, that.toFloat());
+  @:op(A!=B) inline public function notEqual(that : Point) : Bool
+    return this != that;
+  @:op( A<B) inline public function less(that : Point) : Bool
+    return this < that.toFloat();
+  @:op(A<=B) inline public function lessEqual(that : Point) : Bool
+    return this <= that.toFloat();
+  @:op( A>B) inline public function more(that : Point) : Bool
+    return this > that.toFloat();
+  @:op(A>=B) inline public function moreEqual(that : Point) : Bool
+    return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
     return this;
