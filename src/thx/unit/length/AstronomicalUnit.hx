@@ -39,26 +39,20 @@ abstract AstronomicalUnit(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : AstronomicalUnit
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : AstronomicalUnit) : Bool
-    return this.equals(that.toDecimal());
+  @:op(A==B) inline public function equals(that : AstronomicalUnit) : Bool
+    return this.equalsTo(that.toDecimal());
   public function nearEquals(that : AstronomicalUnit) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : AstronomicalUnit) : Bool
-    return !this.equals(that.toDecimal());
+  @:op(A!=B) inline public function notEquals(that : AstronomicalUnit) : Bool
+    return !this.equalsTo(that.toDecimal());
   @:op( A<B) inline public function less(that : AstronomicalUnit) : Bool
-    return this.less(that.toDecimal());
-  @:op(A<=B) inline public function lessEqual(that : AstronomicalUnit) : Bool
-    return this.lessEqual(that.toDecimal());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : AstronomicalUnit) : Bool
-    return greater(that);
+    return this.lessThan(that.toDecimal());
+  @:op(A<=B) inline public function lessEquals(that : AstronomicalUnit) : Bool
+    return this.lessEqualsTo(that.toDecimal());
   @:op( A>B) inline public function greater(that : AstronomicalUnit) : Bool
-    return this.greater(that.toDecimal());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : AstronomicalUnit) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : AstronomicalUnit) : Bool
-    return this.greaterEqual(that.toDecimal());
+    return this.greaterThan(that.toDecimal());
+  @:op(A>=B) inline public function greaterEquals(that : AstronomicalUnit) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal
     return this;

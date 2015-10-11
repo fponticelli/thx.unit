@@ -55,19 +55,19 @@ abstract Revolution(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Revolution
     return this % that;
-  @:op(A==B) inline public function equal(that : Revolution) : Bool
+  @:op(A==B) inline public function equals(that : Revolution) : Bool
     return this == that;
   public function nearEquals(that : Revolution) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Revolution) : Bool
+  @:op(A!=B) inline public function notEquals(that : Revolution) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : Revolution) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : Revolution) : Bool
+  @:op(A<=B) inline public function lessEquals(that : Revolution) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : Revolution) : Bool
+  @:op( A>B) inline public function greater(that : Revolution) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : Revolution) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : Revolution) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

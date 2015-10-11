@@ -32,19 +32,19 @@ abstract ${type}(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : $type
     return this % that;
-  @:op(A==B) inline public function equal(that : $type) : Bool
+  @:op(A==B) inline public function equals(that : $type) : Bool
     return this == that;
   public function nearEquals(that : $type) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : $type) : Bool
+  @:op(A!=B) inline public function notEquals(that : $type) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : $type) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : $type) : Bool
+  @:op(A<=B) inline public function lessEquals(that : $type) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : $type) : Bool
+  @:op( A>B) inline public function greater(that : $type) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : $type) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : $type) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

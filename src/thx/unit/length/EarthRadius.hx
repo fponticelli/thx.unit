@@ -39,26 +39,20 @@ abstract EarthRadius(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : EarthRadius
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : EarthRadius) : Bool
-    return this.equals(that.toDecimal());
+  @:op(A==B) inline public function equals(that : EarthRadius) : Bool
+    return this.equalsTo(that.toDecimal());
   public function nearEquals(that : EarthRadius) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : EarthRadius) : Bool
-    return !this.equals(that.toDecimal());
+  @:op(A!=B) inline public function notEquals(that : EarthRadius) : Bool
+    return !this.equalsTo(that.toDecimal());
   @:op( A<B) inline public function less(that : EarthRadius) : Bool
-    return this.less(that.toDecimal());
-  @:op(A<=B) inline public function lessEqual(that : EarthRadius) : Bool
-    return this.lessEqual(that.toDecimal());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : EarthRadius) : Bool
-    return greater(that);
+    return this.lessThan(that.toDecimal());
+  @:op(A<=B) inline public function lessEquals(that : EarthRadius) : Bool
+    return this.lessEqualsTo(that.toDecimal());
   @:op( A>B) inline public function greater(that : EarthRadius) : Bool
-    return this.greater(that.toDecimal());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : EarthRadius) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : EarthRadius) : Bool
-    return this.greaterEqual(that.toDecimal());
+    return this.greaterThan(that.toDecimal());
+  @:op(A>=B) inline public function greaterEquals(that : EarthRadius) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal
     return this;

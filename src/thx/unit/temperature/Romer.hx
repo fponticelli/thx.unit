@@ -32,19 +32,19 @@ abstract Romer(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Romer
     return this % that;
-  @:op(A==B) inline public function equal(that : Romer) : Bool
+  @:op(A==B) inline public function equals(that : Romer) : Bool
     return this == that;
   public function nearEquals(that : Romer) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Romer) : Bool
+  @:op(A!=B) inline public function notEquals(that : Romer) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : Romer) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : Romer) : Bool
+  @:op(A<=B) inline public function lessEquals(that : Romer) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : Romer) : Bool
+  @:op( A>B) inline public function greater(that : Romer) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : Romer) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : Romer) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

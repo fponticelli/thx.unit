@@ -39,26 +39,20 @@ abstract Foot(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Foot
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : Foot) : Bool
-    return this.equals(that.toDecimal());
+  @:op(A==B) inline public function equals(that : Foot) : Bool
+    return this.equalsTo(that.toDecimal());
   public function nearEquals(that : Foot) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Foot) : Bool
-    return !this.equals(that.toDecimal());
+  @:op(A!=B) inline public function notEquals(that : Foot) : Bool
+    return !this.equalsTo(that.toDecimal());
   @:op( A<B) inline public function less(that : Foot) : Bool
-    return this.less(that.toDecimal());
-  @:op(A<=B) inline public function lessEqual(that : Foot) : Bool
-    return this.lessEqual(that.toDecimal());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : Foot) : Bool
-    return greater(that);
+    return this.lessThan(that.toDecimal());
+  @:op(A<=B) inline public function lessEquals(that : Foot) : Bool
+    return this.lessEqualsTo(that.toDecimal());
   @:op( A>B) inline public function greater(that : Foot) : Bool
-    return this.greater(that.toDecimal());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : Foot) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : Foot) : Bool
-    return this.greaterEqual(that.toDecimal());
+    return this.greaterThan(that.toDecimal());
+  @:op(A>=B) inline public function greaterEquals(that : Foot) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal
     return this;

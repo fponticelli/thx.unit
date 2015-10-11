@@ -39,26 +39,20 @@ abstract Candela(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Candela
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : Candela) : Bool
-    return this.equals(that.toDecimal());
+  @:op(A==B) inline public function equals(that : Candela) : Bool
+    return this.equalsTo(that.toDecimal());
   public function nearEquals(that : Candela) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Candela) : Bool
-    return !this.equals(that.toDecimal());
+  @:op(A!=B) inline public function notEquals(that : Candela) : Bool
+    return !this.equalsTo(that.toDecimal());
   @:op( A<B) inline public function less(that : Candela) : Bool
-    return this.less(that.toDecimal());
-  @:op(A<=B) inline public function lessEqual(that : Candela) : Bool
-    return this.lessEqual(that.toDecimal());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : Candela) : Bool
-    return greater(that);
+    return this.lessThan(that.toDecimal());
+  @:op(A<=B) inline public function lessEquals(that : Candela) : Bool
+    return this.lessEqualsTo(that.toDecimal());
   @:op( A>B) inline public function greater(that : Candela) : Bool
-    return this.greater(that.toDecimal());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : Candela) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : Candela) : Bool
-    return this.greaterEqual(that.toDecimal());
+    return this.greaterThan(that.toDecimal());
+  @:op(A>=B) inline public function greaterEquals(that : Candela) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal
     return this;

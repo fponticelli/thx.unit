@@ -39,26 +39,20 @@ abstract Petabit(BigInt) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : BigInt) : Petabit
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : Petabit) : Bool
-    return this.equals(that.toBigInt());
+  @:op(A==B) inline public function equals(that : Petabit) : Bool
+    return this.equalsTo(that.toBigInt());
   public function nearEquals(that : Petabit) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Petabit) : Bool
-    return !this.equals(that.toBigInt());
+  @:op(A!=B) inline public function notEquals(that : Petabit) : Bool
+    return !this.equalsTo(that.toBigInt());
   @:op( A<B) inline public function less(that : Petabit) : Bool
-    return this.less(that.toBigInt());
-  @:op(A<=B) inline public function lessEqual(that : Petabit) : Bool
-    return this.lessEqual(that.toBigInt());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : Petabit) : Bool
-    return greater(that);
+    return this.lessThan(that.toBigInt());
+  @:op(A<=B) inline public function lessEquals(that : Petabit) : Bool
+    return this.lessEqualsTo(that.toBigInt());
   @:op( A>B) inline public function greater(that : Petabit) : Bool
-    return this.greater(that.toBigInt());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : Petabit) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : Petabit) : Bool
-    return this.greaterEqual(that.toBigInt());
+    return this.greaterThan(that.toBigInt());
+  @:op(A>=B) inline public function greaterEquals(that : Petabit) : Bool
+    return this.greaterEqualsTo(that.toBigInt());
 
   inline public function toBigInt() : BigInt
     return this;

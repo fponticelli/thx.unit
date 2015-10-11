@@ -55,19 +55,19 @@ abstract MinuteOfArc(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : MinuteOfArc
     return this % that;
-  @:op(A==B) inline public function equal(that : MinuteOfArc) : Bool
+  @:op(A==B) inline public function equals(that : MinuteOfArc) : Bool
     return this == that;
   public function nearEquals(that : MinuteOfArc) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : MinuteOfArc) : Bool
+  @:op(A!=B) inline public function notEquals(that : MinuteOfArc) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : MinuteOfArc) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : MinuteOfArc) : Bool
+  @:op(A<=B) inline public function lessEquals(that : MinuteOfArc) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : MinuteOfArc) : Bool
+  @:op( A>B) inline public function greater(that : MinuteOfArc) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : MinuteOfArc) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : MinuteOfArc) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

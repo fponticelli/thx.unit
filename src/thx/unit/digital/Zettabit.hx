@@ -39,26 +39,20 @@ abstract Zettabit(BigInt) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : BigInt) : Zettabit
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : Zettabit) : Bool
-    return this.equals(that.toBigInt());
+  @:op(A==B) inline public function equals(that : Zettabit) : Bool
+    return this.equalsTo(that.toBigInt());
   public function nearEquals(that : Zettabit) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Zettabit) : Bool
-    return !this.equals(that.toBigInt());
+  @:op(A!=B) inline public function notEquals(that : Zettabit) : Bool
+    return !this.equalsTo(that.toBigInt());
   @:op( A<B) inline public function less(that : Zettabit) : Bool
-    return this.less(that.toBigInt());
-  @:op(A<=B) inline public function lessEqual(that : Zettabit) : Bool
-    return this.lessEqual(that.toBigInt());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : Zettabit) : Bool
-    return greater(that);
+    return this.lessThan(that.toBigInt());
+  @:op(A<=B) inline public function lessEquals(that : Zettabit) : Bool
+    return this.lessEqualsTo(that.toBigInt());
   @:op( A>B) inline public function greater(that : Zettabit) : Bool
-    return this.greater(that.toBigInt());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : Zettabit) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : Zettabit) : Bool
-    return this.greaterEqual(that.toBigInt());
+    return this.greaterThan(that.toBigInt());
+  @:op(A>=B) inline public function greaterEquals(that : Zettabit) : Bool
+    return this.greaterEqualsTo(that.toBigInt());
 
   inline public function toBigInt() : BigInt
     return this;

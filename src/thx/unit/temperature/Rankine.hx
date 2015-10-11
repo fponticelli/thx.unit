@@ -32,19 +32,19 @@ abstract Rankine(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Rankine
     return this % that;
-  @:op(A==B) inline public function equal(that : Rankine) : Bool
+  @:op(A==B) inline public function equals(that : Rankine) : Bool
     return this == that;
   public function nearEquals(that : Rankine) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Rankine) : Bool
+  @:op(A!=B) inline public function notEquals(that : Rankine) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : Rankine) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : Rankine) : Bool
+  @:op(A<=B) inline public function lessEquals(that : Rankine) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : Rankine) : Bool
+  @:op( A>B) inline public function greater(that : Rankine) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : Rankine) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : Rankine) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

@@ -39,26 +39,20 @@ abstract Kilobyte(BigInt) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : BigInt) : Kilobyte
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : Kilobyte) : Bool
-    return this.equals(that.toBigInt());
+  @:op(A==B) inline public function equals(that : Kilobyte) : Bool
+    return this.equalsTo(that.toBigInt());
   public function nearEquals(that : Kilobyte) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Kilobyte) : Bool
-    return !this.equals(that.toBigInt());
+  @:op(A!=B) inline public function notEquals(that : Kilobyte) : Bool
+    return !this.equalsTo(that.toBigInt());
   @:op( A<B) inline public function less(that : Kilobyte) : Bool
-    return this.less(that.toBigInt());
-  @:op(A<=B) inline public function lessEqual(that : Kilobyte) : Bool
-    return this.lessEqual(that.toBigInt());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : Kilobyte) : Bool
-    return greater(that);
+    return this.lessThan(that.toBigInt());
+  @:op(A<=B) inline public function lessEquals(that : Kilobyte) : Bool
+    return this.lessEqualsTo(that.toBigInt());
   @:op( A>B) inline public function greater(that : Kilobyte) : Bool
-    return this.greater(that.toBigInt());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : Kilobyte) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : Kilobyte) : Bool
-    return this.greaterEqual(that.toBigInt());
+    return this.greaterThan(that.toBigInt());
+  @:op(A>=B) inline public function greaterEquals(that : Kilobyte) : Bool
+    return this.greaterEqualsTo(that.toBigInt());
 
   inline public function toBigInt() : BigInt
     return this;

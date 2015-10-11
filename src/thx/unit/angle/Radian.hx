@@ -55,19 +55,19 @@ abstract Radian(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Radian
     return this % that;
-  @:op(A==B) inline public function equal(that : Radian) : Bool
+  @:op(A==B) inline public function equals(that : Radian) : Bool
     return this == that;
   public function nearEquals(that : Radian) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Radian) : Bool
+  @:op(A!=B) inline public function notEquals(that : Radian) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : Radian) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : Radian) : Bool
+  @:op(A<=B) inline public function lessEquals(that : Radian) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : Radian) : Bool
+  @:op( A>B) inline public function greater(that : Radian) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : Radian) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : Radian) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

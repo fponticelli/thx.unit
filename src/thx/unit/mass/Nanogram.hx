@@ -39,26 +39,20 @@ abstract Nanogram(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Nanogram
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : Nanogram) : Bool
-    return this.equals(that.toDecimal());
+  @:op(A==B) inline public function equals(that : Nanogram) : Bool
+    return this.equalsTo(that.toDecimal());
   public function nearEquals(that : Nanogram) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Nanogram) : Bool
-    return !this.equals(that.toDecimal());
+  @:op(A!=B) inline public function notEquals(that : Nanogram) : Bool
+    return !this.equalsTo(that.toDecimal());
   @:op( A<B) inline public function less(that : Nanogram) : Bool
-    return this.less(that.toDecimal());
-  @:op(A<=B) inline public function lessEqual(that : Nanogram) : Bool
-    return this.lessEqual(that.toDecimal());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : Nanogram) : Bool
-    return greater(that);
+    return this.lessThan(that.toDecimal());
+  @:op(A<=B) inline public function lessEquals(that : Nanogram) : Bool
+    return this.lessEqualsTo(that.toDecimal());
   @:op( A>B) inline public function greater(that : Nanogram) : Bool
-    return this.greater(that.toDecimal());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : Nanogram) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : Nanogram) : Bool
-    return this.greaterEqual(that.toDecimal());
+    return this.greaterThan(that.toDecimal());
+  @:op(A>=B) inline public function greaterEquals(that : Nanogram) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal
     return this;

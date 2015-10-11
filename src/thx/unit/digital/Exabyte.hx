@@ -39,26 +39,20 @@ abstract Exabyte(BigInt) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : BigInt) : Exabyte
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : Exabyte) : Bool
-    return this.equals(that.toBigInt());
+  @:op(A==B) inline public function equals(that : Exabyte) : Bool
+    return this.equalsTo(that.toBigInt());
   public function nearEquals(that : Exabyte) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Exabyte) : Bool
-    return !this.equals(that.toBigInt());
+  @:op(A!=B) inline public function notEquals(that : Exabyte) : Bool
+    return !this.equalsTo(that.toBigInt());
   @:op( A<B) inline public function less(that : Exabyte) : Bool
-    return this.less(that.toBigInt());
-  @:op(A<=B) inline public function lessEqual(that : Exabyte) : Bool
-    return this.lessEqual(that.toBigInt());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : Exabyte) : Bool
-    return greater(that);
+    return this.lessThan(that.toBigInt());
+  @:op(A<=B) inline public function lessEquals(that : Exabyte) : Bool
+    return this.lessEqualsTo(that.toBigInt());
   @:op( A>B) inline public function greater(that : Exabyte) : Bool
-    return this.greater(that.toBigInt());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : Exabyte) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : Exabyte) : Bool
-    return this.greaterEqual(that.toBigInt());
+    return this.greaterThan(that.toBigInt());
+  @:op(A>=B) inline public function greaterEquals(that : Exabyte) : Bool
+    return this.greaterEqualsTo(that.toBigInt());
 
   inline public function toBigInt() : BigInt
     return this;

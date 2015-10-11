@@ -55,19 +55,19 @@ abstract Quadrant(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Quadrant
     return this % that;
-  @:op(A==B) inline public function equal(that : Quadrant) : Bool
+  @:op(A==B) inline public function equals(that : Quadrant) : Bool
     return this == that;
   public function nearEquals(that : Quadrant) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Quadrant) : Bool
+  @:op(A!=B) inline public function notEquals(that : Quadrant) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : Quadrant) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : Quadrant) : Bool
+  @:op(A<=B) inline public function lessEquals(that : Quadrant) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : Quadrant) : Bool
+  @:op( A>B) inline public function greater(that : Quadrant) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : Quadrant) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : Quadrant) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

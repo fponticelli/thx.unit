@@ -32,19 +32,19 @@ abstract Celsius(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Celsius
     return this % that;
-  @:op(A==B) inline public function equal(that : Celsius) : Bool
+  @:op(A==B) inline public function equals(that : Celsius) : Bool
     return this == that;
   public function nearEquals(that : Celsius) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Celsius) : Bool
+  @:op(A!=B) inline public function notEquals(that : Celsius) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : Celsius) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : Celsius) : Bool
+  @:op(A<=B) inline public function lessEquals(that : Celsius) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : Celsius) : Bool
+  @:op( A>B) inline public function greater(that : Celsius) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : Celsius) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : Celsius) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

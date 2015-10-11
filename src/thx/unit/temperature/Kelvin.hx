@@ -32,19 +32,19 @@ abstract Kelvin(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Kelvin
     return this % that;
-  @:op(A==B) inline public function equal(that : Kelvin) : Bool
+  @:op(A==B) inline public function equals(that : Kelvin) : Bool
     return this == that;
   public function nearEquals(that : Kelvin) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Kelvin) : Bool
+  @:op(A!=B) inline public function notEquals(that : Kelvin) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : Kelvin) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : Kelvin) : Bool
+  @:op(A<=B) inline public function lessEquals(that : Kelvin) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : Kelvin) : Bool
+  @:op( A>B) inline public function greater(that : Kelvin) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : Kelvin) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : Kelvin) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

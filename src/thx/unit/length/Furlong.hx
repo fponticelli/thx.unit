@@ -39,26 +39,20 @@ abstract Furlong(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Furlong
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : Furlong) : Bool
-    return this.equals(that.toDecimal());
+  @:op(A==B) inline public function equals(that : Furlong) : Bool
+    return this.equalsTo(that.toDecimal());
   public function nearEquals(that : Furlong) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Furlong) : Bool
-    return !this.equals(that.toDecimal());
+  @:op(A!=B) inline public function notEquals(that : Furlong) : Bool
+    return !this.equalsTo(that.toDecimal());
   @:op( A<B) inline public function less(that : Furlong) : Bool
-    return this.less(that.toDecimal());
-  @:op(A<=B) inline public function lessEqual(that : Furlong) : Bool
-    return this.lessEqual(that.toDecimal());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : Furlong) : Bool
-    return greater(that);
+    return this.lessThan(that.toDecimal());
+  @:op(A<=B) inline public function lessEquals(that : Furlong) : Bool
+    return this.lessEqualsTo(that.toDecimal());
   @:op( A>B) inline public function greater(that : Furlong) : Bool
-    return this.greater(that.toDecimal());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : Furlong) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : Furlong) : Bool
-    return this.greaterEqual(that.toDecimal());
+    return this.greaterThan(that.toDecimal());
+  @:op(A>=B) inline public function greaterEquals(that : Furlong) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal
     return this;

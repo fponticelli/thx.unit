@@ -44,26 +44,20 @@ abstract ${type}($baseType) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : $baseType) : $type
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : $type) : Bool
-    return this.equals(that.to${baseType}());
+  @:op(A==B) inline public function equals(that : $type) : Bool
+    return this.equalsTo(that.to${baseType}());
   public function nearEquals(that : $type) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : $type) : Bool
-    return !this.equals(that.to${baseType}());
+  @:op(A!=B) inline public function notEquals(that : $type) : Bool
+    return !this.equalsTo(that.to${baseType}());
   @:op( A<B) inline public function less(that : $type) : Bool
-    return this.less(that.to${baseType}());
-  @:op(A<=B) inline public function lessEqual(that : $type) : Bool
-    return this.lessEqual(that.to${baseType}());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : $type) : Bool
-    return greater(that);
+    return this.lessThan(that.to${baseType}());
+  @:op(A<=B) inline public function lessEquals(that : $type) : Bool
+    return this.lessEqualsTo(that.to${baseType}());
   @:op( A>B) inline public function greater(that : $type) : Bool
-    return this.greater(that.to${baseType}());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : $type) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : $type) : Bool
-    return this.greaterEqual(that.to${baseType}());
+    return this.greaterThan(that.to${baseType}());
+  @:op(A>=B) inline public function greaterEquals(that : $type) : Bool
+    return this.greaterEqualsTo(that.to${baseType}());
 
   inline public function to${baseType}() : $baseType
     return this;

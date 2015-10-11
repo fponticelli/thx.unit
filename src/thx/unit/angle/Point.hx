@@ -55,19 +55,19 @@ abstract Point(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Point
     return this % that;
-  @:op(A==B) inline public function equal(that : Point) : Bool
+  @:op(A==B) inline public function equals(that : Point) : Bool
     return this == that;
   public function nearEquals(that : Point) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Point) : Bool
+  @:op(A!=B) inline public function notEquals(that : Point) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : Point) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : Point) : Bool
+  @:op(A<=B) inline public function lessEquals(that : Point) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : Point) : Bool
+  @:op( A>B) inline public function greater(that : Point) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : Point) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : Point) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

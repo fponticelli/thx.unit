@@ -32,19 +32,19 @@ abstract Fahrenheit(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Fahrenheit
     return this % that;
-  @:op(A==B) inline public function equal(that : Fahrenheit) : Bool
+  @:op(A==B) inline public function equals(that : Fahrenheit) : Bool
     return this == that;
   public function nearEquals(that : Fahrenheit) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Fahrenheit) : Bool
+  @:op(A!=B) inline public function notEquals(that : Fahrenheit) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : Fahrenheit) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : Fahrenheit) : Bool
+  @:op(A<=B) inline public function lessEquals(that : Fahrenheit) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : Fahrenheit) : Bool
+  @:op( A>B) inline public function greater(that : Fahrenheit) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : Fahrenheit) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : Fahrenheit) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

@@ -39,26 +39,20 @@ abstract Ton(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Ton
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : Ton) : Bool
-    return this.equals(that.toDecimal());
+  @:op(A==B) inline public function equals(that : Ton) : Bool
+    return this.equalsTo(that.toDecimal());
   public function nearEquals(that : Ton) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Ton) : Bool
-    return !this.equals(that.toDecimal());
+  @:op(A!=B) inline public function notEquals(that : Ton) : Bool
+    return !this.equalsTo(that.toDecimal());
   @:op( A<B) inline public function less(that : Ton) : Bool
-    return this.less(that.toDecimal());
-  @:op(A<=B) inline public function lessEqual(that : Ton) : Bool
-    return this.lessEqual(that.toDecimal());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : Ton) : Bool
-    return greater(that);
+    return this.lessThan(that.toDecimal());
+  @:op(A<=B) inline public function lessEquals(that : Ton) : Bool
+    return this.lessEqualsTo(that.toDecimal());
   @:op( A>B) inline public function greater(that : Ton) : Bool
-    return this.greater(that.toDecimal());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : Ton) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : Ton) : Bool
-    return this.greaterEqual(that.toDecimal());
+    return this.greaterThan(that.toDecimal());
+  @:op(A>=B) inline public function greaterEquals(that : Ton) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal
     return this;

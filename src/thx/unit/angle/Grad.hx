@@ -55,19 +55,19 @@ abstract Grad(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Grad
     return this % that;
-  @:op(A==B) inline public function equal(that : Grad) : Bool
+  @:op(A==B) inline public function equals(that : Grad) : Bool
     return this == that;
   public function nearEquals(that : Grad) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Grad) : Bool
+  @:op(A!=B) inline public function notEquals(that : Grad) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : Grad) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : Grad) : Bool
+  @:op(A<=B) inline public function lessEquals(that : Grad) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : Grad) : Bool
+  @:op( A>B) inline public function greater(that : Grad) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : Grad) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : Grad) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

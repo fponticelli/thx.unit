@@ -39,26 +39,20 @@ abstract Microsecond(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : Microsecond
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : Microsecond) : Bool
-    return this.equals(that.toDecimal());
+  @:op(A==B) inline public function equals(that : Microsecond) : Bool
+    return this.equalsTo(that.toDecimal());
   public function nearEquals(that : Microsecond) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Microsecond) : Bool
-    return !this.equals(that.toDecimal());
+  @:op(A!=B) inline public function notEquals(that : Microsecond) : Bool
+    return !this.equalsTo(that.toDecimal());
   @:op( A<B) inline public function less(that : Microsecond) : Bool
-    return this.less(that.toDecimal());
-  @:op(A<=B) inline public function lessEqual(that : Microsecond) : Bool
-    return this.lessEqual(that.toDecimal());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : Microsecond) : Bool
-    return greater(that);
+    return this.lessThan(that.toDecimal());
+  @:op(A<=B) inline public function lessEquals(that : Microsecond) : Bool
+    return this.lessEqualsTo(that.toDecimal());
   @:op( A>B) inline public function greater(that : Microsecond) : Bool
-    return this.greater(that.toDecimal());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : Microsecond) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : Microsecond) : Bool
-    return this.greaterEqual(that.toDecimal());
+    return this.greaterThan(that.toDecimal());
+  @:op(A>=B) inline public function greaterEquals(that : Microsecond) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal
     return this;

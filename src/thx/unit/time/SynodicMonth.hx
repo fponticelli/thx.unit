@@ -39,26 +39,20 @@ abstract SynodicMonth(Decimal) {
     return this.divide(that);
   @:op( A%B) inline public function modulo(that : Decimal) : SynodicMonth
     return this.modulo(that);
-  @:op(A==B) inline public function equal(that : SynodicMonth) : Bool
-    return this.equals(that.toDecimal());
+  @:op(A==B) inline public function equals(that : SynodicMonth) : Bool
+    return this.equalsTo(that.toDecimal());
   public function nearEquals(that : SynodicMonth) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : SynodicMonth) : Bool
-    return !this.equals(that.toDecimal());
+  @:op(A!=B) inline public function notEquals(that : SynodicMonth) : Bool
+    return !this.equalsTo(that.toDecimal());
   @:op( A<B) inline public function less(that : SynodicMonth) : Bool
-    return this.less(that.toDecimal());
-  @:op(A<=B) inline public function lessEqual(that : SynodicMonth) : Bool
-    return this.lessEqual(that.toDecimal());
-  @:deprecated("use greater instead or simply >")
-  inline public function more(that : SynodicMonth) : Bool
-    return greater(that);
+    return this.lessThan(that.toDecimal());
+  @:op(A<=B) inline public function lessEquals(that : SynodicMonth) : Bool
+    return this.lessEqualsTo(that.toDecimal());
   @:op( A>B) inline public function greater(that : SynodicMonth) : Bool
-    return this.greater(that.toDecimal());
-  @:deprecated("use greaterEqual instead or simply >=")
-  inline public function moreEqual(that : SynodicMonth) : Bool
-    return greaterEqual(that);
-  @:op(A>=B) inline public function greaterEqual(that : SynodicMonth) : Bool
-    return this.greaterEqual(that.toDecimal());
+    return this.greaterThan(that.toDecimal());
+  @:op(A>=B) inline public function greaterEquals(that : SynodicMonth) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal
     return this;

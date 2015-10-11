@@ -55,19 +55,19 @@ abstract Turn(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Turn
     return this % that;
-  @:op(A==B) inline public function equal(that : Turn) : Bool
+  @:op(A==B) inline public function equals(that : Turn) : Bool
     return this == that;
   public function nearEquals(that : Turn) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Turn) : Bool
+  @:op(A!=B) inline public function notEquals(that : Turn) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : Turn) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : Turn) : Bool
+  @:op(A<=B) inline public function lessEquals(that : Turn) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : Turn) : Bool
+  @:op( A>B) inline public function greater(that : Turn) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : Turn) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : Turn) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

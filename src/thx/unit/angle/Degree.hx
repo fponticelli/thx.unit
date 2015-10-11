@@ -55,19 +55,19 @@ abstract Degree(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Degree
     return this % that;
-  @:op(A==B) inline public function equal(that : Degree) : Bool
+  @:op(A==B) inline public function equals(that : Degree) : Bool
     return this == that;
   public function nearEquals(that : Degree) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : Degree) : Bool
+  @:op(A!=B) inline public function notEquals(that : Degree) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : Degree) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : Degree) : Bool
+  @:op(A<=B) inline public function lessEquals(that : Degree) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : Degree) : Bool
+  @:op( A>B) inline public function greater(that : Degree) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : Degree) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : Degree) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float

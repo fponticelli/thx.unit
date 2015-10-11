@@ -55,19 +55,19 @@ abstract SecondOfArc(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : SecondOfArc
     return this % that;
-  @:op(A==B) inline public function equal(that : SecondOfArc) : Bool
+  @:op(A==B) inline public function equals(that : SecondOfArc) : Bool
     return this == that;
   public function nearEquals(that : SecondOfArc) : Bool
     return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEqual(that : SecondOfArc) : Bool
+  @:op(A!=B) inline public function notEquals(that : SecondOfArc) : Bool
     return this != that;
   @:op( A<B) inline public function less(that : SecondOfArc) : Bool
     return this < that.toFloat();
-  @:op(A<=B) inline public function lessEqual(that : SecondOfArc) : Bool
+  @:op(A<=B) inline public function lessEquals(that : SecondOfArc) : Bool
     return this <= that.toFloat();
-  @:op( A>B) inline public function more(that : SecondOfArc) : Bool
+  @:op( A>B) inline public function greater(that : SecondOfArc) : Bool
     return this > that.toFloat();
-  @:op(A>=B) inline public function moreEqual(that : SecondOfArc) : Bool
+  @:op(A>=B) inline public function greaterEquals(that : SecondOfArc) : Bool
     return this >= that.toFloat();
 
   @:to inline public function toFloat() : Float
