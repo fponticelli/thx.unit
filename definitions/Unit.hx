@@ -89,9 +89,11 @@ abstract ${type}($baseType) {
 
 $for(value in units) {
   static var divider${value.type} : $baseType = "$value.ofUnit";
-  @:to inline public function to${value.type}() : $value.type
-    return ((this * ofUnit) / divider${value.type}).trim();
-}
+  @:to inline public function to${value.type}() : $value.type$if(baseType == "Decimal") {
+      return ((this * ofUnit) / divider${value.type}).trim();
+    } else {
+      return (this * ofUnit) / divider${value.type};
+    }}
 
   @:to inline public function toString() : String
     return this.toString() + symbol;
