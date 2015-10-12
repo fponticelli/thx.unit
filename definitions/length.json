@@ -1,5 +1,6 @@
 {
   "unit" : "length",
+  "unitType" : "Length",
   "baseType" : "Decimal",
   "importBaseType" : "thx.Decimal",
   "units" : [

@@ -1,5 +1,6 @@
 {
   "unit" : "amountofsubstance",
+  "unitType" : "AmountOfSubstance",
   "baseType" : "Decimal",
   "importBaseType" : "thx.Decimal",
   "units" : [

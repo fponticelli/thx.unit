@@ -1,5 +1,6 @@
 {
   "unit" : "mass",
+  "unitType" : "Mass",
   "baseType" : "Decimal",
   "importBaseType" : "thx.Decimal",
   "units" : [

@@ -1,5 +1,6 @@
 {
   "unit" : "luminousintensity",
+  "unitType" : "LuminousIntensity",
   "baseType" : "Decimal",
   "importBaseType" : "thx.Decimal",
   "units" : [

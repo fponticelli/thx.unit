@@ -1,5 +1,6 @@
 {
   "unit" : "digital",
+  "unitType" : "Digital",
   "baseType" : "Decimal",
   "importBaseType" : "thx.Decimal",
   "units" : [
