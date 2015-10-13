@@ -1,4 +1,6 @@
 {
+  "unit" : "temperature",
+  "unitType" : "Temperature",
   "units" : [
     { "type" : "Celsius",    "symbol" : "°C", "toCelsius" : "this" },
     { "type" : "Fahrenheit", "symbol" : "°F", "toCelsius" : "(this - 32) * 5/9" },

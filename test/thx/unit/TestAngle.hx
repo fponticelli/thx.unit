@@ -1,3 +1,5 @@
+package thx.unit;
+
 import thx.unit.angle.Degree;
 import thx.unit.angle.Radian;
 import utest.Assert;

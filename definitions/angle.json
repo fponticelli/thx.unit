@@ -1,4 +1,6 @@
 {
+  "unit" : "angle",
+  "unitType" : "Angle",
   "units" : [
     { "type" : "BinaryDegree", "symbol" : "binary degree", "ofTurn" : 256.0 },
     { "type" : "Degree",       "symbol" : "°",             "ofTurn" : 360.0 },
