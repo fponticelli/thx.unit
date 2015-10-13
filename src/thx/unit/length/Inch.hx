@@ -43,8 +43,8 @@ abstract Inch(Decimal) {
   inline public function equalsTo(that : Inch) : Bool
     return this.equalsTo(that.toDecimal());
   @:op(A==B)
-  inline public function equals(that : Inch) : Bool
-    return this.equalsTo(that.toDecimal());
+  inline static public function equals(self : Inch, that : Inch) : Bool
+    return self.equalsTo(that.toDecimal());
 
   public function nearEqualsTo(that : Inch) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());

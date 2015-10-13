@@ -43,8 +43,8 @@ abstract Thou(Decimal) {
   inline public function equalsTo(that : Thou) : Bool
     return this.equalsTo(that.toDecimal());
   @:op(A==B)
-  inline public function equals(that : Thou) : Bool
-    return this.equalsTo(that.toDecimal());
+  inline static public function equals(self : Thou, that : Thou) : Bool
+    return self.equalsTo(that.toDecimal());
 
   public function nearEqualsTo(that : Thou) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());

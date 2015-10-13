@@ -43,8 +43,8 @@ abstract ${type}($baseType) {
   inline public function equalsTo(that : $type) : Bool
     return this.equalsTo(that.to${baseType}());
   @:op(A==B)
-  inline public function equals(that : $type) : Bool
-    return this.equalsTo(that.to${baseType}());
+  inline static public function equals(self : $type, that : $type) : Bool
+    return self.equalsTo(that.to${baseType}());
 
   public function nearEqualsTo(that : $type) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());

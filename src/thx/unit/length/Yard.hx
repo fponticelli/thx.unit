@@ -43,8 +43,8 @@ abstract Yard(Decimal) {
   inline public function equalsTo(that : Yard) : Bool
     return this.equalsTo(that.toDecimal());
   @:op(A==B)
-  inline public function equals(that : Yard) : Bool
-    return this.equalsTo(that.toDecimal());
+  inline static public function equals(self : Yard, that : Yard) : Bool
+    return self.equalsTo(that.toDecimal());
 
   public function nearEqualsTo(that : Yard) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());

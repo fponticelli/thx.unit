@@ -43,8 +43,8 @@ abstract Chain(Decimal) {
   inline public function equalsTo(that : Chain) : Bool
     return this.equalsTo(that.toDecimal());
   @:op(A==B)
-  inline public function equals(that : Chain) : Bool
-    return this.equalsTo(that.toDecimal());
+  inline static public function equals(self : Chain, that : Chain) : Bool
+    return self.equalsTo(that.toDecimal());
 
   public function nearEqualsTo(that : Chain) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());

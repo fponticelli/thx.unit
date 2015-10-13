@@ -43,8 +43,8 @@ abstract NauticalMile(Decimal) {
   inline public function equalsTo(that : NauticalMile) : Bool
     return this.equalsTo(that.toDecimal());
   @:op(A==B)
-  inline public function equals(that : NauticalMile) : Bool
-    return this.equalsTo(that.toDecimal());
+  inline static public function equals(self : NauticalMile, that : NauticalMile) : Bool
+    return self.equalsTo(that.toDecimal());
 
   public function nearEqualsTo(that : NauticalMile) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());

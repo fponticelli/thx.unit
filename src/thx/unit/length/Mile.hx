@@ -43,8 +43,8 @@ abstract Mile(Decimal) {
   inline public function equalsTo(that : Mile) : Bool
     return this.equalsTo(that.toDecimal());
   @:op(A==B)
-  inline public function equals(that : Mile) : Bool
-    return this.equalsTo(that.toDecimal());
+  inline static public function equals(self : Mile, that : Mile) : Bool
+    return self.equalsTo(that.toDecimal());
 
   public function nearEqualsTo(that : Mile) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());

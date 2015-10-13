@@ -43,8 +43,8 @@ abstract Centimetre(Decimal) {
   inline public function equalsTo(that : Centimetre) : Bool
     return this.equalsTo(that.toDecimal());
   @:op(A==B)
-  inline public function equals(that : Centimetre) : Bool
-    return this.equalsTo(that.toDecimal());
+  inline static public function equals(self : Centimetre, that : Centimetre) : Bool
+    return self.equalsTo(that.toDecimal());
 
   public function nearEqualsTo(that : Centimetre) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());

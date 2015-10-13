@@ -43,8 +43,8 @@ abstract Metre(Decimal) {
   inline public function equalsTo(that : Metre) : Bool
     return this.equalsTo(that.toDecimal());
   @:op(A==B)
-  inline public function equals(that : Metre) : Bool
-    return this.equalsTo(that.toDecimal());
+  inline static public function equals(self : Metre, that : Metre) : Bool
+    return self.equalsTo(that.toDecimal());
 
   public function nearEqualsTo(that : Metre) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());

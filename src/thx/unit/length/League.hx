@@ -43,8 +43,8 @@ abstract League(Decimal) {
   inline public function equalsTo(that : League) : Bool
     return this.equalsTo(that.toDecimal());
   @:op(A==B)
-  inline public function equals(that : League) : Bool
-    return this.equalsTo(that.toDecimal());
+  inline static public function equals(self : League, that : League) : Bool
+    return self.equalsTo(that.toDecimal());
 
   public function nearEqualsTo(that : League) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());

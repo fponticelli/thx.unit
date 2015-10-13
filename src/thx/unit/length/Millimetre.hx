@@ -43,8 +43,8 @@ abstract Millimetre(Decimal) {
   inline public function equalsTo(that : Millimetre) : Bool
     return this.equalsTo(that.toDecimal());
   @:op(A==B)
-  inline public function equals(that : Millimetre) : Bool
-    return this.equalsTo(that.toDecimal());
+  inline static public function equals(self : Millimetre, that : Millimetre) : Bool
+    return self.equalsTo(that.toDecimal());
 
   public function nearEqualsTo(that : Millimetre) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());

@@ -43,8 +43,8 @@ abstract Foot(Decimal) {
   inline public function equalsTo(that : Foot) : Bool
     return this.equalsTo(that.toDecimal());
   @:op(A==B)
-  inline public function equals(that : Foot) : Bool
-    return this.equalsTo(that.toDecimal());
+  inline static public function equals(self : Foot, that : Foot) : Bool
+    return self.equalsTo(that.toDecimal());
 
   public function nearEqualsTo(that : Foot) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
