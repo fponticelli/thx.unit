@@ -13,6 +13,7 @@ class TestAll {
     // runner.addCase(new thx.unit.TestCurrent());
     // runner.addCase(new thx.unit.TestDigital());
     runner.addCase(new thx.unit.TestLength());
+    runner.addCase(new thx.unit.TestUnits());
     // runner.addCase(new thx.unit.TestLuminousIntensity());
     // runner.addCase(new thx.unit.TestMass());
     // runner.addCase(new thx.unit.TestTemperature());
