@@ -281,6 +281,207 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthLightYear(unit): unit.modulo(that);
   }
 
+  public function min(that : Length) : Length return switch this {
+    case LengthKilometre(unit): unit.min(that.toKilometre());
+    case LengthMetre(unit): unit.min(that.toMetre());
+    case LengthCentimetre(unit): unit.min(that.toCentimetre());
+    case LengthMillimetre(unit): unit.min(that.toMillimetre());
+    case LengthMicrometre(unit): unit.min(that.toMicrometre());
+    case LengthNanometre(unit): unit.min(that.toNanometre());
+    case LengthLeague(unit): unit.min(that.toLeague());
+    case LengthMile(unit): unit.min(that.toMile());
+    case LengthFurlong(unit): unit.min(that.toFurlong());
+    case LengthChain(unit): unit.min(that.toChain());
+    case LengthYard(unit): unit.min(that.toYard());
+    case LengthFoot(unit): unit.min(that.toFoot());
+    case LengthInch(unit): unit.min(that.toInch());
+    case LengthLine(unit): unit.min(that.toLine());
+    case LengthThou(unit): unit.min(that.toThou());
+    case LengthFathom(unit): unit.min(that.toFathom());
+    case LengthNauticalMile(unit): unit.min(that.toNauticalMile());
+    case LengthEarthRadius(unit): unit.min(that.toEarthRadius());
+    case LengthAstronomicalUnit(unit): unit.min(that.toAstronomicalUnit());
+    case LengthLightYear(unit): unit.min(that.toLightYear());
+  }
+
+  public function max(that : Length) : Length return switch this {
+    case LengthKilometre(unit): unit.max(that.toKilometre());
+    case LengthMetre(unit): unit.max(that.toMetre());
+    case LengthCentimetre(unit): unit.max(that.toCentimetre());
+    case LengthMillimetre(unit): unit.max(that.toMillimetre());
+    case LengthMicrometre(unit): unit.max(that.toMicrometre());
+    case LengthNanometre(unit): unit.max(that.toNanometre());
+    case LengthLeague(unit): unit.max(that.toLeague());
+    case LengthMile(unit): unit.max(that.toMile());
+    case LengthFurlong(unit): unit.max(that.toFurlong());
+    case LengthChain(unit): unit.max(that.toChain());
+    case LengthYard(unit): unit.max(that.toYard());
+    case LengthFoot(unit): unit.max(that.toFoot());
+    case LengthInch(unit): unit.max(that.toInch());
+    case LengthLine(unit): unit.max(that.toLine());
+    case LengthThou(unit): unit.max(that.toThou());
+    case LengthFathom(unit): unit.max(that.toFathom());
+    case LengthNauticalMile(unit): unit.max(that.toNauticalMile());
+    case LengthEarthRadius(unit): unit.max(that.toEarthRadius());
+    case LengthAstronomicalUnit(unit): unit.max(that.toAstronomicalUnit());
+    case LengthLightYear(unit): unit.max(that.toLightYear());
+  }
+
+  public function equalsTo(that : Length) : Bool return switch this {
+    case LengthKilometre(unit): unit.equalsTo(that.toKilometre());
+    case LengthMetre(unit): unit.equalsTo(that.toMetre());
+    case LengthCentimetre(unit): unit.equalsTo(that.toCentimetre());
+    case LengthMillimetre(unit): unit.equalsTo(that.toMillimetre());
+    case LengthMicrometre(unit): unit.equalsTo(that.toMicrometre());
+    case LengthNanometre(unit): unit.equalsTo(that.toNanometre());
+    case LengthLeague(unit): unit.equalsTo(that.toLeague());
+    case LengthMile(unit): unit.equalsTo(that.toMile());
+    case LengthFurlong(unit): unit.equalsTo(that.toFurlong());
+    case LengthChain(unit): unit.equalsTo(that.toChain());
+    case LengthYard(unit): unit.equalsTo(that.toYard());
+    case LengthFoot(unit): unit.equalsTo(that.toFoot());
+    case LengthInch(unit): unit.equalsTo(that.toInch());
+    case LengthLine(unit): unit.equalsTo(that.toLine());
+    case LengthThou(unit): unit.equalsTo(that.toThou());
+    case LengthFathom(unit): unit.equalsTo(that.toFathom());
+    case LengthNauticalMile(unit): unit.equalsTo(that.toNauticalMile());
+    case LengthEarthRadius(unit): unit.equalsTo(that.toEarthRadius());
+    case LengthAstronomicalUnit(unit): unit.equalsTo(that.toAstronomicalUnit());
+    case LengthLightYear(unit): unit.equalsTo(that.toLightYear());
+  }
+  @:op(A==B)
+  public static function equals(self : Length, that : Length) : Bool
+    return self.equalsTo(that);
+
+  public function nearEqualsTo(that : Length) : Bool return switch this {
+    case LengthKilometre(unit): unit.nearEqualsTo(that.toKilometre());
+    case LengthMetre(unit): unit.nearEqualsTo(that.toMetre());
+    case LengthCentimetre(unit): unit.nearEqualsTo(that.toCentimetre());
+    case LengthMillimetre(unit): unit.nearEqualsTo(that.toMillimetre());
+    case LengthMicrometre(unit): unit.nearEqualsTo(that.toMicrometre());
+    case LengthNanometre(unit): unit.nearEqualsTo(that.toNanometre());
+    case LengthLeague(unit): unit.nearEqualsTo(that.toLeague());
+    case LengthMile(unit): unit.nearEqualsTo(that.toMile());
+    case LengthFurlong(unit): unit.nearEqualsTo(that.toFurlong());
+    case LengthChain(unit): unit.nearEqualsTo(that.toChain());
+    case LengthYard(unit): unit.nearEqualsTo(that.toYard());
+    case LengthFoot(unit): unit.nearEqualsTo(that.toFoot());
+    case LengthInch(unit): unit.nearEqualsTo(that.toInch());
+    case LengthLine(unit): unit.nearEqualsTo(that.toLine());
+    case LengthThou(unit): unit.nearEqualsTo(that.toThou());
+    case LengthFathom(unit): unit.nearEqualsTo(that.toFathom());
+    case LengthNauticalMile(unit): unit.nearEqualsTo(that.toNauticalMile());
+    case LengthEarthRadius(unit): unit.nearEqualsTo(that.toEarthRadius());
+    case LengthAstronomicalUnit(unit): unit.nearEqualsTo(that.toAstronomicalUnit());
+    case LengthLightYear(unit): unit.nearEqualsTo(that.toLightYear());
+  }
+  public static function nearEquals(self : Length, that : Length) : Bool
+    return self.nearEqualsTo(that);
+
+  public function lessThan(that : Length) : Bool return switch this {
+    case LengthKilometre(unit): unit.lessThan(that.toKilometre());
+    case LengthMetre(unit): unit.lessThan(that.toMetre());
+    case LengthCentimetre(unit): unit.lessThan(that.toCentimetre());
+    case LengthMillimetre(unit): unit.lessThan(that.toMillimetre());
+    case LengthMicrometre(unit): unit.lessThan(that.toMicrometre());
+    case LengthNanometre(unit): unit.lessThan(that.toNanometre());
+    case LengthLeague(unit): unit.lessThan(that.toLeague());
+    case LengthMile(unit): unit.lessThan(that.toMile());
+    case LengthFurlong(unit): unit.lessThan(that.toFurlong());
+    case LengthChain(unit): unit.lessThan(that.toChain());
+    case LengthYard(unit): unit.lessThan(that.toYard());
+    case LengthFoot(unit): unit.lessThan(that.toFoot());
+    case LengthInch(unit): unit.lessThan(that.toInch());
+    case LengthLine(unit): unit.lessThan(that.toLine());
+    case LengthThou(unit): unit.lessThan(that.toThou());
+    case LengthFathom(unit): unit.lessThan(that.toFathom());
+    case LengthNauticalMile(unit): unit.lessThan(that.toNauticalMile());
+    case LengthEarthRadius(unit): unit.lessThan(that.toEarthRadius());
+    case LengthAstronomicalUnit(unit): unit.lessThan(that.toAstronomicalUnit());
+    case LengthLightYear(unit): unit.lessThan(that.toLightYear());
+  }
+  @:op( A<B)
+  public static function less(self : Length, that : Length) : Bool
+    return self.lessThan(that);
+
+  public function lessEqualsTo(that : Length) : Bool return switch this {
+    case LengthKilometre(unit): unit.lessEqualsTo(that.toKilometre());
+    case LengthMetre(unit): unit.lessEqualsTo(that.toMetre());
+    case LengthCentimetre(unit): unit.lessEqualsTo(that.toCentimetre());
+    case LengthMillimetre(unit): unit.lessEqualsTo(that.toMillimetre());
+    case LengthMicrometre(unit): unit.lessEqualsTo(that.toMicrometre());
+    case LengthNanometre(unit): unit.lessEqualsTo(that.toNanometre());
+    case LengthLeague(unit): unit.lessEqualsTo(that.toLeague());
+    case LengthMile(unit): unit.lessEqualsTo(that.toMile());
+    case LengthFurlong(unit): unit.lessEqualsTo(that.toFurlong());
+    case LengthChain(unit): unit.lessEqualsTo(that.toChain());
+    case LengthYard(unit): unit.lessEqualsTo(that.toYard());
+    case LengthFoot(unit): unit.lessEqualsTo(that.toFoot());
+    case LengthInch(unit): unit.lessEqualsTo(that.toInch());
+    case LengthLine(unit): unit.lessEqualsTo(that.toLine());
+    case LengthThou(unit): unit.lessEqualsTo(that.toThou());
+    case LengthFathom(unit): unit.lessEqualsTo(that.toFathom());
+    case LengthNauticalMile(unit): unit.lessEqualsTo(that.toNauticalMile());
+    case LengthEarthRadius(unit): unit.lessEqualsTo(that.toEarthRadius());
+    case LengthAstronomicalUnit(unit): unit.lessEqualsTo(that.toAstronomicalUnit());
+    case LengthLightYear(unit): unit.lessEqualsTo(that.toLightYear());
+  }
+  @:op( A<B)
+  public static function lessEquals(self : Length, that : Length) : Bool
+    return self.lessEqualsTo(that);
+
+  public function greaterThan(that : Length) : Bool return switch this {
+    case LengthKilometre(unit): unit.greaterThan(that.toKilometre());
+    case LengthMetre(unit): unit.greaterThan(that.toMetre());
+    case LengthCentimetre(unit): unit.greaterThan(that.toCentimetre());
+    case LengthMillimetre(unit): unit.greaterThan(that.toMillimetre());
+    case LengthMicrometre(unit): unit.greaterThan(that.toMicrometre());
+    case LengthNanometre(unit): unit.greaterThan(that.toNanometre());
+    case LengthLeague(unit): unit.greaterThan(that.toLeague());
+    case LengthMile(unit): unit.greaterThan(that.toMile());
+    case LengthFurlong(unit): unit.greaterThan(that.toFurlong());
+    case LengthChain(unit): unit.greaterThan(that.toChain());
+    case LengthYard(unit): unit.greaterThan(that.toYard());
+    case LengthFoot(unit): unit.greaterThan(that.toFoot());
+    case LengthInch(unit): unit.greaterThan(that.toInch());
+    case LengthLine(unit): unit.greaterThan(that.toLine());
+    case LengthThou(unit): unit.greaterThan(that.toThou());
+    case LengthFathom(unit): unit.greaterThan(that.toFathom());
+    case LengthNauticalMile(unit): unit.greaterThan(that.toNauticalMile());
+    case LengthEarthRadius(unit): unit.greaterThan(that.toEarthRadius());
+    case LengthAstronomicalUnit(unit): unit.greaterThan(that.toAstronomicalUnit());
+    case LengthLightYear(unit): unit.greaterThan(that.toLightYear());
+  }
+  @:op( A>B)
+  public static function greater(self : Length, that : Length) : Bool
+    return self.greaterThan(that);
+
+  public function greaterEqualsTo(that : Length) : Bool return switch this {
+    case LengthKilometre(unit): unit.greaterEqualsTo(that.toKilometre());
+    case LengthMetre(unit): unit.greaterEqualsTo(that.toMetre());
+    case LengthCentimetre(unit): unit.greaterEqualsTo(that.toCentimetre());
+    case LengthMillimetre(unit): unit.greaterEqualsTo(that.toMillimetre());
+    case LengthMicrometre(unit): unit.greaterEqualsTo(that.toMicrometre());
+    case LengthNanometre(unit): unit.greaterEqualsTo(that.toNanometre());
+    case LengthLeague(unit): unit.greaterEqualsTo(that.toLeague());
+    case LengthMile(unit): unit.greaterEqualsTo(that.toMile());
+    case LengthFurlong(unit): unit.greaterEqualsTo(that.toFurlong());
+    case LengthChain(unit): unit.greaterEqualsTo(that.toChain());
+    case LengthYard(unit): unit.greaterEqualsTo(that.toYard());
+    case LengthFoot(unit): unit.greaterEqualsTo(that.toFoot());
+    case LengthInch(unit): unit.greaterEqualsTo(that.toInch());
+    case LengthLine(unit): unit.greaterEqualsTo(that.toLine());
+    case LengthThou(unit): unit.greaterEqualsTo(that.toThou());
+    case LengthFathom(unit): unit.greaterEqualsTo(that.toFathom());
+    case LengthNauticalMile(unit): unit.greaterEqualsTo(that.toNauticalMile());
+    case LengthEarthRadius(unit): unit.greaterEqualsTo(that.toEarthRadius());
+    case LengthAstronomicalUnit(unit): unit.greaterEqualsTo(that.toAstronomicalUnit());
+    case LengthLightYear(unit): unit.greaterEqualsTo(that.toLightYear());
+  }
+  @:op( A<B)
+  public static function greatersEquals(self : Length, that : Length) : Bool
+    return self.greaterEqualsTo(that);
+
 
   @:to public function toKilometre() : Kilometre return switch this {
     case LengthKilometre(unit): unit.toKilometre();
@@ -776,5 +977,3 @@ enum LengthImpl {
   LengthAstronomicalUnit(unit : AstronomicalUnit);
   LengthLightYear(unit : LightYear);
 }
-
-

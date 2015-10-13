@@ -58,6 +58,55 @@ $for(value in units) {
     case ${value.enumConstructor}(unit): unit.modulo(that);}
   }
 
+  public function min(that : $unitType) : $unitType return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.min(that.to${value.type}());}
+  }
+
+  public function max(that : $unitType) : $unitType return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.max(that.to${value.type}());}
+  }
+
+  public function equalsTo(that : $unitType) : Bool return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.equalsTo(that.to${value.type}());}
+  }
+  @:op(A==B)
+  public static function equals(self : $unitType, that : $unitType) : Bool
+    return self.equalsTo(that);
+
+  public function nearEqualsTo(that : $unitType) : Bool return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.nearEqualsTo(that.to${value.type}());}
+  }
+  public static function nearEquals(self : $unitType, that : $unitType) : Bool
+    return self.nearEqualsTo(that);
+
+  public function lessThan(that : $unitType) : Bool return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.lessThan(that.to${value.type}());}
+  }
+  @:op( A<B)
+  public static function less(self : $unitType, that : $unitType) : Bool
+    return self.lessThan(that);
+
+  public function lessEqualsTo(that : $unitType) : Bool return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.lessEqualsTo(that.to${value.type}());}
+  }
+  @:op( A<B)
+  public static function lessEquals(self : $unitType, that : $unitType) : Bool
+    return self.lessEqualsTo(that);
+
+  public function greaterThan(that : $unitType) : Bool return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.greaterThan(that.to${value.type}());}
+  }
+  @:op( A>B)
+  public static function greater(self : $unitType, that : $unitType) : Bool
+    return self.greaterThan(that);
+
+  public function greaterEqualsTo(that : $unitType) : Bool return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.greaterEqualsTo(that.to${value.type}());}
+  }
+  @:op( A<B)
+  public static function greatersEquals(self : $unitType, that : $unitType) : Bool
+    return self.greaterEqualsTo(that);
+
 $for(value in units) {
   @:to public function to${value.type}() : ${value.type} return switch this {$for(value in units) {
     case ${value.enumConstructor}(unit): unit.to${value.type}();}
@@ -78,53 +127,3 @@ $for(value in units) {
 enum ${unitTypeImpl} {$for(value in units) {
   ${value.enumConstructor}(unit : ${value.type});}
 }
-
-$(/*
-    inline public function min(that : $type) : $type
-      return this.min(that.to${baseType}());
-
-    inline public function max(that : $type) : $type
-      return this.max(that.to${baseType}());
-
-    inline public function equalsTo(that : $type) : Bool
-      return this.equalsTo(that.to${baseType}());
-    @:op(A==B)
-    inline public function equals(that : $type) : Bool
-      return this.equalsTo(that.to${baseType}());
-
-    public function nearEqualsTo(that : $type) : Bool
-      return Floats.nearEquals(this.toFloat(), that.toFloat());
-    public static function nearEquals(self : $type, that : $type) : Bool
-      return Floats.nearEquals(self.toFloat(), that.toFloat());
-
-    inline public function notEqualsTo(that : $type) : Bool
-      return !this.equalsTo(that.to${baseType}());
-    @:op(A!=B)
-    inline static public function notEquals(self : $type, that : $type) : Bool
-      return !self.equalsTo(that.to${baseType}());
-
-    inline public function lessThan(that : $type) : Bool
-      return this.lessThan(that.to${baseType}());
-    @:op( A<B)
-    inline static public function less(self : $type, that : $type) : Bool
-      return self.lessThan(that.to${baseType}());
-
-    inline public function lessEqualsTo(that : $type) : Bool
-      return this.lessEqualsTo(that.to${baseType}());
-    @:op(A<=B)
-    inline static public function lessEquals(self : $type, that : $type) : Bool
-      return self.lessEqualsTo(that.to${baseType}());
-
-    inline public function greaterThan(that : $type) : Bool
-      return this.greaterThan(that.to${baseType}());
-    @:op( A>B)
-    inline static public function greater(self : $type, that : $type) : Bool
-      return self.greaterThan(that.to${baseType}());
-
-    inline public function greaterEqualsTo(that : $type) : Bool
-      return this.greaterEqualsTo(that.to${baseType}());
-    @:op(A>=B)
-    inline public function greaterEquals(that : $type) : Bool
-      return this.greaterEqualsTo(that.to${baseType}());
-  }
-*/)
