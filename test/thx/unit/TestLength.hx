@@ -28,4 +28,11 @@ class TestLength {
     Assert.isTrue(2.54 == len.value);
     Assert.isTrue("cm" == len.symbol);
   }
+
+  public function testArithmetic() {
+    var len1 : Length = "1 inch",
+        len2 : Length = "2.54cm";
+    Assert.isTrue(2 == (len1 + len2).value);
+    Assert.isTrue(0 == (len1 - len2).value);
+  }
 }

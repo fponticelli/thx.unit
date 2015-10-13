@@ -30,8 +30,36 @@ $for(value in units) {
     case ${value.enumConstructor}(unit): { value : unit.toDecimal(), symbol : ${value.type}.symbol };}
   }
 
+  public function abs() : $unitType return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.abs();}
+  }
+
+  @:op( -A ) public function negate() : $unitType return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.negate();}
+  }
+
+  @:op( A+B) public function add(that : $unitType) : $unitType return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.add(that.to${value.type}());}
+  }
+
+  @:op( A-B) public function subtract(that : $unitType) : $unitType return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.subtract(that.to${value.type}());}
+  }
+
+  @:op( A*B) public function multiply(that : Decimal) : $unitType return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.multiply(that);}
+  }
+
+  @:op( A/B) public function divide(that : Decimal) : $unitType return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.divide(that);}
+  }
+
+  @:op( A%B) public function modulo(that : Decimal) : $unitType return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.modulo(that);}
+  }
+
 $for(value in units) {
-  @:to inline public function to${value.type}() : ${value.type} return switch this {$for(value in units) {
+  @:to public function to${value.type}() : ${value.type} return switch this {$for(value in units) {
     case ${value.enumConstructor}(unit): unit.to${value.type}();}
   }
 }
@@ -52,27 +80,11 @@ enum ${unitTypeImpl} {$for(value in units) {
 }
 
 $(/*
-    inline public function abs() : $type
-      return this.abs();
-
     inline public function min(that : $type) : $type
       return this.min(that.to${baseType}());
 
     inline public function max(that : $type) : $type
       return this.max(that.to${baseType}());
-
-    @:op( -A ) inline public function negate() : $type
-      return -this;
-    @:op( A+B) inline public function add(that : $type) : $type
-      return this.add(that.to${baseType}());
-    @:op( A-B) inline public function subtract(that : $type) : $type
-      return this.subtract(that.to${baseType}());
-    @:op( A*B) inline public function multiply(that : $baseType) : $type
-      return this.multiply(that);
-    @:op( A/B) inline public function divide(that : $baseType) : $type
-      return this.divide(that);
-    @:op( A%B) inline public function modulo(that : $baseType) : $type
-      return this.modulo(that);
 
     inline public function equalsTo(that : $type) : Bool
       return this.equalsTo(that.to${baseType}());
@@ -114,22 +126,5 @@ $(/*
     @:op(A>=B)
     inline public function greaterEquals(that : $type) : Bool
       return this.greaterEqualsTo(that.to${baseType}());
-
-    inline public function to${baseType}() : $baseType
-      return this;
-
-    inline public function toFloat() : Float
-      return this.toFloat();
-
-  $for(value in units) {
-    static var divider${value.type} : $baseType = "$value.ofUnit";
-    @:to inline public function to${value.type}() : $value.type
-      return (this * ofUnit) / divider${value.type};
-  }
-
-    @:to inline public function toString() : String
-      return this.toString() + symbol;
-
-    public static inline var symbol : String = "$symbol";
   }
 */)
