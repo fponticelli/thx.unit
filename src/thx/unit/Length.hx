@@ -1,67 +1,73 @@
 package thx.unit;
 
 import thx.unit.length.*;
+import thx.Error;
 
 abstract Length(LengthImpl) from LengthImpl to LengthImpl {
+  @:from static public function fromString(s : String) : Length {
+    var o = Units.parseUnit(s);
+    if(null == o) throw new Error("unable to parse " + s + " to Length");
+    return fromPair(o);
+  }
 
-  @:from inline static public function fromKilometre(value : Kilometre) : Length
+  @:from inline static public function kilometre(value : Kilometre) : Length
     return LengthKilometre(value);
 
-  @:from inline static public function fromMetre(value : Metre) : Length
+  @:from inline static public function metre(value : Metre) : Length
     return LengthMetre(value);
 
-  @:from inline static public function fromCentimetre(value : Centimetre) : Length
+  @:from inline static public function centimetre(value : Centimetre) : Length
     return LengthCentimetre(value);
 
-  @:from inline static public function fromMillimetre(value : Millimetre) : Length
+  @:from inline static public function millimetre(value : Millimetre) : Length
     return LengthMillimetre(value);
 
-  @:from inline static public function fromMicrometre(value : Micrometre) : Length
+  @:from inline static public function micrometre(value : Micrometre) : Length
     return LengthMicrometre(value);
 
-  @:from inline static public function fromNanometre(value : Nanometre) : Length
+  @:from inline static public function nanometre(value : Nanometre) : Length
     return LengthNanometre(value);
 
-  @:from inline static public function fromLeague(value : League) : Length
+  @:from inline static public function league(value : League) : Length
     return LengthLeague(value);
 
-  @:from inline static public function fromMile(value : Mile) : Length
+  @:from inline static public function mile(value : Mile) : Length
     return LengthMile(value);
 
-  @:from inline static public function fromFurlong(value : Furlong) : Length
+  @:from inline static public function furlong(value : Furlong) : Length
     return LengthFurlong(value);
 
-  @:from inline static public function fromChain(value : Chain) : Length
+  @:from inline static public function chain(value : Chain) : Length
     return LengthChain(value);
 
-  @:from inline static public function fromYard(value : Yard) : Length
+  @:from inline static public function yard(value : Yard) : Length
     return LengthYard(value);
 
-  @:from inline static public function fromFoot(value : Foot) : Length
+  @:from inline static public function foot(value : Foot) : Length
     return LengthFoot(value);
 
-  @:from inline static public function fromInch(value : Inch) : Length
+  @:from inline static public function inch(value : Inch) : Length
     return LengthInch(value);
 
-  @:from inline static public function fromLine(value : Line) : Length
+  @:from inline static public function line(value : Line) : Length
     return LengthLine(value);
 
-  @:from inline static public function fromThou(value : Thou) : Length
+  @:from inline static public function thou(value : Thou) : Length
     return LengthThou(value);
 
-  @:from inline static public function fromFathom(value : Fathom) : Length
+  @:from inline static public function fathom(value : Fathom) : Length
     return LengthFathom(value);
 
-  @:from inline static public function fromNauticalMile(value : NauticalMile) : Length
+  @:from inline static public function nauticalMile(value : NauticalMile) : Length
     return LengthNauticalMile(value);
 
-  @:from inline static public function fromEarthRadius(value : EarthRadius) : Length
+  @:from inline static public function earthRadius(value : EarthRadius) : Length
     return LengthEarthRadius(value);
 
-  @:from inline static public function fromAstronomicalUnit(value : AstronomicalUnit) : Length
+  @:from inline static public function astronomicalUnit(value : AstronomicalUnit) : Length
     return LengthAstronomicalUnit(value);
 
-  @:from inline static public function fromLightYear(value : LightYear) : Length
+  @:from inline static public function lightYear(value : LightYear) : Length
     return LengthLightYear(value);
 
   public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Length return switch info.symbol.toLowerCase() {
@@ -87,6 +93,9 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case "ly", "light year": LengthLightYear(info.value);
     case _: throw new thx.Error("invalid symbol " + info.symbol, pos);
   }
+
+  public var value(get, never) : Decimal;
+  public var symbol(get, never) : String;
 
   function getInfo() return switch this {
     case LengthKilometre(unit): { value : unit.toDecimal(), symbol : Kilometre.symbol };
@@ -572,6 +581,12 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthLightYear(unit): unit.toLightYear();
   }
 
+  function get_value() : Decimal
+    return getInfo().value;
+
+  function get_symbol() : String
+    return getInfo().symbol;
+
   public function toString() {
     var info = getInfo();
     return info.value.toString() + info.symbol;
@@ -600,3 +615,5 @@ enum LengthImpl {
   LengthAstronomicalUnit(unit : AstronomicalUnit);
   LengthLightYear(unit : LightYear);
 }
+
+

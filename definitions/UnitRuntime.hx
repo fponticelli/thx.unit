@@ -6,16 +6,25 @@ $(
 )package thx.unit;
 
 import thx.unit.${unit}.*;
+import thx.Error;
 
 abstract ${unitType}(${unitTypeImpl}) from ${unitTypeImpl} to ${unitTypeImpl} {
+  @:from static public function fromString(s : String) : ${unitType} {
+    var o = Units.parseUnit(s);
+    if(null == o) throw new Error("unable to parse " + s + " to ${unitType}");
+    return fromPair(o);
+  }
 $for(value in units) {
-  @:from inline static public function from${value.type}(value : $value.type) : $unitType
+  @:from inline static public function ${value.type.substring(0, 1).toLowerCase() + value.type.substring(1)}(value : $value.type) : $unitType
     return ${value.enumConstructor}(value);
 }
   public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : ${unitType} return switch info.symbol.toLowerCase() {$for(value in units) {
     case "${value.symbol.toLowerCase()}", "${Strings.humanize(value.type)}": ${value.enumConstructor}(info.value);}
     case _: throw new thx.Error("invalid symbol " + info.symbol, pos);
   }
+
+  public var value(get, never) : Decimal;
+  public var symbol(get, never) : String;
 
   function getInfo() return switch this {$for(value in units) {
     case ${value.enumConstructor}(unit): { value : unit.toDecimal(), symbol : ${value.type}.symbol };}
@@ -26,6 +35,12 @@ $for(value in units) {
     case ${value.enumConstructor}(unit): unit.to${value.type}();}
   }
 }
+  function get_value() : Decimal
+    return getInfo().value;
+
+  function get_symbol() : String
+    return getInfo().symbol;
+
   public function toString() {
     var info = getInfo();
     return info.value.toString() + info.symbol;

@@ -17,9 +17,15 @@ class TestLength {
   }
 
   public function testLength() {
-    var len = Length.fromFoot(3);
+    var len = Length.foot(3);
     Assert.equals("3ft", len.toString());
     var inches = len.toInch();
     Assert.equals("36in", inches.toString());
+  }
+
+  public function testParse() {
+    var len : Length = "2.54cm";
+    Assert.isTrue(2.54 == len.value);
+    Assert.isTrue("cm" == len.symbol);
   }
 }
