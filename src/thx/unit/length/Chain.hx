@@ -126,7 +126,7 @@ abstract Chain(Decimal) {
     
   static var dividerChain : Decimal = "20.1168";
   @:to inline public function toChain() : Chain
-      return ((this * ofUnit) / dividerChain).trim();
+      return this;
     
   static var dividerYard : Decimal = "0.9144";
   @:to inline public function toYard() : Yard
@@ -168,7 +168,6 @@ abstract Chain(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

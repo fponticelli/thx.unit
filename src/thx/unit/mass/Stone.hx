@@ -134,7 +134,7 @@ abstract Stone(Decimal) {
     
   static var dividerStone : Decimal = "6.35029318";
   @:to inline public function toStone() : Stone
-      return ((this * ofUnit) / dividerStone).trim();
+      return this;
     
   static var dividerPound : Decimal = "0.45359237";
   @:to inline public function toPound() : Pound
@@ -172,7 +172,6 @@ abstract Stone(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

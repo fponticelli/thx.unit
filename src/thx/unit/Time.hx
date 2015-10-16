@@ -28,6 +28,9 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
   @:from inline static public function shake(value : Shake) : Time
     return TimeShake(value);
 
+  @:from inline static public function tick(value : Tick) : Time
+    return TimeTick(value);
+
   @:from inline static public function microsecond(value : Microsecond) : Time
     return TimeMicrosecond(value);
 
@@ -89,6 +92,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case "ps", "picosecond": TimePicosecond(info.value);
     case "ns", "nanosecond": TimeNanosecond(info.value);
     case "shake", "shake": TimeShake(info.value);
+    case "tick", "tick": TimeTick(info.value);
     case "μs", "microsecond": TimeMicrosecond(info.value);
     case "fourth", "fourth": TimeFourth(info.value);
     case "ms", "millisecond": TimeMillisecond(info.value);
@@ -120,6 +124,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): { value : unit.toDecimal(), symbol : Picosecond.symbol };
     case TimeNanosecond(unit): { value : unit.toDecimal(), symbol : Nanosecond.symbol };
     case TimeShake(unit): { value : unit.toDecimal(), symbol : Shake.symbol };
+    case TimeTick(unit): { value : unit.toDecimal(), symbol : Tick.symbol };
     case TimeMicrosecond(unit): { value : unit.toDecimal(), symbol : Microsecond.symbol };
     case TimeFourth(unit): { value : unit.toDecimal(), symbol : Fourth.symbol };
     case TimeMillisecond(unit): { value : unit.toDecimal(), symbol : Millisecond.symbol };
@@ -147,6 +152,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.abs();
     case TimeNanosecond(unit): unit.abs();
     case TimeShake(unit): unit.abs();
+    case TimeTick(unit): unit.abs();
     case TimeMicrosecond(unit): unit.abs();
     case TimeFourth(unit): unit.abs();
     case TimeMillisecond(unit): unit.abs();
@@ -174,6 +180,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.negate();
     case TimeNanosecond(unit): unit.negate();
     case TimeShake(unit): unit.negate();
+    case TimeTick(unit): unit.negate();
     case TimeMicrosecond(unit): unit.negate();
     case TimeFourth(unit): unit.negate();
     case TimeMillisecond(unit): unit.negate();
@@ -201,6 +208,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.add(that.toPicosecond());
     case TimeNanosecond(unit): unit.add(that.toNanosecond());
     case TimeShake(unit): unit.add(that.toShake());
+    case TimeTick(unit): unit.add(that.toTick());
     case TimeMicrosecond(unit): unit.add(that.toMicrosecond());
     case TimeFourth(unit): unit.add(that.toFourth());
     case TimeMillisecond(unit): unit.add(that.toMillisecond());
@@ -228,6 +236,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.subtract(that.toPicosecond());
     case TimeNanosecond(unit): unit.subtract(that.toNanosecond());
     case TimeShake(unit): unit.subtract(that.toShake());
+    case TimeTick(unit): unit.subtract(that.toTick());
     case TimeMicrosecond(unit): unit.subtract(that.toMicrosecond());
     case TimeFourth(unit): unit.subtract(that.toFourth());
     case TimeMillisecond(unit): unit.subtract(that.toMillisecond());
@@ -255,6 +264,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.multiply(that);
     case TimeNanosecond(unit): unit.multiply(that);
     case TimeShake(unit): unit.multiply(that);
+    case TimeTick(unit): unit.multiply(that);
     case TimeMicrosecond(unit): unit.multiply(that);
     case TimeFourth(unit): unit.multiply(that);
     case TimeMillisecond(unit): unit.multiply(that);
@@ -282,6 +292,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.divide(that);
     case TimeNanosecond(unit): unit.divide(that);
     case TimeShake(unit): unit.divide(that);
+    case TimeTick(unit): unit.divide(that);
     case TimeMicrosecond(unit): unit.divide(that);
     case TimeFourth(unit): unit.divide(that);
     case TimeMillisecond(unit): unit.divide(that);
@@ -309,6 +320,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.modulo(that);
     case TimeNanosecond(unit): unit.modulo(that);
     case TimeShake(unit): unit.modulo(that);
+    case TimeTick(unit): unit.modulo(that);
     case TimeMicrosecond(unit): unit.modulo(that);
     case TimeFourth(unit): unit.modulo(that);
     case TimeMillisecond(unit): unit.modulo(that);
@@ -336,6 +348,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.min(that.toPicosecond());
     case TimeNanosecond(unit): unit.min(that.toNanosecond());
     case TimeShake(unit): unit.min(that.toShake());
+    case TimeTick(unit): unit.min(that.toTick());
     case TimeMicrosecond(unit): unit.min(that.toMicrosecond());
     case TimeFourth(unit): unit.min(that.toFourth());
     case TimeMillisecond(unit): unit.min(that.toMillisecond());
@@ -363,6 +376,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.max(that.toPicosecond());
     case TimeNanosecond(unit): unit.max(that.toNanosecond());
     case TimeShake(unit): unit.max(that.toShake());
+    case TimeTick(unit): unit.max(that.toTick());
     case TimeMicrosecond(unit): unit.max(that.toMicrosecond());
     case TimeFourth(unit): unit.max(that.toFourth());
     case TimeMillisecond(unit): unit.max(that.toMillisecond());
@@ -390,6 +404,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.equalsTo(that.toPicosecond());
     case TimeNanosecond(unit): unit.equalsTo(that.toNanosecond());
     case TimeShake(unit): unit.equalsTo(that.toShake());
+    case TimeTick(unit): unit.equalsTo(that.toTick());
     case TimeMicrosecond(unit): unit.equalsTo(that.toMicrosecond());
     case TimeFourth(unit): unit.equalsTo(that.toFourth());
     case TimeMillisecond(unit): unit.equalsTo(that.toMillisecond());
@@ -420,6 +435,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.nearEqualsTo(that.toPicosecond());
     case TimeNanosecond(unit): unit.nearEqualsTo(that.toNanosecond());
     case TimeShake(unit): unit.nearEqualsTo(that.toShake());
+    case TimeTick(unit): unit.nearEqualsTo(that.toTick());
     case TimeMicrosecond(unit): unit.nearEqualsTo(that.toMicrosecond());
     case TimeFourth(unit): unit.nearEqualsTo(that.toFourth());
     case TimeMillisecond(unit): unit.nearEqualsTo(that.toMillisecond());
@@ -449,6 +465,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.lessThan(that.toPicosecond());
     case TimeNanosecond(unit): unit.lessThan(that.toNanosecond());
     case TimeShake(unit): unit.lessThan(that.toShake());
+    case TimeTick(unit): unit.lessThan(that.toTick());
     case TimeMicrosecond(unit): unit.lessThan(that.toMicrosecond());
     case TimeFourth(unit): unit.lessThan(that.toFourth());
     case TimeMillisecond(unit): unit.lessThan(that.toMillisecond());
@@ -479,6 +496,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.lessEqualsTo(that.toPicosecond());
     case TimeNanosecond(unit): unit.lessEqualsTo(that.toNanosecond());
     case TimeShake(unit): unit.lessEqualsTo(that.toShake());
+    case TimeTick(unit): unit.lessEqualsTo(that.toTick());
     case TimeMicrosecond(unit): unit.lessEqualsTo(that.toMicrosecond());
     case TimeFourth(unit): unit.lessEqualsTo(that.toFourth());
     case TimeMillisecond(unit): unit.lessEqualsTo(that.toMillisecond());
@@ -509,6 +527,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.greaterThan(that.toPicosecond());
     case TimeNanosecond(unit): unit.greaterThan(that.toNanosecond());
     case TimeShake(unit): unit.greaterThan(that.toShake());
+    case TimeTick(unit): unit.greaterThan(that.toTick());
     case TimeMicrosecond(unit): unit.greaterThan(that.toMicrosecond());
     case TimeFourth(unit): unit.greaterThan(that.toFourth());
     case TimeMillisecond(unit): unit.greaterThan(that.toMillisecond());
@@ -539,6 +558,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.greaterEqualsTo(that.toPicosecond());
     case TimeNanosecond(unit): unit.greaterEqualsTo(that.toNanosecond());
     case TimeShake(unit): unit.greaterEqualsTo(that.toShake());
+    case TimeTick(unit): unit.greaterEqualsTo(that.toTick());
     case TimeMicrosecond(unit): unit.greaterEqualsTo(that.toMicrosecond());
     case TimeFourth(unit): unit.greaterEqualsTo(that.toFourth());
     case TimeMillisecond(unit): unit.greaterEqualsTo(that.toMillisecond());
@@ -570,6 +590,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -597,6 +618,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -624,6 +646,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -651,6 +674,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -678,6 +702,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -705,6 +730,35 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
+    case TimeMicrosecond(unit): unit.toMicrosecond();
+    case TimeFourth(unit): unit.toFourth();
+    case TimeMillisecond(unit): unit.toMillisecond();
+    case TimeThird(unit): unit.toThird();
+    case TimeSecond(unit): unit.toSecond();
+    case TimeMinute(unit): unit.toMinute();
+    case TimeKe(unit): unit.toKe();
+    case TimeKilosecond(unit): unit.toKilosecond();
+    case TimeHour(unit): unit.toHour();
+    case TimeDay(unit): unit.toDay();
+    case TimeWeek(unit): unit.toWeek();
+    case TimeMegasecond(unit): unit.toMegasecond();
+    case TimeFortnight(unit): unit.toFortnight();
+    case TimeSynodicMonth(unit): unit.toSynodicMonth();
+    case TimeTropicalMonth(unit): unit.toTropicalMonth();
+    case TimeJulianYear(unit): unit.toJulianYear();
+    case TimeGigasecond(unit): unit.toGigasecond();
+    case TimeTerasecond(unit): unit.toTerasecond();
+  }
+
+  @:to public function toTick() : Tick return switch this {
+    case TimePlankTimeUnit(unit): unit.toPlankTimeUnit();
+    case TimeJiffyPhysics(unit): unit.toJiffyPhysics();
+    case TimeSvedberg(unit): unit.toSvedberg();
+    case TimePicosecond(unit): unit.toPicosecond();
+    case TimeNanosecond(unit): unit.toNanosecond();
+    case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -732,6 +786,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -759,6 +814,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -786,6 +842,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -813,6 +870,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -840,6 +898,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -867,6 +926,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -894,6 +954,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -921,6 +982,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -948,6 +1010,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -975,6 +1038,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -1002,6 +1066,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -1029,6 +1094,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -1056,6 +1122,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -1083,6 +1150,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -1110,6 +1178,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -1137,6 +1206,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -1164,6 +1234,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -1191,6 +1262,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case TimePicosecond(unit): unit.toPicosecond();
     case TimeNanosecond(unit): unit.toNanosecond();
     case TimeShake(unit): unit.toShake();
+    case TimeTick(unit): unit.toTick();
     case TimeMicrosecond(unit): unit.toMicrosecond();
     case TimeFourth(unit): unit.toFourth();
     case TimeMillisecond(unit): unit.toMillisecond();
@@ -1221,6 +1293,12 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     var info = getInfo();
     return info.value.toString() + info.symbol;
   }
+
+  @:from static public function fromTime(time : thx.Time) : Terasecond
+    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks));
+
+  @:to public function toTime() : thx.Time
+    return new thx.Time(toTick().toDecimal().toInt64());
 }
 
 enum TimeImpl {
@@ -1230,6 +1308,7 @@ enum TimeImpl {
   TimePicosecond(unit : Picosecond);
   TimeNanosecond(unit : Nanosecond);
   TimeShake(unit : Shake);
+  TimeTick(unit : Tick);
   TimeMicrosecond(unit : Microsecond);
   TimeFourth(unit : Fourth);
   TimeMillisecond(unit : Millisecond);

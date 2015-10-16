@@ -112,6 +112,10 @@ abstract Second(Decimal) {
   @:to inline public function toShake() : Shake
       return ((this * ofUnit) / dividerShake).trim();
     
+  static var dividerTick : Decimal = "10e-7";
+  @:to inline public function toTick() : Tick
+      return ((this * ofUnit) / dividerTick).trim();
+    
   static var dividerMicrosecond : Decimal = "10e-6";
   @:to inline public function toMicrosecond() : Microsecond
       return ((this * ofUnit) / dividerMicrosecond).trim();
@@ -130,7 +134,7 @@ abstract Second(Decimal) {
     
   static var dividerSecond : Decimal = "1";
   @:to inline public function toSecond() : Second
-      return ((this * ofUnit) / dividerSecond).trim();
+      return this;
     
   static var dividerMinute : Decimal = "60";
   @:to inline public function toMinute() : Minute
@@ -184,9 +188,14 @@ abstract Second(Decimal) {
   @:to inline public function toTerasecond() : Terasecond
       return ((this * ofUnit) / dividerTerasecond).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 
   public static inline var symbol : String = "s";
+
+  @:from static public function fromTime(time : thx.Time) : Second
+    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks)).toSecond();
+
+  @:to public function toTime() : thx.Time
+    return new thx.Time(toTick().toDecimal().toInt64());
 }

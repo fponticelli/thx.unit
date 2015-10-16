@@ -112,6 +112,10 @@ abstract Day(Decimal) {
   @:to inline public function toShake() : Shake
       return ((this * ofUnit) / dividerShake).trim();
     
+  static var dividerTick : Decimal = "10e-7";
+  @:to inline public function toTick() : Tick
+      return ((this * ofUnit) / dividerTick).trim();
+    
   static var dividerMicrosecond : Decimal = "10e-6";
   @:to inline public function toMicrosecond() : Microsecond
       return ((this * ofUnit) / dividerMicrosecond).trim();
@@ -150,7 +154,7 @@ abstract Day(Decimal) {
     
   static var dividerDay : Decimal = "86400";
   @:to inline public function toDay() : Day
-      return ((this * ofUnit) / dividerDay).trim();
+      return this;
     
   static var dividerWeek : Decimal = "604800";
   @:to inline public function toWeek() : Week
@@ -184,9 +188,14 @@ abstract Day(Decimal) {
   @:to inline public function toTerasecond() : Terasecond
       return ((this * ofUnit) / dividerTerasecond).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 
   public static inline var symbol : String = "day";
+
+  @:from static public function fromTime(time : thx.Time) : Day
+    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks)).toDay();
+
+  @:to public function toTime() : thx.Time
+    return new thx.Time(toTick().toDecimal().toInt64());
 }

@@ -112,6 +112,10 @@ abstract Hour(Decimal) {
   @:to inline public function toShake() : Shake
       return ((this * ofUnit) / dividerShake).trim();
     
+  static var dividerTick : Decimal = "10e-7";
+  @:to inline public function toTick() : Tick
+      return ((this * ofUnit) / dividerTick).trim();
+    
   static var dividerMicrosecond : Decimal = "10e-6";
   @:to inline public function toMicrosecond() : Microsecond
       return ((this * ofUnit) / dividerMicrosecond).trim();
@@ -146,7 +150,7 @@ abstract Hour(Decimal) {
     
   static var dividerHour : Decimal = "3600";
   @:to inline public function toHour() : Hour
-      return ((this * ofUnit) / dividerHour).trim();
+      return this;
     
   static var dividerDay : Decimal = "86400";
   @:to inline public function toDay() : Day
@@ -184,9 +188,14 @@ abstract Hour(Decimal) {
   @:to inline public function toTerasecond() : Terasecond
       return ((this * ofUnit) / dividerTerasecond).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 
   public static inline var symbol : String = "h";
+
+  @:from static public function fromTime(time : thx.Time) : Hour
+    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks)).toHour();
+
+  @:to public function toTime() : thx.Time
+    return new thx.Time(toTick().toDecimal().toInt64());
 }

@@ -106,7 +106,7 @@ abstract Milligram(Decimal) {
     
   static var dividerMilligram : Decimal = "0.000001";
   @:to inline public function toMilligram() : Milligram
-      return ((this * ofUnit) / dividerMilligram).trim();
+      return this;
     
   static var dividerMicrogram : Decimal = "0.000000001";
   @:to inline public function toMicrogram() : Microgram
@@ -172,7 +172,6 @@ abstract Milligram(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

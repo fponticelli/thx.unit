@@ -158,7 +158,7 @@ abstract Dalton(Decimal) {
     
   static var dividerDalton : Decimal = "1.660538921e-27";
   @:to inline public function toDalton() : Dalton
-      return ((this * ofUnit) / dividerDalton).trim();
+      return this;
     
   static var dividerPlankMass : Decimal = "2.17651e-8";
   @:to inline public function toPlankMass() : PlankMass
@@ -172,7 +172,6 @@ abstract Dalton(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

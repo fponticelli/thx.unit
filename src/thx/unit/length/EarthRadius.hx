@@ -158,7 +158,7 @@ abstract EarthRadius(Decimal) {
     
   static var dividerEarthRadius : Decimal = "6371009";
   @:to inline public function toEarthRadius() : EarthRadius
-      return ((this * ofUnit) / dividerEarthRadius).trim();
+      return this;
     
   static var dividerAstronomicalUnit : Decimal = "149597870700";
   @:to inline public function toAstronomicalUnit() : AstronomicalUnit
@@ -168,7 +168,6 @@ abstract EarthRadius(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

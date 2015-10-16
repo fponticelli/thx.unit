@@ -150,13 +150,12 @@ abstract Zettabit(Decimal) {
     
   static var dividerZettabit : Decimal = "1E21";
   @:to inline public function toZettabit() : Zettabit
-      return ((this * ofUnit) / dividerZettabit).trim();
+      return this;
     
   static var dividerYottabit : Decimal = "1E24";
   @:to inline public function toYottabit() : Yottabit
       return ((this * ofUnit) / dividerYottabit).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

@@ -114,7 +114,7 @@ abstract League(Decimal) {
     
   static var dividerLeague : Decimal = "4828.032";
   @:to inline public function toLeague() : League
-      return ((this * ofUnit) / dividerLeague).trim();
+      return this;
     
   static var dividerMile : Decimal = "1609.344";
   @:to inline public function toMile() : Mile
@@ -168,7 +168,6 @@ abstract League(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

@@ -134,7 +134,7 @@ abstract Foot(Decimal) {
     
   static var dividerFoot : Decimal = "0.3048";
   @:to inline public function toFoot() : Foot
-      return ((this * ofUnit) / dividerFoot).trim();
+      return this;
     
   static var dividerInch : Decimal = "0.0254";
   @:to inline public function toInch() : Inch
@@ -168,7 +168,6 @@ abstract Foot(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

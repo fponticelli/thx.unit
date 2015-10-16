@@ -112,6 +112,10 @@ abstract SynodicMonth(Decimal) {
   @:to inline public function toShake() : Shake
       return ((this * ofUnit) / dividerShake).trim();
     
+  static var dividerTick : Decimal = "10e-7";
+  @:to inline public function toTick() : Tick
+      return ((this * ofUnit) / dividerTick).trim();
+    
   static var dividerMicrosecond : Decimal = "10e-6";
   @:to inline public function toMicrosecond() : Microsecond
       return ((this * ofUnit) / dividerMicrosecond).trim();
@@ -166,7 +170,7 @@ abstract SynodicMonth(Decimal) {
     
   static var dividerSynodicMonth : Decimal = "2551442.976";
   @:to inline public function toSynodicMonth() : SynodicMonth
-      return ((this * ofUnit) / dividerSynodicMonth).trim();
+      return this;
     
   static var dividerTropicalMonth : Decimal = "2360584.512";
   @:to inline public function toTropicalMonth() : TropicalMonth
@@ -184,9 +188,14 @@ abstract SynodicMonth(Decimal) {
   @:to inline public function toTerasecond() : Terasecond
       return ((this * ofUnit) / dividerTerasecond).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 
   public static inline var symbol : String = "synodic month";
+
+  @:from static public function fromTime(time : thx.Time) : SynodicMonth
+    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks)).toSynodicMonth();
+
+  @:to public function toTime() : thx.Time
+    return new thx.Time(toTick().toDecimal().toInt64());
 }

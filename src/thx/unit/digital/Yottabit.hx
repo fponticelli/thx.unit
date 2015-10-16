@@ -154,9 +154,8 @@ abstract Yottabit(Decimal) {
     
   static var dividerYottabit : Decimal = "1E24";
   @:to inline public function toYottabit() : Yottabit
-      return ((this * ofUnit) / dividerYottabit).trim();
+      return this;
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

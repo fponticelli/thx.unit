@@ -130,7 +130,7 @@ abstract Yard(Decimal) {
     
   static var dividerYard : Decimal = "0.9144";
   @:to inline public function toYard() : Yard
-      return ((this * ofUnit) / dividerYard).trim();
+      return this;
     
   static var dividerFoot : Decimal = "0.3048";
   @:to inline public function toFoot() : Foot
@@ -168,7 +168,6 @@ abstract Yard(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

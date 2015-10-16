@@ -130,7 +130,7 @@ abstract Quarter(Decimal) {
     
   static var dividerQuarter : Decimal = "12.70058636";
   @:to inline public function toQuarter() : Quarter
-      return ((this * ofUnit) / dividerQuarter).trim();
+      return this;
     
   static var dividerStone : Decimal = "6.35029318";
   @:to inline public function toStone() : Stone
@@ -172,7 +172,6 @@ abstract Quarter(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

@@ -106,7 +106,7 @@ abstract Micrometre(Decimal) {
     
   static var dividerMicrometre : Decimal = "0.000001";
   @:to inline public function toMicrometre() : Micrometre
-      return ((this * ofUnit) / dividerMicrometre).trim();
+      return this;
     
   static var dividerNanometre : Decimal = "0.000000001";
   @:to inline public function toNanometre() : Nanometre
@@ -168,7 +168,6 @@ abstract Micrometre(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

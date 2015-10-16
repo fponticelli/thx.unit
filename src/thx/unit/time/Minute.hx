@@ -112,6 +112,10 @@ abstract Minute(Decimal) {
   @:to inline public function toShake() : Shake
       return ((this * ofUnit) / dividerShake).trim();
     
+  static var dividerTick : Decimal = "10e-7";
+  @:to inline public function toTick() : Tick
+      return ((this * ofUnit) / dividerTick).trim();
+    
   static var dividerMicrosecond : Decimal = "10e-6";
   @:to inline public function toMicrosecond() : Microsecond
       return ((this * ofUnit) / dividerMicrosecond).trim();
@@ -134,7 +138,7 @@ abstract Minute(Decimal) {
     
   static var dividerMinute : Decimal = "60";
   @:to inline public function toMinute() : Minute
-      return ((this * ofUnit) / dividerMinute).trim();
+      return this;
     
   static var dividerKe : Decimal = "864";
   @:to inline public function toKe() : Ke
@@ -184,9 +188,14 @@ abstract Minute(Decimal) {
   @:to inline public function toTerasecond() : Terasecond
       return ((this * ofUnit) / dividerTerasecond).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 
   public static inline var symbol : String = "min";
+
+  @:from static public function fromTime(time : thx.Time) : Minute
+    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks)).toMinute();
+
+  @:to public function toTime() : thx.Time
+    return new thx.Time(toTick().toDecimal().toInt64());
 }

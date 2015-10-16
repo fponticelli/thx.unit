@@ -122,7 +122,7 @@ abstract Furlong(Decimal) {
     
   static var dividerFurlong : Decimal = "201.168";
   @:to inline public function toFurlong() : Furlong
-      return ((this * ofUnit) / dividerFurlong).trim();
+      return this;
     
   static var dividerChain : Decimal = "20.1168";
   @:to inline public function toChain() : Chain
@@ -168,7 +168,6 @@ abstract Furlong(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

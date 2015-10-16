@@ -98,7 +98,7 @@ abstract Centimetre(Decimal) {
     
   static var dividerCentimetre : Decimal = "0.01";
   @:to inline public function toCentimetre() : Centimetre
-      return ((this * ofUnit) / dividerCentimetre).trim();
+      return this;
     
   static var dividerMillimetre : Decimal = "0.001";
   @:to inline public function toMillimetre() : Millimetre
@@ -168,7 +168,6 @@ abstract Centimetre(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

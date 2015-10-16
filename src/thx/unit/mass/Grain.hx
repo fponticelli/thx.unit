@@ -150,7 +150,7 @@ abstract Grain(Decimal) {
     
   static var dividerGrain : Decimal = "0.00006479891";
   @:to inline public function toGrain() : Grain
-      return ((this * ofUnit) / dividerGrain).trim();
+      return this;
     
   static var dividerUnifiedAtomicMassUnit : Decimal = "1.660538921e-27";
   @:to inline public function toUnifiedAtomicMassUnit() : UnifiedAtomicMassUnit
@@ -172,7 +172,6 @@ abstract Grain(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

@@ -94,7 +94,7 @@ abstract Kilobyte(Decimal) {
     
   static var dividerKilobyte : Decimal = "1024";
   @:to inline public function toKilobyte() : Kilobyte
-      return ((this * ofUnit) / dividerKilobyte).trim();
+      return this;
     
   static var dividerMegabyte : Decimal = "1048576";
   @:to inline public function toMegabyte() : Megabyte
@@ -156,7 +156,6 @@ abstract Kilobyte(Decimal) {
   @:to inline public function toYottabit() : Yottabit
       return ((this * ofUnit) / dividerYottabit).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

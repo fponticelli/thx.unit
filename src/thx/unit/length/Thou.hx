@@ -146,7 +146,7 @@ abstract Thou(Decimal) {
     
   static var dividerThou : Decimal = "0.0000254";
   @:to inline public function toThou() : Thou
-      return ((this * ofUnit) / dividerThou).trim();
+      return this;
     
   static var dividerFathom : Decimal = "1.82880";
   @:to inline public function toFathom() : Fathom
@@ -168,7 +168,6 @@ abstract Thou(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

@@ -126,7 +126,7 @@ abstract Hundredweight(Decimal) {
     
   static var dividerHundredweight : Decimal = "50.80234544";
   @:to inline public function toHundredweight() : Hundredweight
-      return ((this * ofUnit) / dividerHundredweight).trim();
+      return this;
     
   static var dividerQuarter : Decimal = "12.70058636";
   @:to inline public function toQuarter() : Quarter
@@ -172,7 +172,6 @@ abstract Hundredweight(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

@@ -98,7 +98,7 @@ abstract Megabyte(Decimal) {
     
   static var dividerMegabyte : Decimal = "1048576";
   @:to inline public function toMegabyte() : Megabyte
-      return ((this * ofUnit) / dividerMegabyte).trim();
+      return this;
     
   static var dividerGigabyte : Decimal = "1073741824";
   @:to inline public function toGigabyte() : Gigabyte
@@ -156,7 +156,6 @@ abstract Megabyte(Decimal) {
   @:to inline public function toYottabit() : Yottabit
       return ((this * ofUnit) / dividerYottabit).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

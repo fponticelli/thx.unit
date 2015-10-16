@@ -94,7 +94,7 @@ abstract Kilogram(Decimal) {
     
   static var dividerKilogram : Decimal = "1";
   @:to inline public function toKilogram() : Kilogram
-      return ((this * ofUnit) / dividerKilogram).trim();
+      return this;
     
   static var dividerGram : Decimal = "0.001";
   @:to inline public function toGram() : Gram
@@ -172,7 +172,6 @@ abstract Kilogram(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

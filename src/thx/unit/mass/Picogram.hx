@@ -118,7 +118,7 @@ abstract Picogram(Decimal) {
     
   static var dividerPicogram : Decimal = "0.000000000000001";
   @:to inline public function toPicogram() : Picogram
-      return ((this * ofUnit) / dividerPicogram).trim();
+      return this;
     
   static var dividerTon : Decimal = "1016.0469088";
   @:to inline public function toTon() : Ton
@@ -172,7 +172,6 @@ abstract Picogram(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

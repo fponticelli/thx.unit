@@ -90,7 +90,7 @@ abstract PlankTimeUnit(Decimal) {
 
   static var dividerPlankTimeUnit : Decimal = "5.39e-44";
   @:to inline public function toPlankTimeUnit() : PlankTimeUnit
-      return ((this * ofUnit) / dividerPlankTimeUnit).trim();
+      return this;
     
   static var dividerJiffyPhysics : Decimal = "3e-24";
   @:to inline public function toJiffyPhysics() : JiffyPhysics
@@ -111,6 +111,10 @@ abstract PlankTimeUnit(Decimal) {
   static var dividerShake : Decimal = "10e-8";
   @:to inline public function toShake() : Shake
       return ((this * ofUnit) / dividerShake).trim();
+    
+  static var dividerTick : Decimal = "10e-7";
+  @:to inline public function toTick() : Tick
+      return ((this * ofUnit) / dividerTick).trim();
     
   static var dividerMicrosecond : Decimal = "10e-6";
   @:to inline public function toMicrosecond() : Microsecond
@@ -184,9 +188,14 @@ abstract PlankTimeUnit(Decimal) {
   @:to inline public function toTerasecond() : Terasecond
       return ((this * ofUnit) / dividerTerasecond).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 
   public static inline var symbol : String = "tP";
+
+  @:from static public function fromTime(time : thx.Time) : PlankTimeUnit
+    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks)).toPlankTimeUnit();
+
+  @:to public function toTime() : thx.Time
+    return new thx.Time(toTick().toDecimal().toInt64());
 }

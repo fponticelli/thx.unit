@@ -112,6 +112,10 @@ abstract Kilosecond(Decimal) {
   @:to inline public function toShake() : Shake
       return ((this * ofUnit) / dividerShake).trim();
     
+  static var dividerTick : Decimal = "10e-7";
+  @:to inline public function toTick() : Tick
+      return ((this * ofUnit) / dividerTick).trim();
+    
   static var dividerMicrosecond : Decimal = "10e-6";
   @:to inline public function toMicrosecond() : Microsecond
       return ((this * ofUnit) / dividerMicrosecond).trim();
@@ -142,7 +146,7 @@ abstract Kilosecond(Decimal) {
     
   static var dividerKilosecond : Decimal = "1000";
   @:to inline public function toKilosecond() : Kilosecond
-      return ((this * ofUnit) / dividerKilosecond).trim();
+      return this;
     
   static var dividerHour : Decimal = "3600";
   @:to inline public function toHour() : Hour
@@ -184,9 +188,14 @@ abstract Kilosecond(Decimal) {
   @:to inline public function toTerasecond() : Terasecond
       return ((this * ofUnit) / dividerTerasecond).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 
   public static inline var symbol : String = "ks";
+
+  @:from static public function fromTime(time : thx.Time) : Kilosecond
+    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks)).toKilosecond();
+
+  @:to public function toTime() : thx.Time
+    return new thx.Time(toTick().toDecimal().toInt64());
 }

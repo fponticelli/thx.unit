@@ -118,7 +118,7 @@ abstract Mile(Decimal) {
     
   static var dividerMile : Decimal = "1609.344";
   @:to inline public function toMile() : Mile
-      return ((this * ofUnit) / dividerMile).trim();
+      return this;
     
   static var dividerFurlong : Decimal = "201.168";
   @:to inline public function toFurlong() : Furlong
@@ -168,7 +168,6 @@ abstract Mile(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

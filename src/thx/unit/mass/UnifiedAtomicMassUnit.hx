@@ -154,7 +154,7 @@ abstract UnifiedAtomicMassUnit(Decimal) {
     
   static var dividerUnifiedAtomicMassUnit : Decimal = "1.660538921e-27";
   @:to inline public function toUnifiedAtomicMassUnit() : UnifiedAtomicMassUnit
-      return ((this * ofUnit) / dividerUnifiedAtomicMassUnit).trim();
+      return this;
     
   static var dividerDalton : Decimal = "1.660538921e-27";
   @:to inline public function toDalton() : Dalton
@@ -172,7 +172,6 @@ abstract UnifiedAtomicMassUnit(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

@@ -94,9 +94,8 @@ abstract Candlepower(Decimal) {
     
   static var dividerCandlepower : Decimal = "0.981";
   @:to inline public function toCandlepower() : Candlepower
-      return ((this * ofUnit) / dividerCandlepower).trim();
+      return this;
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

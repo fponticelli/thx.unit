@@ -146,7 +146,7 @@ abstract Exabit(Decimal) {
     
   static var dividerExabit : Decimal = "1E18";
   @:to inline public function toExabit() : Exabit
-      return ((this * ofUnit) / dividerExabit).trim();
+      return this;
     
   static var dividerZettabit : Decimal = "1E21";
   @:to inline public function toZettabit() : Zettabit
@@ -156,7 +156,6 @@ abstract Exabit(Decimal) {
   @:to inline public function toYottabit() : Yottabit
       return ((this * ofUnit) / dividerYottabit).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

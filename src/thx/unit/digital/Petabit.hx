@@ -142,7 +142,7 @@ abstract Petabit(Decimal) {
     
   static var dividerPetabit : Decimal = "1000000000000000";
   @:to inline public function toPetabit() : Petabit
-      return ((this * ofUnit) / dividerPetabit).trim();
+      return this;
     
   static var dividerExabit : Decimal = "1E18";
   @:to inline public function toExabit() : Exabit
@@ -156,7 +156,6 @@ abstract Petabit(Decimal) {
   @:to inline public function toYottabit() : Yottabit
       return ((this * ofUnit) / dividerYottabit).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

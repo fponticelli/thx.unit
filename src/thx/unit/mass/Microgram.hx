@@ -110,7 +110,7 @@ abstract Microgram(Decimal) {
     
   static var dividerMicrogram : Decimal = "0.000000001";
   @:to inline public function toMicrogram() : Microgram
-      return ((this * ofUnit) / dividerMicrogram).trim();
+      return this;
     
   static var dividerNanogram : Decimal = "0.000000000001";
   @:to inline public function toNanogram() : Nanogram
@@ -172,7 +172,6 @@ abstract Microgram(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

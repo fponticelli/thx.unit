@@ -138,7 +138,7 @@ abstract Inch(Decimal) {
     
   static var dividerInch : Decimal = "0.0254";
   @:to inline public function toInch() : Inch
-      return ((this * ofUnit) / dividerInch).trim();
+      return this;
     
   static var dividerLine : Decimal = "0.00211666666667";
   @:to inline public function toLine() : Line
@@ -168,7 +168,6 @@ abstract Inch(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

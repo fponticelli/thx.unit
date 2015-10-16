@@ -98,7 +98,7 @@ abstract Gram(Decimal) {
     
   static var dividerGram : Decimal = "0.001";
   @:to inline public function toGram() : Gram
-      return ((this * ofUnit) / dividerGram).trim();
+      return this;
     
   static var dividerCentigram : Decimal = "0.00001";
   @:to inline public function toCentigram() : Centigram
@@ -172,7 +172,6 @@ abstract Gram(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

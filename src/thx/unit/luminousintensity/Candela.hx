@@ -90,13 +90,12 @@ abstract Candela(Decimal) {
 
   static var dividerCandela : Decimal = "1";
   @:to inline public function toCandela() : Candela
-      return ((this * ofUnit) / dividerCandela).trim();
+      return this;
     
   static var dividerCandlepower : Decimal = "0.981";
   @:to inline public function toCandlepower() : Candlepower
       return ((this * ofUnit) / dividerCandlepower).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

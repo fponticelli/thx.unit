@@ -90,9 +90,8 @@ abstract Ampere(Decimal) {
 
   static var dividerAmpere : Decimal = "1";
   @:to inline public function toAmpere() : Ampere
-      return ((this * ofUnit) / dividerAmpere).trim();
+      return this;
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

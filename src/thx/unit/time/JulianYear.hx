@@ -112,6 +112,10 @@ abstract JulianYear(Decimal) {
   @:to inline public function toShake() : Shake
       return ((this * ofUnit) / dividerShake).trim();
     
+  static var dividerTick : Decimal = "10e-7";
+  @:to inline public function toTick() : Tick
+      return ((this * ofUnit) / dividerTick).trim();
+    
   static var dividerMicrosecond : Decimal = "10e-6";
   @:to inline public function toMicrosecond() : Microsecond
       return ((this * ofUnit) / dividerMicrosecond).trim();
@@ -174,7 +178,7 @@ abstract JulianYear(Decimal) {
     
   static var dividerJulianYear : Decimal = "31557600";
   @:to inline public function toJulianYear() : JulianYear
-      return ((this * ofUnit) / dividerJulianYear).trim();
+      return this;
     
   static var dividerGigasecond : Decimal = "1000000000";
   @:to inline public function toGigasecond() : Gigasecond
@@ -184,9 +188,14 @@ abstract JulianYear(Decimal) {
   @:to inline public function toTerasecond() : Terasecond
       return ((this * ofUnit) / dividerTerasecond).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 
   public static inline var symbol : String = "julian year";
+
+  @:from static public function fromTime(time : thx.Time) : JulianYear
+    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks)).toJulianYear();
+
+  @:to public function toTime() : thx.Time
+    return new thx.Time(toTick().toDecimal().toInt64());
 }

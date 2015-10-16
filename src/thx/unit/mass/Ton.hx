@@ -122,7 +122,7 @@ abstract Ton(Decimal) {
     
   static var dividerTon : Decimal = "1016.0469088";
   @:to inline public function toTon() : Ton
-      return ((this * ofUnit) / dividerTon).trim();
+      return this;
     
   static var dividerHundredweight : Decimal = "50.80234544";
   @:to inline public function toHundredweight() : Hundredweight
@@ -172,7 +172,6 @@ abstract Ton(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

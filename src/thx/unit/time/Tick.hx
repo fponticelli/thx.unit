@@ -3,82 +3,82 @@ package thx.unit.time;
 using thx.Floats;
 import thx.Decimal;
 
-abstract Shake(Decimal) {
-  static var ofUnit : Decimal = "10e-8";
+abstract Tick(Decimal) {
+  static var ofUnit : Decimal = "10e-7";
 
-  @:from inline static public function fromDecimal(value : Decimal) : Shake
-    return new Shake(value);
+  @:from inline static public function fromDecimal(value : Decimal) : Tick
+    return new Tick(value);
 
-  @:from inline static public function fromInt(value : Int) : Shake
+  @:from inline static public function fromInt(value : Int) : Tick
     return fromDecimal(Decimal.fromInt(value));
 
-  @:from inline static public function fromFloat(value : Float) : Shake
+  @:from inline static public function fromFloat(value : Float) : Tick
     return fromDecimal(Decimal.fromFloat(value));
 
   inline function new(value : Decimal)
     this = value;
 
-  inline public function abs() : Shake
+  inline public function abs() : Tick
     return this.abs();
 
-  inline public function min(that : Shake) : Shake
+  inline public function min(that : Tick) : Tick
     return this.min(that.toDecimal());
 
-  inline public function max(that : Shake) : Shake
+  inline public function max(that : Tick) : Tick
     return this.max(that.toDecimal());
 
-  @:op( -A ) inline public function negate() : Shake
+  @:op( -A ) inline public function negate() : Tick
     return -this;
-  @:op( A+B) inline public function add(that : Shake) : Shake
+  @:op( A+B) inline public function add(that : Tick) : Tick
     return this.add(that.toDecimal());
-  @:op( A-B) inline public function subtract(that : Shake) : Shake
+  @:op( A-B) inline public function subtract(that : Tick) : Tick
     return this.subtract(that.toDecimal());
-  @:op( A*B) inline public function multiply(that : Decimal) : Shake
+  @:op( A*B) inline public function multiply(that : Decimal) : Tick
     return this.multiply(that);
-  @:op( A/B) inline public function divide(that : Decimal) : Shake
+  @:op( A/B) inline public function divide(that : Decimal) : Tick
     return this.divide(that);
-  @:op( A%B) inline public function modulo(that : Decimal) : Shake
+  @:op( A%B) inline public function modulo(that : Decimal) : Tick
     return this.modulo(that);
 
-  inline public function equalsTo(that : Shake) : Bool
+  inline public function equalsTo(that : Tick) : Bool
     return this.equalsTo(that.toDecimal());
   @:op(A==B)
-  inline static public function equals(self : Shake, that : Shake) : Bool
+  inline static public function equals(self : Tick, that : Tick) : Bool
     return self.equalsTo(that.toDecimal());
 
-  public function nearEqualsTo(that : Shake) : Bool
+  public function nearEqualsTo(that : Tick) : Bool
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : Shake, that : Shake) : Bool
+  public static function nearEquals(self : Tick, that : Tick) : Bool
     return Floats.nearEquals(self.toFloat(), that.toFloat());
 
-  inline public function notEqualsTo(that : Shake) : Bool
+  inline public function notEqualsTo(that : Tick) : Bool
     return !this.equalsTo(that.toDecimal());
   @:op(A!=B)
-  inline static public function notEquals(self : Shake, that : Shake) : Bool
+  inline static public function notEquals(self : Tick, that : Tick) : Bool
     return !self.equalsTo(that.toDecimal());
 
-  inline public function lessThan(that : Shake) : Bool
+  inline public function lessThan(that : Tick) : Bool
     return this.lessThan(that.toDecimal());
   @:op( A<B)
-  inline static public function less(self : Shake, that : Shake) : Bool
+  inline static public function less(self : Tick, that : Tick) : Bool
     return self.lessThan(that.toDecimal());
 
-  inline public function lessEqualsTo(that : Shake) : Bool
+  inline public function lessEqualsTo(that : Tick) : Bool
     return this.lessEqualsTo(that.toDecimal());
   @:op(A<=B)
-  inline static public function lessEquals(self : Shake, that : Shake) : Bool
+  inline static public function lessEquals(self : Tick, that : Tick) : Bool
     return self.lessEqualsTo(that.toDecimal());
 
-  inline public function greaterThan(that : Shake) : Bool
+  inline public function greaterThan(that : Tick) : Bool
     return this.greaterThan(that.toDecimal());
   @:op( A>B)
-  inline static public function greater(self : Shake, that : Shake) : Bool
+  inline static public function greater(self : Tick, that : Tick) : Bool
     return self.greaterThan(that.toDecimal());
 
-  inline public function greaterEqualsTo(that : Shake) : Bool
+  inline public function greaterEqualsTo(that : Tick) : Bool
     return this.greaterEqualsTo(that.toDecimal());
   @:op(A>=B)
-  inline public function greaterEquals(that : Shake) : Bool
+  inline public function greaterEquals(that : Tick) : Bool
     return this.greaterEqualsTo(that.toDecimal());
 
   inline public function toDecimal() : Decimal
@@ -110,11 +110,11 @@ abstract Shake(Decimal) {
     
   static var dividerShake : Decimal = "10e-8";
   @:to inline public function toShake() : Shake
-      return this;
+      return ((this * ofUnit) / dividerShake).trim();
     
   static var dividerTick : Decimal = "10e-7";
   @:to inline public function toTick() : Tick
-      return ((this * ofUnit) / dividerTick).trim();
+      return this;
     
   static var dividerMicrosecond : Decimal = "10e-6";
   @:to inline public function toMicrosecond() : Microsecond
@@ -191,10 +191,10 @@ abstract Shake(Decimal) {
   @:to inline public function toString() : String
     return this.toString() + symbol;
 
-  public static inline var symbol : String = "shake";
+  public static inline var symbol : String = "tick";
 
-  @:from static public function fromTime(time : thx.Time) : Shake
-    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks)).toShake();
+  @:from static public function fromTime(time : thx.Time) : Tick
+    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks)).toTick();
 
   @:to public function toTime() : thx.Time
     return new thx.Time(toTick().toDecimal().toInt64());

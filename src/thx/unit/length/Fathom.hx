@@ -150,7 +150,7 @@ abstract Fathom(Decimal) {
     
   static var dividerFathom : Decimal = "1.82880";
   @:to inline public function toFathom() : Fathom
-      return ((this * ofUnit) / dividerFathom).trim();
+      return this;
     
   static var dividerNauticalMile : Decimal = "1852";
   @:to inline public function toNauticalMile() : NauticalMile
@@ -168,7 +168,6 @@ abstract Fathom(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

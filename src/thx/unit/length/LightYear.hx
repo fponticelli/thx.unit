@@ -166,9 +166,8 @@ abstract LightYear(Decimal) {
     
   static var dividerLightYear : Decimal = "9460730472580800";
   @:to inline public function toLightYear() : LightYear
-      return ((this * ofUnit) / dividerLightYear).trim();
+      return this;
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

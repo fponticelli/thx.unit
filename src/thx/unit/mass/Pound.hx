@@ -138,7 +138,7 @@ abstract Pound(Decimal) {
     
   static var dividerPound : Decimal = "0.45359237";
   @:to inline public function toPound() : Pound
-      return ((this * ofUnit) / dividerPound).trim();
+      return this;
     
   static var dividerOunce : Decimal = "0.028349523125";
   @:to inline public function toOunce() : Ounce
@@ -172,7 +172,6 @@ abstract Pound(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

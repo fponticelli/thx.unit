@@ -134,7 +134,7 @@ abstract Gigabit(Decimal) {
     
   static var dividerGigabit : Decimal = "1000000000";
   @:to inline public function toGigabit() : Gigabit
-      return ((this * ofUnit) / dividerGigabit).trim();
+      return this;
     
   static var dividerTerabit : Decimal = "1000000000000";
   @:to inline public function toTerabit() : Terabit
@@ -156,7 +156,6 @@ abstract Gigabit(Decimal) {
   @:to inline public function toYottabit() : Yottabit
       return ((this * ofUnit) / dividerYottabit).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

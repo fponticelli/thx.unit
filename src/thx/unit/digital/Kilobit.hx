@@ -126,7 +126,7 @@ abstract Kilobit(Decimal) {
     
   static var dividerKilobit : Decimal = "1000";
   @:to inline public function toKilobit() : Kilobit
-      return ((this * ofUnit) / dividerKilobit).trim();
+      return this;
     
   static var dividerMegabit : Decimal = "1000000";
   @:to inline public function toMegabit() : Megabit
@@ -156,7 +156,6 @@ abstract Kilobit(Decimal) {
   @:to inline public function toYottabit() : Yottabit
       return ((this * ofUnit) / dividerYottabit).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

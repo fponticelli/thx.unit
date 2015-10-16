@@ -166,13 +166,12 @@ abstract Slug(Decimal) {
     
   static var dividerSlug : Decimal = "14.593903";
   @:to inline public function toSlug() : Slug
-      return ((this * ofUnit) / dividerSlug).trim();
+      return this;
     
   static var dividerSolarMass : Decimal = "1.98855e30";
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

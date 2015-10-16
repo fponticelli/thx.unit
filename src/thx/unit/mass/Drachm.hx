@@ -146,7 +146,7 @@ abstract Drachm(Decimal) {
     
   static var dividerDrachm : Decimal = "0.0017718451953125";
   @:to inline public function toDrachm() : Drachm
-      return ((this * ofUnit) / dividerDrachm).trim();
+      return this;
     
   static var dividerGrain : Decimal = "0.00006479891";
   @:to inline public function toGrain() : Grain
@@ -172,7 +172,6 @@ abstract Drachm(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

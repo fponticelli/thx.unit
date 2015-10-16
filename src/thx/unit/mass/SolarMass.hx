@@ -170,9 +170,8 @@ abstract SolarMass(Decimal) {
     
   static var dividerSolarMass : Decimal = "1.98855e30";
   @:to inline public function toSolarMass() : SolarMass
-      return ((this * ofUnit) / dividerSolarMass).trim();
+      return this;
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

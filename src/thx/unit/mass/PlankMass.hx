@@ -162,7 +162,7 @@ abstract PlankMass(Decimal) {
     
   static var dividerPlankMass : Decimal = "2.17651e-8";
   @:to inline public function toPlankMass() : PlankMass
-      return ((this * ofUnit) / dividerPlankMass).trim();
+      return this;
     
   static var dividerSlug : Decimal = "14.593903";
   @:to inline public function toSlug() : Slug
@@ -172,7 +172,6 @@ abstract PlankMass(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

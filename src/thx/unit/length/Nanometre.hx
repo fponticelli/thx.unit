@@ -110,7 +110,7 @@ abstract Nanometre(Decimal) {
     
   static var dividerNanometre : Decimal = "0.000000001";
   @:to inline public function toNanometre() : Nanometre
-      return ((this * ofUnit) / dividerNanometre).trim();
+      return this;
     
   static var dividerLeague : Decimal = "4828.032";
   @:to inline public function toLeague() : League
@@ -168,7 +168,6 @@ abstract Nanometre(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

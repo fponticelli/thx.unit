@@ -154,7 +154,7 @@ abstract NauticalMile(Decimal) {
     
   static var dividerNauticalMile : Decimal = "1852";
   @:to inline public function toNauticalMile() : NauticalMile
-      return ((this * ofUnit) / dividerNauticalMile).trim();
+      return this;
     
   static var dividerEarthRadius : Decimal = "6371009";
   @:to inline public function toEarthRadius() : EarthRadius
@@ -168,7 +168,6 @@ abstract NauticalMile(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

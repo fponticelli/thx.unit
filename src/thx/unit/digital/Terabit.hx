@@ -138,7 +138,7 @@ abstract Terabit(Decimal) {
     
   static var dividerTerabit : Decimal = "1000000000000";
   @:to inline public function toTerabit() : Terabit
-      return ((this * ofUnit) / dividerTerabit).trim();
+      return this;
     
   static var dividerPetabit : Decimal = "1000000000000000";
   @:to inline public function toPetabit() : Petabit
@@ -156,7 +156,6 @@ abstract Terabit(Decimal) {
   @:to inline public function toYottabit() : Yottabit
       return ((this * ofUnit) / dividerYottabit).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

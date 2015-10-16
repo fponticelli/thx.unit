@@ -90,7 +90,7 @@ abstract Byte(Decimal) {
 
   static var dividerByte : Decimal = "1";
   @:to inline public function toByte() : Byte
-      return ((this * ofUnit) / dividerByte).trim();
+      return this;
     
   static var dividerKilobyte : Decimal = "1024";
   @:to inline public function toKilobyte() : Kilobyte
@@ -156,7 +156,6 @@ abstract Byte(Decimal) {
   @:to inline public function toYottabit() : Yottabit
       return ((this * ofUnit) / dividerYottabit).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

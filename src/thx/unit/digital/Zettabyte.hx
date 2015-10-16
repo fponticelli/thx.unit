@@ -118,7 +118,7 @@ abstract Zettabyte(Decimal) {
     
   static var dividerZettabyte : Decimal = "1180591620717411303424";
   @:to inline public function toZettabyte() : Zettabyte
-      return ((this * ofUnit) / dividerZettabyte).trim();
+      return this;
     
   static var dividerYottabyte : Decimal = "1208925819614629174706176";
   @:to inline public function toYottabyte() : Yottabyte
@@ -156,7 +156,6 @@ abstract Zettabyte(Decimal) {
   @:to inline public function toYottabit() : Yottabit
       return ((this * ofUnit) / dividerYottabit).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

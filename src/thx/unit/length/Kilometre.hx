@@ -90,7 +90,7 @@ abstract Kilometre(Decimal) {
 
   static var dividerKilometre : Decimal = "1000";
   @:to inline public function toKilometre() : Kilometre
-      return ((this * ofUnit) / dividerKilometre).trim();
+      return this;
     
   static var dividerMetre : Decimal = "1";
   @:to inline public function toMetre() : Metre
@@ -168,7 +168,6 @@ abstract Kilometre(Decimal) {
   @:to inline public function toLightYear() : LightYear
       return ((this * ofUnit) / dividerLightYear).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

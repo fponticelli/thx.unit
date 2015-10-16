@@ -142,7 +142,7 @@ abstract Ounce(Decimal) {
     
   static var dividerOunce : Decimal = "0.028349523125";
   @:to inline public function toOunce() : Ounce
-      return ((this * ofUnit) / dividerOunce).trim();
+      return this;
     
   static var dividerDrachm : Decimal = "0.0017718451953125";
   @:to inline public function toDrachm() : Drachm
@@ -172,7 +172,6 @@ abstract Ounce(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

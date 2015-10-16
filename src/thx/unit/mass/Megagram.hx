@@ -90,7 +90,7 @@ abstract Megagram(Decimal) {
 
   static var dividerMegagram : Decimal = "1000";
   @:to inline public function toMegagram() : Megagram
-      return ((this * ofUnit) / dividerMegagram).trim();
+      return this;
     
   static var dividerKilogram : Decimal = "1";
   @:to inline public function toKilogram() : Kilogram
@@ -172,7 +172,6 @@ abstract Megagram(Decimal) {
   @:to inline public function toSolarMass() : SolarMass
       return ((this * ofUnit) / dividerSolarMass).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

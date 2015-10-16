@@ -106,7 +106,7 @@ abstract Terabyte(Decimal) {
     
   static var dividerTerabyte : Decimal = "1099511627776";
   @:to inline public function toTerabyte() : Terabyte
-      return ((this * ofUnit) / dividerTerabyte).trim();
+      return this;
     
   static var dividerPetabyte : Decimal = "1125899906842624";
   @:to inline public function toPetabyte() : Petabyte
@@ -156,7 +156,6 @@ abstract Terabyte(Decimal) {
   @:to inline public function toYottabit() : Yottabit
       return ((this * ofUnit) / dividerYottabit).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 

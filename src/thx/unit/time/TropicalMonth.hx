@@ -112,6 +112,10 @@ abstract TropicalMonth(Decimal) {
   @:to inline public function toShake() : Shake
       return ((this * ofUnit) / dividerShake).trim();
     
+  static var dividerTick : Decimal = "10e-7";
+  @:to inline public function toTick() : Tick
+      return ((this * ofUnit) / dividerTick).trim();
+    
   static var dividerMicrosecond : Decimal = "10e-6";
   @:to inline public function toMicrosecond() : Microsecond
       return ((this * ofUnit) / dividerMicrosecond).trim();
@@ -170,7 +174,7 @@ abstract TropicalMonth(Decimal) {
     
   static var dividerTropicalMonth : Decimal = "2360584.512";
   @:to inline public function toTropicalMonth() : TropicalMonth
-      return ((this * ofUnit) / dividerTropicalMonth).trim();
+      return this;
     
   static var dividerJulianYear : Decimal = "31557600";
   @:to inline public function toJulianYear() : JulianYear
@@ -184,9 +188,14 @@ abstract TropicalMonth(Decimal) {
   @:to inline public function toTerasecond() : Terasecond
       return ((this * ofUnit) / dividerTerasecond).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 
   public static inline var symbol : String = "tropical month";
+
+  @:from static public function fromTime(time : thx.Time) : TropicalMonth
+    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks)).toTropicalMonth();
+
+  @:to public function toTime() : thx.Time
+    return new thx.Time(toTick().toDecimal().toInt64());
 }

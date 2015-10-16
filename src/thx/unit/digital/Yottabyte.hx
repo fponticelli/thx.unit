@@ -122,7 +122,7 @@ abstract Yottabyte(Decimal) {
     
   static var dividerYottabyte : Decimal = "1208925819614629174706176";
   @:to inline public function toYottabyte() : Yottabyte
-      return ((this * ofUnit) / dividerYottabyte).trim();
+      return this;
     
   static var dividerKilobit : Decimal = "1000";
   @:to inline public function toKilobit() : Kilobit
@@ -156,7 +156,6 @@ abstract Yottabyte(Decimal) {
   @:to inline public function toYottabit() : Yottabit
       return ((this * ofUnit) / dividerYottabit).trim();
     
-
   @:to inline public function toString() : String
     return this.toString() + symbol;
 
