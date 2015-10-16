@@ -100,4 +100,10 @@ $for(value in units) {
     return this.toString() + symbol;
 
   public static inline var symbol : String = "$symbol";
-}
+$if(unit == "time") {
+  @:from static public function fromTime(time : thx.Time) : $type
+    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks)).to${type}();
+
+  @:to public function toTime() : thx.Time
+    return new thx.Time(toTick().toDecimal().toInt64());
+}}
