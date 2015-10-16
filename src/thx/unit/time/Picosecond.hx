@@ -4,7 +4,7 @@ using thx.Floats;
 import thx.Decimal;
 
 abstract Picosecond(Decimal) {
-  static var ofUnit : Decimal = "10e-12";
+  static var ofUnit : Decimal = "1e-12";
 
   @:from inline static public function fromDecimal(value : Decimal) : Picosecond
     return new Picosecond(value);
@@ -96,27 +96,27 @@ abstract Picosecond(Decimal) {
   @:to inline public function toJiffyPhysics() : JiffyPhysics
       return ((this * ofUnit) / dividerJiffyPhysics).trim();
     
-  static var dividerSvedberg : Decimal = "10e-13";
+  static var dividerSvedberg : Decimal = "1e-13";
   @:to inline public function toSvedberg() : Svedberg
       return ((this * ofUnit) / dividerSvedberg).trim();
     
-  static var dividerPicosecond : Decimal = "10e-12";
+  static var dividerPicosecond : Decimal = "1e-12";
   @:to inline public function toPicosecond() : Picosecond
       return this;
     
-  static var dividerNanosecond : Decimal = "10e-9";
+  static var dividerNanosecond : Decimal = "1e-9";
   @:to inline public function toNanosecond() : Nanosecond
       return ((this * ofUnit) / dividerNanosecond).trim();
     
-  static var dividerShake : Decimal = "10e-8";
+  static var dividerShake : Decimal = "1e-8";
   @:to inline public function toShake() : Shake
       return ((this * ofUnit) / dividerShake).trim();
     
-  static var dividerTick : Decimal = "10e-7";
+  static var dividerTick : Decimal = "1e-7";
   @:to inline public function toTick() : Tick
       return ((this * ofUnit) / dividerTick).trim();
     
-  static var dividerMicrosecond : Decimal = "10e-6";
+  static var dividerMicrosecond : Decimal = "1e-6";
   @:to inline public function toMicrosecond() : Microsecond
       return ((this * ofUnit) / dividerMicrosecond).trim();
     
