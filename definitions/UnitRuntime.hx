@@ -122,7 +122,13 @@ $for(value in units) {
     var info = getInfo();
     return info.value.toString() + info.symbol;
   }
-}
+$if(unit == "time") {
+  @:from static public function fromTime(time : thx.Time) : $type
+    return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks));
+
+  @:to public function toTime() : thx.Time
+    return new thx.Time(toTick().toDecimal().toInt64());
+}}
 
 enum ${unitTypeImpl} {$for(value in units) {
   ${value.enumConstructor}(unit : ${value.type});}
