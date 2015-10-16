@@ -11,6 +11,7 @@
     { "type" : "Nanosecond",    "symbol" : "ns",    "ofUnit" : "10e-9" },
 
     { "type" : "Shake",       "symbol" : "shake",  "ofUnit" : "10e-8" },
+    { "type" : "Tick",        "symbol" : "tick",   "ofUnit" : "10e-7" },
     { "type" : "Microsecond", "symbol" : "μs",     "ofUnit" : "10e-6" },
     { "type" : "Fourth",      "symbol" : "fourth", "ofUnit" : "0.00027777777778" },
     { "type" : "Millisecond", "symbol" : "ms",     "ofUnit" : "0.001" },
