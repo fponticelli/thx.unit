@@ -123,7 +123,7 @@ $for(value in units) {
     return "" + info.value + info.symbol;
   }
 $if(unit == "time") {
-  @:from static public function fromTime(time : thx.Time) : $type
+  @:from static public function fromTime(time : thx.Time) : $unitType
     return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks));
 
   @:to public function toTime() : thx.Time
