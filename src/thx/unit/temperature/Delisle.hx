@@ -1,75 +1,136 @@
 package thx.unit.temperature;
 
-import thx.Floats;
+import thx.Decimal;
 
-// TODO parse string
-
-abstract Delisle(Float) {
-  @:from inline static public function floatToDelisle(value : Float) : Delisle
+abstract Delisle(Decimal) {
+  @:from inline static public function fromDecimal(value : Decimal) : Delisle
     return new Delisle(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Delisle
+    return fromDecimal(Decimal.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : Delisle
+    return fromDecimal(Decimal.fromFloat(value));
+
+  inline function new(value : Decimal)
     this = value;
 
   inline public function abs() : Delisle
-    return Math.abs(this);
+    return this.abs();
 
   inline public function min(that : Delisle) : Delisle
-    return Math.min(this, that.toFloat());
+    return this.min(that.toDecimal());
 
   inline public function max(that : Delisle) : Delisle
-    return Math.max(this, that.toFloat());
+    return this.max(that.toDecimal());
 
   @:op( -A ) inline public function negate() : Delisle
     return -this;
   @:op( A+B) inline public function add(that : Delisle) : Delisle
-    return this + that.toFloat();
+    return this.add(that.toDecimal());
   @:op( A-B) inline public function subtract(that : Delisle) : Delisle
-    return this - that.toFloat();
-  @:op( A*B) inline public function multiply(that : Float) : Delisle
-    return this * that;
-  @:op( A/B) inline public function divide(that : Float) : Delisle
-    return this / that;
-  @:op( A%B) inline public function modulo(that : Float) : Delisle
-    return this % that;
-  @:op(A==B) inline public function equals(that : Delisle) : Bool
-    return this == that;
-  public function nearEquals(that : Delisle) : Bool
-    return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Delisle) : Bool
-    return this != that;
-  @:op( A<B) inline public function less(that : Delisle) : Bool
-    return this < that.toFloat();
-  @:op(A<=B) inline public function lessEquals(that : Delisle) : Bool
-    return this <= that.toFloat();
-  @:op( A>B) inline public function greater(that : Delisle) : Bool
-    return this > that.toFloat();
-  @:op(A>=B) inline public function greaterEquals(that : Delisle) : Bool
-    return this >= that.toFloat();
+    return this.subtract(that.toDecimal());
+  @:op( A*B) inline public function multiply(that : Decimal) : Delisle
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : Decimal) : Delisle
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : Decimal) : Delisle
+    return this.modulo(that);
 
-  @:to inline public function toFloat() : Float
+  inline public function equalsTo(that : Delisle) : Bool
+    return this.equalsTo(that.toDecimal());
+  @:op(A==B)
+  inline static public function equals(self : Delisle, that : Delisle) : Bool
+    return self.equalsTo(that.toDecimal());
+
+  public function nearEqualsTo(that : Delisle) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  public static function nearEquals(self : Delisle, that : Delisle) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : Delisle) : Bool
+    return !this.equalsTo(that.toDecimal());
+  @:op(A!=B)
+  inline static public function notEquals(self : Delisle, that : Delisle) : Bool
+    return !self.equalsTo(that.toDecimal());
+
+  inline public function lessThan(that : Delisle) : Bool
+    return this.lessThan(that.toDecimal());
+  @:op( A<B)
+  inline static public function less(self : Delisle, that : Delisle) : Bool
+    return self.lessThan(that.toDecimal());
+
+  inline public function lessEqualsTo(that : Delisle) : Bool
+    return this.lessEqualsTo(that.toDecimal());
+  @:op(A<=B)
+  inline static public function lessEquals(self : Delisle, that : Delisle) : Bool
+    return self.lessEqualsTo(that.toDecimal());
+
+  inline public function greaterThan(that : Delisle) : Bool
+    return this.greaterThan(that.toDecimal());
+  @:op( A>B)
+  inline static public function greater(self : Delisle, that : Delisle) : Bool
+    return self.greaterThan(that.toDecimal());
+
+  inline public function greaterEqualsTo(that : Delisle) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+  @:op(A>=B)
+  inline public function greaterEquals(that : Delisle) : Bool
+    return this.greaterEqualsTo(that.toDecimal());
+
+  inline public function toDecimal() : Decimal
     return this;
 
-  @:to inline public function toCelsius() : Celsius
-    return 100 - this * 2/3;
+  inline public function toFloat() : Float
+    return this.toFloat();
 
-  @:to inline public function toFahrenheit() : Fahrenheit
-    return toCelsius().toFahrenheit();
-  @:to inline public function toKelvin() : Kelvin
-    return toCelsius().toKelvin();
-  @:to inline public function toRankine() : Rankine
-    return toCelsius().toRankine();
-  @:to inline public function toDelisle() : Delisle
-    return toCelsius().toDelisle();
-  @:to inline public function toNewton() : Newton
-    return toCelsius().toNewton();
-  @:to inline public function toReaumur() : Reaumur
-    return toCelsius().toReaumur();
-  @:to inline public function toRomer() : Romer
-    return toCelsius().toRomer();
+
+  @:to inline public function toCelsius() : Celsius {
+    return -(this * 2/3) + 100;
+  }
+
+  @:to inline public function toFahrenheit() : Fahrenheit {
+    var value = toCelsius().toDecimal(),
+        result = (value / 5 * 9) + 32;
+    return result;
+  }
+
+  @:to inline public function toKelvin() : Kelvin {
+    var value = toCelsius().toDecimal(),
+        result = value + 273.15;
+    return result;
+  }
+
+  @:to inline public function toRankine() : Rankine {
+    var value = toCelsius().toDecimal(),
+        result = (value / 5 * 9) + 491.67;
+    return result;
+  }
+
+  @:to inline public function toDelisle() : Delisle {
+    return this;
+  }
+
+  @:to inline public function toNewton() : Newton {
+    var value = toCelsius().toDecimal(),
+        result = value / 100 * 33;
+    return result;
+  }
+
+  @:to inline public function toReaumur() : Reaumur {
+    var value = toCelsius().toDecimal(),
+        result = value / 5 * 4;
+    return result;
+  }
+
+  @:to inline public function toRomer() : Romer {
+    var value = toCelsius().toDecimal(),
+        result = (value / 40 * 21) + 7.5;
+    return result;
+  }
 
   @:to inline public function toString() : String
-    return this + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "°De";
 }

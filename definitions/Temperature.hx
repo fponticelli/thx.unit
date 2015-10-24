@@ -1,78 +1,102 @@
-package thx.unit.temperature;
+package thx.unit.${unit};
 
-import thx.Floats;
+import $importBaseType;
 
-// TODO parse string
-
-abstract ${type}(Float) {
-  @:from inline static public function floatTo${type}(value : Float) : $type
+abstract ${type}($baseType) {
+  @:from inline static public function from${baseType}(value : $baseType) : $type
     return new ${type}(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : $type
+    return from${baseType}(${baseType}.fromInt(value));
+
+  @:from inline static public function fromFloat(value : Float) : $type
+    return from${baseType}(${baseType}.fromFloat(value));
+
+  inline function new(value : $baseType)
     this = value;
 
   inline public function abs() : $type
-    return Math.abs(this);
+    return this.abs();
 
   inline public function min(that : $type) : $type
-    return Math.min(this, that.toFloat());
+    return this.min(that.to${baseType}());
 
   inline public function max(that : $type) : $type
-    return Math.max(this, that.toFloat());
+    return this.max(that.to${baseType}());
 
   @:op( -A ) inline public function negate() : $type
     return -this;
   @:op( A+B) inline public function add(that : $type) : $type
-    return this + that.toFloat();
+    return this.add(that.to${baseType}());
   @:op( A-B) inline public function subtract(that : $type) : $type
-    return this - that.toFloat();
-  @:op( A*B) inline public function multiply(that : Float) : $type
-    return this * that;
-  @:op( A/B) inline public function divide(that : Float) : $type
-    return this / that;
-  @:op( A%B) inline public function modulo(that : Float) : $type
-    return this % that;
-  @:op(A==B) inline public function equals(that : $type) : Bool
-    return this == that;
-  public function nearEquals(that : $type) : Bool
-    return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : $type) : Bool
-    return this != that;
-  @:op( A<B) inline public function less(that : $type) : Bool
-    return this < that.toFloat();
-  @:op(A<=B) inline public function lessEquals(that : $type) : Bool
-    return this <= that.toFloat();
-  @:op( A>B) inline public function greater(that : $type) : Bool
-    return this > that.toFloat();
-  @:op(A>=B) inline public function greaterEquals(that : $type) : Bool
-    return this >= that.toFloat();
+    return this.subtract(that.to${baseType}());
+  @:op( A*B) inline public function multiply(that : $baseType) : $type
+    return this.multiply(that);
+  @:op( A/B) inline public function divide(that : $baseType) : $type
+    return this.divide(that);
+  @:op( A%B) inline public function modulo(that : $baseType) : $type
+    return this.modulo(that);
 
-  @:to inline public function toFloat() : Float
+  inline public function equalsTo(that : $type) : Bool
+    return this.equalsTo(that.to${baseType}());
+  @:op(A==B)
+  inline static public function equals(self : $type, that : $type) : Bool
+    return self.equalsTo(that.to${baseType}());
+
+  public function nearEqualsTo(that : $type) : Bool
+    return Floats.nearEquals(this.toFloat(), that.toFloat());
+  public static function nearEquals(self : $type, that : $type) : Bool
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+
+  inline public function notEqualsTo(that : $type) : Bool
+    return !this.equalsTo(that.to${baseType}());
+  @:op(A!=B)
+  inline static public function notEquals(self : $type, that : $type) : Bool
+    return !self.equalsTo(that.to${baseType}());
+
+  inline public function lessThan(that : $type) : Bool
+    return this.lessThan(that.to${baseType}());
+  @:op( A<B)
+  inline static public function less(self : $type, that : $type) : Bool
+    return self.lessThan(that.to${baseType}());
+
+  inline public function lessEqualsTo(that : $type) : Bool
+    return this.lessEqualsTo(that.to${baseType}());
+  @:op(A<=B)
+  inline static public function lessEquals(self : $type, that : $type) : Bool
+    return self.lessEqualsTo(that.to${baseType}());
+
+  inline public function greaterThan(that : $type) : Bool
+    return this.greaterThan(that.to${baseType}());
+  @:op( A>B)
+  inline static public function greater(self : $type, that : $type) : Bool
+    return self.greaterThan(that.to${baseType}());
+
+  inline public function greaterEqualsTo(that : $type) : Bool
+    return this.greaterEqualsTo(that.to${baseType}());
+  @:op(A>=B)
+  inline public function greaterEquals(that : $type) : Bool
+    return this.greaterEqualsTo(that.to${baseType}());
+
+  inline public function to${baseType}() : $baseType
     return this;
-$if(type == 'Celsius') {
-  @:to inline public function toFahrenheit() : Fahrenheit
-    return this * 9/5 + 32;
-  @:to inline public function toKelvin() : Kelvin
-    return this + 273.15;
-  @:to inline public function toRankine() : Rankine
-    return (this + 273.15) * 9/5;
-  @:to inline public function toDelisle() : Delisle
-    return (100 - this) * 3/2;
-  @:to inline public function toNewton() : Newton
-    return this * 33/100;
-  @:to inline public function toReaumur() : Reaumur
-    return this * 4/5;
-  @:to inline public function toRomer() : Romer
-    return this * 21/40 + 7.5;
-} else {
-  @:to inline public function toCelsius() : Celsius
-    return ${toCelsius};
-$for(value in units) {$if(value.type != 'Celsius'){
-  @:to inline public function to${value.type}() : $value.type
-    return toCelsius().to${value.type}();}}}
 
+  inline public function toFloat() : Float
+    return this.toFloat();
+
+$for(value in units) {
+  @:to inline public function to${value.type}() : $value.type {$if(value.type == type) {
+    return this;
+  } else if(value.type == "Celsius") {
+    return $toCelsius;
+  } else {
+    var value = toCelsius().toDecimal(),
+        result = $value.fromCelsius;
+    return result;
+  }}
+}
   @:to inline public function toString() : String
-    return this + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "$symbol";
 }

@@ -1,14 +1,16 @@
 {
   "unit" : "temperature",
   "unitType" : "Temperature",
+  "baseType" : "Decimal",
+  "importBaseType" : "thx.Decimal",
   "units" : [
-    { "type" : "Celsius",    "symbol" : "°C", "toCelsius" : "this" },
-    { "type" : "Fahrenheit", "symbol" : "°F", "toCelsius" : "(this - 32) * 5/9" },
-    { "type" : "Kelvin",     "symbol" : "K",  "toCelsius" : "this - 273.15" },
-    { "type" : "Rankine",    "symbol" : "°R",  "toCelsius" : "(this - 491.67) * 5/9" },
-    { "type" : "Delisle",    "symbol" : "°De", "toCelsius" : "100 - this * 2/3" },
-    { "type" : "Newton",     "symbol" : "°N",  "toCelsius" : "this * 100/33" },
-    { "type" : "Reaumur",    "symbol" : "°Ré", "toCelsius" : "this * 5/4" },
-    { "type" : "Romer",      "symbol" : "°Rø", "toCelsius" : "(this - 7.5) * 40/21" }
+    { "type" : "Celsius",    "symbol" : "°C",  "fromCelsius" : "value", "toCelsius" : "this" },
+    { "type" : "Fahrenheit", "symbol" : "°F",  "fromCelsius" : "(value / 5 * 9) + 32", "toCelsius" : "(this - 32) * 5 / 9" },
+    { "type" : "Kelvin",     "symbol" : "K",   "fromCelsius" : "value + 273.15", "toCelsius" : "this - 273.15" },
+    { "type" : "Rankine",    "symbol" : "°R",  "fromCelsius" : "(value / 5 * 9) + 491.67", "toCelsius" : "(this - 491.67) * 5 / 9" },
+    { "type" : "Delisle",    "symbol" : "°De", "fromCelsius" : "(value / 2 * 3) + 100", "toCelsius" : "-(this * 2 / 3) + 100" },
+    { "type" : "Newton",     "symbol" : "°N",  "fromCelsius" : "value / 100 * 33", "toCelsius" : "this * 100 / 33" },
+    { "type" : "Reaumur",    "symbol" : "°Ré", "fromCelsius" : "value / 5 * 4", "toCelsius" : "this * 5 / 4" },
+    { "type" : "Romer",      "symbol" : "°Rø", "fromCelsius" : "(value / 40 * 21) + 7.5", "toCelsius" : "(this - 7.5) * 40 / 21" }
   ]
 }

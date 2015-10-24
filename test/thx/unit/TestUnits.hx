@@ -16,7 +16,7 @@ class TestUnits {
             { t : "6.7µm", s : "µm", v : 6.7 },
           ];
     for(test in tests) {
-      var v = Units.parseUnit(test.t);
+      var v = Units.parseUnitDecimal(test.t);
       Assert.isTrue(test.v == v.value);
       Assert.equals(test.s, v.symbol);
     }
