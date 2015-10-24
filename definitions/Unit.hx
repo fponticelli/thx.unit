@@ -1,11 +1,13 @@
 package thx.unit.${unit};
 
-using thx.Floats;
 $if(baseType != "Float"){import $importBaseType;
+} else {
+import thx.Floats;
 }
 abstract ${type}($baseType) {
-  static var ofUnit : ${baseType} = $if(baseType == "Float"){$ofUnit}else{"${ofUnit}"};
-
+  static var ofUnit : ${baseType} = $if(baseType == "Float"){$ofUnit}else{"${ofUnit}"}; $if(unit == "angle") {
+  public static var turn(default, null) : $type = ${ofUnit.split("/").pop()};
+}
   @:from inline static public function from${baseType}(value : $baseType) : $type
     return new ${type}(value);
 
@@ -23,13 +25,13 @@ $if(baseType != "Float") {
     this = value;
 
   inline public function abs() : $type
-    return this.abs();
+    return $if(baseType != "Float"){this.abs()}else{Math.abs(this)};
 
   inline public function min(that : $type) : $type
-    return this.min(that.to${baseType}());
+    return $if(baseType != "Float"){this.min(that.to${baseType}())}else{Floats.min(this,that.toFloat())};
 
   inline public function max(that : $type) : $type
-    return this.max(that.to${baseType}());
+    return $if(baseType != "Float"){this.max(that.to${baseType}())}else{Floats.max(this,that.toFloat())};
 
   @:op( -A ) inline public function negate() : $type
     return -this;
@@ -90,8 +92,9 @@ $if(baseType != "Float") {
   @:op(A>=B)
   inline static public function greaterEquals(self : $type, that : $type) : Bool
     return self.to${baseType}() >= that.to${baseType}();
-
-  inline public function to${baseType}() : $baseType
+$if(baseType == "Float") {
+  @:to
+} inline public function to${baseType}() : $baseType
     return this;
 $if(baseType != "Float") {
   inline public function toFloat() : Float
@@ -118,5 +121,30 @@ $if(unit == "time") {
   @:to public function toTime() : thx.Time
     return new thx.Time(toTick().toDecimal().toInt64());
 } else if(unit == "angle") {
+  inline static public function pointTo${type}(x : Float, y : Float) : $type
+    return (Math.atan2(y, x) : Radian);
 
+$if(type == 'Radian') {
+  inline public function cos() : Float
+    return Math.cos(this);
+
+  inline public function sin() : Float
+    return Math.sin(this);
+} else {
+  inline public function cos() : Float
+    return toRadian().cos();
+
+  inline public function sin() : Float
+    return toRadian().sin();
+}
+
+  public function normalize() : $type {
+    var n = this % (turn : $baseType);
+    return n < 0 ? (turn : $baseType) + n : n;
+  }
+
+  public function normalizeDirection() : $type {
+    var normalized = normalize();
+    return normalized > (turn : $baseType) / 2 ? normalized - (turn : $baseType) : normalized;
+  }
 }}

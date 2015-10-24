@@ -129,7 +129,22 @@ $if(unit == "time") {
   @:to public function toTime() : thx.Time
     return new thx.Time(toTick().toDecimal().toInt64());
 } else if(unit == "angle") {
+  inline static public function pointToAngle(x : Float, y : Float) : $unitType
+    return (Math.atan2(y, x) : Radian);
 
+  inline public function cos() : Float
+    return toRadian().cos();
+
+  inline public function sin() : Float
+    return toRadian().sin();
+
+  public function normalize() : $unitType return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.normalize();}
+  }
+
+  public function normalizeDirection() : $unitType return switch this {$for(value in units) {
+    case ${value.enumConstructor}(unit): unit.normalizeDirection();}
+  }
 }}
 
 enum ${unitTypeImpl} {$for(value in units) {

@@ -2,6 +2,7 @@ package thx.unit;
 
 import thx.unit.angle.Degree;
 import thx.unit.angle.Radian;
+import thx.unit.Angle;
 import utest.Assert;
 
 class TestAngle {
@@ -13,5 +14,10 @@ class TestAngle {
       return rad * 6;
     }
     Assert.floatEquals(Math.PI, by6(deg).toFloat());
+  }
+
+  public function testRuntime() {
+    var angle : Angle = "30rad";
+    Assert.isTrue(angle.toRadian() == (30 : Radian));
   }
 }

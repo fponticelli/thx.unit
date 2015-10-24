@@ -4,12 +4,12 @@ import utest.Assert;
 import thx.unit.angle.Degree;
 
 class TestDegree {
-	public function new() {}
+  public function new() {}
 
-	public function testBasic() {
-		var angle : Degree = 30;
-		Assert.equals("30°", angle.toString());
-	}
+  public function testBasic() {
+    var angle : Degree = 30;
+    Assert.equals("30°", angle.toString());
+  }
 
   public function testNormalize() {
     Assert.equals(30, (30 : Degree).normalize());
@@ -21,13 +21,15 @@ class TestDegree {
 
   public function testNormalizeDirection() {
     Assert.equals(30, (30 : Degree).normalizeDirection());
+    trace((-30 : Degree));
+		trace((-30 : Degree).normalizeDirection());
     Assert.equals(-30, (-30 : Degree).normalizeDirection());
     Assert.equals(-30, (330 : Degree).normalizeDirection());
   }
 
   public function testFromPoint() {
-    Assert.floatEquals(0, Degree.pointToDegree(1, 0));
-    Assert.floatEquals(90, Degree.pointToDegree(0, 1));
-    Assert.floatEquals(45, Degree.pointToDegree(1, 1));
+    Assert.isTrue(Degree.pointToDegree(1, 0) == 0);
+    Assert.isTrue(Degree.pointToDegree(0, 1) == 90);
+    Assert.isTrue(Degree.pointToDegree(1, 1) == 45);
   }
 }
