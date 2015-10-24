@@ -1,18 +1,20 @@
 {
   "unit" : "angle",
   "unitType" : "Angle",
+  "baseType" : "Float",
+  "importBaseType" : "Float",
   "units" : [
-    { "type" : "BinaryDegree", "symbol" : "binary degree", "ofTurn" : 256.0 },
-    { "type" : "Degree",       "symbol" : "°",             "ofTurn" : 360.0 },
-    { "type" : "Grad",         "symbol" : "grad",          "ofTurn" : 400.0 },
-    { "type" : "HourAngle",    "symbol" : "hour",          "ofTurn" : 24.0 },
-    { "type" : "MinuteOfArc",  "symbol" : "′",             "ofTurn" : 21600.0 },
-    { "type" : "Point",        "symbol" : "point",         "ofTurn" : 32.0 },
-    { "type" : "Quadrant",     "symbol" : "quad.",         "ofTurn" : 4.0 },
-    { "type" : "Radian",       "symbol" : "rad",           "ofTurn" : 6.283185307179586 },
-    { "type" : "Revolution",   "symbol" : "r",             "ofTurn" : 1.0 },
-    { "type" : "SecondOfArc",  "symbol" : "″",             "ofTurn" : 1296000.0 },
-    { "type" : "Sextant",      "symbol" : "sextant",       "ofTurn" : 6.0 },
-    { "type" : "Turn",         "symbol" : "τ",             "ofTurn" : 1.0 }
+    { "type" : "BinaryDegree", "symbol" : "binary degree", "ofUnit" : 256.0 },
+    { "type" : "Degree",       "symbol" : "°",             "ofUnit" : 360.0 },
+    { "type" : "Grad",         "symbol" : "grad",          "ofUnit" : 400.0 },
+    { "type" : "HourAngle",    "symbol" : "hour",          "ofUnit" : 24.0 },
+    { "type" : "MinuteOfArc",  "symbol" : "′",             "ofUnit" : 21600.0 },
+    { "type" : "Point",        "symbol" : "point",         "ofUnit" : 32.0 },
+    { "type" : "Quadrant",     "symbol" : "quad.",         "ofUnit" : 4.0 },
+    { "type" : "Radian",       "symbol" : "rad",           "ofUnit" : 6.283185307179586 },
+    { "type" : "Revolution",   "symbol" : "r",             "ofUnit" : 1.0 },
+    { "type" : "SecondOfArc",  "symbol" : "″",             "ofUnit" : 1296000.0 },
+    { "type" : "Sextant",      "symbol" : "sextant",       "ofUnit" : 6.0 },
+    { "type" : "Turn",         "symbol" : "τ",             "ofUnit" : 1.0 }
   ]
 }

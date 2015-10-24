@@ -120,7 +120,7 @@ $for(value in units) {
 
   public function toString() {
     var info = getInfo();
-    return info.value.toString() + info.symbol;
+    return "" + info.value + info.symbol;
   }
 $if(unit == "time") {
   @:from static public function fromTime(time : thx.Time) : $type
@@ -128,6 +128,8 @@ $if(unit == "time") {
 
   @:to public function toTime() : thx.Time
     return new thx.Time(toTick().toDecimal().toInt64());
+} else if(unit == "angle") {
+
 }}
 
 enum ${unitTypeImpl} {$for(value in units) {
