@@ -1294,7 +1294,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     return "" + info.value + info.symbol;
   }
 
-  @:from static public function fromTime(time : thx.Time) : Terasecond
+  @:from static public function fromTime(time : thx.Time) : Time
     return Tick.fromDecimal(thx.Decimal.fromInt64(time.ticks));
 
   @:to public function toTime() : thx.Time
