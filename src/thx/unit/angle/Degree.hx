@@ -1,47 +1,30 @@
 package thx.unit.angle;
 
+
 import thx.Floats;
 
-// TODO parse string
-
 abstract Degree(Float) {
-  public static var turn(default, null) : Degree = 360;
+  static var ofUnit : Float = 1.0/360.0; 
+  public static var turn(default, null) : Degree = 360.0;
 
-  inline static public function pointToDegree(x : Float, y : Float) : Degree
-    return (Math.atan2(y, x) : Radian);
-
-  @:from inline static public function floatToDegree(value : Float) : Degree
+  @:from inline static public function fromFloat(value : Float) : Degree
     return new Degree(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Degree 
+    return fromFloat(value);
+  
+
+  inline function new(value : Float)
     this = value;
-
-
-  inline public function cos()
-    return toRadian().cos();
-
-  inline public function sin()
-    return toRadian().sin();
-
 
   inline public function abs() : Degree
     return Math.abs(this);
 
   inline public function min(that : Degree) : Degree
-    return Math.min(this, that.toFloat());
+    return Floats.min(this,that.toFloat());
 
   inline public function max(that : Degree) : Degree
-    return Math.max(this, that.toFloat());
-
-  public function normalize() : Degree {
-    var a = this % turn.toFloat();
-    return a < 0 ? turn + a : a;
-  }
-
-  public function normalizeDirection() : Degree {
-    var a = normalize();
-    return a > 180 ? a - turn : a;
-  }
+    return Floats.max(this,that.toFloat());
 
   @:op( -A ) inline public function negate() : Degree
     return -this;
@@ -55,51 +38,126 @@ abstract Degree(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Degree
     return this % that;
-  @:op(A==B) inline public function equals(that : Degree) : Bool
-    return this == that;
-  public function nearEquals(that : Degree) : Bool
-    return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Degree) : Bool
-    return this != that;
-  @:op( A<B) inline public function less(that : Degree) : Bool
-    return this < that.toFloat();
-  @:op(A<=B) inline public function lessEquals(that : Degree) : Bool
-    return this <= that.toFloat();
-  @:op( A>B) inline public function greater(that : Degree) : Bool
-    return this > that.toFloat();
-  @:op(A>=B) inline public function greaterEquals(that : Degree) : Bool
-    return this >= that.toFloat();
 
-  @:to inline public function toFloat() : Float
+  inline public function equalsTo(that : Degree) : Bool
+    return this == that.toFloat();
+  @:op(A==B)
+  inline static public function equals(self : Degree, that : Degree) : Bool
+    return self.toFloat() == that.toFloat();
+
+  public function nearEqualsTo(that : Degree) : Bool 
+    return Floats.nearEquals(this, that.toFloat());
+  
+  public static function nearEquals(self : Degree, that : Degree) : Bool 
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
+
+  inline public function notEqualsTo(that : Degree) : Bool
+    return this != that.toFloat();
+  @:op(A!=B)
+  inline static public function notEquals(self : Degree, that : Degree) : Bool
+    return self.toFloat() != that.toFloat();
+
+  inline public function lessThan(that : Degree) : Bool
+    return this < that.toFloat();
+  @:op( A<B)
+  inline static public function less(self : Degree, that : Degree) : Bool
+    return self.toFloat() < that.toFloat();
+
+  inline public function lessEqualsTo(that : Degree) : Bool
+    return this <= that.toFloat();
+  @:op(A<=B)
+  inline static public function lessEquals(self : Degree, that : Degree) : Bool
+    return self.toFloat() <= that.toFloat();
+
+  inline public function greaterThan(that : Degree) : Bool
+    return this > that.toFloat();
+  @:op( A>B)
+  inline static public function greater(self : Degree, that : Degree) : Bool
+    return self.toFloat() >= that.toFloat();
+
+  inline public function greaterEqualsTo(that : Degree) : Bool
+    return this >= that.toFloat();
+  @:op(A>=B)
+  inline static public function greaterEquals(self : Degree, that : Degree) : Bool
+    return self.toFloat() >= that.toFloat();
+
+  @:to
+ inline public function toFloat() : Float
     return this;
 
-  @:to inline public function toBinaryDegree() : BinaryDegree
-    return this * 0.711111111111111;
-  @:to inline public function toDegree() : Degree
-    return this * 1;
-  @:to inline public function toGrad() : Grad
-    return this * 1.11111111111111;
-  @:to inline public function toHourAngle() : HourAngle
-    return this * 0.0666666666666667;
-  @:to inline public function toMinuteOfArc() : MinuteOfArc
-    return this * 60;
-  @:to inline public function toPoint() : Point
-    return this * 0.0888888888888889;
-  @:to inline public function toQuadrant() : Quadrant
-    return this * 0.0111111111111111;
-  @:to inline public function toRadian() : Radian
-    return this * 0.0174532925199433;
-  @:to inline public function toRevolution() : Revolution
-    return this * 0.00277777777777778;
-  @:to inline public function toSecondOfArc() : SecondOfArc
-    return this * 3600;
-  @:to inline public function toSextant() : Sextant
-    return this * 0.0166666666666667;
-  @:to inline public function toTurn() : Turn
-    return this * 0.00277777777777778;
 
+  static var dividerBinaryDegree : Float = 1.0/256.0;
+  @:to inline public function toBinaryDegree() : BinaryDegree
+      return (this * ofUnit) / dividerBinaryDegree;
+    
+  static var dividerDegree : Float = 1.0/360.0;
+  @:to inline public function toDegree() : Degree
+      return this;
+    
+  static var dividerGrad : Float = 1.0/400.0;
+  @:to inline public function toGrad() : Grad
+      return (this * ofUnit) / dividerGrad;
+    
+  static var dividerHourAngle : Float = 1.0/24.0;
+  @:to inline public function toHourAngle() : HourAngle
+      return (this * ofUnit) / dividerHourAngle;
+    
+  static var dividerMinuteOfArc : Float = 1.0/21600.0;
+  @:to inline public function toMinuteOfArc() : MinuteOfArc
+      return (this * ofUnit) / dividerMinuteOfArc;
+    
+  static var dividerPoint : Float = 1.0/32.0;
+  @:to inline public function toPoint() : Point
+      return (this * ofUnit) / dividerPoint;
+    
+  static var dividerQuadrant : Float = 1.0/4.0;
+  @:to inline public function toQuadrant() : Quadrant
+      return (this * ofUnit) / dividerQuadrant;
+    
+  static var dividerRadian : Float = 1.0/6.283185307179586;
+  @:to inline public function toRadian() : Radian
+      return (this * ofUnit) / dividerRadian;
+    
+  static var dividerRevolution : Float = 1.0/1.0;
+  @:to inline public function toRevolution() : Revolution
+      return (this * ofUnit) / dividerRevolution;
+    
+  static var dividerSecondOfArc : Float = 1.0/1296000.0;
+  @:to inline public function toSecondOfArc() : SecondOfArc
+      return (this * ofUnit) / dividerSecondOfArc;
+    
+  static var dividerSextant : Float = 1.0/6.0;
+  @:to inline public function toSextant() : Sextant
+      return (this * ofUnit) / dividerSextant;
+    
+  static var dividerTurn : Float = 1.0/1.0;
+  @:to inline public function toTurn() : Turn
+      return (this * ofUnit) / dividerTurn;
+    
   @:to inline public function toString() : String
-    return this + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "°";
+
+  inline static public function pointToDegree(x : Float, y : Float) : Degree
+    return (Math.atan2(y, x) : Radian);
+
+
+  inline public function cos() : Float
+    return toRadian().cos();
+
+  inline public function sin() : Float
+    return toRadian().sin();
+
+
+  public function normalize() : Degree {
+    var n = this % (turn : Float);
+    return n < 0 ? (turn : Float) + n : n;
+  }
+
+  public function normalizeDirection() : Degree {
+    var normalized = normalize();
+    return normalized > (turn : Float) / 2 ? normalized - (turn : Float) : normalized;
+  }
 }

@@ -1,19 +1,19 @@
 package thx.unit.mass;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract SolarMass(Decimal) {
-  static var ofUnit : Decimal = "1.98855e30";
-
+  static var ofUnit : Decimal = "1.98855e30"; 
   @:from inline static public function fromDecimal(value : Decimal) : SolarMass
     return new SolarMass(value);
 
-  @:from inline static public function fromInt(value : Int) : SolarMass
+  @:from inline static public function fromInt(value : Int) : SolarMass 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : SolarMass
-    return fromDecimal(Decimal.fromFloat(value));
+    return new SolarMass(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract SolarMass(Decimal) {
   @:op( -A ) inline public function negate() : SolarMass
     return -this;
   @:op( A+B) inline public function add(that : SolarMass) : SolarMass
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : SolarMass) : SolarMass
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : SolarMass
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : SolarMass
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : SolarMass
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : SolarMass) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : SolarMass, that : SolarMass) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : SolarMass) : Bool
+  public function nearEqualsTo(that : SolarMass) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : SolarMass, that : SolarMass) : Bool
+  
+  public static function nearEquals(self : SolarMass, that : SolarMass) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : SolarMass) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : SolarMass, that : SolarMass) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : SolarMass) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : SolarMass, that : SolarMass) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : SolarMass) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : SolarMass, that : SolarMass) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : SolarMass) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : SolarMass, that : SolarMass) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : SolarMass) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : SolarMass) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : SolarMass, that : SolarMass) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerMegagram : Decimal = "1000";
@@ -173,7 +175,7 @@ abstract SolarMass(Decimal) {
       return this;
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "M☉";
 }

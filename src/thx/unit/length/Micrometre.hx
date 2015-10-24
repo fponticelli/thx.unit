@@ -1,19 +1,19 @@
 package thx.unit.length;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract Micrometre(Decimal) {
-  static var ofUnit : Decimal = "0.000001";
-
+  static var ofUnit : Decimal = "0.000001"; 
   @:from inline static public function fromDecimal(value : Decimal) : Micrometre
     return new Micrometre(value);
 
-  @:from inline static public function fromInt(value : Int) : Micrometre
+  @:from inline static public function fromInt(value : Int) : Micrometre 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : Micrometre
-    return fromDecimal(Decimal.fromFloat(value));
+    return new Micrometre(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract Micrometre(Decimal) {
   @:op( -A ) inline public function negate() : Micrometre
     return -this;
   @:op( A+B) inline public function add(that : Micrometre) : Micrometre
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : Micrometre) : Micrometre
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : Micrometre
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : Micrometre
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : Micrometre
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : Micrometre) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : Micrometre, that : Micrometre) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : Micrometre) : Bool
+  public function nearEqualsTo(that : Micrometre) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : Micrometre, that : Micrometre) : Bool
+  
+  public static function nearEquals(self : Micrometre, that : Micrometre) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : Micrometre) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : Micrometre, that : Micrometre) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : Micrometre) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : Micrometre, that : Micrometre) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : Micrometre) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : Micrometre, that : Micrometre) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : Micrometre) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : Micrometre, that : Micrometre) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : Micrometre) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : Micrometre) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : Micrometre, that : Micrometre) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerKilometre : Decimal = "1000";
@@ -169,7 +171,7 @@ abstract Micrometre(Decimal) {
       return ((this * ofUnit) / dividerLightYear).trim();
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "µm";
 }

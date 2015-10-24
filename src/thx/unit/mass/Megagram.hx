@@ -1,19 +1,19 @@
 package thx.unit.mass;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract Megagram(Decimal) {
-  static var ofUnit : Decimal = "1000";
-
+  static var ofUnit : Decimal = "1000"; 
   @:from inline static public function fromDecimal(value : Decimal) : Megagram
     return new Megagram(value);
 
-  @:from inline static public function fromInt(value : Int) : Megagram
+  @:from inline static public function fromInt(value : Int) : Megagram 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : Megagram
-    return fromDecimal(Decimal.fromFloat(value));
+    return new Megagram(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract Megagram(Decimal) {
   @:op( -A ) inline public function negate() : Megagram
     return -this;
   @:op( A+B) inline public function add(that : Megagram) : Megagram
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : Megagram) : Megagram
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : Megagram
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : Megagram
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : Megagram
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : Megagram) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : Megagram, that : Megagram) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : Megagram) : Bool
+  public function nearEqualsTo(that : Megagram) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : Megagram, that : Megagram) : Bool
+  
+  public static function nearEquals(self : Megagram, that : Megagram) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : Megagram) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : Megagram, that : Megagram) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : Megagram) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : Megagram, that : Megagram) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : Megagram) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : Megagram, that : Megagram) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : Megagram) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : Megagram, that : Megagram) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : Megagram) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : Megagram) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : Megagram, that : Megagram) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerMegagram : Decimal = "1000";
@@ -173,7 +175,7 @@ abstract Megagram(Decimal) {
       return ((this * ofUnit) / dividerSolarMass).trim();
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "Mg";
 }

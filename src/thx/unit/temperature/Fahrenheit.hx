@@ -86,7 +86,7 @@ abstract Fahrenheit(Decimal) {
 
 
   @:to inline public function toCelsius() : Celsius {
-    return (this - 32) * 5/9;
+    return (this - 32) * 5 / 9;
   }
 
   @:to inline public function toFahrenheit() : Fahrenheit {

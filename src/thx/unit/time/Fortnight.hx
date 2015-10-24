@@ -1,19 +1,19 @@
 package thx.unit.time;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract Fortnight(Decimal) {
-  static var ofUnit : Decimal = "1209600";
-
+  static var ofUnit : Decimal = "1209600"; 
   @:from inline static public function fromDecimal(value : Decimal) : Fortnight
     return new Fortnight(value);
 
-  @:from inline static public function fromInt(value : Int) : Fortnight
+  @:from inline static public function fromInt(value : Int) : Fortnight 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : Fortnight
-    return fromDecimal(Decimal.fromFloat(value));
+    return new Fortnight(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract Fortnight(Decimal) {
   @:op( -A ) inline public function negate() : Fortnight
     return -this;
   @:op( A+B) inline public function add(that : Fortnight) : Fortnight
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : Fortnight) : Fortnight
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : Fortnight
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : Fortnight
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : Fortnight
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : Fortnight) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : Fortnight, that : Fortnight) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : Fortnight) : Bool
+  public function nearEqualsTo(that : Fortnight) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : Fortnight, that : Fortnight) : Bool
+  
+  public static function nearEquals(self : Fortnight, that : Fortnight) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : Fortnight) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : Fortnight, that : Fortnight) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : Fortnight) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : Fortnight, that : Fortnight) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : Fortnight) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : Fortnight, that : Fortnight) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : Fortnight) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : Fortnight, that : Fortnight) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : Fortnight) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : Fortnight) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : Fortnight, that : Fortnight) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerPlankTimeUnit : Decimal = "5.39e-44";
@@ -189,7 +191,7 @@ abstract Fortnight(Decimal) {
       return ((this * ofUnit) / dividerTerasecond).trim();
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "fortnight";
 

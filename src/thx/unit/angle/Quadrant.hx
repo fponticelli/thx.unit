@@ -1,47 +1,30 @@
 package thx.unit.angle;
 
+
 import thx.Floats;
 
-// TODO parse string
-
 abstract Quadrant(Float) {
-  public static var turn(default, null) : Quadrant = 4;
+  static var ofUnit : Float = 1.0/4.0; 
+  public static var turn(default, null) : Quadrant = 4.0;
 
-  inline static public function pointToQuadrant(x : Float, y : Float) : Quadrant
-    return (Math.atan2(y, x) : Radian);
-
-  @:from inline static public function floatToQuadrant(value : Float) : Quadrant
+  @:from inline static public function fromFloat(value : Float) : Quadrant
     return new Quadrant(value);
 
-  function new(value : Float)
+  @:from inline static public function fromInt(value : Int) : Quadrant 
+    return fromFloat(value);
+  
+
+  inline function new(value : Float)
     this = value;
-
-
-  inline public function cos()
-    return toRadian().cos();
-
-  inline public function sin()
-    return toRadian().sin();
-
 
   inline public function abs() : Quadrant
     return Math.abs(this);
 
   inline public function min(that : Quadrant) : Quadrant
-    return Math.min(this, that.toFloat());
+    return Floats.min(this,that.toFloat());
 
   inline public function max(that : Quadrant) : Quadrant
-    return Math.max(this, that.toFloat());
-
-  public function normalize() : Quadrant {
-    var a = this % turn.toFloat();
-    return a < 0 ? turn + a : a;
-  }
-
-  public function normalizeDirection() : Quadrant {
-    var a = normalize();
-    return a > 180 ? a - turn : a;
-  }
+    return Floats.max(this,that.toFloat());
 
   @:op( -A ) inline public function negate() : Quadrant
     return -this;
@@ -55,51 +38,126 @@ abstract Quadrant(Float) {
     return this / that;
   @:op( A%B) inline public function modulo(that : Float) : Quadrant
     return this % that;
-  @:op(A==B) inline public function equals(that : Quadrant) : Bool
-    return this == that;
-  public function nearEquals(that : Quadrant) : Bool
-    return Floats.nearEquals(this, that.toFloat());
-  @:op(A!=B) inline public function notEquals(that : Quadrant) : Bool
-    return this != that;
-  @:op( A<B) inline public function less(that : Quadrant) : Bool
-    return this < that.toFloat();
-  @:op(A<=B) inline public function lessEquals(that : Quadrant) : Bool
-    return this <= that.toFloat();
-  @:op( A>B) inline public function greater(that : Quadrant) : Bool
-    return this > that.toFloat();
-  @:op(A>=B) inline public function greaterEquals(that : Quadrant) : Bool
-    return this >= that.toFloat();
 
-  @:to inline public function toFloat() : Float
+  inline public function equalsTo(that : Quadrant) : Bool
+    return this == that.toFloat();
+  @:op(A==B)
+  inline static public function equals(self : Quadrant, that : Quadrant) : Bool
+    return self.toFloat() == that.toFloat();
+
+  public function nearEqualsTo(that : Quadrant) : Bool 
+    return Floats.nearEquals(this, that.toFloat());
+  
+  public static function nearEquals(self : Quadrant, that : Quadrant) : Bool 
+    return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
+
+  inline public function notEqualsTo(that : Quadrant) : Bool
+    return this != that.toFloat();
+  @:op(A!=B)
+  inline static public function notEquals(self : Quadrant, that : Quadrant) : Bool
+    return self.toFloat() != that.toFloat();
+
+  inline public function lessThan(that : Quadrant) : Bool
+    return this < that.toFloat();
+  @:op( A<B)
+  inline static public function less(self : Quadrant, that : Quadrant) : Bool
+    return self.toFloat() < that.toFloat();
+
+  inline public function lessEqualsTo(that : Quadrant) : Bool
+    return this <= that.toFloat();
+  @:op(A<=B)
+  inline static public function lessEquals(self : Quadrant, that : Quadrant) : Bool
+    return self.toFloat() <= that.toFloat();
+
+  inline public function greaterThan(that : Quadrant) : Bool
+    return this > that.toFloat();
+  @:op( A>B)
+  inline static public function greater(self : Quadrant, that : Quadrant) : Bool
+    return self.toFloat() >= that.toFloat();
+
+  inline public function greaterEqualsTo(that : Quadrant) : Bool
+    return this >= that.toFloat();
+  @:op(A>=B)
+  inline static public function greaterEquals(self : Quadrant, that : Quadrant) : Bool
+    return self.toFloat() >= that.toFloat();
+
+  @:to
+ inline public function toFloat() : Float
     return this;
 
-  @:to inline public function toBinaryDegree() : BinaryDegree
-    return this * 64;
-  @:to inline public function toDegree() : Degree
-    return this * 90;
-  @:to inline public function toGrad() : Grad
-    return this * 100;
-  @:to inline public function toHourAngle() : HourAngle
-    return this * 6;
-  @:to inline public function toMinuteOfArc() : MinuteOfArc
-    return this * 5400;
-  @:to inline public function toPoint() : Point
-    return this * 8;
-  @:to inline public function toQuadrant() : Quadrant
-    return this * 1;
-  @:to inline public function toRadian() : Radian
-    return this * 1.5707963267949;
-  @:to inline public function toRevolution() : Revolution
-    return this * 0.25;
-  @:to inline public function toSecondOfArc() : SecondOfArc
-    return this * 324000;
-  @:to inline public function toSextant() : Sextant
-    return this * 1.5;
-  @:to inline public function toTurn() : Turn
-    return this * 0.25;
 
+  static var dividerBinaryDegree : Float = 1.0/256.0;
+  @:to inline public function toBinaryDegree() : BinaryDegree
+      return (this * ofUnit) / dividerBinaryDegree;
+    
+  static var dividerDegree : Float = 1.0/360.0;
+  @:to inline public function toDegree() : Degree
+      return (this * ofUnit) / dividerDegree;
+    
+  static var dividerGrad : Float = 1.0/400.0;
+  @:to inline public function toGrad() : Grad
+      return (this * ofUnit) / dividerGrad;
+    
+  static var dividerHourAngle : Float = 1.0/24.0;
+  @:to inline public function toHourAngle() : HourAngle
+      return (this * ofUnit) / dividerHourAngle;
+    
+  static var dividerMinuteOfArc : Float = 1.0/21600.0;
+  @:to inline public function toMinuteOfArc() : MinuteOfArc
+      return (this * ofUnit) / dividerMinuteOfArc;
+    
+  static var dividerPoint : Float = 1.0/32.0;
+  @:to inline public function toPoint() : Point
+      return (this * ofUnit) / dividerPoint;
+    
+  static var dividerQuadrant : Float = 1.0/4.0;
+  @:to inline public function toQuadrant() : Quadrant
+      return this;
+    
+  static var dividerRadian : Float = 1.0/6.283185307179586;
+  @:to inline public function toRadian() : Radian
+      return (this * ofUnit) / dividerRadian;
+    
+  static var dividerRevolution : Float = 1.0/1.0;
+  @:to inline public function toRevolution() : Revolution
+      return (this * ofUnit) / dividerRevolution;
+    
+  static var dividerSecondOfArc : Float = 1.0/1296000.0;
+  @:to inline public function toSecondOfArc() : SecondOfArc
+      return (this * ofUnit) / dividerSecondOfArc;
+    
+  static var dividerSextant : Float = 1.0/6.0;
+  @:to inline public function toSextant() : Sextant
+      return (this * ofUnit) / dividerSextant;
+    
+  static var dividerTurn : Float = 1.0/1.0;
+  @:to inline public function toTurn() : Turn
+      return (this * ofUnit) / dividerTurn;
+    
   @:to inline public function toString() : String
-    return this + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "quad.";
+
+  inline static public function pointToQuadrant(x : Float, y : Float) : Quadrant
+    return (Math.atan2(y, x) : Radian);
+
+
+  inline public function cos() : Float
+    return toRadian().cos();
+
+  inline public function sin() : Float
+    return toRadian().sin();
+
+
+  public function normalize() : Quadrant {
+    var n = this % (turn : Float);
+    return n < 0 ? (turn : Float) + n : n;
+  }
+
+  public function normalizeDirection() : Quadrant {
+    var normalized = normalize();
+    return normalized > (turn : Float) / 2 ? normalized - (turn : Float) : normalized;
+  }
 }

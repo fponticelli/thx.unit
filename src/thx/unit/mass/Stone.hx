@@ -1,19 +1,19 @@
 package thx.unit.mass;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract Stone(Decimal) {
-  static var ofUnit : Decimal = "6.35029318";
-
+  static var ofUnit : Decimal = "6.35029318"; 
   @:from inline static public function fromDecimal(value : Decimal) : Stone
     return new Stone(value);
 
-  @:from inline static public function fromInt(value : Int) : Stone
+  @:from inline static public function fromInt(value : Int) : Stone 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : Stone
-    return fromDecimal(Decimal.fromFloat(value));
+    return new Stone(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract Stone(Decimal) {
   @:op( -A ) inline public function negate() : Stone
     return -this;
   @:op( A+B) inline public function add(that : Stone) : Stone
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : Stone) : Stone
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : Stone
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : Stone
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : Stone
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : Stone) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : Stone, that : Stone) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : Stone) : Bool
+  public function nearEqualsTo(that : Stone) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : Stone, that : Stone) : Bool
+  
+  public static function nearEquals(self : Stone, that : Stone) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : Stone) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : Stone, that : Stone) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : Stone) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : Stone, that : Stone) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : Stone) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : Stone, that : Stone) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : Stone) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : Stone, that : Stone) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : Stone) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : Stone) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : Stone, that : Stone) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerMegagram : Decimal = "1000";
@@ -173,7 +175,7 @@ abstract Stone(Decimal) {
       return ((this * ofUnit) / dividerSolarMass).trim();
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "st";
 }

@@ -86,7 +86,7 @@ abstract Rankine(Decimal) {
 
 
   @:to inline public function toCelsius() : Celsius {
-    return (this - 491.67) * 5/9;
+    return (this - 491.67) * 5 / 9;
   }
 
   @:to inline public function toFahrenheit() : Fahrenheit {

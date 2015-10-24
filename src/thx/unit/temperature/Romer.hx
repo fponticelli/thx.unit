@@ -86,7 +86,7 @@ abstract Romer(Decimal) {
 
 
   @:to inline public function toCelsius() : Celsius {
-    return (this - 7.5) * 40/21;
+    return (this - 7.5) * 40 / 21;
   }
 
   @:to inline public function toFahrenheit() : Fahrenheit {

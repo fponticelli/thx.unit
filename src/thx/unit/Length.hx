@@ -951,7 +951,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
 
   public function toString() {
     var info = getInfo();
-    return info.value.toString() + info.symbol;
+    return "" + info.value + info.symbol;
   }
 }
 

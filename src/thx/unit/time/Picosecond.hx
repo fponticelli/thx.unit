@@ -1,19 +1,19 @@
 package thx.unit.time;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract Picosecond(Decimal) {
-  static var ofUnit : Decimal = "1e-12";
-
+  static var ofUnit : Decimal = "1e-12"; 
   @:from inline static public function fromDecimal(value : Decimal) : Picosecond
     return new Picosecond(value);
 
-  @:from inline static public function fromInt(value : Int) : Picosecond
+  @:from inline static public function fromInt(value : Int) : Picosecond 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : Picosecond
-    return fromDecimal(Decimal.fromFloat(value));
+    return new Picosecond(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract Picosecond(Decimal) {
   @:op( -A ) inline public function negate() : Picosecond
     return -this;
   @:op( A+B) inline public function add(that : Picosecond) : Picosecond
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : Picosecond) : Picosecond
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : Picosecond
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : Picosecond
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : Picosecond
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : Picosecond) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : Picosecond, that : Picosecond) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : Picosecond) : Bool
+  public function nearEqualsTo(that : Picosecond) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : Picosecond, that : Picosecond) : Bool
+  
+  public static function nearEquals(self : Picosecond, that : Picosecond) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : Picosecond) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : Picosecond, that : Picosecond) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : Picosecond) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : Picosecond, that : Picosecond) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : Picosecond) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : Picosecond, that : Picosecond) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : Picosecond) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : Picosecond, that : Picosecond) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : Picosecond) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : Picosecond) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : Picosecond, that : Picosecond) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerPlankTimeUnit : Decimal = "5.39e-44";
@@ -189,7 +191,7 @@ abstract Picosecond(Decimal) {
       return ((this * ofUnit) / dividerTerasecond).trim();
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "ps";
 

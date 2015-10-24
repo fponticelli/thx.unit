@@ -1,19 +1,19 @@
 package thx.unit.time;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract Megasecond(Decimal) {
-  static var ofUnit : Decimal = "1000000";
-
+  static var ofUnit : Decimal = "1000000"; 
   @:from inline static public function fromDecimal(value : Decimal) : Megasecond
     return new Megasecond(value);
 
-  @:from inline static public function fromInt(value : Int) : Megasecond
+  @:from inline static public function fromInt(value : Int) : Megasecond 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : Megasecond
-    return fromDecimal(Decimal.fromFloat(value));
+    return new Megasecond(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract Megasecond(Decimal) {
   @:op( -A ) inline public function negate() : Megasecond
     return -this;
   @:op( A+B) inline public function add(that : Megasecond) : Megasecond
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : Megasecond) : Megasecond
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : Megasecond
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : Megasecond
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : Megasecond
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : Megasecond) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : Megasecond, that : Megasecond) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : Megasecond) : Bool
+  public function nearEqualsTo(that : Megasecond) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : Megasecond, that : Megasecond) : Bool
+  
+  public static function nearEquals(self : Megasecond, that : Megasecond) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : Megasecond) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : Megasecond, that : Megasecond) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : Megasecond) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : Megasecond, that : Megasecond) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : Megasecond) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : Megasecond, that : Megasecond) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : Megasecond) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : Megasecond, that : Megasecond) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : Megasecond) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : Megasecond) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : Megasecond, that : Megasecond) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerPlankTimeUnit : Decimal = "5.39e-44";
@@ -189,7 +191,7 @@ abstract Megasecond(Decimal) {
       return ((this * ofUnit) / dividerTerasecond).trim();
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "Ms";
 

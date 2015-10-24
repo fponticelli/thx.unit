@@ -1,19 +1,19 @@
 package thx.unit.mass;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract Ounce(Decimal) {
-  static var ofUnit : Decimal = "0.028349523125";
-
+  static var ofUnit : Decimal = "0.028349523125"; 
   @:from inline static public function fromDecimal(value : Decimal) : Ounce
     return new Ounce(value);
 
-  @:from inline static public function fromInt(value : Int) : Ounce
+  @:from inline static public function fromInt(value : Int) : Ounce 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : Ounce
-    return fromDecimal(Decimal.fromFloat(value));
+    return new Ounce(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract Ounce(Decimal) {
   @:op( -A ) inline public function negate() : Ounce
     return -this;
   @:op( A+B) inline public function add(that : Ounce) : Ounce
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : Ounce) : Ounce
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : Ounce
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : Ounce
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : Ounce
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : Ounce) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : Ounce, that : Ounce) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : Ounce) : Bool
+  public function nearEqualsTo(that : Ounce) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : Ounce, that : Ounce) : Bool
+  
+  public static function nearEquals(self : Ounce, that : Ounce) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : Ounce) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : Ounce, that : Ounce) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : Ounce) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : Ounce, that : Ounce) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : Ounce) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : Ounce, that : Ounce) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : Ounce) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : Ounce, that : Ounce) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : Ounce) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : Ounce) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : Ounce, that : Ounce) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerMegagram : Decimal = "1000";
@@ -173,7 +175,7 @@ abstract Ounce(Decimal) {
       return ((this * ofUnit) / dividerSolarMass).trim();
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "oz";
 }

@@ -1,19 +1,19 @@
 package thx.unit.digital;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract Yottabyte(Decimal) {
-  static var ofUnit : Decimal = "1208925819614629174706176";
-
+  static var ofUnit : Decimal = "1208925819614629174706176"; 
   @:from inline static public function fromDecimal(value : Decimal) : Yottabyte
     return new Yottabyte(value);
 
-  @:from inline static public function fromInt(value : Int) : Yottabyte
+  @:from inline static public function fromInt(value : Int) : Yottabyte 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : Yottabyte
-    return fromDecimal(Decimal.fromFloat(value));
+    return new Yottabyte(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract Yottabyte(Decimal) {
   @:op( -A ) inline public function negate() : Yottabyte
     return -this;
   @:op( A+B) inline public function add(that : Yottabyte) : Yottabyte
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : Yottabyte) : Yottabyte
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : Yottabyte
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : Yottabyte
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : Yottabyte
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : Yottabyte) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : Yottabyte, that : Yottabyte) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : Yottabyte) : Bool
+  public function nearEqualsTo(that : Yottabyte) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : Yottabyte, that : Yottabyte) : Bool
+  
+  public static function nearEquals(self : Yottabyte, that : Yottabyte) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : Yottabyte) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : Yottabyte, that : Yottabyte) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : Yottabyte) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : Yottabyte, that : Yottabyte) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : Yottabyte) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : Yottabyte, that : Yottabyte) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : Yottabyte) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : Yottabyte, that : Yottabyte) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : Yottabyte) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : Yottabyte) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : Yottabyte, that : Yottabyte) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerByte : Decimal = "1";
@@ -157,7 +159,7 @@ abstract Yottabyte(Decimal) {
       return ((this * ofUnit) / dividerYottabit).trim();
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "Yi";
 }

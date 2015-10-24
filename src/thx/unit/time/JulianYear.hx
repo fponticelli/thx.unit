@@ -1,19 +1,19 @@
 package thx.unit.time;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract JulianYear(Decimal) {
-  static var ofUnit : Decimal = "31557600";
-
+  static var ofUnit : Decimal = "31557600"; 
   @:from inline static public function fromDecimal(value : Decimal) : JulianYear
     return new JulianYear(value);
 
-  @:from inline static public function fromInt(value : Int) : JulianYear
+  @:from inline static public function fromInt(value : Int) : JulianYear 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : JulianYear
-    return fromDecimal(Decimal.fromFloat(value));
+    return new JulianYear(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract JulianYear(Decimal) {
   @:op( -A ) inline public function negate() : JulianYear
     return -this;
   @:op( A+B) inline public function add(that : JulianYear) : JulianYear
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : JulianYear) : JulianYear
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : JulianYear
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : JulianYear
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : JulianYear
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : JulianYear) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : JulianYear, that : JulianYear) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : JulianYear) : Bool
+  public function nearEqualsTo(that : JulianYear) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : JulianYear, that : JulianYear) : Bool
+  
+  public static function nearEquals(self : JulianYear, that : JulianYear) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : JulianYear) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : JulianYear, that : JulianYear) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : JulianYear) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : JulianYear, that : JulianYear) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : JulianYear) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : JulianYear, that : JulianYear) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : JulianYear) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : JulianYear, that : JulianYear) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : JulianYear) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : JulianYear) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : JulianYear, that : JulianYear) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerPlankTimeUnit : Decimal = "5.39e-44";
@@ -189,7 +191,7 @@ abstract JulianYear(Decimal) {
       return ((this * ofUnit) / dividerTerasecond).trim();
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "julian year";
 

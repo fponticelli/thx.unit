@@ -86,7 +86,7 @@ abstract Delisle(Decimal) {
 
 
   @:to inline public function toCelsius() : Celsius {
-    return -(this * 2/3) + 100;
+    return -(this * 2 / 3) + 100;
   }
 
   @:to inline public function toFahrenheit() : Fahrenheit {

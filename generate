@@ -1,5 +1,4 @@
 #!/bin/sh
-#rm -rf src/*
 generator -d definitions/amountofsubstance.json -i definitions/UnitRuntime.hx -o "src/thx/unit/\${unitType}.hx" -p units
 generator -d definitions/current.json -i definitions/UnitRuntime.hx -o "src/thx/unit/\${unitType}.hx" -p units
 generator -d definitions/digital.json -i definitions/UnitRuntime.hx -o "src/thx/unit/\${unitType}.hx" -p units
@@ -19,7 +18,7 @@ generator -d definitions/luminousintensity.json -i definitions/Unit.hx -o "src/t
 generator -d definitions/mass.json -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -p units
 generator -d definitions/time.json -i definitions/Unit.hx -o "src/thx/unit/\${unit}/\${type}.hx" -p units
 
-generator -d definitions/angle.json -i definitions/Angle.hx -o "src/thx/unit/angle/\${type}.hx" -p units
+generator -d definitions/angle.json -i definitions/Unit.hx -o "src/thx/unit/angle/\${type}.hx" -p units
 generator -d definitions/temperature.json -i definitions/Temperature.hx -o "src/thx/unit/temperature/\${type}.hx" -p units
 generator -d definitions/unitalias.json -i definitions/UnitAlias.hx -o "src/thx/unit/\${unit}/\${type}.hx" -p units
 haxe build.hxml

@@ -1015,7 +1015,7 @@ abstract Mass(MassImpl) from MassImpl to MassImpl {
 
   public function toString() {
     var info = getInfo();
-    return info.value.toString() + info.symbol;
+    return "" + info.value + info.symbol;
   }
 }
 

@@ -339,7 +339,7 @@ abstract Temperature(TemperatureImpl) from TemperatureImpl to TemperatureImpl {
 
   public function toString() {
     var info = getInfo();
-    return info.value.toString() + info.symbol;
+    return "" + info.value + info.symbol;
   }
 }
 

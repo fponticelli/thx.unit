@@ -1,19 +1,19 @@
 package thx.unit.length;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract LightYear(Decimal) {
-  static var ofUnit : Decimal = "9460730472580800";
-
+  static var ofUnit : Decimal = "9460730472580800"; 
   @:from inline static public function fromDecimal(value : Decimal) : LightYear
     return new LightYear(value);
 
-  @:from inline static public function fromInt(value : Int) : LightYear
+  @:from inline static public function fromInt(value : Int) : LightYear 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : LightYear
-    return fromDecimal(Decimal.fromFloat(value));
+    return new LightYear(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract LightYear(Decimal) {
   @:op( -A ) inline public function negate() : LightYear
     return -this;
   @:op( A+B) inline public function add(that : LightYear) : LightYear
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : LightYear) : LightYear
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : LightYear
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : LightYear
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : LightYear
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : LightYear) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : LightYear, that : LightYear) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : LightYear) : Bool
+  public function nearEqualsTo(that : LightYear) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : LightYear, that : LightYear) : Bool
+  
+  public static function nearEquals(self : LightYear, that : LightYear) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : LightYear) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : LightYear, that : LightYear) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : LightYear) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : LightYear, that : LightYear) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : LightYear) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : LightYear, that : LightYear) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : LightYear) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : LightYear, that : LightYear) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : LightYear) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : LightYear) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : LightYear, that : LightYear) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerKilometre : Decimal = "1000";
@@ -169,7 +171,7 @@ abstract LightYear(Decimal) {
       return this;
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "ly";
 }

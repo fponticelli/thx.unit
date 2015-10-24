@@ -1,19 +1,19 @@
 package thx.unit.digital;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract Zettabyte(Decimal) {
-  static var ofUnit : Decimal = "1180591620717411303424";
-
+  static var ofUnit : Decimal = "1180591620717411303424"; 
   @:from inline static public function fromDecimal(value : Decimal) : Zettabyte
     return new Zettabyte(value);
 
-  @:from inline static public function fromInt(value : Int) : Zettabyte
+  @:from inline static public function fromInt(value : Int) : Zettabyte 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : Zettabyte
-    return fromDecimal(Decimal.fromFloat(value));
+    return new Zettabyte(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract Zettabyte(Decimal) {
   @:op( -A ) inline public function negate() : Zettabyte
     return -this;
   @:op( A+B) inline public function add(that : Zettabyte) : Zettabyte
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : Zettabyte) : Zettabyte
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : Zettabyte
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : Zettabyte
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : Zettabyte
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : Zettabyte) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : Zettabyte, that : Zettabyte) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : Zettabyte) : Bool
+  public function nearEqualsTo(that : Zettabyte) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : Zettabyte, that : Zettabyte) : Bool
+  
+  public static function nearEquals(self : Zettabyte, that : Zettabyte) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : Zettabyte) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : Zettabyte, that : Zettabyte) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : Zettabyte) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : Zettabyte, that : Zettabyte) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : Zettabyte) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : Zettabyte, that : Zettabyte) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : Zettabyte) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : Zettabyte, that : Zettabyte) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : Zettabyte) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : Zettabyte) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : Zettabyte, that : Zettabyte) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerByte : Decimal = "1";
@@ -157,7 +159,7 @@ abstract Zettabyte(Decimal) {
       return ((this * ofUnit) / dividerYottabit).trim();
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "Zi";
 }

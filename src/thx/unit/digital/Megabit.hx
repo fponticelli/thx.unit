@@ -1,19 +1,19 @@
 package thx.unit.digital;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract Megabit(Decimal) {
-  static var ofUnit : Decimal = "1000000";
-
+  static var ofUnit : Decimal = "1000000"; 
   @:from inline static public function fromDecimal(value : Decimal) : Megabit
     return new Megabit(value);
 
-  @:from inline static public function fromInt(value : Int) : Megabit
+  @:from inline static public function fromInt(value : Int) : Megabit 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : Megabit
-    return fromDecimal(Decimal.fromFloat(value));
+    return new Megabit(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract Megabit(Decimal) {
   @:op( -A ) inline public function negate() : Megabit
     return -this;
   @:op( A+B) inline public function add(that : Megabit) : Megabit
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : Megabit) : Megabit
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : Megabit
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : Megabit
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : Megabit
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : Megabit) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : Megabit, that : Megabit) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : Megabit) : Bool
+  public function nearEqualsTo(that : Megabit) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : Megabit, that : Megabit) : Bool
+  
+  public static function nearEquals(self : Megabit, that : Megabit) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : Megabit) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : Megabit, that : Megabit) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : Megabit) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : Megabit, that : Megabit) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : Megabit) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : Megabit, that : Megabit) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : Megabit) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : Megabit, that : Megabit) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : Megabit) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : Megabit) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : Megabit, that : Megabit) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerByte : Decimal = "1";
@@ -157,7 +159,7 @@ abstract Megabit(Decimal) {
       return ((this * ofUnit) / dividerYottabit).trim();
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "M";
 }

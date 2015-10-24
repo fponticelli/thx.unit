@@ -511,7 +511,46 @@ abstract Angle(AngleImpl) from AngleImpl to AngleImpl {
 
   public function toString() {
     var info = getInfo();
-    return info.value.toString() + info.symbol;
+    return "" + info.value + info.symbol;
+  }
+
+  inline static public function pointToAngle(x : Float, y : Float) : Angle
+    return (Math.atan2(y, x) : Radian);
+
+  inline public function cos() : Float
+    return toRadian().cos();
+
+  inline public function sin() : Float
+    return toRadian().sin();
+
+  public function normalize() : Angle return switch this {
+    case AngleBinaryDegree(unit): unit.normalize();
+    case AngleDegree(unit): unit.normalize();
+    case AngleGrad(unit): unit.normalize();
+    case AngleHourAngle(unit): unit.normalize();
+    case AngleMinuteOfArc(unit): unit.normalize();
+    case AnglePoint(unit): unit.normalize();
+    case AngleQuadrant(unit): unit.normalize();
+    case AngleRadian(unit): unit.normalize();
+    case AngleRevolution(unit): unit.normalize();
+    case AngleSecondOfArc(unit): unit.normalize();
+    case AngleSextant(unit): unit.normalize();
+    case AngleTurn(unit): unit.normalize();
+  }
+
+  public function normalizeDirection() : Angle return switch this {
+    case AngleBinaryDegree(unit): unit.normalizeDirection();
+    case AngleDegree(unit): unit.normalizeDirection();
+    case AngleGrad(unit): unit.normalizeDirection();
+    case AngleHourAngle(unit): unit.normalizeDirection();
+    case AngleMinuteOfArc(unit): unit.normalizeDirection();
+    case AnglePoint(unit): unit.normalizeDirection();
+    case AngleQuadrant(unit): unit.normalizeDirection();
+    case AngleRadian(unit): unit.normalizeDirection();
+    case AngleRevolution(unit): unit.normalizeDirection();
+    case AngleSecondOfArc(unit): unit.normalizeDirection();
+    case AngleSextant(unit): unit.normalizeDirection();
+    case AngleTurn(unit): unit.normalizeDirection();
   }
 }
 

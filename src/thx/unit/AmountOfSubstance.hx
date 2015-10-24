@@ -141,7 +141,7 @@ abstract AmountOfSubstance(AmountOfSubstanceImpl) from AmountOfSubstanceImpl to 
 
   public function toString() {
     var info = getInfo();
-    return info.value.toString() + info.symbol;
+    return "" + info.value + info.symbol;
   }
 }
 

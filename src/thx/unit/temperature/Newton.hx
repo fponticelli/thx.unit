@@ -86,7 +86,7 @@ abstract Newton(Decimal) {
 
 
   @:to inline public function toCelsius() : Celsius {
-    return this * 100/33;
+    return this * 100 / 33;
   }
 
   @:to inline public function toFahrenheit() : Fahrenheit {

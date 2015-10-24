@@ -86,7 +86,7 @@ abstract Reaumur(Decimal) {
 
 
   @:to inline public function toCelsius() : Celsius {
-    return this * 5/4;
+    return this * 5 / 4;
   }
 
   @:to inline public function toFahrenheit() : Fahrenheit {

@@ -1291,7 +1291,7 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
 
   public function toString() {
     var info = getInfo();
-    return info.value.toString() + info.symbol;
+    return "" + info.value + info.symbol;
   }
 
   @:from static public function fromTime(time : thx.Time) : Terasecond

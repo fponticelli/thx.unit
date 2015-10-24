@@ -1,19 +1,19 @@
 package thx.unit.length;
 
-using thx.Floats;
 import thx.Decimal;
 
 abstract AstronomicalUnit(Decimal) {
-  static var ofUnit : Decimal = "149597870700";
-
+  static var ofUnit : Decimal = "149597870700"; 
   @:from inline static public function fromDecimal(value : Decimal) : AstronomicalUnit
     return new AstronomicalUnit(value);
 
-  @:from inline static public function fromInt(value : Int) : AstronomicalUnit
+  @:from inline static public function fromInt(value : Int) : AstronomicalUnit 
     return fromDecimal(Decimal.fromInt(value));
+  
 
   @:from inline static public function fromFloat(value : Float) : AstronomicalUnit
-    return fromDecimal(Decimal.fromFloat(value));
+    return new AstronomicalUnit(value);
+
 
   inline function new(value : Decimal)
     this = value;
@@ -30,62 +30,64 @@ abstract AstronomicalUnit(Decimal) {
   @:op( -A ) inline public function negate() : AstronomicalUnit
     return -this;
   @:op( A+B) inline public function add(that : AstronomicalUnit) : AstronomicalUnit
-    return this.add(that.toDecimal());
+    return this + that.toDecimal();
   @:op( A-B) inline public function subtract(that : AstronomicalUnit) : AstronomicalUnit
-    return this.subtract(that.toDecimal());
+    return this - that.toDecimal();
   @:op( A*B) inline public function multiply(that : Decimal) : AstronomicalUnit
-    return this.multiply(that);
+    return this * that;
   @:op( A/B) inline public function divide(that : Decimal) : AstronomicalUnit
-    return this.divide(that);
+    return this / that;
   @:op( A%B) inline public function modulo(that : Decimal) : AstronomicalUnit
-    return this.modulo(that);
+    return this % that;
 
   inline public function equalsTo(that : AstronomicalUnit) : Bool
-    return this.equalsTo(that.toDecimal());
+    return this == that.toDecimal();
   @:op(A==B)
   inline static public function equals(self : AstronomicalUnit, that : AstronomicalUnit) : Bool
-    return self.equalsTo(that.toDecimal());
+    return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : AstronomicalUnit) : Bool
+  public function nearEqualsTo(that : AstronomicalUnit) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
-  public static function nearEquals(self : AstronomicalUnit, that : AstronomicalUnit) : Bool
+  
+  public static function nearEquals(self : AstronomicalUnit, that : AstronomicalUnit) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
+  
 
   inline public function notEqualsTo(that : AstronomicalUnit) : Bool
-    return !this.equalsTo(that.toDecimal());
+    return this != that.toDecimal();
   @:op(A!=B)
   inline static public function notEquals(self : AstronomicalUnit, that : AstronomicalUnit) : Bool
-    return !self.equalsTo(that.toDecimal());
+    return self.toDecimal() != that.toDecimal();
 
   inline public function lessThan(that : AstronomicalUnit) : Bool
-    return this.lessThan(that.toDecimal());
+    return this < that.toDecimal();
   @:op( A<B)
   inline static public function less(self : AstronomicalUnit, that : AstronomicalUnit) : Bool
-    return self.lessThan(that.toDecimal());
+    return self.toDecimal() < that.toDecimal();
 
   inline public function lessEqualsTo(that : AstronomicalUnit) : Bool
-    return this.lessEqualsTo(that.toDecimal());
+    return this <= that.toDecimal();
   @:op(A<=B)
   inline static public function lessEquals(self : AstronomicalUnit, that : AstronomicalUnit) : Bool
-    return self.lessEqualsTo(that.toDecimal());
+    return self.toDecimal() <= that.toDecimal();
 
   inline public function greaterThan(that : AstronomicalUnit) : Bool
-    return this.greaterThan(that.toDecimal());
+    return this > that.toDecimal();
   @:op( A>B)
   inline static public function greater(self : AstronomicalUnit, that : AstronomicalUnit) : Bool
-    return self.greaterThan(that.toDecimal());
+    return self.toDecimal() >= that.toDecimal();
 
   inline public function greaterEqualsTo(that : AstronomicalUnit) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
+    return this >= that.toDecimal();
   @:op(A>=B)
-  inline public function greaterEquals(that : AstronomicalUnit) : Bool
-    return this.greaterEqualsTo(that.toDecimal());
-
-  inline public function toDecimal() : Decimal
+  inline static public function greaterEquals(self : AstronomicalUnit, that : AstronomicalUnit) : Bool
+    return self.toDecimal() >= that.toDecimal();
+ inline public function toDecimal() : Decimal
     return this;
 
   inline public function toFloat() : Float
     return this.toFloat();
+
 
 
   static var dividerKilometre : Decimal = "1000";
@@ -169,7 +171,7 @@ abstract AstronomicalUnit(Decimal) {
       return ((this * ofUnit) / dividerLightYear).trim();
     
   @:to inline public function toString() : String
-    return this.toString() + symbol;
+    return "" + this + symbol;
 
   public static inline var symbol : String = "au";
 }
