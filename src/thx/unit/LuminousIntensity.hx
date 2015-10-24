@@ -5,7 +5,7 @@ import thx.Error;
 
 abstract LuminousIntensity(LuminousIntensityImpl) from LuminousIntensityImpl to LuminousIntensityImpl {
   @:from static public function fromString(s : String) : LuminousIntensity {
-    var o = Units.parseUnit(s);
+    var o = Units.parseUnitDecimal(s);
     if(null == o) throw new Error("unable to parse " + s + " to LuminousIntensity");
     return fromPair(o);
   }
@@ -26,8 +26,8 @@ abstract LuminousIntensity(LuminousIntensityImpl) from LuminousIntensityImpl to 
   public var symbol(get, never) : String;
 
   function getInfo() return switch this {
-    case LuminousIntensityCandela(unit): { value : unit.toDecimal(), symbol : Candela.symbol };
-    case LuminousIntensityCandlepower(unit): { value : unit.toDecimal(), symbol : Candlepower.symbol };
+  case LuminousIntensityCandela(unit): { value : unit.toDecimal(), symbol : Candela.symbol };
+  case LuminousIntensityCandlepower(unit): { value : unit.toDecimal(), symbol : Candlepower.symbol };
   }
 
   public function abs() : LuminousIntensity return switch this {

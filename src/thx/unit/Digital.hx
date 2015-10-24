@@ -5,7 +5,7 @@ import thx.Error;
 
 abstract Digital(DigitalImpl) from DigitalImpl to DigitalImpl {
   @:from static public function fromString(s : String) : Digital {
-    var o = Units.parseUnit(s);
+    var o = Units.parseUnitDecimal(s);
     if(null == o) throw new Error("unable to parse " + s + " to Digital");
     return fromPair(o);
   }
@@ -86,23 +86,23 @@ abstract Digital(DigitalImpl) from DigitalImpl to DigitalImpl {
   public var symbol(get, never) : String;
 
   function getInfo() return switch this {
-    case DigitalByte(unit): { value : unit.toDecimal(), symbol : Byte.symbol };
-    case DigitalKilobyte(unit): { value : unit.toDecimal(), symbol : Kilobyte.symbol };
-    case DigitalMegabyte(unit): { value : unit.toDecimal(), symbol : Megabyte.symbol };
-    case DigitalGigabyte(unit): { value : unit.toDecimal(), symbol : Gigabyte.symbol };
-    case DigitalTerabyte(unit): { value : unit.toDecimal(), symbol : Terabyte.symbol };
-    case DigitalPetabyte(unit): { value : unit.toDecimal(), symbol : Petabyte.symbol };
-    case DigitalExabyte(unit): { value : unit.toDecimal(), symbol : Exabyte.symbol };
-    case DigitalZettabyte(unit): { value : unit.toDecimal(), symbol : Zettabyte.symbol };
-    case DigitalYottabyte(unit): { value : unit.toDecimal(), symbol : Yottabyte.symbol };
-    case DigitalKilobit(unit): { value : unit.toDecimal(), symbol : Kilobit.symbol };
-    case DigitalMegabit(unit): { value : unit.toDecimal(), symbol : Megabit.symbol };
-    case DigitalGigabit(unit): { value : unit.toDecimal(), symbol : Gigabit.symbol };
-    case DigitalTerabit(unit): { value : unit.toDecimal(), symbol : Terabit.symbol };
-    case DigitalPetabit(unit): { value : unit.toDecimal(), symbol : Petabit.symbol };
-    case DigitalExabit(unit): { value : unit.toDecimal(), symbol : Exabit.symbol };
-    case DigitalZettabit(unit): { value : unit.toDecimal(), symbol : Zettabit.symbol };
-    case DigitalYottabit(unit): { value : unit.toDecimal(), symbol : Yottabit.symbol };
+  case DigitalByte(unit): { value : unit.toDecimal(), symbol : Byte.symbol };
+  case DigitalKilobyte(unit): { value : unit.toDecimal(), symbol : Kilobyte.symbol };
+  case DigitalMegabyte(unit): { value : unit.toDecimal(), symbol : Megabyte.symbol };
+  case DigitalGigabyte(unit): { value : unit.toDecimal(), symbol : Gigabyte.symbol };
+  case DigitalTerabyte(unit): { value : unit.toDecimal(), symbol : Terabyte.symbol };
+  case DigitalPetabyte(unit): { value : unit.toDecimal(), symbol : Petabyte.symbol };
+  case DigitalExabyte(unit): { value : unit.toDecimal(), symbol : Exabyte.symbol };
+  case DigitalZettabyte(unit): { value : unit.toDecimal(), symbol : Zettabyte.symbol };
+  case DigitalYottabyte(unit): { value : unit.toDecimal(), symbol : Yottabyte.symbol };
+  case DigitalKilobit(unit): { value : unit.toDecimal(), symbol : Kilobit.symbol };
+  case DigitalMegabit(unit): { value : unit.toDecimal(), symbol : Megabit.symbol };
+  case DigitalGigabit(unit): { value : unit.toDecimal(), symbol : Gigabit.symbol };
+  case DigitalTerabit(unit): { value : unit.toDecimal(), symbol : Terabit.symbol };
+  case DigitalPetabit(unit): { value : unit.toDecimal(), symbol : Petabit.symbol };
+  case DigitalExabit(unit): { value : unit.toDecimal(), symbol : Exabit.symbol };
+  case DigitalZettabit(unit): { value : unit.toDecimal(), symbol : Zettabit.symbol };
+  case DigitalYottabit(unit): { value : unit.toDecimal(), symbol : Yottabit.symbol };
   }
 
   public function abs() : Digital return switch this {

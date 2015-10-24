@@ -5,7 +5,7 @@ import thx.Error;
 
 abstract Length(LengthImpl) from LengthImpl to LengthImpl {
   @:from static public function fromString(s : String) : Length {
-    var o = Units.parseUnit(s);
+    var o = Units.parseUnitDecimal(s);
     if(null == o) throw new Error("unable to parse " + s + " to Length");
     return fromPair(o);
   }
@@ -98,26 +98,26 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
   public var symbol(get, never) : String;
 
   function getInfo() return switch this {
-    case LengthKilometre(unit): { value : unit.toDecimal(), symbol : Kilometre.symbol };
-    case LengthMetre(unit): { value : unit.toDecimal(), symbol : Metre.symbol };
-    case LengthCentimetre(unit): { value : unit.toDecimal(), symbol : Centimetre.symbol };
-    case LengthMillimetre(unit): { value : unit.toDecimal(), symbol : Millimetre.symbol };
-    case LengthMicrometre(unit): { value : unit.toDecimal(), symbol : Micrometre.symbol };
-    case LengthNanometre(unit): { value : unit.toDecimal(), symbol : Nanometre.symbol };
-    case LengthLeague(unit): { value : unit.toDecimal(), symbol : League.symbol };
-    case LengthMile(unit): { value : unit.toDecimal(), symbol : Mile.symbol };
-    case LengthFurlong(unit): { value : unit.toDecimal(), symbol : Furlong.symbol };
-    case LengthChain(unit): { value : unit.toDecimal(), symbol : Chain.symbol };
-    case LengthYard(unit): { value : unit.toDecimal(), symbol : Yard.symbol };
-    case LengthFoot(unit): { value : unit.toDecimal(), symbol : Foot.symbol };
-    case LengthInch(unit): { value : unit.toDecimal(), symbol : Inch.symbol };
-    case LengthLine(unit): { value : unit.toDecimal(), symbol : Line.symbol };
-    case LengthThou(unit): { value : unit.toDecimal(), symbol : Thou.symbol };
-    case LengthFathom(unit): { value : unit.toDecimal(), symbol : Fathom.symbol };
-    case LengthNauticalMile(unit): { value : unit.toDecimal(), symbol : NauticalMile.symbol };
-    case LengthEarthRadius(unit): { value : unit.toDecimal(), symbol : EarthRadius.symbol };
-    case LengthAstronomicalUnit(unit): { value : unit.toDecimal(), symbol : AstronomicalUnit.symbol };
-    case LengthLightYear(unit): { value : unit.toDecimal(), symbol : LightYear.symbol };
+  case LengthKilometre(unit): { value : unit.toDecimal(), symbol : Kilometre.symbol };
+  case LengthMetre(unit): { value : unit.toDecimal(), symbol : Metre.symbol };
+  case LengthCentimetre(unit): { value : unit.toDecimal(), symbol : Centimetre.symbol };
+  case LengthMillimetre(unit): { value : unit.toDecimal(), symbol : Millimetre.symbol };
+  case LengthMicrometre(unit): { value : unit.toDecimal(), symbol : Micrometre.symbol };
+  case LengthNanometre(unit): { value : unit.toDecimal(), symbol : Nanometre.symbol };
+  case LengthLeague(unit): { value : unit.toDecimal(), symbol : League.symbol };
+  case LengthMile(unit): { value : unit.toDecimal(), symbol : Mile.symbol };
+  case LengthFurlong(unit): { value : unit.toDecimal(), symbol : Furlong.symbol };
+  case LengthChain(unit): { value : unit.toDecimal(), symbol : Chain.symbol };
+  case LengthYard(unit): { value : unit.toDecimal(), symbol : Yard.symbol };
+  case LengthFoot(unit): { value : unit.toDecimal(), symbol : Foot.symbol };
+  case LengthInch(unit): { value : unit.toDecimal(), symbol : Inch.symbol };
+  case LengthLine(unit): { value : unit.toDecimal(), symbol : Line.symbol };
+  case LengthThou(unit): { value : unit.toDecimal(), symbol : Thou.symbol };
+  case LengthFathom(unit): { value : unit.toDecimal(), symbol : Fathom.symbol };
+  case LengthNauticalMile(unit): { value : unit.toDecimal(), symbol : NauticalMile.symbol };
+  case LengthEarthRadius(unit): { value : unit.toDecimal(), symbol : EarthRadius.symbol };
+  case LengthAstronomicalUnit(unit): { value : unit.toDecimal(), symbol : AstronomicalUnit.symbol };
+  case LengthLightYear(unit): { value : unit.toDecimal(), symbol : LightYear.symbol };
   }
 
   public function abs() : Length return switch this {

@@ -5,7 +5,7 @@ import thx.Error;
 
 abstract Current(CurrentImpl) from CurrentImpl to CurrentImpl {
   @:from static public function fromString(s : String) : Current {
-    var o = Units.parseUnit(s);
+    var o = Units.parseUnitDecimal(s);
     if(null == o) throw new Error("unable to parse " + s + " to Current");
     return fromPair(o);
   }
@@ -22,7 +22,7 @@ abstract Current(CurrentImpl) from CurrentImpl to CurrentImpl {
   public var symbol(get, never) : String;
 
   function getInfo() return switch this {
-    case CurrentAmpere(unit): { value : unit.toDecimal(), symbol : Ampere.symbol };
+  case CurrentAmpere(unit): { value : unit.toDecimal(), symbol : Ampere.symbol };
   }
 
   public function abs() : Current return switch this {

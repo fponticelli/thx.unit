@@ -5,7 +5,7 @@ import thx.Error;
 
 abstract Temperature(TemperatureImpl) from TemperatureImpl to TemperatureImpl {
   @:from static public function fromString(s : String) : Temperature {
-    var o = Units.parseUnit(s);
+    var o = Units.parseUnitDecimal(s);
     if(null == o) throw new Error("unable to parse " + s + " to Temperature");
     return fromPair(o);
   }
@@ -50,14 +50,14 @@ abstract Temperature(TemperatureImpl) from TemperatureImpl to TemperatureImpl {
   public var symbol(get, never) : String;
 
   function getInfo() return switch this {
-    case TemperatureCelsius(unit): { value : unit.toDecimal(), symbol : Celsius.symbol };
-    case TemperatureFahrenheit(unit): { value : unit.toDecimal(), symbol : Fahrenheit.symbol };
-    case TemperatureKelvin(unit): { value : unit.toDecimal(), symbol : Kelvin.symbol };
-    case TemperatureRankine(unit): { value : unit.toDecimal(), symbol : Rankine.symbol };
-    case TemperatureDelisle(unit): { value : unit.toDecimal(), symbol : Delisle.symbol };
-    case TemperatureNewton(unit): { value : unit.toDecimal(), symbol : Newton.symbol };
-    case TemperatureReaumur(unit): { value : unit.toDecimal(), symbol : Reaumur.symbol };
-    case TemperatureRomer(unit): { value : unit.toDecimal(), symbol : Romer.symbol };
+  case TemperatureCelsius(unit): { value : unit.toDecimal(), symbol : Celsius.symbol };
+  case TemperatureFahrenheit(unit): { value : unit.toDecimal(), symbol : Fahrenheit.symbol };
+  case TemperatureKelvin(unit): { value : unit.toDecimal(), symbol : Kelvin.symbol };
+  case TemperatureRankine(unit): { value : unit.toDecimal(), symbol : Rankine.symbol };
+  case TemperatureDelisle(unit): { value : unit.toDecimal(), symbol : Delisle.symbol };
+  case TemperatureNewton(unit): { value : unit.toDecimal(), symbol : Newton.symbol };
+  case TemperatureReaumur(unit): { value : unit.toDecimal(), symbol : Reaumur.symbol };
+  case TemperatureRomer(unit): { value : unit.toDecimal(), symbol : Romer.symbol };
   }
 
   public function abs() : Temperature return switch this {

@@ -5,7 +5,7 @@ import thx.Error;
 
 abstract Angle(AngleImpl) from AngleImpl to AngleImpl {
   @:from static public function fromString(s : String) : Angle {
-    var o = Units.parseUnit(s);
+    var o = Units.parseUnitFloat(s);
     if(null == o) throw new Error("unable to parse " + s + " to Angle");
     return fromPair(o);
   }
@@ -46,7 +46,7 @@ abstract Angle(AngleImpl) from AngleImpl to AngleImpl {
   @:from inline static public function turn(value : Turn) : Angle
     return AngleTurn(value);
 
-  public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Angle return switch info.symbol.toLowerCase() {
+  public static function fromPair(info : { value : Float, symbol : String}, ?pos : haxe.PosInfos) : Angle return switch info.symbol.toLowerCase() {
     case "binary degree", "binary degree": AngleBinaryDegree(info.value);
     case "°", "degree": AngleDegree(info.value);
     case "grad", "grad": AngleGrad(info.value);
@@ -62,22 +62,22 @@ abstract Angle(AngleImpl) from AngleImpl to AngleImpl {
     case _: throw new thx.Error("invalid symbol " + info.symbol, pos);
   }
 
-  public var value(get, never) : Decimal;
+  public var value(get, never) : Float;
   public var symbol(get, never) : String;
 
   function getInfo() return switch this {
-    case AngleBinaryDegree(unit): { value : unit.toDecimal(), symbol : BinaryDegree.symbol };
-    case AngleDegree(unit): { value : unit.toDecimal(), symbol : Degree.symbol };
-    case AngleGrad(unit): { value : unit.toDecimal(), symbol : Grad.symbol };
-    case AngleHourAngle(unit): { value : unit.toDecimal(), symbol : HourAngle.symbol };
-    case AngleMinuteOfArc(unit): { value : unit.toDecimal(), symbol : MinuteOfArc.symbol };
-    case AnglePoint(unit): { value : unit.toDecimal(), symbol : Point.symbol };
-    case AngleQuadrant(unit): { value : unit.toDecimal(), symbol : Quadrant.symbol };
-    case AngleRadian(unit): { value : unit.toDecimal(), symbol : Radian.symbol };
-    case AngleRevolution(unit): { value : unit.toDecimal(), symbol : Revolution.symbol };
-    case AngleSecondOfArc(unit): { value : unit.toDecimal(), symbol : SecondOfArc.symbol };
-    case AngleSextant(unit): { value : unit.toDecimal(), symbol : Sextant.symbol };
-    case AngleTurn(unit): { value : unit.toDecimal(), symbol : Turn.symbol };
+  case AngleBinaryDegree(unit): { value : unit.toFloat(), symbol : BinaryDegree.symbol };
+  case AngleDegree(unit): { value : unit.toFloat(), symbol : Degree.symbol };
+  case AngleGrad(unit): { value : unit.toFloat(), symbol : Grad.symbol };
+  case AngleHourAngle(unit): { value : unit.toFloat(), symbol : HourAngle.symbol };
+  case AngleMinuteOfArc(unit): { value : unit.toFloat(), symbol : MinuteOfArc.symbol };
+  case AnglePoint(unit): { value : unit.toFloat(), symbol : Point.symbol };
+  case AngleQuadrant(unit): { value : unit.toFloat(), symbol : Quadrant.symbol };
+  case AngleRadian(unit): { value : unit.toFloat(), symbol : Radian.symbol };
+  case AngleRevolution(unit): { value : unit.toFloat(), symbol : Revolution.symbol };
+  case AngleSecondOfArc(unit): { value : unit.toFloat(), symbol : SecondOfArc.symbol };
+  case AngleSextant(unit): { value : unit.toFloat(), symbol : Sextant.symbol };
+  case AngleTurn(unit): { value : unit.toFloat(), symbol : Turn.symbol };
   }
 
   public function abs() : Angle return switch this {
@@ -140,7 +140,7 @@ abstract Angle(AngleImpl) from AngleImpl to AngleImpl {
     case AngleTurn(unit): unit.subtract(that.toTurn());
   }
 
-  @:op( A*B) public function multiply(that : Decimal) : Angle return switch this {
+  @:op( A*B) public function multiply(that : Float) : Angle return switch this {
     case AngleBinaryDegree(unit): unit.multiply(that);
     case AngleDegree(unit): unit.multiply(that);
     case AngleGrad(unit): unit.multiply(that);
@@ -155,7 +155,7 @@ abstract Angle(AngleImpl) from AngleImpl to AngleImpl {
     case AngleTurn(unit): unit.multiply(that);
   }
 
-  @:op( A/B) public function divide(that : Decimal) : Angle return switch this {
+  @:op( A/B) public function divide(that : Float) : Angle return switch this {
     case AngleBinaryDegree(unit): unit.divide(that);
     case AngleDegree(unit): unit.divide(that);
     case AngleGrad(unit): unit.divide(that);
@@ -170,7 +170,7 @@ abstract Angle(AngleImpl) from AngleImpl to AngleImpl {
     case AngleTurn(unit): unit.divide(that);
   }
 
-  @:op( A%B) public function modulo(that : Decimal) : Angle return switch this {
+  @:op( A%B) public function modulo(that : Float) : Angle return switch this {
     case AngleBinaryDegree(unit): unit.modulo(that);
     case AngleDegree(unit): unit.modulo(that);
     case AngleGrad(unit): unit.modulo(that);
@@ -503,7 +503,7 @@ abstract Angle(AngleImpl) from AngleImpl to AngleImpl {
     case AngleTurn(unit): unit.toTurn();
   }
 
-  function get_value() : Decimal
+  function get_value() : Float
     return getInfo().value;
 
   function get_symbol() : String

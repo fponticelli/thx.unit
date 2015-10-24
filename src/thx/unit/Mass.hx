@@ -5,7 +5,7 @@ import thx.Error;
 
 abstract Mass(MassImpl) from MassImpl to MassImpl {
   @:from static public function fromString(s : String) : Mass {
-    var o = Units.parseUnit(s);
+    var o = Units.parseUnitDecimal(s);
     if(null == o) throw new Error("unable to parse " + s + " to Mass");
     return fromPair(o);
   }
@@ -102,27 +102,27 @@ abstract Mass(MassImpl) from MassImpl to MassImpl {
   public var symbol(get, never) : String;
 
   function getInfo() return switch this {
-    case MassMegagram(unit): { value : unit.toDecimal(), symbol : Megagram.symbol };
-    case MassKilogram(unit): { value : unit.toDecimal(), symbol : Kilogram.symbol };
-    case MassGram(unit): { value : unit.toDecimal(), symbol : Gram.symbol };
-    case MassCentigram(unit): { value : unit.toDecimal(), symbol : Centigram.symbol };
-    case MassMilligram(unit): { value : unit.toDecimal(), symbol : Milligram.symbol };
-    case MassMicrogram(unit): { value : unit.toDecimal(), symbol : Microgram.symbol };
-    case MassNanogram(unit): { value : unit.toDecimal(), symbol : Nanogram.symbol };
-    case MassPicogram(unit): { value : unit.toDecimal(), symbol : Picogram.symbol };
-    case MassTon(unit): { value : unit.toDecimal(), symbol : Ton.symbol };
-    case MassHundredweight(unit): { value : unit.toDecimal(), symbol : Hundredweight.symbol };
-    case MassQuarter(unit): { value : unit.toDecimal(), symbol : Quarter.symbol };
-    case MassStone(unit): { value : unit.toDecimal(), symbol : Stone.symbol };
-    case MassPound(unit): { value : unit.toDecimal(), symbol : Pound.symbol };
-    case MassOunce(unit): { value : unit.toDecimal(), symbol : Ounce.symbol };
-    case MassDrachm(unit): { value : unit.toDecimal(), symbol : Drachm.symbol };
-    case MassGrain(unit): { value : unit.toDecimal(), symbol : Grain.symbol };
-    case MassUnifiedAtomicMassUnit(unit): { value : unit.toDecimal(), symbol : UnifiedAtomicMassUnit.symbol };
-    case MassDalton(unit): { value : unit.toDecimal(), symbol : Dalton.symbol };
-    case MassPlankMass(unit): { value : unit.toDecimal(), symbol : PlankMass.symbol };
-    case MassSlug(unit): { value : unit.toDecimal(), symbol : Slug.symbol };
-    case MassSolarMass(unit): { value : unit.toDecimal(), symbol : SolarMass.symbol };
+  case MassMegagram(unit): { value : unit.toDecimal(), symbol : Megagram.symbol };
+  case MassKilogram(unit): { value : unit.toDecimal(), symbol : Kilogram.symbol };
+  case MassGram(unit): { value : unit.toDecimal(), symbol : Gram.symbol };
+  case MassCentigram(unit): { value : unit.toDecimal(), symbol : Centigram.symbol };
+  case MassMilligram(unit): { value : unit.toDecimal(), symbol : Milligram.symbol };
+  case MassMicrogram(unit): { value : unit.toDecimal(), symbol : Microgram.symbol };
+  case MassNanogram(unit): { value : unit.toDecimal(), symbol : Nanogram.symbol };
+  case MassPicogram(unit): { value : unit.toDecimal(), symbol : Picogram.symbol };
+  case MassTon(unit): { value : unit.toDecimal(), symbol : Ton.symbol };
+  case MassHundredweight(unit): { value : unit.toDecimal(), symbol : Hundredweight.symbol };
+  case MassQuarter(unit): { value : unit.toDecimal(), symbol : Quarter.symbol };
+  case MassStone(unit): { value : unit.toDecimal(), symbol : Stone.symbol };
+  case MassPound(unit): { value : unit.toDecimal(), symbol : Pound.symbol };
+  case MassOunce(unit): { value : unit.toDecimal(), symbol : Ounce.symbol };
+  case MassDrachm(unit): { value : unit.toDecimal(), symbol : Drachm.symbol };
+  case MassGrain(unit): { value : unit.toDecimal(), symbol : Grain.symbol };
+  case MassUnifiedAtomicMassUnit(unit): { value : unit.toDecimal(), symbol : UnifiedAtomicMassUnit.symbol };
+  case MassDalton(unit): { value : unit.toDecimal(), symbol : Dalton.symbol };
+  case MassPlankMass(unit): { value : unit.toDecimal(), symbol : PlankMass.symbol };
+  case MassSlug(unit): { value : unit.toDecimal(), symbol : Slug.symbol };
+  case MassSolarMass(unit): { value : unit.toDecimal(), symbol : SolarMass.symbol };
   }
 
   public function abs() : Mass return switch this {

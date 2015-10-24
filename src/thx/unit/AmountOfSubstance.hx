@@ -5,7 +5,7 @@ import thx.Error;
 
 abstract AmountOfSubstance(AmountOfSubstanceImpl) from AmountOfSubstanceImpl to AmountOfSubstanceImpl {
   @:from static public function fromString(s : String) : AmountOfSubstance {
-    var o = Units.parseUnit(s);
+    var o = Units.parseUnitDecimal(s);
     if(null == o) throw new Error("unable to parse " + s + " to AmountOfSubstance");
     return fromPair(o);
   }
@@ -26,8 +26,8 @@ abstract AmountOfSubstance(AmountOfSubstanceImpl) from AmountOfSubstanceImpl to 
   public var symbol(get, never) : String;
 
   function getInfo() return switch this {
-    case AmountOfSubstanceMole(unit): { value : unit.toDecimal(), symbol : Mole.symbol };
-    case AmountOfSubstancePoundMole(unit): { value : unit.toDecimal(), symbol : PoundMole.symbol };
+  case AmountOfSubstanceMole(unit): { value : unit.toDecimal(), symbol : Mole.symbol };
+  case AmountOfSubstancePoundMole(unit): { value : unit.toDecimal(), symbol : PoundMole.symbol };
   }
 
   public function abs() : AmountOfSubstance return switch this {

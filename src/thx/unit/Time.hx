@@ -5,7 +5,7 @@ import thx.Error;
 
 abstract Time(TimeImpl) from TimeImpl to TimeImpl {
   @:from static public function fromString(s : String) : Time {
-    var o = Units.parseUnit(s);
+    var o = Units.parseUnitDecimal(s);
     if(null == o) throw new Error("unable to parse " + s + " to Time");
     return fromPair(o);
   }
@@ -118,31 +118,31 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
   public var symbol(get, never) : String;
 
   function getInfo() return switch this {
-    case TimePlankTimeUnit(unit): { value : unit.toDecimal(), symbol : PlankTimeUnit.symbol };
-    case TimeJiffyPhysics(unit): { value : unit.toDecimal(), symbol : JiffyPhysics.symbol };
-    case TimeSvedberg(unit): { value : unit.toDecimal(), symbol : Svedberg.symbol };
-    case TimePicosecond(unit): { value : unit.toDecimal(), symbol : Picosecond.symbol };
-    case TimeNanosecond(unit): { value : unit.toDecimal(), symbol : Nanosecond.symbol };
-    case TimeShake(unit): { value : unit.toDecimal(), symbol : Shake.symbol };
-    case TimeTick(unit): { value : unit.toDecimal(), symbol : Tick.symbol };
-    case TimeMicrosecond(unit): { value : unit.toDecimal(), symbol : Microsecond.symbol };
-    case TimeFourth(unit): { value : unit.toDecimal(), symbol : Fourth.symbol };
-    case TimeMillisecond(unit): { value : unit.toDecimal(), symbol : Millisecond.symbol };
-    case TimeThird(unit): { value : unit.toDecimal(), symbol : Third.symbol };
-    case TimeSecond(unit): { value : unit.toDecimal(), symbol : Second.symbol };
-    case TimeMinute(unit): { value : unit.toDecimal(), symbol : Minute.symbol };
-    case TimeKe(unit): { value : unit.toDecimal(), symbol : Ke.symbol };
-    case TimeKilosecond(unit): { value : unit.toDecimal(), symbol : Kilosecond.symbol };
-    case TimeHour(unit): { value : unit.toDecimal(), symbol : Hour.symbol };
-    case TimeDay(unit): { value : unit.toDecimal(), symbol : Day.symbol };
-    case TimeWeek(unit): { value : unit.toDecimal(), symbol : Week.symbol };
-    case TimeMegasecond(unit): { value : unit.toDecimal(), symbol : Megasecond.symbol };
-    case TimeFortnight(unit): { value : unit.toDecimal(), symbol : Fortnight.symbol };
-    case TimeSynodicMonth(unit): { value : unit.toDecimal(), symbol : SynodicMonth.symbol };
-    case TimeTropicalMonth(unit): { value : unit.toDecimal(), symbol : TropicalMonth.symbol };
-    case TimeJulianYear(unit): { value : unit.toDecimal(), symbol : JulianYear.symbol };
-    case TimeGigasecond(unit): { value : unit.toDecimal(), symbol : Gigasecond.symbol };
-    case TimeTerasecond(unit): { value : unit.toDecimal(), symbol : Terasecond.symbol };
+  case TimePlankTimeUnit(unit): { value : unit.toDecimal(), symbol : PlankTimeUnit.symbol };
+  case TimeJiffyPhysics(unit): { value : unit.toDecimal(), symbol : JiffyPhysics.symbol };
+  case TimeSvedberg(unit): { value : unit.toDecimal(), symbol : Svedberg.symbol };
+  case TimePicosecond(unit): { value : unit.toDecimal(), symbol : Picosecond.symbol };
+  case TimeNanosecond(unit): { value : unit.toDecimal(), symbol : Nanosecond.symbol };
+  case TimeShake(unit): { value : unit.toDecimal(), symbol : Shake.symbol };
+  case TimeTick(unit): { value : unit.toDecimal(), symbol : Tick.symbol };
+  case TimeMicrosecond(unit): { value : unit.toDecimal(), symbol : Microsecond.symbol };
+  case TimeFourth(unit): { value : unit.toDecimal(), symbol : Fourth.symbol };
+  case TimeMillisecond(unit): { value : unit.toDecimal(), symbol : Millisecond.symbol };
+  case TimeThird(unit): { value : unit.toDecimal(), symbol : Third.symbol };
+  case TimeSecond(unit): { value : unit.toDecimal(), symbol : Second.symbol };
+  case TimeMinute(unit): { value : unit.toDecimal(), symbol : Minute.symbol };
+  case TimeKe(unit): { value : unit.toDecimal(), symbol : Ke.symbol };
+  case TimeKilosecond(unit): { value : unit.toDecimal(), symbol : Kilosecond.symbol };
+  case TimeHour(unit): { value : unit.toDecimal(), symbol : Hour.symbol };
+  case TimeDay(unit): { value : unit.toDecimal(), symbol : Day.symbol };
+  case TimeWeek(unit): { value : unit.toDecimal(), symbol : Week.symbol };
+  case TimeMegasecond(unit): { value : unit.toDecimal(), symbol : Megasecond.symbol };
+  case TimeFortnight(unit): { value : unit.toDecimal(), symbol : Fortnight.symbol };
+  case TimeSynodicMonth(unit): { value : unit.toDecimal(), symbol : SynodicMonth.symbol };
+  case TimeTropicalMonth(unit): { value : unit.toDecimal(), symbol : TropicalMonth.symbol };
+  case TimeJulianYear(unit): { value : unit.toDecimal(), symbol : JulianYear.symbol };
+  case TimeGigasecond(unit): { value : unit.toDecimal(), symbol : Gigasecond.symbol };
+  case TimeTerasecond(unit): { value : unit.toDecimal(), symbol : Terasecond.symbol };
   }
 
   public function abs() : Time return switch this {
