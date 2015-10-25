@@ -34,15 +34,15 @@ abstract Temperature(TemperatureImpl) from TemperatureImpl to TemperatureImpl {
   @:from inline static public function romer(value : Romer) : Temperature
     return TemperatureRomer(value);
 
-  public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Temperature return switch info.symbol.toLowerCase() {
-    case "°c", "celsius": TemperatureCelsius(info.value);
-    case "°f", "fahrenheit": TemperatureFahrenheit(info.value);
-    case "k", "kelvin": TemperatureKelvin(info.value);
-    case "°r", "rankine": TemperatureRankine(info.value);
-    case "°de", "delisle": TemperatureDelisle(info.value);
-    case "°n", "newton": TemperatureNewton(info.value);
-    case "°ré", "reaumur": TemperatureReaumur(info.value);
-    case "°rø", "romer": TemperatureRomer(info.value);
+  public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Temperature return switch info.symbol {
+    case "°C", "celsius": TemperatureCelsius(info.value);
+    case "°F", "fahrenheit": TemperatureFahrenheit(info.value);
+    case "K", "kelvin": TemperatureKelvin(info.value);
+    case "°R", "rankine": TemperatureRankine(info.value);
+    case "°De", "delisle": TemperatureDelisle(info.value);
+    case "°N", "newton": TemperatureNewton(info.value);
+    case "°Ré", "reaumur": TemperatureReaumur(info.value);
+    case "°Rø", "romer": TemperatureRomer(info.value);
     case _: throw new thx.Error("invalid symbol " + info.symbol, pos);
   }
 

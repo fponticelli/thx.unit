@@ -15,6 +15,7 @@ class TestTemperature {
 
   public function testRuntime() {
     var t : Temperature = "25°C";
+    trace(t);
     Assert.isTrue((77 : Fahrenheit) == t.toFahrenheit());
     Assert.isTrue((298.15 : Kelvin) == t.toKelvin());
   }

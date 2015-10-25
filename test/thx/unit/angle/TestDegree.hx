@@ -21,15 +21,13 @@ class TestDegree {
 
   public function testNormalizeDirection() {
     Assert.equals(30, (30 : Degree).normalizeDirection());
-    trace((-30 : Degree));
-		trace((-30 : Degree).normalizeDirection());
     Assert.equals(-30, (-30 : Degree).normalizeDirection());
     Assert.equals(-30, (330 : Degree).normalizeDirection());
   }
 
   public function testFromPoint() {
-    Assert.isTrue(Degree.pointToDegree(1, 0) == 0);
-    Assert.isTrue(Degree.pointToDegree(0, 1) == 90);
-    Assert.isTrue(Degree.pointToDegree(1, 1) == 45);
+    Assert.isTrue(Degree.pointToDegree(1, 0) == 0.0);
+    Assert.isTrue(Degree.pointToDegree(0, 1) == 90.0);
+    Assert.isTrue(Degree.pointToDegree(1, 1) == 45.0);
   }
 }

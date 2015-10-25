@@ -61,24 +61,24 @@ abstract Digital(DigitalImpl) from DigitalImpl to DigitalImpl {
   @:from inline static public function yottabit(value : Yottabit) : Digital
     return DigitalYottabit(value);
 
-  public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Digital return switch info.symbol.toLowerCase() {
-    case "b", "byte": DigitalByte(info.value);
-    case "ki", "kilobyte": DigitalKilobyte(info.value);
-    case "mi", "megabyte": DigitalMegabyte(info.value);
-    case "gi", "gigabyte": DigitalGigabyte(info.value);
-    case "ti", "terabyte": DigitalTerabyte(info.value);
-    case "pi", "petabyte": DigitalPetabyte(info.value);
-    case "ei", "exabyte": DigitalExabyte(info.value);
-    case "zi", "zettabyte": DigitalZettabyte(info.value);
-    case "yi", "yottabyte": DigitalYottabyte(info.value);
+  public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Digital return switch info.symbol {
+    case "B", "byte": DigitalByte(info.value);
+    case "Ki", "kilobyte": DigitalKilobyte(info.value);
+    case "Mi", "megabyte": DigitalMegabyte(info.value);
+    case "Gi", "gigabyte": DigitalGigabyte(info.value);
+    case "Ti", "terabyte": DigitalTerabyte(info.value);
+    case "Pi", "petabyte": DigitalPetabyte(info.value);
+    case "Ei", "exabyte": DigitalExabyte(info.value);
+    case "Zi", "zettabyte": DigitalZettabyte(info.value);
+    case "Yi", "yottabyte": DigitalYottabyte(info.value);
     case "k", "kilobit": DigitalKilobit(info.value);
-    case "m", "megabit": DigitalMegabit(info.value);
-    case "g", "gigabit": DigitalGigabit(info.value);
-    case "t", "terabit": DigitalTerabit(info.value);
-    case "p", "petabit": DigitalPetabit(info.value);
-    case "e", "exabit": DigitalExabit(info.value);
-    case "z", "zettabit": DigitalZettabit(info.value);
-    case "y", "yottabit": DigitalYottabit(info.value);
+    case "M", "megabit": DigitalMegabit(info.value);
+    case "G", "gigabit": DigitalGigabit(info.value);
+    case "T", "terabit": DigitalTerabit(info.value);
+    case "P", "petabit": DigitalPetabit(info.value);
+    case "E", "exabit": DigitalExabit(info.value);
+    case "Z", "zettabit": DigitalZettabit(info.value);
+    case "Y", "yottabit": DigitalYottabit(info.value);
     case _: throw new thx.Error("invalid symbol " + info.symbol, pos);
   }
 

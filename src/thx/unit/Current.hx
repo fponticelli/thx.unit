@@ -13,8 +13,8 @@ abstract Current(CurrentImpl) from CurrentImpl to CurrentImpl {
   @:from inline static public function ampere(value : Ampere) : Current
     return CurrentAmpere(value);
 
-  public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Current return switch info.symbol.toLowerCase() {
-    case "a", "ampere": CurrentAmpere(info.value);
+  public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Current return switch info.symbol {
+    case "A", "ampere": CurrentAmpere(info.value);
     case _: throw new thx.Error("invalid symbol " + info.symbol, pos);
   }
 

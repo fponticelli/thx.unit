@@ -18,6 +18,6 @@ class TestAngle {
 
   public function testRuntime() {
     var angle : Angle = "30rad";
-    Assert.isTrue(angle.toRadian() == (30 : Radian));
+    Assert.isTrue(angle.toRadian() == (30.0 : Radian));
   }
 }

@@ -70,7 +70,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
   @:from inline static public function lightYear(value : LightYear) : Length
     return LengthLightYear(value);
 
-  public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Length return switch info.symbol.toLowerCase() {
+  public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Length return switch info.symbol {
     case "km", "kilometre": LengthKilometre(info.value);
     case "m", "metre": LengthMetre(info.value);
     case "cm", "centimetre": LengthCentimetre(info.value);
@@ -87,7 +87,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case "line", "line": LengthLine(info.value);
     case "th", "thou": LengthThou(info.value);
     case "ftm", "fathom": LengthFathom(info.value);
-    case "m", "nautical mile": LengthNauticalMile(info.value);
+    case "M", "nautical mile": LengthNauticalMile(info.value);
     case "earth radius", "earth radius": LengthEarthRadius(info.value);
     case "au", "astronomical unit": LengthAstronomicalUnit(info.value);
     case "ly", "light year": LengthLightYear(info.value);

@@ -46,7 +46,7 @@ abstract Angle(AngleImpl) from AngleImpl to AngleImpl {
   @:from inline static public function turn(value : Turn) : Angle
     return AngleTurn(value);
 
-  public static function fromPair(info : { value : Float, symbol : String}, ?pos : haxe.PosInfos) : Angle return switch info.symbol.toLowerCase() {
+  public static function fromPair(info : { value : Float, symbol : String}, ?pos : haxe.PosInfos) : Angle return switch info.symbol {
     case "binary degree", "binary degree": AngleBinaryDegree(info.value);
     case "°", "degree": AngleDegree(info.value);
     case "grad", "grad": AngleGrad(info.value);

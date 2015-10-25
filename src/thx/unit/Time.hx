@@ -85,10 +85,10 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
   @:from inline static public function terasecond(value : Terasecond) : Time
     return TimeTerasecond(value);
 
-  public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Time return switch info.symbol.toLowerCase() {
-    case "tp", "plank time unit": TimePlankTimeUnit(info.value);
+  public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Time return switch info.symbol {
+    case "tP", "plank time unit": TimePlankTimeUnit(info.value);
     case "jiffy", "jiffy physics": TimeJiffyPhysics(info.value);
-    case "s", "svedberg": TimeSvedberg(info.value);
+    case "S", "svedberg": TimeSvedberg(info.value);
     case "ps", "picosecond": TimePicosecond(info.value);
     case "ns", "nanosecond": TimeNanosecond(info.value);
     case "shake", "shake": TimeShake(info.value);
@@ -104,13 +104,13 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
     case "h", "hour": TimeHour(info.value);
     case "day", "day": TimeDay(info.value);
     case "week", "week": TimeWeek(info.value);
-    case "ms", "megasecond": TimeMegasecond(info.value);
+    case "Ms", "megasecond": TimeMegasecond(info.value);
     case "fortnight", "fortnight": TimeFortnight(info.value);
     case "synodic month", "synodic month": TimeSynodicMonth(info.value);
     case "tropical month", "tropical month": TimeTropicalMonth(info.value);
     case "julian year", "julian year": TimeJulianYear(info.value);
-    case "gs", "gigasecond": TimeGigasecond(info.value);
-    case "ts", "terasecond": TimeTerasecond(info.value);
+    case "Gs", "gigasecond": TimeGigasecond(info.value);
+    case "Ts", "terasecond": TimeTerasecond(info.value);
     case _: throw new thx.Error("invalid symbol " + info.symbol, pos);
   }
 
