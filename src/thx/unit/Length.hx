@@ -55,6 +55,9 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
   @:from inline static public function thou(value : Thou) : Length
     return LengthThou(value);
 
+  @:from inline static public function point(value : Point) : Length
+    return LengthPoint(value);
+
   @:from inline static public function fathom(value : Fathom) : Length
     return LengthFathom(value);
 
@@ -86,6 +89,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case "in", "inch": LengthInch(info.value);
     case "line", "line": LengthLine(info.value);
     case "th", "thou": LengthThou(info.value);
+    case "pt", "point": LengthPoint(info.value);
     case "ftm", "fathom": LengthFathom(info.value);
     case "M", "nautical mile": LengthNauticalMile(info.value);
     case "earth radius", "earth radius": LengthEarthRadius(info.value);
@@ -113,6 +117,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
   case LengthInch(unit): { value : unit.toDecimal(), symbol : Inch.symbol };
   case LengthLine(unit): { value : unit.toDecimal(), symbol : Line.symbol };
   case LengthThou(unit): { value : unit.toDecimal(), symbol : Thou.symbol };
+  case LengthPoint(unit): { value : unit.toDecimal(), symbol : Point.symbol };
   case LengthFathom(unit): { value : unit.toDecimal(), symbol : Fathom.symbol };
   case LengthNauticalMile(unit): { value : unit.toDecimal(), symbol : NauticalMile.symbol };
   case LengthEarthRadius(unit): { value : unit.toDecimal(), symbol : EarthRadius.symbol };
@@ -136,6 +141,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.abs();
     case LengthLine(unit): unit.abs();
     case LengthThou(unit): unit.abs();
+    case LengthPoint(unit): unit.abs();
     case LengthFathom(unit): unit.abs();
     case LengthNauticalMile(unit): unit.abs();
     case LengthEarthRadius(unit): unit.abs();
@@ -159,6 +165,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.negate();
     case LengthLine(unit): unit.negate();
     case LengthThou(unit): unit.negate();
+    case LengthPoint(unit): unit.negate();
     case LengthFathom(unit): unit.negate();
     case LengthNauticalMile(unit): unit.negate();
     case LengthEarthRadius(unit): unit.negate();
@@ -182,6 +189,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.add(that.toInch());
     case LengthLine(unit): unit.add(that.toLine());
     case LengthThou(unit): unit.add(that.toThou());
+    case LengthPoint(unit): unit.add(that.toPoint());
     case LengthFathom(unit): unit.add(that.toFathom());
     case LengthNauticalMile(unit): unit.add(that.toNauticalMile());
     case LengthEarthRadius(unit): unit.add(that.toEarthRadius());
@@ -205,6 +213,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.subtract(that.toInch());
     case LengthLine(unit): unit.subtract(that.toLine());
     case LengthThou(unit): unit.subtract(that.toThou());
+    case LengthPoint(unit): unit.subtract(that.toPoint());
     case LengthFathom(unit): unit.subtract(that.toFathom());
     case LengthNauticalMile(unit): unit.subtract(that.toNauticalMile());
     case LengthEarthRadius(unit): unit.subtract(that.toEarthRadius());
@@ -228,6 +237,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.multiply(that);
     case LengthLine(unit): unit.multiply(that);
     case LengthThou(unit): unit.multiply(that);
+    case LengthPoint(unit): unit.multiply(that);
     case LengthFathom(unit): unit.multiply(that);
     case LengthNauticalMile(unit): unit.multiply(that);
     case LengthEarthRadius(unit): unit.multiply(that);
@@ -251,6 +261,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.divide(that);
     case LengthLine(unit): unit.divide(that);
     case LengthThou(unit): unit.divide(that);
+    case LengthPoint(unit): unit.divide(that);
     case LengthFathom(unit): unit.divide(that);
     case LengthNauticalMile(unit): unit.divide(that);
     case LengthEarthRadius(unit): unit.divide(that);
@@ -274,6 +285,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.modulo(that);
     case LengthLine(unit): unit.modulo(that);
     case LengthThou(unit): unit.modulo(that);
+    case LengthPoint(unit): unit.modulo(that);
     case LengthFathom(unit): unit.modulo(that);
     case LengthNauticalMile(unit): unit.modulo(that);
     case LengthEarthRadius(unit): unit.modulo(that);
@@ -297,6 +309,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.min(that.toInch());
     case LengthLine(unit): unit.min(that.toLine());
     case LengthThou(unit): unit.min(that.toThou());
+    case LengthPoint(unit): unit.min(that.toPoint());
     case LengthFathom(unit): unit.min(that.toFathom());
     case LengthNauticalMile(unit): unit.min(that.toNauticalMile());
     case LengthEarthRadius(unit): unit.min(that.toEarthRadius());
@@ -320,6 +333,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.max(that.toInch());
     case LengthLine(unit): unit.max(that.toLine());
     case LengthThou(unit): unit.max(that.toThou());
+    case LengthPoint(unit): unit.max(that.toPoint());
     case LengthFathom(unit): unit.max(that.toFathom());
     case LengthNauticalMile(unit): unit.max(that.toNauticalMile());
     case LengthEarthRadius(unit): unit.max(that.toEarthRadius());
@@ -343,6 +357,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.equalsTo(that.toInch());
     case LengthLine(unit): unit.equalsTo(that.toLine());
     case LengthThou(unit): unit.equalsTo(that.toThou());
+    case LengthPoint(unit): unit.equalsTo(that.toPoint());
     case LengthFathom(unit): unit.equalsTo(that.toFathom());
     case LengthNauticalMile(unit): unit.equalsTo(that.toNauticalMile());
     case LengthEarthRadius(unit): unit.equalsTo(that.toEarthRadius());
@@ -369,6 +384,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.nearEqualsTo(that.toInch());
     case LengthLine(unit): unit.nearEqualsTo(that.toLine());
     case LengthThou(unit): unit.nearEqualsTo(that.toThou());
+    case LengthPoint(unit): unit.nearEqualsTo(that.toPoint());
     case LengthFathom(unit): unit.nearEqualsTo(that.toFathom());
     case LengthNauticalMile(unit): unit.nearEqualsTo(that.toNauticalMile());
     case LengthEarthRadius(unit): unit.nearEqualsTo(that.toEarthRadius());
@@ -394,6 +410,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.lessThan(that.toInch());
     case LengthLine(unit): unit.lessThan(that.toLine());
     case LengthThou(unit): unit.lessThan(that.toThou());
+    case LengthPoint(unit): unit.lessThan(that.toPoint());
     case LengthFathom(unit): unit.lessThan(that.toFathom());
     case LengthNauticalMile(unit): unit.lessThan(that.toNauticalMile());
     case LengthEarthRadius(unit): unit.lessThan(that.toEarthRadius());
@@ -420,6 +437,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.lessEqualsTo(that.toInch());
     case LengthLine(unit): unit.lessEqualsTo(that.toLine());
     case LengthThou(unit): unit.lessEqualsTo(that.toThou());
+    case LengthPoint(unit): unit.lessEqualsTo(that.toPoint());
     case LengthFathom(unit): unit.lessEqualsTo(that.toFathom());
     case LengthNauticalMile(unit): unit.lessEqualsTo(that.toNauticalMile());
     case LengthEarthRadius(unit): unit.lessEqualsTo(that.toEarthRadius());
@@ -446,6 +464,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.greaterThan(that.toInch());
     case LengthLine(unit): unit.greaterThan(that.toLine());
     case LengthThou(unit): unit.greaterThan(that.toThou());
+    case LengthPoint(unit): unit.greaterThan(that.toPoint());
     case LengthFathom(unit): unit.greaterThan(that.toFathom());
     case LengthNauticalMile(unit): unit.greaterThan(that.toNauticalMile());
     case LengthEarthRadius(unit): unit.greaterThan(that.toEarthRadius());
@@ -472,6 +491,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.greaterEqualsTo(that.toInch());
     case LengthLine(unit): unit.greaterEqualsTo(that.toLine());
     case LengthThou(unit): unit.greaterEqualsTo(that.toThou());
+    case LengthPoint(unit): unit.greaterEqualsTo(that.toPoint());
     case LengthFathom(unit): unit.greaterEqualsTo(that.toFathom());
     case LengthNauticalMile(unit): unit.greaterEqualsTo(that.toNauticalMile());
     case LengthEarthRadius(unit): unit.greaterEqualsTo(that.toEarthRadius());
@@ -499,6 +519,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -522,6 +543,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -545,6 +567,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -568,6 +591,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -591,6 +615,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -614,6 +639,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -637,6 +663,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -660,6 +687,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -683,6 +711,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -706,6 +735,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -729,6 +759,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -752,6 +783,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -775,6 +807,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -798,6 +831,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -821,6 +855,31 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
+    case LengthFathom(unit): unit.toFathom();
+    case LengthNauticalMile(unit): unit.toNauticalMile();
+    case LengthEarthRadius(unit): unit.toEarthRadius();
+    case LengthAstronomicalUnit(unit): unit.toAstronomicalUnit();
+    case LengthLightYear(unit): unit.toLightYear();
+  }
+
+  @:to public function toPoint() : Point return switch this {
+    case LengthKilometre(unit): unit.toKilometre();
+    case LengthMetre(unit): unit.toMetre();
+    case LengthCentimetre(unit): unit.toCentimetre();
+    case LengthMillimetre(unit): unit.toMillimetre();
+    case LengthMicrometre(unit): unit.toMicrometre();
+    case LengthNanometre(unit): unit.toNanometre();
+    case LengthLeague(unit): unit.toLeague();
+    case LengthMile(unit): unit.toMile();
+    case LengthFurlong(unit): unit.toFurlong();
+    case LengthChain(unit): unit.toChain();
+    case LengthYard(unit): unit.toYard();
+    case LengthFoot(unit): unit.toFoot();
+    case LengthInch(unit): unit.toInch();
+    case LengthLine(unit): unit.toLine();
+    case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -844,6 +903,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -867,6 +927,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -890,6 +951,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -913,6 +975,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -936,6 +999,7 @@ abstract Length(LengthImpl) from LengthImpl to LengthImpl {
     case LengthInch(unit): unit.toInch();
     case LengthLine(unit): unit.toLine();
     case LengthThou(unit): unit.toThou();
+    case LengthPoint(unit): unit.toPoint();
     case LengthFathom(unit): unit.toFathom();
     case LengthNauticalMile(unit): unit.toNauticalMile();
     case LengthEarthRadius(unit): unit.toEarthRadius();
@@ -971,6 +1035,7 @@ enum LengthImpl {
   LengthInch(unit : Inch);
   LengthLine(unit : Line);
   LengthThou(unit : Thou);
+  LengthPoint(unit : Point);
   LengthFathom(unit : Fathom);
   LengthNauticalMile(unit : NauticalMile);
   LengthEarthRadius(unit : EarthRadius);

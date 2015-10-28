@@ -150,6 +150,10 @@ abstract Metre(Decimal) {
   @:to inline public function toThou() : Thou
       return ((this * ofUnit) / dividerThou).trim();
     
+  static var dividerPoint : Decimal = "0.00035277777778";
+  @:to inline public function toPoint() : Point
+      return ((this * ofUnit) / dividerPoint).trim();
+    
   static var dividerFathom : Decimal = "1.82880";
   @:to inline public function toFathom() : Fathom
       return ((this * ofUnit) / dividerFathom).trim();

@@ -2,85 +2,85 @@ package thx.unit.length;
 
 import thx.Decimal;
 
-abstract Centimetre(Decimal) {
-  static var ofUnit : Decimal = "0.01"; 
-  @:from inline static public function fromDecimal(value : Decimal) : Centimetre
-    return new Centimetre(value);
+abstract Point(Decimal) {
+  static var ofUnit : Decimal = "0.00035277777778"; 
+  @:from inline static public function fromDecimal(value : Decimal) : Point
+    return new Point(value);
 
-  @:from inline static public function fromInt(value : Int) : Centimetre 
+  @:from inline static public function fromInt(value : Int) : Point 
     return fromDecimal(Decimal.fromInt(value));
   
 
-  @:from inline static public function fromFloat(value : Float) : Centimetre
-    return new Centimetre(value);
+  @:from inline static public function fromFloat(value : Float) : Point
+    return new Point(value);
 
 
   inline function new(value : Decimal)
     this = value;
 
-  inline public function abs() : Centimetre
+  inline public function abs() : Point
     return this.abs();
 
-  inline public function min(that : Centimetre) : Centimetre
+  inline public function min(that : Point) : Point
     return this.min(that.toDecimal());
 
-  inline public function max(that : Centimetre) : Centimetre
+  inline public function max(that : Point) : Point
     return this.max(that.toDecimal());
 
-  @:op( -A ) inline public function negate() : Centimetre
+  @:op( -A ) inline public function negate() : Point
     return -this;
-  @:op( A+B) inline public function add(that : Centimetre) : Centimetre
+  @:op( A+B) inline public function add(that : Point) : Point
     return this + that.toDecimal();
-  @:op( A-B) inline public function subtract(that : Centimetre) : Centimetre
+  @:op( A-B) inline public function subtract(that : Point) : Point
     return this - that.toDecimal();
-  @:op( A*B) inline public function multiply(that : Decimal) : Centimetre
+  @:op( A*B) inline public function multiply(that : Decimal) : Point
     return this * that;
-  @:op( A/B) inline public function divide(that : Decimal) : Centimetre
+  @:op( A/B) inline public function divide(that : Decimal) : Point
     return this / that;
-  @:op( A%B) inline public function modulo(that : Decimal) : Centimetre
+  @:op( A%B) inline public function modulo(that : Decimal) : Point
     return this % that;
 
-  inline public function equalsTo(that : Centimetre) : Bool
+  inline public function equalsTo(that : Point) : Bool
     return this == that.toDecimal();
   @:op(A==B)
-  inline static public function equals(self : Centimetre, that : Centimetre) : Bool
+  inline static public function equals(self : Point, that : Point) : Bool
     return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : Centimetre) : Bool 
+  public function nearEqualsTo(that : Point) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
   
-  public static function nearEquals(self : Centimetre, that : Centimetre) : Bool 
+  public static function nearEquals(self : Point, that : Point) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
   
 
-  inline public function notEqualsTo(that : Centimetre) : Bool
+  inline public function notEqualsTo(that : Point) : Bool
     return this != that.toDecimal();
   @:op(A!=B)
-  inline static public function notEquals(self : Centimetre, that : Centimetre) : Bool
+  inline static public function notEquals(self : Point, that : Point) : Bool
     return self.toDecimal() != that.toDecimal();
 
-  inline public function lessThan(that : Centimetre) : Bool
+  inline public function lessThan(that : Point) : Bool
     return this < that.toDecimal();
   @:op( A<B)
-  inline static public function less(self : Centimetre, that : Centimetre) : Bool
+  inline static public function less(self : Point, that : Point) : Bool
     return self.toDecimal() < that.toDecimal();
 
-  inline public function lessEqualsTo(that : Centimetre) : Bool
+  inline public function lessEqualsTo(that : Point) : Bool
     return this <= that.toDecimal();
   @:op(A<=B)
-  inline static public function lessEquals(self : Centimetre, that : Centimetre) : Bool
+  inline static public function lessEquals(self : Point, that : Point) : Bool
     return self.toDecimal() <= that.toDecimal();
 
-  inline public function greaterThan(that : Centimetre) : Bool
+  inline public function greaterThan(that : Point) : Bool
     return this > that.toDecimal();
   @:op( A>B)
-  inline static public function greater(self : Centimetre, that : Centimetre) : Bool
+  inline static public function greater(self : Point, that : Point) : Bool
     return self.toDecimal() >= that.toDecimal();
 
-  inline public function greaterEqualsTo(that : Centimetre) : Bool
+  inline public function greaterEqualsTo(that : Point) : Bool
     return this >= that.toDecimal();
   @:op(A>=B)
-  inline static public function greaterEquals(self : Centimetre, that : Centimetre) : Bool
+  inline static public function greaterEquals(self : Point, that : Point) : Bool
     return self.toDecimal() >= that.toDecimal();
  inline public function toDecimal() : Decimal
     return this;
@@ -100,7 +100,7 @@ abstract Centimetre(Decimal) {
     
   static var dividerCentimetre : Decimal = "0.01";
   @:to inline public function toCentimetre() : Centimetre
-      return this;
+      return ((this * ofUnit) / dividerCentimetre).trim();
     
   static var dividerMillimetre : Decimal = "0.001";
   @:to inline public function toMillimetre() : Millimetre
@@ -152,7 +152,7 @@ abstract Centimetre(Decimal) {
     
   static var dividerPoint : Decimal = "0.00035277777778";
   @:to inline public function toPoint() : Point
-      return ((this * ofUnit) / dividerPoint).trim();
+      return this;
     
   static var dividerFathom : Decimal = "1.82880";
   @:to inline public function toFathom() : Fathom
@@ -177,5 +177,5 @@ abstract Centimetre(Decimal) {
   @:to inline public function toString() : String
     return "" + this + symbol;
 
-  public static inline var symbol : String = "cm";
+  public static inline var symbol : String = "pt";
 }

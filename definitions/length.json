@@ -21,6 +21,8 @@
     { "type" : "Line",    "symbol" : "line",  "ofUnit" : "0.00211666666667" },
     { "type" : "Thou",    "symbol" : "th",    "ofUnit" : "0.0000254" },
 
+    { "type" : "Point",   "symbol" : "pt",    "ofUnit" : "0.00035277777778" },
+
     { "type" : "Fathom",       "symbol" : "ftm", "ofUnit" : "1.82880" },
     { "type" : "NauticalMile", "symbol" : "M",   "ofUnit" : "1852" },
 

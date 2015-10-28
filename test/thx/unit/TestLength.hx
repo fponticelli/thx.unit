@@ -35,4 +35,9 @@ class TestLength {
     Assert.isTrue(2 == (len1 + len2).value);
     Assert.isTrue(0 == (len1 - len2).value);
   }
+
+  public function testPoint() {
+    var pt : Point = 18;
+    Assert.isTrue((pt : Inch).nearEqualsTo(0.25));
+  }
 }
