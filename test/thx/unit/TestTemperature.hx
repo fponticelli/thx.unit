@@ -14,11 +14,10 @@ class TestTemperature {
   }
 
 // test is exluded for Java and Python before v.3.3 because they have a bug
-// matchin UTF8 characters
-#if (!java && !python || (haxe_version = "3.3"))
+// matching UTF8 characters
+#if ((!java && !python) || (haxe_version = "3.3"))
   public function testRuntime() {
     var t : Temperature = "25°C";
-    trace(t);
     Assert.isTrue((77 : Fahrenheit) == t.toFahrenheit());
     Assert.isTrue((298.15 : Kelvin) == t.toKelvin());
   }
