@@ -22,6 +22,8 @@
     { "type" : "Thou",    "symbol" : "th",    "ofUnit" : "0.0000254" },
 
     { "type" : "Point",   "symbol" : "pt",    "ofUnit" : "0.00035277777778" },
+    { "type" : "Pica",    "symbol" : "pc",    "ofUnit" : "0.00423333333333" },
+    { "type" : "Pixel",   "symbol" : "px",    "ofUnit" : "0.00026458333333" },
 
     { "type" : "Fathom",       "symbol" : "ftm", "ofUnit" : "1.82880" },
     { "type" : "NauticalMile", "symbol" : "M",   "ofUnit" : "1852" },
