@@ -154,6 +154,14 @@ abstract Micrometre(Decimal) {
   @:to inline public function toPoint() : Point
       return ((this * ofUnit) / dividerPoint).trim();
     
+  static var dividerPica : Decimal = "0.00423333333333";
+  @:to inline public function toPica() : Pica
+      return ((this * ofUnit) / dividerPica).trim();
+    
+  static var dividerPixel : Decimal = "0.00026458333333";
+  @:to inline public function toPixel() : Pixel
+      return ((this * ofUnit) / dividerPixel).trim();
+    
   static var dividerFathom : Decimal = "1.82880";
   @:to inline public function toFathom() : Fathom
       return ((this * ofUnit) / dividerFathom).trim();

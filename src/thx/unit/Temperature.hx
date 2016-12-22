@@ -34,6 +34,7 @@ abstract Temperature(TemperatureImpl) from TemperatureImpl to TemperatureImpl {
   @:from inline static public function romer(value : Romer) : Temperature
     return TemperatureRomer(value);
 
+
   public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Temperature return switch info.symbol {
     case "°C", "celsius": TemperatureCelsius(info.value);
     case "°F", "fahrenheit": TemperatureFahrenheit(info.value);

@@ -1,0 +1,4 @@
+digraph graphname {
+n1 [shape=box,label="<root>
+(1)"];
+}

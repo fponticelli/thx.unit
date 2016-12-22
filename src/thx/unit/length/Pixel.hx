@@ -2,85 +2,85 @@ package thx.unit.length;
 
 import thx.Decimal;
 
-abstract Furlong(Decimal) {
-  static var ofUnit : Decimal = "201.168"; 
-  @:from inline static public function fromDecimal(value : Decimal) : Furlong
-    return new Furlong(value);
+abstract Pixel(Decimal) {
+  static var ofUnit : Decimal = "0.00026458333333"; 
+  @:from inline static public function fromDecimal(value : Decimal) : Pixel
+    return new Pixel(value);
 
-  @:from inline static public function fromInt(value : Int) : Furlong 
+  @:from inline static public function fromInt(value : Int) : Pixel 
     return fromDecimal(Decimal.fromInt(value));
   
 
-  @:from inline static public function fromFloat(value : Float) : Furlong
-    return new Furlong(value);
+  @:from inline static public function fromFloat(value : Float) : Pixel
+    return new Pixel(value);
 
 
   inline function new(value : Decimal)
     this = value;
 
-  inline public function abs() : Furlong
+  inline public function abs() : Pixel
     return this.abs();
 
-  inline public function min(that : Furlong) : Furlong
+  inline public function min(that : Pixel) : Pixel
     return this.min(that.toDecimal());
 
-  inline public function max(that : Furlong) : Furlong
+  inline public function max(that : Pixel) : Pixel
     return this.max(that.toDecimal());
 
-  @:op( -A ) inline public function negate() : Furlong
+  @:op( -A ) inline public function negate() : Pixel
     return -this;
-  @:op( A+B) inline public function add(that : Furlong) : Furlong
+  @:op( A+B) inline public function add(that : Pixel) : Pixel
     return this + that.toDecimal();
-  @:op( A-B) inline public function subtract(that : Furlong) : Furlong
+  @:op( A-B) inline public function subtract(that : Pixel) : Pixel
     return this - that.toDecimal();
-  @:op( A*B) inline public function multiply(that : Decimal) : Furlong
+  @:op( A*B) inline public function multiply(that : Decimal) : Pixel
     return this * that;
-  @:op( A/B) inline public function divide(that : Decimal) : Furlong
+  @:op( A/B) inline public function divide(that : Decimal) : Pixel
     return this / that;
-  @:op( A%B) inline public function modulo(that : Decimal) : Furlong
+  @:op( A%B) inline public function modulo(that : Decimal) : Pixel
     return this % that;
 
-  inline public function equalsTo(that : Furlong) : Bool
+  inline public function equalsTo(that : Pixel) : Bool
     return this == that.toDecimal();
   @:op(A==B)
-  inline static public function equals(self : Furlong, that : Furlong) : Bool
+  inline static public function equals(self : Pixel, that : Pixel) : Bool
     return self.toDecimal() == that.toDecimal();
 
-  public function nearEqualsTo(that : Furlong) : Bool 
+  public function nearEqualsTo(that : Pixel) : Bool 
     return Floats.nearEquals(this.toFloat(), that.toFloat());
   
-  public static function nearEquals(self : Furlong, that : Furlong) : Bool 
+  public static function nearEquals(self : Pixel, that : Pixel) : Bool 
     return Floats.nearEquals(self.toFloat(), that.toFloat());
   
 
-  inline public function notEqualsTo(that : Furlong) : Bool
+  inline public function notEqualsTo(that : Pixel) : Bool
     return this != that.toDecimal();
   @:op(A!=B)
-  inline static public function notEquals(self : Furlong, that : Furlong) : Bool
+  inline static public function notEquals(self : Pixel, that : Pixel) : Bool
     return self.toDecimal() != that.toDecimal();
 
-  inline public function lessThan(that : Furlong) : Bool
+  inline public function lessThan(that : Pixel) : Bool
     return this < that.toDecimal();
   @:op( A<B)
-  inline static public function less(self : Furlong, that : Furlong) : Bool
+  inline static public function less(self : Pixel, that : Pixel) : Bool
     return self.toDecimal() < that.toDecimal();
 
-  inline public function lessEqualsTo(that : Furlong) : Bool
+  inline public function lessEqualsTo(that : Pixel) : Bool
     return this <= that.toDecimal();
   @:op(A<=B)
-  inline static public function lessEquals(self : Furlong, that : Furlong) : Bool
+  inline static public function lessEquals(self : Pixel, that : Pixel) : Bool
     return self.toDecimal() <= that.toDecimal();
 
-  inline public function greaterThan(that : Furlong) : Bool
+  inline public function greaterThan(that : Pixel) : Bool
     return this > that.toDecimal();
   @:op( A>B)
-  inline static public function greater(self : Furlong, that : Furlong) : Bool
+  inline static public function greater(self : Pixel, that : Pixel) : Bool
     return self.toDecimal() >= that.toDecimal();
 
-  inline public function greaterEqualsTo(that : Furlong) : Bool
+  inline public function greaterEqualsTo(that : Pixel) : Bool
     return this >= that.toDecimal();
   @:op(A>=B)
-  inline static public function greaterEquals(self : Furlong, that : Furlong) : Bool
+  inline static public function greaterEquals(self : Pixel, that : Pixel) : Bool
     return self.toDecimal() >= that.toDecimal();
  inline public function toDecimal() : Decimal
     return this;
@@ -124,7 +124,7 @@ abstract Furlong(Decimal) {
     
   static var dividerFurlong : Decimal = "201.168";
   @:to inline public function toFurlong() : Furlong
-      return this;
+      return ((this * ofUnit) / dividerFurlong).trim();
     
   static var dividerChain : Decimal = "20.1168";
   @:to inline public function toChain() : Chain
@@ -160,7 +160,7 @@ abstract Furlong(Decimal) {
     
   static var dividerPixel : Decimal = "0.00026458333333";
   @:to inline public function toPixel() : Pixel
-      return ((this * ofUnit) / dividerPixel).trim();
+      return this;
     
   static var dividerFathom : Decimal = "1.82880";
   @:to inline public function toFathom() : Fathom
@@ -185,5 +185,5 @@ abstract Furlong(Decimal) {
   @:to inline public function toString() : String
     return "" + this + symbol;
 
-  public static inline var symbol : String = "fur";
+  public static inline var symbol : String = "px";
 }

@@ -46,18 +46,19 @@ abstract Angle(AngleImpl) from AngleImpl to AngleImpl {
   @:from inline static public function turn(value : Turn) : Angle
     return AngleTurn(value);
 
+
   public static function fromPair(info : { value : Float, symbol : String}, ?pos : haxe.PosInfos) : Angle return switch info.symbol {
-    case "binary degree", "binary degree": AngleBinaryDegree(info.value);
+    case "binary degree": AngleBinaryDegree(info.value);
     case "°", "degree": AngleDegree(info.value);
-    case "grad", "grad": AngleGrad(info.value);
+    case "grad": AngleGrad(info.value);
     case "hour", "hour angle": AngleHourAngle(info.value);
     case "′", "minute of arc": AngleMinuteOfArc(info.value);
-    case "point", "point": AnglePoint(info.value);
+    case "point": AnglePoint(info.value);
     case "quad.", "quadrant": AngleQuadrant(info.value);
     case "rad", "radian": AngleRadian(info.value);
     case "r", "revolution": AngleRevolution(info.value);
     case "″", "second of arc": AngleSecondOfArc(info.value);
-    case "sextant", "sextant": AngleSextant(info.value);
+    case "sextant": AngleSextant(info.value);
     case "τ", "turn": AngleTurn(info.value);
     case _: throw new thx.Error("invalid symbol " + info.symbol, pos);
   }

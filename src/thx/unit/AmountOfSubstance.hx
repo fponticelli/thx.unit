@@ -16,6 +16,7 @@ abstract AmountOfSubstance(AmountOfSubstanceImpl) from AmountOfSubstanceImpl to 
   @:from inline static public function poundMole(value : PoundMole) : AmountOfSubstance
     return AmountOfSubstancePoundMole(value);
 
+
   public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : AmountOfSubstance return switch info.symbol {
     case "mol", "mole": AmountOfSubstanceMole(info.value);
     case "pound-mol", "pound mole": AmountOfSubstancePoundMole(info.value);

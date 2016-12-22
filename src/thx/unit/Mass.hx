@@ -73,6 +73,7 @@ abstract Mass(MassImpl) from MassImpl to MassImpl {
   @:from inline static public function solarMass(value : SolarMass) : Mass
     return MassSolarMass(value);
 
+
   public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Mass return switch info.symbol {
     case "Mg", "megagram": MassMegagram(info.value);
     case "kg", "kilogram": MassKilogram(info.value);
@@ -93,7 +94,7 @@ abstract Mass(MassImpl) from MassImpl to MassImpl {
     case "u", "unified atomic mass unit": MassUnifiedAtomicMassUnit(info.value);
     case "Da", "dalton": MassDalton(info.value);
     case "mP", "plank mass": MassPlankMass(info.value);
-    case "slug", "slug": MassSlug(info.value);
+    case "slug": MassSlug(info.value);
     case "M☉", "solar mass": MassSolarMass(info.value);
     case _: throw new thx.Error("invalid symbol " + info.symbol, pos);
   }

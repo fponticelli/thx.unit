@@ -16,6 +16,7 @@ abstract LuminousIntensity(LuminousIntensityImpl) from LuminousIntensityImpl to 
   @:from inline static public function candlepower(value : Candlepower) : LuminousIntensity
     return LuminousIntensityCandlepower(value);
 
+
   public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : LuminousIntensity return switch info.symbol {
     case "cd", "candela": LuminousIntensityCandela(info.value);
     case "cp", "candlepower": LuminousIntensityCandlepower(info.value);

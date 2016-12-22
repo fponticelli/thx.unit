@@ -18,8 +18,14 @@ $for(value in units) {
   @:from inline static public function ${value.type.substring(0, 1).toLowerCase() + value.type.substring(1)}(value : $value.type) : $unitType
     return ${value.enumConstructor}(value);
 }
+
   public static function fromPair(info : { value : ${baseType}, symbol : String}, ?pos : haxe.PosInfos) : ${unitType} return switch info.symbol {$for(value in units) {
-    case "${value.symbol}", "${Strings.humanize(value.type)}": ${value.enumConstructor}(info.value);}
+    $(
+      var match = [value.symbol];
+      var human = Strings.humanize(value.type);
+      if(human != value.symbol)
+        match.push(human);
+    )case "${match.join('", "')}": ${value.enumConstructor}(info.value);}
     case _: throw new thx.Error("invalid symbol " + info.symbol, pos);
   }
 

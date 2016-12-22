@@ -85,30 +85,31 @@ abstract Time(TimeImpl) from TimeImpl to TimeImpl {
   @:from inline static public function terasecond(value : Terasecond) : Time
     return TimeTerasecond(value);
 
+
   public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Time return switch info.symbol {
     case "tP", "plank time unit": TimePlankTimeUnit(info.value);
     case "jiffy", "jiffy physics": TimeJiffyPhysics(info.value);
     case "S", "svedberg": TimeSvedberg(info.value);
     case "ps", "picosecond": TimePicosecond(info.value);
     case "ns", "nanosecond": TimeNanosecond(info.value);
-    case "shake", "shake": TimeShake(info.value);
-    case "tick", "tick": TimeTick(info.value);
+    case "shake": TimeShake(info.value);
+    case "tick": TimeTick(info.value);
     case "μs", "microsecond": TimeMicrosecond(info.value);
-    case "fourth", "fourth": TimeFourth(info.value);
+    case "fourth": TimeFourth(info.value);
     case "ms", "millisecond": TimeMillisecond(info.value);
-    case "third", "third": TimeThird(info.value);
+    case "third": TimeThird(info.value);
     case "s", "second": TimeSecond(info.value);
     case "min", "minute": TimeMinute(info.value);
-    case "ke", "ke": TimeKe(info.value);
+    case "ke": TimeKe(info.value);
     case "ks", "kilosecond": TimeKilosecond(info.value);
     case "h", "hour": TimeHour(info.value);
-    case "day", "day": TimeDay(info.value);
-    case "week", "week": TimeWeek(info.value);
+    case "day": TimeDay(info.value);
+    case "week": TimeWeek(info.value);
     case "Ms", "megasecond": TimeMegasecond(info.value);
-    case "fortnight", "fortnight": TimeFortnight(info.value);
-    case "synodic month", "synodic month": TimeSynodicMonth(info.value);
-    case "tropical month", "tropical month": TimeTropicalMonth(info.value);
-    case "julian year", "julian year": TimeJulianYear(info.value);
+    case "fortnight": TimeFortnight(info.value);
+    case "synodic month": TimeSynodicMonth(info.value);
+    case "tropical month": TimeTropicalMonth(info.value);
+    case "julian year": TimeJulianYear(info.value);
     case "Gs", "gigasecond": TimeGigasecond(info.value);
     case "Ts", "terasecond": TimeTerasecond(info.value);
     case _: throw new thx.Error("invalid symbol " + info.symbol, pos);

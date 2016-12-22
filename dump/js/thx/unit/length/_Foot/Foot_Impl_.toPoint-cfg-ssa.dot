@@ -1,0 +1,7 @@
+digraph graphname {
+	node [shape=plaintext];
+n1[label=<<table BORDER="0" CELLBORDER="1" CELLSPACING="0">
+	<tr><td port="in" bgcolor="lightgray">(1) BKRoot</td></tr>
+	<tr><td port="out"></td></tr>
+</table>>];
+}

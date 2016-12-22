@@ -61,6 +61,7 @@ abstract Digital(DigitalImpl) from DigitalImpl to DigitalImpl {
   @:from inline static public function yottabit(value : Yottabit) : Digital
     return DigitalYottabit(value);
 
+
   public static function fromPair(info : { value : Decimal, symbol : String}, ?pos : haxe.PosInfos) : Digital return switch info.symbol {
     case "B", "byte": DigitalByte(info.value);
     case "Ki", "kilobyte": DigitalKilobyte(info.value);
